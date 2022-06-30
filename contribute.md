@@ -12,5 +12,36 @@ Here I will explain the various steps involved to make a successful open source 
         ```markdown
         git clone <copied link>
         ```
+* Creating a new branch:
+    - In this step we create a new branch.
+    - It can be done by the following command:
+        ```markdown
+        git checkout -b <branch name>
+        ```
+* Pullin the changes:
+    - In this step we pull changes in our repository so as to keep the repository in sync with the changes.
+    - It can be done by following command:
+        ```markdown
+        git pull origin <branch name>
+        ```
+
+* Making the necessary changes:
+    - In this step we make the change that we intend to do in the repository.
+    - It is performed on the cloned repo that is on our local system.
+
+* Comitting and pushing the changes:
+    - In this step we commit and push the changes to our branch.
+    - It can be done by the following command:
+        ```markdown
+        git add .
+        git commit -m "Commit Message"
+        git push origin <branch name>
+        ```
+
+* Creating Pull request from forked repository:
+    - In this step we create a pull request so that the changes we made can be reviewed and merged to the original repository.
+    - It can be done by clicking on the New pull request button on the top of the repository page.
+
+* Finally the pull request is reviewed by the admins and if the changes made are correct, it is accepted and merged to the original repository.
 
 
