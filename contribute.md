@@ -18,7 +18,7 @@ Here I will explain the various steps involved to make a successful open source 
         ```markdown
         git checkout -b <branch name>
         ```
-* Pullin the changes:
+* Pulling the changes:
     - In this step we pull changes in our repository so as to keep the repository in sync with the changes.
     - It can be done by following command:
         ```markdown
