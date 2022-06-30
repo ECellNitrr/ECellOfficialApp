@@ -8,9 +8,9 @@ Here I will explain the various steps involved to make a successful open source 
 
 * Cloning the repository:
     - In this step we clone the forked repository on our local machines so as to make changes in the repo.
-    - It can be done by:
+    - It can be done by copying the link that appears after clicking the code button of the forked repository page.
         ```markdown
-        git checkout -b branch-name
+        git clone <copied link>
         ```
 
 
