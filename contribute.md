@@ -1,6 +1,7 @@
 # Steps involved in Open Source Contribution
-
 Here I will explain the various steps involved in making a successful open source contribution.
+
+## Steps are: 
 
 * Forking the repository:
     - This is the first important step, which consists of making a copy of the repository on our GitHub account.
