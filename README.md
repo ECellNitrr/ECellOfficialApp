@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 ### Screens:
 
-- [splash](lib/screens/splash/splash.dart) [X]
+- [x] [splash](lib/screens/splash/splash.dart)
 - [login](lib/screens/login/login.dart) [X]
 - [signup](lib/screens/signup/signup.dart) [X]
 - [home](lib/screens/home/home.dart) [X]
