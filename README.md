@@ -32,4 +32,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ### 2. Cubit
 
-- [Splash] (splash_cubit.dart) [ ]
+- [Splash] (https://github.com/NeerajYadu07/ECellOfficialApp/blob/39b219ddbfbcfb27ae98d3aebd4aa26e4a450019/lib/screens/splash/cubit/splash_cubit.dart) [ ]
