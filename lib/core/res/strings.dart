@@ -126,6 +126,7 @@ class S {
   static const String phoneURL = "tel:+919406220952";
   static const String emailURL = "mailto:ecell@nitrr.ac.in";
   static const String assetEventFrame = "assets/event-frame.png";
+  static const String assetTeamsFrame = "assets/team-frame.png";
   static const String asset404Image = "assets/404.png";
 
   // paragraphs
