@@ -49,7 +49,7 @@ class S {
   static const String eventdetailsKey = "details";
   static const String eventiconurlKey = "icon";
   //sponsors
-  static const int sponsorApiYear = 2021;
+  static const int sponsorApiYear = 2020;
   static const String sponsorName = "name";
   static const String sponsorDetails = "details";
   static const String sponsorPic = "pic";
@@ -72,7 +72,7 @@ class S {
   static const String speakerSocialMedia = "social_media";
   static const String speakerYear = "year";
   //teams
-  static const int teamApiYear = 2021;
+  static const int teamApiYear = 2020;
   static const String teamId = "id";
   static const String teamName = "name";
   static const String teamMemberType = "member_type";
