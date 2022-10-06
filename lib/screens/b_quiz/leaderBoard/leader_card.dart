@@ -11,7 +11,7 @@ class LeaderCard extends StatelessWidget {
   final Data Leader;
   final int rank;
 
-  const LeaderCard({Key key, this.Leader, this.rank, Data leader}) : super(key: key);
+  const LeaderCard({Key key, this.Leader, this.rank,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +29,9 @@ class LeaderCard extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(22),
                   ),
-                  child: ExpansionTile(
-                    title: Container(
-                      height: ratio > 0.5 ? 140 : 160,
+                  child: Container(
+                      padding: const EdgeInsets.all(20),
+                      height: ratio > 0.5 ? 140 : 175,
                       margin: EdgeInsets.only(left: 130),
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -45,7 +45,7 @@ class LeaderCard extends StatelessWidget {
                           Text(
                             Leader.username,
                             style: TextStyle(
-                              fontSize: 25,
+                              fontSize: 20,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w600,
                             ),
@@ -53,21 +53,38 @@ class LeaderCard extends StatelessWidget {
                           SizedBox(height: 10),
                           Text(
                             Leader.email,
-                            style: TextStyle(fontSize: 20, color: C.cardFontColor),
+                            style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
                           SizedBox(height: 10),
                           Text(
                             "Score:${Leader.bquizScore}",
-                            style: TextStyle(fontSize: 20, color: C.cardFontColor),
+                            style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
                         ],
                       ),
                     ),
-                    
-                  ),
+
                 ),
               ),
               
+            ],
+          ),
+        ),
+        Positioned(
+          height: ratio > 0.5 ? 200 : 220,
+          width: ratio > 0.5 ? 150 : 170,
+          child: Stack(
+            children: [
+              Image.asset(
+                S.assetSpeakerCardFrame,
+                fit: BoxFit.cover,
+                height: 220,
+              ),
+              Container(
+                alignment: Alignment.center,
+                padding: EdgeInsets.only(bottom: 10),
+                child: Text("# $rank",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),)
+              ),
             ],
           ),
         ),
@@ -76,3 +93,4 @@ class LeaderCard extends StatelessWidget {
     );
   }
 }
+

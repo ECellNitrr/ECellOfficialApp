@@ -63,7 +63,7 @@ class LeaderScreen extends StatelessWidget {
     double ratio = MediaQuery.of(context).size.aspectRatio;
 
     List<Widget> LeaderContentList = [];
-    LeaderList.forEach((element) => LeaderContentList.add(LeaderCard(leader: element,rank: LeaderContentList.length+1,)));
+    LeaderList.forEach((element) => LeaderContentList.add(LeaderCard(Leader: element,rank: LeaderContentList.length+1,)));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
