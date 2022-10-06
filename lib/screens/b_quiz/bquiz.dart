@@ -1,5 +1,6 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
+import 'package:ecellapp/screens/b_quiz/tabs/quiz.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,7 @@ class BQuiz extends StatelessWidget {
                         color: Colors.transparent,
                         onPressed: () {
                           //TODO: remove brackets and add func
+                          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>Quiz()));
                         },
                         child: Container(
                           height: 30,
