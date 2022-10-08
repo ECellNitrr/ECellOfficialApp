@@ -112,7 +112,7 @@ class BQuiz extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: ((context) => BlocProvider(
-              create: (_) => LeaderCubit(APILeaderRepository()), child:LeaderScreen() ) )));
+              create: (_) => LeaderCubit(FakeLeaderRepository()), child:LeaderScreen() ) )));
                         
                       },
                       child: Text(
