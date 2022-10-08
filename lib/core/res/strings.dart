@@ -2,7 +2,7 @@ class S {
   S._();
 
   // urls
-  static const String baseUrl = "http://159.65.158.103:3000/";
+  static const String baseUrl = "http://43.205.53.122/";
   static const String loginUrl = baseUrl + "users/login/";
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";
