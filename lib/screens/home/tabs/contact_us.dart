@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:ecellapp/screens/home/cubit/feedback_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:legacy_buttons/legacy_buttons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ContactUsScreen extends StatelessWidget {
@@ -298,7 +299,7 @@ class ContactUsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: RaisedButton(
+                      child: LegacyRaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),

@@ -105,7 +105,7 @@ class APIEventsRepository implements EventsRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().get(
-            S.getEventsUrl,
+            Uri.dataFromString(S.getEventsUrl),
           );
     } catch (e) {
       Log.e(tag: tag, message: "NetworkError:" + e.toString());

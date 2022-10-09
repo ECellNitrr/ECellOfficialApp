@@ -95,7 +95,7 @@ class APITeamRepository extends TeamRepository {
     final String tag = classTag + "getAllTeamMembers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getTeamUrl);
+      response = await sl.get<http.Client>().get(Uri.dataFromString(S.getTeamUrl));
     } catch (e) {
       throw NetworkException();
     }

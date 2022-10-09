@@ -242,7 +242,8 @@ class APISponsorsRepository extends SponsorsRepository {
     final String tag = classTag + "getAllSponsors()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getSponsorsUrl);
+      response = await sl.get<http.Client>().get(Uri.dataFromString(
+        S.getSponsorsUrl));
     } catch (e) {
       throw NetworkException();
     }

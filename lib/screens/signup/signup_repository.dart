@@ -39,7 +39,7 @@ class APISignupRepository implements SignupRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.registerUrl,
+        Uri.dataFromString(S.registerUrl),
         body: <String, dynamic>{
           S.firstnameKey: firstName,
           S.lastnameKey: lastName,

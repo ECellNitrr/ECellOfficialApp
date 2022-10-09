@@ -179,7 +179,7 @@ class APISpeakerRepository extends SpeakerRepository {
     final String tag = classTag + "getAllSpeakers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getSpeakerUrl);
+      response = await sl.get<http.Client>().get(Uri.dataFromString(S.getSpeakerUrl));
     } catch (e) {
       throw NetworkException();
     }

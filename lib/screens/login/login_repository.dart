@@ -37,7 +37,7 @@ class APILoginRepository implements LoginRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.loginUrl,
+        Uri.dataFromString(S.loginUrl),
         body: <String, dynamic>{S.emailKey: email, S.passwordKey: password},
       );
     } catch (e) {

@@ -43,7 +43,7 @@ class APIHomeRepository extends HomeRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.postFeedbackUrl,
+        Uri.dataFromString(S.postFeedbackUrl),
         body: <String, dynamic>{
           S.feedbackNameKey: name,
           S.emailKey: email,
