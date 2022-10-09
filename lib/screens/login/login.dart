@@ -27,7 +27,7 @@ class LoginScreen extends StatelessWidget {
             Scaffold.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
             Navigator.pushReplacementNamed(context, S.routeSplash);
           } else if (state is LoginError) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message!)));
           }
         },
         builder: (context, state) {
@@ -230,7 +230,7 @@ class LoginScreen extends StatelessWidget {
 
   void _login(BuildContext context) {
     final cubit = context.read<LoginCubit>();
-    if (_formKey.currentState.validate())
+    if (_formKey.currentState!.validate())
       cubit.login(emailController.text, passwordController.text);
   }
 }

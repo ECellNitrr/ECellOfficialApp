@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 abstract class LoginRepository {
   /// Takes in login credentials (here id and password)
   /// Use by implementing this class
-  Future<String> login(String email, String password);
+  Future<String?> login(String email, String password);
 }
 
 class FakeLoginRepository implements LoginRepository {
@@ -32,7 +32,7 @@ class FakeLoginRepository implements LoginRepository {
 class APILoginRepository implements LoginRepository {
   final String classTag = "APILoginRepository";
   @override
-  Future<String> login(String email, String password) async {
+  Future<String?> login(String email, String password) async {
     final String tag = classTag + "login";
     http.Response response;
     try {
@@ -47,7 +47,7 @@ class APILoginRepository implements LoginRepository {
 
     if (response.statusCode == 202) {
       try {
-        String token = json.decode(response.body)[S.tokenKey];
+        String? token = json.decode(response.body)[S.tokenKey];
         return token;
       } catch (e) {
         Log.e(tag: tag, message: "Error while decoding response json to get token: $e");

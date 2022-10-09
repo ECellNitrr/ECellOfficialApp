@@ -7,9 +7,9 @@ import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/models/speaker.dart';
 
 class SpeakerCard extends StatelessWidget {
-  final Speaker speaker;
+  final Speaker? speaker;
 
-  const SpeakerCard({Key key, this.speaker}) : super(key: key);
+  const SpeakerCard({Key? key, this.speaker}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class SpeakerCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            speaker.name,
+                            speaker!.name!,
                             style: TextStyle(
                               fontSize: 25,
                               color: C.cardFontColor,
@@ -50,7 +50,7 @@ class SpeakerCard extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            speaker.company,
+                            speaker!.company!,
                             style: TextStyle(fontSize: 20, color: C.cardFontColor),
                           ),
                         ],
@@ -60,7 +60,7 @@ class SpeakerCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(25.0),
                         child: Text(
-                          speaker.description,
+                          speaker!.description!,
                           style: TextStyle(color: C.cardFontColor),
                         ),
                       )
@@ -80,8 +80,8 @@ class SpeakerCard extends StatelessWidget {
                         GestureDetector(
                             onTap: () async {
                               //Handle speaker.socialMedia
-                              if (await canLaunch(speaker.socialMedia)) {
-                                await launch(speaker.socialMedia);
+                              if (await canLaunch(speaker!.socialMedia!)) {
+                                await launch(speaker!.socialMedia!);
                               } else {
                                 Scaffold.of(context)
                                     .showSnackBar(SnackBar(content: Text(S.redirectIntentError)));
@@ -114,7 +114,7 @@ class SpeakerCard extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 10),
                 child: CircleAvatar(
                   backgroundColor: Colors.blue,
-                  backgroundImage: NetworkImage(speaker.profilePic),
+                  backgroundImage: NetworkImage(speaker!.profilePic!),
                   radius: 45,
                 ),
               ),

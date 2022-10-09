@@ -57,7 +57,7 @@ class ReloadOnErrorWidget extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
                         color: C.authButtonColor,
-                        onPressed: onReload,
+                        onPressed: onReload as void Function()?,
                         child: Container(
                           height: ratio > 0.5 ? 40 : 60,
                           width: ratio > 0.5 ? 80 : 100,

@@ -45,7 +45,7 @@ class APISplashRepository extends SplashRepository {
   @override
   Future<User> getProfile() async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
-    String token = sharedPreferences.getString(S.tokenKeySharedPreferences);
+    String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
     final String tag = classTag + "getUserDetails";
     http.Response response;
     try {

@@ -13,7 +13,7 @@ import 'package:rxdart/rxdart.dart';
 import 'cubit/sponsors_cubit.dart';
 
 class SponsorsScreen extends StatelessWidget {
-  const SponsorsScreen({Key key}) : super(key: key);
+  const SponsorsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class SponsorsScreen extends StatelessWidget {
             initialData: 0,
             stream: subject.stream,
             builder: (context, snapshot) {
-              int i = snapshot.data;
+              int i = snapshot.data!;
               return Row(
                 children: [
                   Expanded(

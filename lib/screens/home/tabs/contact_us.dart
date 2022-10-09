@@ -352,11 +352,11 @@ class ContactUsScreen extends StatelessWidget {
     }
   }
 
-  String _validator(String text) => text.isEmpty ? "" : null;
+  String? _validator(String? text) => text!.isEmpty ? "" : null;
   Widget _buildLoading() => Center(child: CircularProgressIndicator());
 
   void _postFeedback(BuildContext context) {
     final cubit = context.read<FeedbackCubit>();
-    if (_formKey.currentState.validate()) cubit.postFeedback(feedbackController.text);
+    if (_formKey.currentState!.validate()) cubit.postFeedback(feedbackController.text);
   }
 }

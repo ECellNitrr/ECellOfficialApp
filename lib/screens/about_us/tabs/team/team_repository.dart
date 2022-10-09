@@ -79,7 +79,7 @@ class FakeTeamRepository implements TeamRepository {
         TeamMember member = TeamMember.fromJson(e);
         // adding the team member to the specific category.
         // If that category doesnot exist in our directory, add it to the others list.
-        categories[typeToIndex[member.type] ?? 7].members.add(member);
+        categories[typeToIndex[member.type!] ?? 7].members.add(member);
       });
 
       return categories;
@@ -127,7 +127,7 @@ class APITeamRepository extends TeamRepository {
 
       (teamResponse["data"] as List).forEach((e) {
         TeamMember member = TeamMember.fromJson(e);
-        categories[typeToIndex[member.type] ?? 7].members.add(member);
+        categories[typeToIndex[member.type!] ?? 7].members.add(member);
       });
 
       return categories;

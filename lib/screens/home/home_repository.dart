@@ -37,8 +37,8 @@ class APIHomeRepository extends HomeRepository {
   @override
   Future<void> postFeedback(String feedback) async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
-    String name = sharedPreferences.getString(S.nameKeySharedPreferences);
-    String email = sharedPreferences.getString(S.emailKeySharedPreferences);
+    String? name = sharedPreferences.getString(S.nameKeySharedPreferences);
+    String? email = sharedPreferences.getString(S.emailKeySharedPreferences);
     final String tag = classTag + "postFeedback";
     http.Response response;
     try {

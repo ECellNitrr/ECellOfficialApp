@@ -16,7 +16,7 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login(String email, String password) async {
     try {
       emit(LoginLoading());
-      String token = await _loginRepository.login(email, password);
+      String token = await (_loginRepository.login(email, password) as FutureOr<String>);
       await sl.get<SharedPreferences>().setString(S.tokenKeySharedPreferences, token);
       emit(LoginSuccess(token));
     } on NetworkException {

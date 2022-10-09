@@ -7,9 +7,9 @@ import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';
 
 class SponsorCard extends StatelessWidget {
-  final Sponsor sponsor;
+  final Sponsor? sponsor;
 
-  const SponsorCard({Key key, this.sponsor}) : super(key: key);
+  const SponsorCard({Key? key, this.sponsor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class SponsorCard extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Text(
-                      sponsor.name,
+                      sponsor!.name!,
                       style: TextStyle(
                         fontSize: 20,
                         color: C.cardFontColor,
@@ -48,8 +48,8 @@ class SponsorCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         //Handle sponsor.spons[0].socialMedia
-                        if (await canLaunch(sponsor.website)) {
-                          await launch(sponsor.website);
+                        if (await canLaunch(sponsor!.website!)) {
+                          await launch(sponsor!.website!);
                         } else {
                           Scaffold.of(context)
                               .showSnackBar(SnackBar(content: Text(S.redirectIntentError)));
@@ -93,7 +93,7 @@ class SponsorCard extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       backgroundColor: Colors.blue,
-                      backgroundImage: NetworkImage(sponsor.picUrl),
+                      backgroundImage: NetworkImage(sponsor!.picUrl!),
                       radius: 40,
                     ),
                   ),

@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    String token = sl.get<SharedPreferences>().getString(S.tokenKey);
+    String? token = sl.get<SharedPreferences>().getString(S.tokenKey);
     if (token == null) {
       Future.delayed(Duration(milliseconds: D.splashDelay))
           .then((value) => Navigator.pushReplacementNamed(context, S.routeLogin));

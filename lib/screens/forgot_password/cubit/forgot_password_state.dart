@@ -15,7 +15,7 @@ class ForgotEmailInitial extends ForgotPasswordState {}
 class ForgotOTPInitial extends ForgotPasswordState {}
 
 class ForgotPasswordError extends ForgotPasswordState {
-  final String message;
+  final String? message;
   final ForgotPasswordState state;
 
   ForgotPasswordError(this.message, this.state);
