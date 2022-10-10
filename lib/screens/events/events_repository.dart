@@ -89,7 +89,7 @@ class FakeEventsRepository implements EventsRepository {
           }
         ]
       };
-      List<Event> events = List();
+      List<Event> events = [];
       (json["data"] as List).forEach((e) => events.add(Event.fromJson(e)));
       // fake successful response (the data entered here is same as in the API Doc example)
       return events;
@@ -105,7 +105,7 @@ class APIEventsRepository implements EventsRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().get(
-            Uri.dataFromString(S.getEventsUrl),
+            Uri.parse(S.getEventsUrl),
           );
     } catch (e) {
       Log.e(tag: tag, message: "NetworkError:" + e.toString());
@@ -115,7 +115,7 @@ class APIEventsRepository implements EventsRepository {
     if (response.statusCode == 200) {
       Log.i(tag: tag, message: "Request Successful");
       var json = jsonDecode(response.body);
-      List<Event> events = List();
+      List<Event> events = List.empty();
       (json["data"] as List).forEach((e) => events.add(Event.fromJson(e)));
       return events;
     } else if (response.statusCode == 404) {
@@ -123,7 +123,9 @@ class APIEventsRepository implements EventsRepository {
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

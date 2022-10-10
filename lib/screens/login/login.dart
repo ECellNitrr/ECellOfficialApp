@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../widgets/raisedButton.dart';
 import 'cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -24,17 +25,22 @@ class LoginScreen extends StatelessWidget {
       body: BlocConsumer<LoginCubit, LoginState>(
         listener: (context, state) async {
           if (state is LoginSuccess) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text("Login Successful")));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("Login Successful")));
             Navigator.pushReplacementNamed(context, S.routeSplash);
           } else if (state is LoginError) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message!)));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.message!)));
           }
         },
         builder: (context, state) {
           return Stack(
             children: [
               ScreenBackground(elementId: 1),
-              if (state is LoginLoading) _buildLoading(context) else _buildInitial(context),
+              if (state is LoginLoading)
+                _buildLoading(context)
+              else
+                _buildInitial(context),
             ],
           );
         },
@@ -55,7 +61,8 @@ class LoginScreen extends StatelessWidget {
           curve: Curves.ease,
         );
       } else {
-        _scrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.ease);
+        _scrollController.animateTo(0,
+            duration: Duration(milliseconds: 300), curve: Curves.ease);
       }
     }
     return DefaultTextStyle(
@@ -80,7 +87,8 @@ class LoginScreen extends StatelessWidget {
                         // Logo
                         Container(
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: D.horizontalPadding + 1),
+                          padding:
+                              EdgeInsets.only(left: D.horizontalPadding + 1),
                           child: Image.asset(
                             S.assetEcellLogoWhite,
                             width: width * 0.25 * heightFactor,
@@ -88,27 +96,32 @@ class LoginScreen extends StatelessWidget {
                         ),
                         Container(
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: D.horizontalPadding, top: 20),
+                          padding: EdgeInsets.only(
+                              left: D.horizontalPadding, top: 20),
                           child: Text(
                             "Welcome",
-                            style:
-                                TextStyle(fontSize: 35 * heightFactor, fontWeight: FontWeight.w600),
+                            style: TextStyle(
+                                fontSize: 35 * heightFactor,
+                                fontWeight: FontWeight.w600),
                           ),
                         ),
                         //Text Greeting
                         Container(
                           alignment: Alignment.centerLeft,
-                          padding: EdgeInsets.only(left: D.horizontalPadding, top: 5),
+                          padding: EdgeInsets.only(
+                              left: D.horizontalPadding, top: 5),
                           child: RichText(
                             text: TextSpan(
                               text: "Let's ",
                               children: [
                                 TextSpan(
                                     text: "Sign ",
-                                    style: TextStyle(color: C.primaryHighlightedColor)),
+                                    style: TextStyle(
+                                        color: C.primaryHighlightedColor)),
                                 TextSpan(
                                     text: "you in",
-                                    style: TextStyle(color: C.primaryUnHighlightedColor)),
+                                    style: TextStyle(
+                                        color: C.primaryUnHighlightedColor)),
                               ],
                               style: TextStyle(fontSize: 25 * heightFactor),
                             ),
@@ -119,7 +132,8 @@ class LoginScreen extends StatelessWidget {
                         Form(
                             key: _formKey,
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: D.horizontalPadding),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: D.horizontalPadding),
                               child: Column(
                                 children: [
                                   EmailField(emailController),
@@ -137,8 +151,9 @@ class LoginScreen extends StatelessWidget {
                           child: GestureDetector(
                             child: Text(
                               "Forgot Password?",
-                              style:
-                                  TextStyle(fontSize: 20 * heightFactor, color: C.secondaryColor),
+                              style: TextStyle(
+                                  fontSize: 20 * heightFactor,
+                                  color: C.secondaryColor),
                             ),
                             onTap: () {
                               //TODO: Forgot Password Route
@@ -165,7 +180,7 @@ class LoginScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        child: RaisedButton(
+                        child: LegacyRaisedButton(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(30)),
                           ),
@@ -178,7 +193,8 @@ class LoginScreen extends StatelessWidget {
                             child: Text(
                               "Log In",
                               style: TextStyle(
-                                  color: C.primaryUnHighlightedColor, fontSize: 20 * heightFactor),
+                                  color: C.primaryUnHighlightedColor,
+                                  fontSize: 20 * heightFactor),
                             ),
                           ),
                         ),
@@ -196,8 +212,9 @@ class LoginScreen extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text('New here? ',
-                              style:
-                                  TextStyle(fontSize: 20 * heightFactor, color: C.secondaryColor)),
+                              style: TextStyle(
+                                  fontSize: 20 * heightFactor,
+                                  color: C.secondaryColor)),
                           GestureDetector(
                             child: Text(
                               'Sign Up',
@@ -206,7 +223,8 @@ class LoginScreen extends StatelessWidget {
                                   color: C.primaryHighlightedColor,
                                   fontSize: 20 * heightFactor),
                             ),
-                            onTap: () => Navigator.pushReplacementNamed(context, S.routeSignup),
+                            onTap: () => Navigator.pushReplacementNamed(
+                                context, S.routeSignup),
                           ),
                         ],
                       ),

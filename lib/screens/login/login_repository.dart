@@ -37,7 +37,7 @@ class APILoginRepository implements LoginRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        Uri.dataFromString(S.loginUrl),
+        Uri.parse(S.loginUrl),
         body: <String, dynamic>{S.emailKey: email, S.passwordKey: password},
       );
     } catch (e) {
@@ -50,7 +50,9 @@ class APILoginRepository implements LoginRepository {
         String? token = json.decode(response.body)[S.tokenKey];
         return token;
       } catch (e) {
-        Log.e(tag: tag, message: "Error while decoding response json to get token: $e");
+        Log.e(
+            tag: tag,
+            message: "Error while decoding response json to get token: $e");
         throw UnknownException();
       }
     } else if (response.statusCode == 400) {
@@ -60,7 +62,9 @@ class APILoginRepository implements LoginRepository {
     } else {
       Log.e(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

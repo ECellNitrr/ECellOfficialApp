@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'package:logger/logger.dart';
 
 /// Wrapper for [Logger] class

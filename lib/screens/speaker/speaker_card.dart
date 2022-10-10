@@ -17,7 +17,8 @@ class SpeakerCard extends StatelessWidget {
     return Stack(
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame),
+          padding:
+              const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame),
           child: Stack(
             children: [
               Padding(
@@ -51,7 +52,8 @@ class SpeakerCard extends StatelessWidget {
                           SizedBox(height: 10),
                           Text(
                             speaker!.company!,
-                            style: TextStyle(fontSize: 20, color: C.cardFontColor),
+                            style:
+                                TextStyle(fontSize: 20, color: C.cardFontColor),
                           ),
                         ],
                       ),
@@ -83,15 +85,16 @@ class SpeakerCard extends StatelessWidget {
                               if (await canLaunch(speaker!.socialMedia!)) {
                                 await launch(speaker!.socialMedia!);
                               } else {
-                                Scaffold.of(context)
-                                    .showSnackBar(SnackBar(content: Text(S.redirectIntentError)));
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text(S.redirectIntentError)));
                               }
                             },
                             child: Image.asset(
                               S.assetIconLinkdin,
                               height: 20,
-                              color: Color.alphaBlend(
-                                  C.blendSocialIconColorOne, C.blendSocialIconColorTwo),
+                              color: Color.alphaBlend(C.blendSocialIconColorOne,
+                                  C.blendSocialIconColorTwo),
                             )),
                       ],
                     ),

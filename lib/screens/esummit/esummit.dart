@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../core/res/colors.dart';
 import '../../core/res/dimens.dart';
 import '../../core/res/strings.dart';
+import '../../widgets/raisedButton.dart';
 
 class ESummitScreen extends StatelessWidget {
   @override
@@ -26,7 +27,8 @@ class ESummitScreen extends StatelessWidget {
         ),
       ),
       body: DefaultTextStyle.merge(
-        style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
+        style:
+            GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
@@ -44,7 +46,8 @@ class ESummitScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.only(left: D.horizontalPadding + 1),
-                  child: Image.asset(S.assetEsummitLogoWhite, width: width * 0.3 * heightFactor),
+                  child: Image.asset(S.assetEsummitLogoWhite,
+                      width: width * 0.3 * heightFactor),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
@@ -52,7 +55,9 @@ class ESummitScreen extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: "E-Summit '21",
-                      style: TextStyle(fontSize: 45 * heightFactor, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                          fontSize: 45 * heightFactor,
+                          fontWeight: FontWeight.w900),
                     ),
                   ),
                 ),
@@ -62,13 +67,16 @@ class ESummitScreen extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: "The Genesis of Innovation",
-                      style: TextStyle(fontSize: 30 * heightFactor, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontSize: 30 * heightFactor,
+                          fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
                 Container(
                   alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.symmetric(horizontal: D.horizontalPadding, vertical: 30),
+                  padding: EdgeInsets.symmetric(
+                      horizontal: D.horizontalPadding, vertical: 30),
                   child: RichText(
                     text: TextSpan(
                       text: "At ",
@@ -105,14 +113,15 @@ class ESummitScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    child: RaisedButton(
+                    child: LegacyRaisedButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(30),
                         ),
                       ),
                       color: C.speakerButtonColor,
-                      onPressed: () => Navigator.pushReplacementNamed(context, S.routeSpeaker),
+                      onPressed: () => Navigator.pushReplacementNamed(
+                          context, S.routeSpeaker),
                       child: Container(
                         height: 50,
                         width: 120,

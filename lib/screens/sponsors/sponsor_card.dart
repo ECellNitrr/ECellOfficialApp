@@ -18,7 +18,8 @@ class SponsorCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame, vertical: 20),
+            margin: const EdgeInsets.symmetric(
+                horizontal: D.horizontalPaddingFrame, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(22),
@@ -51,8 +52,8 @@ class SponsorCard extends StatelessWidget {
                         if (await canLaunch(sponsor!.website!)) {
                           await launch(sponsor!.website!);
                         } else {
-                          Scaffold.of(context)
-                              .showSnackBar(SnackBar(content: Text(S.redirectIntentError)));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(S.redirectIntentError)));
                         }
                       },
                       child: Image.asset(
@@ -74,7 +75,8 @@ class SponsorCard extends StatelessWidget {
             width: ratio > 0.5 ? 150 : 170,
             child: Stack(
               children: [
-                Image.asset(S.assetSponsorFrame, fit: BoxFit.cover, height: 200),
+                Image.asset(S.assetSponsorFrame,
+                    fit: BoxFit.cover, height: 200),
                 Center(
                   child: Container(
                     height: 100,

@@ -49,7 +49,9 @@ class APISplashRepository extends SplashRepository {
     final String tag = classTag + "getUserDetails";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.dataFromString(S.getUserDetailsUrl), headers: <String, String>{
+      response = await sl
+          .get<http.Client>()
+          .get(Uri.parse(S.getUserDetailsUrl), headers: <String, String>{
         "Authorization": "$token",
       });
     } catch (e) {
@@ -63,7 +65,9 @@ class APISplashRepository extends SplashRepository {
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

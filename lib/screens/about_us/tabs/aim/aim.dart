@@ -1,5 +1,4 @@
 import 'package:ecellapp/widgets/screen_background.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';

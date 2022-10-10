@@ -22,8 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     String? token = sl.get<SharedPreferences>().getString(S.tokenKey);
     if (token == null) {
-      Future.delayed(Duration(milliseconds: D.splashDelay))
-          .then((value) => Navigator.pushReplacementNamed(context, S.routeLogin));
+      Future.delayed(Duration(milliseconds: D.splashDelay)).then(
+          (value) => Navigator.pushReplacementNamed(context, S.routeLogin));
     } else {
       context.read<SplashCubit>().getProfile();
     }
@@ -39,13 +39,15 @@ class _SplashScreenState extends State<SplashScreen> {
           BlocConsumer<SplashCubit, SplashState>(
             listener: (context, state) {
               if (state is SplashError) {
-                Scaffold.of(context).showSnackBar(
-                    SnackBar(content: Text("Something went wrong. Try loging in again.")));
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content:
+                        Text("Something went wrong. Try loging in again.")));
                 Navigator.pushReplacementNamed(context, S.routeLogin);
               } else if (state is SplashSuccess) {
                 context.read<GlobalState>().user = state.user;
-                Future.delayed(Duration(milliseconds: D.splashDelay ~/ 2))
-                    .then((value) => Navigator.pushReplacementNamed(context, S.routeHome));
+                Future.delayed(Duration(milliseconds: D.splashDelay ~/ 2)).then(
+                    (value) =>
+                        Navigator.pushReplacementNamed(context, S.routeHome));
               }
             },
             builder: (context, state) {

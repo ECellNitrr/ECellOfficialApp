@@ -42,7 +42,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -59,7 +60,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -76,7 +78,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -93,7 +96,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -110,7 +114,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -143,7 +148,8 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           },
           {
@@ -160,14 +166,17 @@ class FakeSpeakerRepository extends SpeakerRepository {
             "name": "Shweta Kothari",
             "profile_pic":
                 "https://ichef.bbci.co.uk/news/976/cpsprodpb/7727/production/_103330503_musk3.jpg",
-            "social_media": "https://www.linkedin.com/in/shweta-kothari-b57a8453",
+            "social_media":
+                "https://www.linkedin.com/in/shweta-kothari-b57a8453",
             "year": 2019
           }
         ],
         "message": "Speakers Fetched Successfully"
       };
 
-      return (response["data"] as List).map((e) => Speaker.fromJson(e)).toList();
+      return (response["data"] as List)
+          .map((e) => Speaker.fromJson(e))
+          .toList();
     }
   }
 }
@@ -179,20 +188,24 @@ class APISpeakerRepository extends SpeakerRepository {
     final String tag = classTag + "getAllSpeakers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.dataFromString(S.getSpeakerUrl));
+      response = await sl.get<http.Client>().get(Uri.parse(S.getSpeakerUrl));
     } catch (e) {
       throw NetworkException();
     }
 
     if (response.statusCode == 200) {
       var speakerResponse = jsonDecode(response.body);
-      return (speakerResponse["data"] as List).map((e) => Speaker.fromJson(e)).toList();
+      return (speakerResponse["data"] as List)
+          .map((e) => Speaker.fromJson(e))
+          .toList();
     } else if (response.statusCode == 404) {
       throw ValidationException(response.body);
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

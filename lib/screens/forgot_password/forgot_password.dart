@@ -7,11 +7,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../widgets/raisedButton.dart';
+
 class ForgotPasswordScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +22,7 @@ class ForgotPasswordScreen extends StatelessWidget {
       body: BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
         listener: (context, state) {
           if (state is ForgotPasswordError) {
-            Scaffold.of(context).showSnackBar(
+            ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message!)),
             );
           }
@@ -48,7 +51,8 @@ class ForgotPasswordScreen extends StatelessWidget {
     );
   }
 
-  Widget _uiUpdateForNetworkError(BuildContext context, ForgotPasswordState state) {
+  Widget _uiUpdateForNetworkError(
+      BuildContext context, ForgotPasswordState state) {
     if (state is ForgotEmailInitial) {
       return _initialForgotPassword(context, state);
     } else if (state is ForgotOTPInitial) {
@@ -62,14 +66,15 @@ class ForgotPasswordScreen extends StatelessWidget {
     }
   }
 
-  Widget _initialForgotPassword(BuildContext context, ForgotPasswordState state) {
+  Widget _initialForgotPassword(
+      BuildContext context, ForgotPasswordState state) {
     return Padding(
       padding: const EdgeInsets.all(40.0),
       child: Column(
         children: [
           Text("Enter email"),
           EmailField(emailController),
-          FlatButton(
+          LegacyFlatButton(
               onPressed: () {
                 _sendOTP(context, state);
               },
@@ -91,7 +96,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         children: [
           Text("Enter otp"),
           OTPField(otpController),
-          FlatButton(
+          LegacyFlatButton(
               onPressed: () {
                 _verifyOtp(context, state);
               },
@@ -115,7 +120,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         children: [
           PasswordField(passwordController),
           PasswordField(confirmPasswordController),
-          FlatButton(
+          LegacyFlatButton(
               onPressed: () {
                 _changePassword(context, state);
               },
@@ -137,7 +142,7 @@ class ForgotPasswordScreen extends StatelessWidget {
 
   void _changePassword(BuildContext context, ForgotPasswordState state) {
     final cubit = context.read<ForgotPasswordCubit>();
-    cubit.changePassword(emailController.text, otpController.text, passwordController.text,
-        confirmPasswordController.text, state);
+    cubit.changePassword(emailController.text, otpController.text,
+        passwordController.text, confirmPasswordController.text, state);
   }
 }
