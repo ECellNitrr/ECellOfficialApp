@@ -1,3 +1,4 @@
+import 'package:ecellapp/widgets/raisedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -52,12 +53,12 @@ class ReloadOnErrorWidget extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: RaisedButton(
+                      child: LegacyRaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
                         color: C.authButtonColor,
-                        onPressed: onReload,
+                        onPressed: onReload, //! as void Function()?,
                         child: Container(
                           height: ratio > 0.5 ? 40 : 60,
                           width: ratio > 0.5 ? 80 : 100,
@@ -65,7 +66,8 @@ class ReloadOnErrorWidget extends StatelessWidget {
                           child: Text(
                             "Retry",
                             style: TextStyle(
-                                color: C.primaryUnHighlightedColor, fontSize: 20 * heightFactor),
+                                color: C.primaryUnHighlightedColor,
+                                fontSize: 20 * heightFactor),
                           ),
                         ),
                       ),

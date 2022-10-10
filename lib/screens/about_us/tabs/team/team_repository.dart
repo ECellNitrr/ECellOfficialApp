@@ -54,14 +54,14 @@ class FakeTeamRepository implements TeamRepository {
       };
 
       List<TeamCategory> categories = [
-        TeamCategory("Director", List()),
-        TeamCategory("Head of CDC", List()),
-        TeamCategory("Faculty Incharge", List()),
-        TeamCategory("Overall Co-ordinators", List()),
-        TeamCategory("Head Co-ordinators", List()),
-        TeamCategory("Managers", List()),
-        TeamCategory("Executives", List()),
-        TeamCategory("Other", List()),
+        TeamCategory("Director", []),
+        TeamCategory("Head of CDC", []),
+        TeamCategory("Faculty Incharge", []),
+        TeamCategory("Overall Co-ordinators", []),
+        TeamCategory("Head Co-ordinators", []),
+        TeamCategory("Managers", []),
+        TeamCategory("Executives", []),
+        TeamCategory("Other", []),
       ];
 
       Map<String, int> typeToIndex = {
@@ -79,7 +79,7 @@ class FakeTeamRepository implements TeamRepository {
         TeamMember member = TeamMember.fromJson(e);
         // adding the team member to the specific category.
         // If that category doesnot exist in our directory, add it to the others list.
-        categories[typeToIndex[member.type] ?? 7].members.add(member);
+        categories[typeToIndex[member.type!] ?? 7].members.add(member);
       });
 
       return categories;
@@ -95,7 +95,7 @@ class APITeamRepository extends TeamRepository {
     final String tag = classTag + "getAllTeamMembers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getTeamUrl);
+      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl));
     } catch (e) {
       throw NetworkException();
     }
@@ -105,14 +105,14 @@ class APITeamRepository extends TeamRepository {
       Map<String, dynamic> teamResponse = jsonDecode(response.body);
 
       List<TeamCategory> categories = [
-        TeamCategory("Director", List()),
-        TeamCategory("Head of CDC", List()),
-        TeamCategory("Faculty Incharge", List()),
-        TeamCategory("Overall Co-ordinators", List()),
-        TeamCategory("Head Co-ordinators", List()),
-        TeamCategory("Managers", List()),
-        TeamCategory("Executives", List()),
-        TeamCategory("Other", List()),
+        TeamCategory("Director", []),
+        TeamCategory("Head of CDC", []),
+        TeamCategory("Faculty Incharge", []),
+        TeamCategory("Overall Co-ordinators", []),
+        TeamCategory("Head Co-ordinators", []),
+        TeamCategory("Managers", []),
+        TeamCategory("Executives", []),
+        TeamCategory("Other", []),
       ];
 
       Map<String, int> typeToIndex = {
@@ -127,7 +127,7 @@ class APITeamRepository extends TeamRepository {
 
       (teamResponse["data"] as List).forEach((e) {
         TeamMember member = TeamMember.fromJson(e);
-        categories[typeToIndex[member.type] ?? 7].members.add(member);
+        categories[typeToIndex[member.type!] ?? 7].members.add(member);
       });
 
       return categories;
@@ -136,7 +136,9 @@ class APITeamRepository extends TeamRepository {
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

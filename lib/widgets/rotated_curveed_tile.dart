@@ -2,25 +2,25 @@ import 'package:ecellapp/core/res/colors.dart';
 import 'package:flutter/material.dart';
 
 class RotatedCurvedTile extends StatelessWidget {
-  final String name;
-  final bool checked;
-  final Function onTap;
+  final String? name;
+  final bool? checked;
+  final Function? onTap;
 
   RotatedCurvedTile({this.name, this.checked, this.onTap});
 
   @override
   Widget build(BuildContext context) {
     Widget child = Container(
-      color: checked ? HexColor("#372981") : Colors.white,
+      color: checked! ? HexColor("#372981") : Colors.white,
       margin: EdgeInsets.zero,
       alignment: Alignment.center,
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: Text(
-        name,
-        style: TextStyle(color: checked ? Colors.white : Colors.purple, fontSize: 20),
+        name!,
+        style: TextStyle(color: checked! ? Colors.white : Colors.purple, fontSize: 20),
       ),
     );
-    if (checked) {
+    if (checked!) {
       child = CustomPaint(
         painter: CustomClipPainter._(
           clipper: InnerRoundClip(),
@@ -32,7 +32,7 @@ class RotatedCurvedTile extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(left: 5.0),
       child: GestureDetector(
-        onTap: onTap,
+        onTap: onTap as void Function()?,
         child: RotatedBox(quarterTurns: 3, child: child),
       ),
     );
@@ -73,7 +73,7 @@ class CustomClipPainter extends CustomPainter {
   final Shadow shadow;
   final CustomClipper<Path> clipper;
 
-  CustomClipPainter._({@required this.shadow, @required this.clipper});
+  CustomClipPainter._({required this.shadow, required this.clipper});
 
   @override
   void paint(Canvas canvas, Size size) {

@@ -9,14 +9,14 @@ import '../../core/utils/logger.dart';
 
 abstract class SignupRepository {
   /// Takes in `firstName`, `lastName`, `email`, `mobileNumber` and `password` , registers the user and throws a suitable exception if something goes wrong.
-  Future<void> signup(
-      String firstName, String lastName, String email, String mobileNumber, String password);
+  Future<void> signup(String firstName, String lastName, String email,
+      String mobileNumber, String password);
 }
 
 class FakeSignupRepository implements SignupRepository {
   @override
-  Future<void> signup(
-      String firstName, String lastName, String email, String mobileNumber, String password) async {
+  Future<void> signup(String firstName, String lastName, String email,
+      String mobileNumber, String password) async {
     // Simulate network delay
     await Future.delayed(Duration(seconds: 1));
 
@@ -33,13 +33,13 @@ class FakeSignupRepository implements SignupRepository {
 class APISignupRepository implements SignupRepository {
   final String classTag = "APILoginRepository";
   @override
-  Future<void> signup(
-      String firstName, String lastName, String email, String mobileNumber, String password) async {
+  Future<void> signup(String firstName, String lastName, String email,
+      String mobileNumber, String password) async {
     final String tag = classTag + "signup";
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.registerUrl,
+        Uri.parse(S.registerUrl),
         body: <String, dynamic>{
           S.firstnameKey: firstName,
           S.lastnameKey: lastName,
@@ -54,13 +54,16 @@ class APISignupRepository implements SignupRepository {
     }
 
     if (response.statusCode == 201) {
-      return true;
+      // return true;
+      return;
     } else if (response.statusCode == 400) {
       throw ValidationException(response.body);
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

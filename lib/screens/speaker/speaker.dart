@@ -11,7 +11,7 @@ import 'package:ecellapp/screens/speaker/speaker_card.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
 
 class SpeakerScreen extends StatelessWidget {
-  SpeakerScreen({Key key}) : super(key: key);
+  SpeakerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

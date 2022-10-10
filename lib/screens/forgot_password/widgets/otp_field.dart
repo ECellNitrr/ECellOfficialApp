@@ -21,8 +21,8 @@ class OTPField extends StatelessWidget {
     );
   }
 
-  String _validateOTP(String otp) {
-    if (otp.length != 4) {
+  String? _validateOTP(String? otp) {
+    if (otp!.length != 4) {
       return "Please enter 4 digit OTP";
     } else {
       return null;

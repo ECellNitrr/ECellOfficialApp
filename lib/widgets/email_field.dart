@@ -29,5 +29,5 @@ class EmailField extends StatelessWidget {
     );
   }
 
-  String _validator(String email) => email.isEmpty ? "" : null;
+  String? _validator(String? email) => email!.isEmpty ? "" : null;
 }

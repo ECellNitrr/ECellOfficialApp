@@ -46,7 +46,7 @@ class _PasswordFieldState extends State<PasswordField> {
     );
   }
 
-  String _validator(String password) => password.isEmpty ? "" : null;
+  String? _validator(String? password) => password!.isEmpty ? "" : null;
 
   void _togglePasswordVisibility() => setState(() => _passwordVisible = !_passwordVisible);
 }

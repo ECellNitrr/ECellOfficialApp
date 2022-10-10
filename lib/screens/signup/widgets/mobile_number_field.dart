@@ -28,5 +28,5 @@ class MobileNumberField extends StatelessWidget {
     );
   }
 
-  String _validator(String number) => number.isEmpty ? "" : null;
+  String? _validator(String? number) => number!.isEmpty ? "" : null;
 }
