@@ -9,6 +9,7 @@ import '../../core/res/strings.dart';
 import '../../widgets/ecell_animation.dart';
 import '../../widgets/email_field.dart';
 import '../../widgets/password_field.dart';
+import '../../widgets/raisedButton.dart';
 import '../../widgets/screen_background.dart';
 import '../login/cubit/login_cubit.dart';
 import 'cubit/signup_cubit.dart';
@@ -31,9 +32,11 @@ class SignupScreen extends StatelessWidget {
       body: BlocConsumer<SignupCubit, SignupState>(
         listener: (context, state) {
           if (state is SignupError) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.message)));
           } else if (state is SignupSuccess) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text("SignUp Successful")));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text("SignUp Successful")));
             Navigator.pushReplacementNamed(context, S.routeLogin);
           }
         },
@@ -41,7 +44,10 @@ class SignupScreen extends StatelessWidget {
           return Stack(
             children: [
               ScreenBackground(elementId: 1),
-              if (state is LoginLoading) _buildLoading(context) else _buildInitial(context),
+              if (state is LoginLoading)
+                _buildLoading(context)
+              else
+                _buildInitial(context),
             ],
           );
         },
@@ -62,7 +68,8 @@ class SignupScreen extends StatelessWidget {
           curve: Curves.ease,
         );
       } else {
-        _scrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.ease);
+        _scrollController.animateTo(0,
+            duration: Duration(milliseconds: 300), curve: Curves.ease);
       }
     }
     return DefaultTextStyle(
@@ -90,21 +97,27 @@ class SignupScreen extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: D.horizontalPadding, top: 20),
+                      padding:
+                          EdgeInsets.only(left: D.horizontalPadding, top: 20),
                       child: Text(
                         "Hello!",
-                        style: TextStyle(fontSize: 35 * heightFactor, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                            fontSize: 35 * heightFactor,
+                            fontWeight: FontWeight.w600),
                       ),
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.only(left: D.horizontalPadding, top: 5),
+                      padding:
+                          EdgeInsets.only(left: D.horizontalPadding, top: 5),
                       child: RichText(
                         text: TextSpan(
                           text: "Let's create your ",
                           children: [
                             TextSpan(
-                                text: "Account", style: TextStyle(color: C.primaryHighlightedColor))
+                                text: "Account",
+                                style:
+                                    TextStyle(color: C.primaryHighlightedColor))
                           ],
                           style: TextStyle(fontSize: 25 * heightFactor),
                         ),
@@ -114,15 +127,20 @@ class SignupScreen extends StatelessWidget {
                     Form(
                       key: _formKey,
                       child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: D.horizontalPadding),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: D.horizontalPadding),
                         child: Column(
                           children: <Widget>[
                             Row(
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Expanded(child: NameField(firstnameController, "First Name")),
+                                Expanded(
+                                    child: NameField(
+                                        firstnameController, "First Name")),
                                 SizedBox(width: 15),
-                                Expanded(child: NameField(lastnameController, "Last Name")),
+                                Expanded(
+                                    child: NameField(
+                                        lastnameController, "Last Name")),
                               ],
                             ),
                             SizedBox(height: 20 * heightFactor),
@@ -154,7 +172,7 @@ class SignupScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: RaisedButton(
+                    child: LegacyRaisedButton(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
@@ -187,7 +205,9 @@ class SignupScreen extends StatelessWidget {
                     children: [
                       Text(
                         "have an account?",
-                        style: TextStyle(fontSize: 18 * heightFactor, color: C.secondaryColor),
+                        style: TextStyle(
+                            fontSize: 18 * heightFactor,
+                            color: C.secondaryColor),
                       ),
                       SizedBox(height: 10),
                       GestureDetector(
@@ -198,7 +218,8 @@ class SignupScreen extends StatelessWidget {
                             color: C.primaryHighlightedColor,
                           ),
                         ),
-                        onTap: () => Navigator.pushReplacementNamed(context, S.routeLogin),
+                        onTap: () => Navigator.pushReplacementNamed(
+                            context, S.routeLogin),
                       ),
                     ],
                   ),
@@ -219,7 +240,7 @@ class SignupScreen extends StatelessWidget {
 
   void _signup(BuildContext context) {
     final cubit = context.read<SignupCubit>();
-    if (_formKey.currentState.validate())
+    if (_formKey.currentState!.validate())
       cubit.signup(
         firstnameController.text,
         lastnameController.text,

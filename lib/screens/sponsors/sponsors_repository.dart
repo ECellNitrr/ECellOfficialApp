@@ -212,15 +212,23 @@ class FakeSponsorsRepository extends SponsorsRepository {
           ]
         },
         "message": "fetched successfully",
-        "spons_categories": ["Title", "Partner", "XYZ", "AAAA", "BBBB", "CCCC", "DDDD"]
+        "spons_categories": [
+          "Title",
+          "Partner",
+          "XYZ",
+          "AAAA",
+          "BBBB",
+          "CCCC",
+          "DDDD"
+        ]
       };
 
-      List<SponsorCategory> sponsorData = List();
+      List<SponsorCategory> sponsorData = [];
 
       // iterating through a list of sponsor category names
       response["spons_categories"].forEach((e) {
         // for each category name, creating a list of sponsors belonging to that category
-        List<Sponsor> sponsors = List();
+        List<Sponsor> sponsors = [];
         // iterating through the list of sponsor data that belong to that category
         // and for each one of them, converting them from map into Sponsor model
         // and adding to the sponsors list.
@@ -242,17 +250,18 @@ class APISponsorsRepository extends SponsorsRepository {
     final String tag = classTag + "getAllSponsors()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getSponsorsUrl);
+      response = await sl.get<http.Client>().get(Uri.parse(S.getSponsorsUrl));
     } catch (e) {
       throw NetworkException();
     }
     if (response.statusCode == 200) {
       //Process response here
       Map<String, dynamic> sponsorResponse = jsonDecode(response.body);
-      List<SponsorCategory> sponsorData = List();
+      List<SponsorCategory> sponsorData = List.empty();
       sponsorResponse["spons_categories"].forEach((e) {
-        List<Sponsor> sponsors = List();
-        sponsorResponse["data"][e].forEach((e) => sponsors.add(Sponsor.fromJson(e)));
+        List<Sponsor> sponsors = List.empty();
+        sponsorResponse["data"][e]
+            .forEach((e) => sponsors.add(Sponsor.fromJson(e)));
         sponsorData.add(SponsorCategory(e, sponsors));
       });
       return sponsorData;
@@ -261,7 +270,9 @@ class APISponsorsRepository extends SponsorsRepository {
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

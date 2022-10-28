@@ -8,6 +8,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../widgets/raisedButton.dart';
+
 class ContactUsScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController feedbackController = TextEditingController();
@@ -17,12 +19,14 @@ class ContactUsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
-        body: BlocConsumer<FeedbackCubit, FeedbackState>(listener: (context, state) {
+        body: BlocConsumer<FeedbackCubit, FeedbackState>(
+            listener: (context, state) {
           if (state is FeedbackError) {
-            Scaffold.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text(state.message)));
           } else if (state is FeedbackSuccess) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text("Feedback Posted Successful")));
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text("Feedback Posted Successful")));
           }
         }, builder: (context, state) {
           if (state is FeedbackLoading) {
@@ -47,7 +51,8 @@ class ContactUsScreen extends StatelessWidget {
           curve: Curves.ease,
         );
       } else {
-        _scrollController.animateTo(0, duration: Duration(milliseconds: 300), curve: Curves.ease);
+        _scrollController.animateTo(0,
+            duration: Duration(milliseconds: 300), curve: Curves.ease);
       }
     }
     return DefaultTextStyle.merge(
@@ -61,7 +66,8 @@ class ContactUsScreen extends StatelessWidget {
             child: Container(
               height: height * 1.5,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.only(top: 20 * heightFactor, left: D.horizontalPadding),
+              padding: EdgeInsets.only(
+                  top: 20 * heightFactor, left: D.horizontalPadding),
               child: Column(
                 children: [
                   Container(
@@ -69,7 +75,9 @@ class ContactUsScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: top + 20 * heightFactor),
                     child: Text(
                       "Contact Us",
-                      style: TextStyle(fontSize: 45 * heightFactor, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                          fontSize: 45 * heightFactor,
+                          fontWeight: FontWeight.w900),
                     ),
                   ),
                   Container(
@@ -167,7 +175,8 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 50 * heightFactor, right: D.horizontalPadding),
+                    padding: EdgeInsets.only(
+                        top: 50 * heightFactor, right: D.horizontalPadding),
                     child: Row(
                       children: [
                         Expanded(
@@ -222,7 +231,9 @@ class ContactUsScreen extends StatelessWidget {
                     padding: EdgeInsets.only(top: 50 * heightFactor),
                     child: Text(
                       "Feedback",
-                      style: TextStyle(fontSize: 40 * heightFactor, fontWeight: FontWeight.w900),
+                      style: TextStyle(
+                          fontSize: 40 * heightFactor,
+                          fontWeight: FontWeight.w900),
                     ),
                   ),
                   Container(
@@ -246,7 +257,8 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(top: 20 * heightFactor, right: D.horizontalPadding),
+                    padding: EdgeInsets.only(
+                        top: 20 * heightFactor, right: D.horizontalPadding),
                     child: Row(
                       children: [
                         Expanded(
@@ -284,7 +296,8 @@ class ContactUsScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.only(right: D.horizontalPadding, top: 40),
+                    padding:
+                        EdgeInsets.only(right: D.horizontalPadding, top: 40),
                     alignment: Alignment.topRight,
                     child: Container(
                       decoration: BoxDecoration(
@@ -298,7 +311,7 @@ class ContactUsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: RaisedButton(
+                      child: LegacyRaisedButton(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(
                             Radius.circular(30),
@@ -351,11 +364,12 @@ class ContactUsScreen extends StatelessWidget {
     }
   }
 
-  String _validator(String text) => text.isEmpty ? "" : null;
+  String? _validator(String? text) => text!.isEmpty ? "" : null;
   Widget _buildLoading() => Center(child: CircularProgressIndicator());
 
   void _postFeedback(BuildContext context) {
     final cubit = context.read<FeedbackCubit>();
-    if (_formKey.currentState.validate()) cubit.postFeedback(feedbackController.text);
+    if (_formKey.currentState!.validate())
+      cubit.postFeedback(feedbackController.text);
   }
 }

@@ -7,14 +7,14 @@ import 'dart:math' as math;
 
 class ECellLogoAnimation extends StatefulWidget {
   final double size;
-  ECellLogoAnimation({Key key, @required this.size}) : super(key: key);
+  ECellLogoAnimation({Key? key, required this.size}) : super(key: key);
   @override
   _ECellLogoAnimationState createState() => _ECellLogoAnimationState();
 }
 
 class _ECellLogoAnimationState extends State<ECellLogoAnimation> with TickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController controller;
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void initState() {

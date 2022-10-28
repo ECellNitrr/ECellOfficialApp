@@ -23,7 +23,8 @@ class FeedbackCubit extends Cubit<FeedbackState> {
     } on UnknownException {
       emit(FeedbackError(S.unknownException));
     } catch (e) {
-      Log.s(tag: "Weird exception", message: "Weird response message ->" + e);
+      Log.s(tag: "Weird exception", message: "Weird response message ->" +
+       e.toString());
     }
   }
 }

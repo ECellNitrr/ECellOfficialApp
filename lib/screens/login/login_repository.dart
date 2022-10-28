@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 abstract class LoginRepository {
   /// Takes in login credentials (here id and password)
   /// Use by implementing this class
-  Future<String> login(String email, String password);
+  Future<String?> login(String email, String password);
 }
 
 class FakeLoginRepository implements LoginRepository {
@@ -32,12 +32,12 @@ class FakeLoginRepository implements LoginRepository {
 class APILoginRepository implements LoginRepository {
   final String classTag = "APILoginRepository";
   @override
-  Future<String> login(String email, String password) async {
+  Future<String?> login(String email, String password) async {
     final String tag = classTag + "login";
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.loginUrl,
+        Uri.parse(S.loginUrl),
         body: <String, dynamic>{S.emailKey: email, S.passwordKey: password},
       );
     } catch (e) {
@@ -47,10 +47,12 @@ class APILoginRepository implements LoginRepository {
 
     if (response.statusCode == 202) {
       try {
-        String token = json.decode(response.body)[S.tokenKey];
+        String? token = json.decode(response.body)[S.tokenKey];
         return token;
       } catch (e) {
-        Log.e(tag: tag, message: "Error while decoding response json to get token: $e");
+        Log.e(
+            tag: tag,
+            message: "Error while decoding response json to get token: $e");
         throw UnknownException();
       }
     } else if (response.statusCode == 400) {
@@ -60,7 +62,9 @@ class APILoginRepository implements LoginRepository {
     } else {
       Log.e(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

@@ -3,15 +3,15 @@ import '../core/res/strings.dart';
 /// Model to get All Info about Sponsor
 class Sponsor {
   //int data
-  int id;
-  int year;
+  int? id;
+  int? year;
   //string data
-  String name;
-  String details;
-  String picUrl;
-  String contact;
-  String website;
-  String sponsType;
+  String? name;
+  String? details;
+  String? picUrl;
+  String? contact;
+  String? website;
+  String? sponsType;
 
   Sponsor({
     this.id,

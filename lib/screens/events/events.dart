@@ -12,7 +12,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'events_card.dart';
 
 class EventsScreen extends StatelessWidget {
-  const EventsScreen({Key key}) : super(key: key);
+  const EventsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

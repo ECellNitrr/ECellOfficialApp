@@ -34,5 +34,5 @@ class NameField extends StatelessWidget {
     );
   }
 
-  String _validator(String name) => name.isEmpty ? "" : null;
+  String? _validator(String? name) => name!.isEmpty ? "" : null;
 }

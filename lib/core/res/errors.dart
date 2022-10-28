@@ -10,7 +10,7 @@ class ValidationException implements Exception {
 }
 
 class ResponseException implements Exception {
-  final String message;
+  final String? message;
 
   ResponseException(this.message);
 }

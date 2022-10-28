@@ -71,7 +71,7 @@ class APIForgotPasswordRepository extends ForgotPasswordRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.postChangePasswordUrl,
+        Uri.dataFromString(S.postChangePasswordUrl),
         body: <String, dynamic>{S.emailKey: email, S.otpKey: otp, S.passwordKey: password},
       );
     } catch (e) {
@@ -101,7 +101,7 @@ class APIForgotPasswordRepository extends ForgotPasswordRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.postCheckOtpUrl,
+        Uri.dataFromString(S.postCheckOtpUrl),
         body: <String, dynamic>{S.emailKey: email, S.otpKey: otp},
       );
     } catch (e) {
@@ -131,7 +131,7 @@ class APIForgotPasswordRepository extends ForgotPasswordRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.postForgotPasswordUrl,
+        Uri.dataFromString(S.postForgotPasswordUrl),
         body: <String, dynamic>{S.emailKey: email},
       );
     } catch (e) {

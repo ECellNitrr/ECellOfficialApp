@@ -7,9 +7,9 @@ import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';
 
 class SponsorCard extends StatelessWidget {
-  final Sponsor sponsor;
+  final Sponsor? sponsor;
 
-  const SponsorCard({Key key, this.sponsor}) : super(key: key);
+  const SponsorCard({Key? key, this.sponsor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,8 @@ class SponsorCard extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            margin: const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame, vertical: 20),
+            margin: const EdgeInsets.symmetric(
+                horizontal: D.horizontalPaddingFrame, vertical: 20),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(22),
@@ -36,7 +37,7 @@ class SponsorCard extends StatelessWidget {
                   Expanded(
                     flex: 3,
                     child: Text(
-                      sponsor.name,
+                      sponsor!.name!,
                       style: TextStyle(
                         fontSize: 20,
                         color: C.cardFontColor,
@@ -48,11 +49,11 @@ class SponsorCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         //Handle sponsor.spons[0].socialMedia
-                        if (await canLaunch(sponsor.website)) {
-                          await launch(sponsor.website);
+                        if (await canLaunch(sponsor!.website!)) {
+                          await launch(sponsor!.website!);
                         } else {
-                          Scaffold.of(context)
-                              .showSnackBar(SnackBar(content: Text(S.redirectIntentError)));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(S.redirectIntentError)));
                         }
                       },
                       child: Image.asset(
@@ -74,7 +75,8 @@ class SponsorCard extends StatelessWidget {
             width: ratio > 0.5 ? 150 : 170,
             child: Stack(
               children: [
-                Image.asset(S.assetSponsorFrame, fit: BoxFit.cover, height: 200),
+                Image.asset(S.assetSponsorFrame,
+                    fit: BoxFit.cover, height: 200),
                 Center(
                   child: Container(
                     height: 100,
@@ -93,7 +95,7 @@ class SponsorCard extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       backgroundColor: Colors.blue,
-                      backgroundImage: NetworkImage(sponsor.picUrl),
+                      backgroundImage: NetworkImage(sponsor!.picUrl!),
                       radius: 40,
                     ),
                   ),

@@ -45,11 +45,13 @@ class APISplashRepository extends SplashRepository {
   @override
   Future<User> getProfile() async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
-    String token = sharedPreferences.getString(S.tokenKeySharedPreferences);
+    String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
     final String tag = classTag + "getUserDetails";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(S.getUserDetailsUrl, headers: <String, String>{
+      response = await sl
+          .get<http.Client>()
+          .get(Uri.parse(S.getUserDetailsUrl), headers: <String, String>{
         "Authorization": "$token",
       });
     } catch (e) {
@@ -63,7 +65,9 @@ class APISplashRepository extends SplashRepository {
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

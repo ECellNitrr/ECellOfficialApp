@@ -9,6 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'leaderBoard/cubit/leaderboard_cubit.dart';
 import 'leaderBoard/leader_board.dart';
 
+import '../../widgets/raisedButton.dart';
+
 class BQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,8 @@ class BQuiz extends StatelessWidget {
                   )),
               Text(
                 "Quicker Answers, More Points",
-                style: TextStyle(color: C.secondaryColor, fontSize: 25 * heightFactor),
+                style: TextStyle(
+                    color: C.secondaryColor, fontSize: 25 * heightFactor),
               ),
               SizedBox(height: 30),
               Container(
@@ -85,7 +88,7 @@ class BQuiz extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
-                      child: FlatButton(
+                      child: LegacyFlatButtonShape(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(30)),
                         ),
@@ -109,7 +112,7 @@ class BQuiz extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 15),
-                    TextButton(
+                    ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: ((context) => BlocProvider(
               create: (_) => LeaderCubit(FakeLeaderRepository()), child:LeaderScreen() ) )));

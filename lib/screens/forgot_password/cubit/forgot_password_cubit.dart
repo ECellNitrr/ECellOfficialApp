@@ -23,7 +23,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     } on ResponseException catch (e) {
       emit(ForgotPasswordError(e.message, state));
     } catch (e) {
-      Log.s(tag: "Weird exception", message: "Weird response message ->" + e);
+      Log.s(tag: "Weird exception", message: "Weird response message ->" + e.toString());
     }
   }
 
@@ -37,7 +37,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     } on ResponseException catch (e) {
       emit(ForgotPasswordError(e.message, state));
     } catch (e) {
-      Log.s(tag: "Weird exception", message: "Weird response message ->" + e);
+      Log.s(tag: "Weird exception", message: "Weird response message ->" + e.toString());
     }
   }
 
@@ -56,7 +56,7 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
     } on ResponseException catch (e) {
       emit(ForgotPasswordError(e.message, state));
     } catch (e) {
-      Log.s(tag: "Weird exception", message: "Weird response message ->" + e);
+      Log.s(tag: "Weird exception", message: "Weird response message ->" + e.toString());
     }
   }
 }

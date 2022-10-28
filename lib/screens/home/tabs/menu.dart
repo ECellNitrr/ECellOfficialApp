@@ -90,7 +90,8 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           Center(
             child: Container(
-              padding: EdgeInsets.only(bottom: heightFactor * 75, right: width / 1.4),
+              padding: EdgeInsets.only(
+                  bottom: heightFactor * 75, right: width / 1.4),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -112,8 +113,8 @@ class _MenuScreenState extends State<MenuScreen> {
                     ),
                     constraints: BoxConstraints.tightFor(width: 70, height: 70),
                     child: GestureDetector(
-                      child:
-                          Icon(Icons.search_rounded, size: 35, color: C.primaryUnHighlightedColor),
+                      child: Icon(Icons.search_rounded,
+                          size: 35, color: C.primaryUnHighlightedColor),
                       onTap: () => Navigator.pushNamed(context, S.routeBQuiz),
                     ),
                   ),
@@ -131,7 +132,8 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           Center(
             child: Container(
-              padding: EdgeInsets.only(bottom: heightFactor * 75, left: width / 1.4),
+              padding:
+                  EdgeInsets.only(bottom: heightFactor * 75, left: width / 1.4),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -177,7 +179,8 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           Center(
             child: Container(
-              padding: EdgeInsets.only(top: heightFactor * 300, left: width / 2.5),
+              padding:
+                  EdgeInsets.only(top: heightFactor * 300, left: width / 2.5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -223,7 +226,8 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           Center(
             child: Container(
-              padding: EdgeInsets.only(top: heightFactor * 300, right: width / 2.5),
+              padding:
+                  EdgeInsets.only(top: heightFactor * 300, right: width / 2.5),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -244,7 +248,8 @@ class _MenuScreenState extends State<MenuScreen> {
                         ]),
                     constraints: BoxConstraints.tightFor(width: 70, height: 70),
                     child: GestureDetector(
-                      child: Icon(Icons.group, size: 35, color: C.primaryUnHighlightedColor),
+                      child: Icon(Icons.group,
+                          size: 35, color: C.primaryUnHighlightedColor),
                       onTap: () {
                         Navigator.pushNamed(context, S.routeAboutUs);
                       },
@@ -278,7 +283,8 @@ class _MenuScreenState extends State<MenuScreen> {
       case 'Logout':
         Provider.of<GlobalState>(context, listen: false).user = null;
         await sl.get<SharedPreferences>().remove(S.tokenKeySharedPreferences);
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text("Logged Out Successfuly")));
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Logged Out Successfuly")));
         Navigator.pushReplacementNamed(context, S.routeLogin);
     }
   }

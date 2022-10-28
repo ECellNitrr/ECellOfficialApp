@@ -2,7 +2,6 @@ import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/models/team_category.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
@@ -10,7 +9,7 @@ import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'cubit/team_cubit.dart';
 
 class TeamScreen extends StatelessWidget {
-  const TeamScreen({Key key}) : super(key: key);
+  const TeamScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -58,9 +57,9 @@ class TeamScreen extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(teamList[6].category, textAlign: TextAlign.center),
-          Text(teamList[6].members[0].name, textAlign: TextAlign.center),
+          Text(teamList[6].members[0].name!, textAlign: TextAlign.center),
           Text(teamList[1].category, textAlign: TextAlign.center),
-          Text(teamList[1].members[0].name, textAlign: TextAlign.center),
+          Text(teamList[1].members[0].name!, textAlign: TextAlign.center),
         ],
       ),
     );

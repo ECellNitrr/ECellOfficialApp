@@ -4,7 +4,7 @@ abstract class LoginState extends Equatable {
   const LoginState();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 // LoginScreen  implements multuiple states
@@ -29,8 +29,8 @@ class LoginSuccess extends LoginState {
 
 //4.Error
 class LoginError extends LoginState {
-  final String message;
+  final String? message;
   const LoginError(this.message);
   @override
-  List<Object> get props => [message];
+  List<Object?> get props => [message];
 }

@@ -37,13 +37,13 @@ class APIHomeRepository extends HomeRepository {
   @override
   Future<void> postFeedback(String feedback) async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
-    String name = sharedPreferences.getString(S.nameKeySharedPreferences);
-    String email = sharedPreferences.getString(S.emailKeySharedPreferences);
+    String? name = sharedPreferences.getString(S.nameKeySharedPreferences);
+    String? email = sharedPreferences.getString(S.emailKeySharedPreferences);
     final String tag = classTag + "postFeedback";
     http.Response response;
     try {
       response = await sl.get<http.Client>().post(
-        S.postFeedbackUrl,
+        Uri.parse(S.postFeedbackUrl),
         body: <String, dynamic>{
           S.feedbackNameKey: name,
           S.emailKey: email,
@@ -57,13 +57,16 @@ class APIHomeRepository extends HomeRepository {
 
     if (response.statusCode == 201) {
       Log.i(tag: tag, message: "Feedback Posted Successfully");
-      return true;
+      // return true;
+      return;
     } else if (response.statusCode == 400) {
       throw ValidationException(response.body);
     } else {
       Log.s(
           tag: tag,
-          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
+          message:
+              "Unknown response code -> ${response.statusCode}, message ->" +
+                  response.body);
       throw UnknownException();
     }
   }

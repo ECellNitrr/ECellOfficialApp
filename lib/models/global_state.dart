@@ -1,5 +1,5 @@
 import 'user.dart';
 
 class GlobalState {
-  User user;
+  User? user;
 }

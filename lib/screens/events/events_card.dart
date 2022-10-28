@@ -6,14 +6,14 @@ import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/models/event.dart';
 
 class EventCard extends StatelessWidget {
-  final Event event;
+  final Event? event;
 
-  const EventCard({Key key, this.event}) : super(key: key);
+  const EventCard({Key? key, this.event}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
-    var eventDateTime = event.date.split("T");
+    var eventDateTime = event!.date!.split("T");
     String date = eventDateTime[0], time = eventDateTime[1].split("+")[0].substring(0, 5);
     return Stack(
       children: [
@@ -41,7 +41,7 @@ class EventCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Text(
-                            event.name,
+                            event!.name!,
                             style: TextStyle(
                               fontSize: 20,
                               color: C.cardFontColor,
@@ -65,7 +65,7 @@ class EventCard extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Venue:" + "\t" + "${event.venue}",
+                            "Venue:" + "\t" + "${event!.venue}",
                             style: TextStyle(
                               fontSize: 18,
                               color: C.cardFontColor,
@@ -79,7 +79,7 @@ class EventCard extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(25.0),
                         child: Text(
-                          event.details,
+                          event!.details!,
                           style: TextStyle(color: C.cardFontColor),
                         ),
                       )
@@ -164,7 +164,7 @@ class EventCard extends StatelessWidget {
                   ),
                   child: CircleAvatar(
                     backgroundColor: Colors.blue,
-                    backgroundImage: NetworkImage(event.iconUrl),
+                    backgroundImage: NetworkImage(event!.iconUrl!),
                     radius: 40,
                   ),
                 ),

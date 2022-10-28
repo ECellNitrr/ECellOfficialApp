@@ -28,7 +28,7 @@ class ScreenBackground extends StatelessWidget {
     );
   }
 
-  Widget child(BuildContext context) {
+  Widget? child(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     if (elementId == 1) {
       return Stack(

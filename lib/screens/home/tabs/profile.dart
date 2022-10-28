@@ -17,7 +17,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
-    User user = context.read<GlobalState>().user;
+    User user = context.read<GlobalState>().user!;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double top = MediaQuery.of(context).viewPadding.top;
@@ -50,16 +50,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             _label("First Name", heightFactor),
-                            _labelValue(width, height, user.firstName),
+                            _labelValue(width, height, user.firstName!),
                             Expanded(flex: 1, child: Container()),
                             _label("Last Name", heightFactor),
-                            _labelValue(width, height, user.lastName),
+                            _labelValue(width, height, user.lastName!),
                             Expanded(flex: 1, child: Container()),
                             _label("Email Address", heightFactor),
-                            _labelValue(width, height, user.email),
+                            _labelValue(width, height, user.email!),
                             Expanded(flex: 1, child: Container()),
                             _label("Phone Number", heightFactor),
-                            _labelValue(width, height, user.phoneNumber),
+                            _labelValue(width, height, user.phoneNumber!),
                             Expanded(flex: 1, child: Container()),
                             Container(
                               alignment: Alignment.topRight,
