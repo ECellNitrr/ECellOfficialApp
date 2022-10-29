@@ -8,9 +8,9 @@ class Data extends Equatable {
   int bquizScore;
 
   Data({
-    this.username,
-    this.email,
-    this.bquizScore,
+    required this.username,
+    required this.email,
+    required this.bquizScore,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) {

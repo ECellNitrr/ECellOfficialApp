@@ -74,8 +74,9 @@ class APILeaderRepository extends LeaderRepository {
   Future<List<Data>> getAllleaders() async {
     final String tag = classTag + "getAllleaders()";
     http.Response response;
+    Uri url=Uri.parse("http://43.205.53.122/bquiz/leaderboard/");
     try {
-      response = await sl.get<http.Client>().get("http://43.205.53.122/bquiz/leaderboard/");
+      response = await sl.get<http.Client>().get(url);
     } catch (e) {
       throw NetworkException();
     }

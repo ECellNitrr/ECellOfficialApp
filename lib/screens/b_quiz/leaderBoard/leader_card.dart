@@ -8,10 +8,10 @@ import 'package:ecellapp/core/res/strings.dart';
 
 
 class LeaderCard extends StatelessWidget {
-  final Data Leader;
-  final int rank;
+  final Data? Leader;
+  final int? rank;
 
-  const LeaderCard({Key key, this.Leader, this.rank,}) : super(key: key);
+  const LeaderCard({Key? key, this.Leader, this.rank,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +43,7 @@ class LeaderCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            Leader.username,
+                            Leader!.username,
                             style: TextStyle(
                               fontSize: 20,
                               color: C.cardFontColor,
@@ -52,12 +52,12 @@ class LeaderCard extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            Leader.email,
+                            Leader!.email,
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
                           SizedBox(height: 10),
                           Text(
-                            "Score:${Leader.bquizScore}",
+                            "Score:${Leader!.bquizScore}",
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
                         ],

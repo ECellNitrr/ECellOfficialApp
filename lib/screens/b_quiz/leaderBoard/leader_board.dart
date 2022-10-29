@@ -13,7 +13,7 @@ import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'leader_card.dart';
 
 class LeaderScreen extends StatelessWidget {
-  LeaderScreen({Key key}) : super(key: key);
+  LeaderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
