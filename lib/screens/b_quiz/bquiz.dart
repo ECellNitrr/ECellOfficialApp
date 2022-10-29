@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import '../../widgets/raisedButton.dart';
 
 class BQuiz extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -89,7 +90,7 @@ class BQuiz extends StatelessWidget {
                         ),
                         color: Colors.transparent,
                         onPressed: () {
-                          //TODO: remove brackets and add func
+                          print("Working fine");
                         },
                         child: Container(
                           height: 30,
@@ -108,8 +109,14 @@ class BQuiz extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                        foregroundColor: MaterialStateProperty.all(Colors.transparent),
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
                       onPressed: () {
                         // TODO
+                        print("working fine");
                       },
                       child: Text(
                         "Leaderboard",

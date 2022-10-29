@@ -23,9 +23,11 @@ dependencies:
 #  legacy_buttons: ^0.0.1
 #  internet_connection_checker: ^1.0.0+1
   logger: ^1.1.0
+  pinput: ^2.2.16
   provider: ^6.0.3
   rxdart: ^0.27.5
   shared_preferences: ^2.0.15
+  timer_count_down: ^2.2.1
   url_launcher: ^6.1.6
 
 dev_dependencies:
