@@ -138,7 +138,7 @@ class LoginScreen extends StatelessWidget {
                                 children: [
                                   EmailField(emailController),
                                   SizedBox(height: 20 * heightFactor),
-                                  PasswordField(passwordController,"Password"),
+                                  PasswordField(passwordController),
                                   SizedBox(height: 10 * heightFactor),
                                 ],
                               ),
@@ -156,8 +156,7 @@ class LoginScreen extends StatelessWidget {
                                   color: C.secondaryColor),
                             ),
                             onTap: () {
-                              Navigator.pushNamed(
-                                  context, S.routeForgotPassword);
+                              //TODO: Forgot Password Route
                             },
                           ),
                         )
