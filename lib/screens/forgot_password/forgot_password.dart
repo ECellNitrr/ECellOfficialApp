@@ -52,7 +52,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             children: [
               ScreenBackground(elementId: 1),
               if (state is ForgotEmailInitial)
-                _resetPassword(context, state)
+                _initialForgotPassword(context, state)
               else if (state is ForgotLoading)
                 _buildLoading(context)
               else if (state is ForgotOTPInitial)
