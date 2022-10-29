@@ -4,9 +4,8 @@ import '../core/res/colors.dart';
 import '../core/res/dimens.dart';
 
 class PasswordField extends StatefulWidget {
-  const PasswordField(this.controller,this.labelText);
+  const PasswordField(this.controller);
   final TextEditingController controller;
-  final String labelText;
   @override
   _PasswordFieldState createState() => _PasswordFieldState();
 }
@@ -42,7 +41,7 @@ class _PasswordFieldState extends State<PasswordField> {
           ),
           onPressed: _togglePasswordVisibility,
         ),
-        labelText: widget.labelText,
+        labelText: "Password",
       ),
     );
   }
