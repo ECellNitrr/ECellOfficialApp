@@ -146,7 +146,7 @@ class SignupScreen extends StatelessWidget {
                             SizedBox(height: 20 * heightFactor),
                             EmailField(emailController),
                             SizedBox(height: 20 * heightFactor),
-                            PasswordField(passwordController),
+                            PasswordField(passwordController,"Password"),
                             SizedBox(height: 20 * heightFactor),
                             MobileNumberField(mobileController),
                           ],

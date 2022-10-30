@@ -2,7 +2,7 @@ class S {
   S._();
 
   // urls
-  static const String baseUrl = "http://43.205.53.122/";
+  static const String baseUrl = "https://ecellbackend.tech/";
   static const String loginUrl = baseUrl + "users/login/";
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";
@@ -141,6 +141,7 @@ class S {
   static const routeHome = '/home';
   static const routeLogin = '/login';
   static const routeSignup = '/signup';
+  static const routeForgotPassword= '/forgot_password';
   static const routeSpeaker = "/speaker";
   static const routeEvents = "/events";
   static const routeSponsors = "/sponsors";
