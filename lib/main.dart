@@ -75,7 +75,7 @@ class ECellApp extends StatelessWidget {
               create: (_) => TeamCubit(FakeTeamRepository()),
               child: AboutUsScreen()),
         },
-        initialRoute: S.routeLogin,
+        initialRoute: S.routeHome,
         title: "ECellApp",
         theme: AppTheme.themeData(context),
       ),
