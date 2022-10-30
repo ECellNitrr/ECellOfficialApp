@@ -108,6 +108,11 @@ class BQuiz extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                        foregroundColor: MaterialStateProperty.all(Colors.transparent),
+                        shadowColor: MaterialStateProperty.all(Colors.transparent),
+                      ),
                       onPressed: () {
                         // TODO
                       },

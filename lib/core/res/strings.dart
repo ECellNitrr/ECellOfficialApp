@@ -2,11 +2,11 @@ class S {
   S._();
 
   // urls
-  static const String baseUrl = "http://43.205.53.122/";
+  static const String baseUrl = "https://ecellbackend.tech/";
   static const String loginUrl = baseUrl + "users/login/";
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";
-  static const String getEventsUrl = baseUrl + "events/list/2021/";
+  static const String getEventsUrl = baseUrl + "events/list/2022/";
   static const String getSponsorsUrl = baseUrl + "sponsors/sorted_list/$sponsorApiYear/";
   static const String getSpeakerUrl = baseUrl + "speakers/full_list/";
   static const String postFeedbackUrl = baseUrl + "feedback/post/";
@@ -132,9 +132,9 @@ class S {
   static const String esummitPara =
       "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'22 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
   static const String aimPara =
-      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'21 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
+      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'22 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
   static const String visionPara =
-      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'21 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
+      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'22 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
 
   // Routes
   static const routeSplash = '/splash';
