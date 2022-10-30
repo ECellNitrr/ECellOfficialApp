@@ -1,7 +1,7 @@
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
-// import 'package:ecellapp/screens/forgot_password/cubit/forgot_password_cubit.dart';
-// import 'package:ecellapp/screens/forgot_password/forgot_password.dart';
-// import 'package:ecellapp/screens/forgot_password/forgot_password_repository.dart';
+import 'package:ecellapp/screens/forgot_password/cubit/forgot_password_cubit.dart';
+import 'package:ecellapp/screens/forgot_password/forgot_password.dart';
+import 'package:ecellapp/screens/forgot_password/forgot_password_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,6 +57,8 @@ class ECellApp extends StatelessWidget {
               BlocProvider(create: (_) => LoginCubit(APILoginRepository()), child: LoginScreen()),
           S.routeSignup: (_) => BlocProvider(
               create: (_) => SignupCubit(APISignupRepository()), child: SignupScreen()),
+          S.routeForgotPassword: (_) => BlocProvider(
+              create: (_) => ForgotPasswordCubit(APIForgotPasswordRepository()), child: ForgotPasswordScreen()),
           S.routeHome: (_) =>
               BlocProvider(create: (_) => FeedbackCubit(APIHomeRepository()), child: HomeScreen()),
           S.routeSpeaker: (_) => BlocProvider(
@@ -70,7 +72,7 @@ class ECellApp extends StatelessWidget {
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubit(FakeTeamRepository()), child: AboutUsScreen()),
         },
-        initialRoute: S.routeSplash,
+        initialRoute: S.routeHome,
         title: "ECellApp",
         theme: AppTheme.themeData(context),
       ),

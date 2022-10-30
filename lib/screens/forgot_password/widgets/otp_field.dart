@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:pinput/pinput.dart';
+import 'package:pinput/pinput.dart';
 
 import '../../../core/res/colors.dart';
 
@@ -18,20 +18,20 @@ class OTPField extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         OtpDecoration(),
-        // Pinput(
-        //   defaultPinTheme: PinTheme(
-        //     width: 56,
-        //     height: 56,
-        //     textStyle: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
-        //     decoration: BoxDecoration(
-        //       border: Border.all(color: Colors.transparent),
-        //       borderRadius: BorderRadius.circular(28),
-        //     ),
-        //   ),
-        //   pinputAutovalidateMode: PinputAutovalidateMode.disabled,
-        //   showCursor: false,
-        //   onCompleted: (pin) => _validateOTP(pin),
-        // ),
+        Pinput(
+          defaultPinTheme: PinTheme(
+            width: 56,
+            height: 56,
+            textStyle: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w600),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.transparent),
+              borderRadius: BorderRadius.circular(28),
+            ),
+          ),
+          pinputAutovalidateMode: PinputAutovalidateMode.disabled,
+          showCursor: false,
+          onCompleted: (pin) => _validateOTP(pin),
+        ),
       ],
     );
   }
