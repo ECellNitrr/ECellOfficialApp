@@ -148,17 +148,17 @@ class LoginScreen extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.only(right: D.horizontalPadding),
                           alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            child: Text(
-                              "",
-                              style: TextStyle(
-                                  fontSize: 20 * heightFactor,
-                                  color: C.secondaryColor),
-                            ),
-                            onTap: () {
-                              //TODO: Forgot Password Route
-                            },
-                          ),
+                          // child: GestureDetector(
+                          //   child: Text(
+                          //     "",
+                          //     style: TextStyle(
+                          //         fontSize: 20 * heightFactor,
+                          //         color: C.secondaryColor),
+                          //   ),
+                          //   onTap: () {
+                          //     //TODO: Forgot Password Route
+                          //   },
+                          // ),
                         )
                       ],
                     ),
