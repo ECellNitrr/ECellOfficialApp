@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:timer_count_down/timer_count_down.dart';
+//import 'package:timer_count_down/timer_count_down.dart';
 
 import '../../core/res/colors.dart';
 import '../../core/res/dimens.dart';
@@ -356,18 +356,18 @@ class ForgotPasswordScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Countdown(
-                              seconds: 16,
-                              build: (BuildContext context, double time) => Text("${(time.toInt()).toString()}s",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                    fontSize: 22 * heightFactor
-                                ),),
-                              interval: Duration(milliseconds: 100),
-                              onFinished: () {
-                                print('Timer is done!');
-                              },
-                            )
+                            // Countdown(
+                            //   seconds: 16,
+                            //   build: (BuildContext context, double time) => Text("${(time.toInt()).toString()}s",
+                            //     style: TextStyle(
+                            //       fontWeight: FontWeight.bold,
+                            //         fontSize: 22 * heightFactor
+                            //     ),),
+                            //   interval: Duration(milliseconds: 100),
+                            //   onFinished: () {
+                            //     print('Timer is done!');
+                            //   },
+                            // )
                           ],
                         ),
 

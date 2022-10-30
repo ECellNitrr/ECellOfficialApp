@@ -54,7 +54,7 @@ class ESummitScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: D.horizontalPadding, top: 20),
                   child: RichText(
                     text: TextSpan(
-                      text: "E-Summit '21",
+                      text: "E-Summit '22",
                       style: TextStyle(
                           fontSize: 45 * heightFactor,
                           fontWeight: FontWeight.w900),
@@ -62,21 +62,54 @@ class ESummitScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: D.horizontalPadding, top: 30),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(top: 30, bottom: 15),
                   child: RichText(
                     text: TextSpan(
-                      text: "The Genesis of Innovation",
+                      text: "Eminence in Ingenuity",
                       style: TextStyle(
-                          fontSize: 30 * heightFactor,
+                          fontSize: 32 * heightFactor,
                           fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
                 Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: D.horizontalPadding, vertical:0),
+                  child: Column(
+                    children: [
+                      RichText(
+                        text: TextSpan(
+                          text: "To learn is to grow.",
+                          style: TextStyle(
+                              fontSize: 21 * heightFactor,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "To innovate is to Pioneer.",
+                          style: TextStyle(
+                              fontSize: 21 * heightFactor,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                      RichText(
+                        text: TextSpan(
+                          text: "To be an entrepreneur is to be a leader.",
+                          style: TextStyle(
+                              fontSize: 21 * heightFactor,
+                              fontWeight: FontWeight.w300),
+                        ),
+                      ),
+                    ],
+                  )
+                ),
+                Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.symmetric(
-                      horizontal: D.horizontalPadding, vertical: 30),
+                      horizontal: D.horizontalPadding, vertical: 20),
                   child: RichText(
                     text: TextSpan(
                       text: "At ",

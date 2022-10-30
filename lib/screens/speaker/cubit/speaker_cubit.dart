@@ -15,6 +15,7 @@ class SpeakerCubit extends Cubit<SpeakerState> {
     try {
       emit(SpeakerLoading());
       List<Speaker> speakerList = await _speakerRepository.getAllSpeakers();
+      speakerList.sort((a,b)=>(b.year!.toInt())-(a.year!.toInt()));
       emit(SpeakerSuccess(speakerList));
     } on NetworkException {
       emit(SpeakerError(S.networkException));

@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  auto_size_text:
+    dependency: "direct main"
+    description:
+      name: auto_size_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   bloc:
     dependency: "direct main"
     description:
@@ -303,13 +310,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.4.0"
-  pinput:
-    dependency: "direct main"
-    description:
-      name: pinput
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.16"
   platform:
     dependency: transitive
     description:
@@ -406,13 +406,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  smart_auth:
-    dependency: transitive
-    description:
-      name: smart_auth
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.6"
   source_span:
     dependency: transitive
     description:
@@ -455,13 +448,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.9"
-  timer_count_down:
-    dependency: "direct main"
-    description:
-      name: timer_count_down
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.2.1"
   typed_data:
     dependency: transitive
     description:

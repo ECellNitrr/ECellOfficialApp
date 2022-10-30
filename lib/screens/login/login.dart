@@ -145,22 +145,22 @@ class LoginScreen extends StatelessWidget {
                             )),
                         SizedBox(height: 20 * heightFactor),
                         //Redirect to Forgot Password
-                        Container(
-                          padding: EdgeInsets.only(right: D.horizontalPadding),
-                          alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                  fontSize: 20 * heightFactor,
-                                  color: C.secondaryColor),
-                            ),
-                            onTap: () {
-                              Navigator.pushNamed(
-                                  context, S.routeForgotPassword);
-                            },
-                          ),
-                        )
+                        // Container(
+                        //   padding: EdgeInsets.only(right: D.horizontalPadding),
+                        //   alignment: Alignment.topRight,
+                        //   child: GestureDetector(
+                        //     child: Text(
+                        //       "Forgot Password?",
+                        //       style: TextStyle(
+                        //           fontSize: 20 * heightFactor,
+                        //           color: C.secondaryColor),
+                        //     ),
+                        //     onTap: () {
+                        //       Navigator.pushNamed(
+                        //           context, S.routeForgotPassword);
+                        //     },
+                        //   ),
+                        // )
                       ],
                     ),
                   ),
