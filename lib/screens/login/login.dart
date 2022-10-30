@@ -156,8 +156,7 @@ class LoginScreen extends StatelessWidget {
                         //           color: C.secondaryColor),
                         //     ),
                         //     onTap: () {
-                        //       Navigator.pushNamed(
-                        //           context, S.routeForgotPassword);
+                        //
                         //     },
                         //   ),
                         // )
