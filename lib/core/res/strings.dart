@@ -49,7 +49,7 @@ class S {
   static const String eventdetailsKey = "details";
   static const String eventiconurlKey = "icon";
   //sponsors
-  static const int sponsorApiYear = 2021;
+  static const int sponsorApiYear = 2022;
   static const String sponsorName = "name";
   static const String sponsorDetails = "details";
   static const String sponsorPic = "pic";
@@ -72,7 +72,7 @@ class S {
   static const String speakerSocialMedia = "social_media";
   static const String speakerYear = "year";
   //teams
-  static const int teamApiYear = 2021;
+  static const int teamApiYear = 2022;
   static const String teamId = "id";
   static const String teamName = "name";
   static const String teamMemberType = "member_type";
@@ -130,7 +130,7 @@ class S {
 
   // paragraphs
   static const String esummitPara =
-      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'21 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
+      "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'22 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
   static const String aimPara =
       "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'21 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";
   static const String visionPara =

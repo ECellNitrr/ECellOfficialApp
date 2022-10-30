@@ -1,6 +1,6 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';
@@ -41,20 +41,23 @@ class SpeakerCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          AutoSizeText(
                             speaker!.name!,
                             style: TextStyle(
                               fontSize: 25,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w600,
                             ),
+                            maxLines: 2,
                           ),
-                          SizedBox(height: 10),
-                          Text(
+                          SizedBox(height: 5),
+                          AutoSizeText(
                             speaker!.company!,
                             style:
-                                TextStyle(fontSize: 20, color: C.cardFontColor),
+                                TextStyle(fontSize: 17, color: C.cardFontColor),
+                            maxLines: 4,
                           ),
+                          SizedBox(height: 13),
                         ],
                       ),
                     ),
@@ -82,8 +85,8 @@ class SpeakerCard extends StatelessWidget {
                         GestureDetector(
                             onTap: () async {
                               //Handle speaker.socialMedia
-                              if (await canLaunch(speaker!.socialMedia!)) {
-                                await launch(speaker!.socialMedia!);
+                              if (await canLaunchUrl(Uri.parse(speaker!.socialMedia!))) {
+                                await launchUrl(Uri.parse(speaker!.socialMedia!));
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
@@ -99,6 +102,39 @@ class SpeakerCard extends StatelessWidget {
                       ],
                     ),
                   )),
+              Positioned(
+                right: 0,
+                bottom: 0,
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                  child: Container(
+                    height: 40,
+                    width: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomRight,
+                          end: Alignment.topLeft,
+                          colors: [
+                            Colors.orange,
+                            Colors.yellow,
+                            Colors.yellow,
+                            Colors.white,
+                            Colors.white,
+                          ],
+                        )
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      "Speaker ${speaker!.year!}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                          color: C.cardFontColor,
+                          fontSize: 16),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -117,7 +153,7 @@ class SpeakerCard extends StatelessWidget {
                 padding: EdgeInsets.only(bottom: 10),
                 child: CircleAvatar(
                   backgroundColor: Colors.blue,
-                  backgroundImage: NetworkImage(speaker!.profilePic!),
+                  backgroundImage: NetworkImage("https://ecellbackend.tech"+speaker!.profilePic!),
                   radius: 45,
                 ),
               ),

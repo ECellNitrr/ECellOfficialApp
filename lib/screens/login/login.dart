@@ -150,7 +150,7 @@ class LoginScreen extends StatelessWidget {
                           alignment: Alignment.topRight,
                           child: GestureDetector(
                             child: Text(
-                              "Forgot Password?",
+                              "",
                               style: TextStyle(
                                   fontSize: 20 * heightFactor,
                                   color: C.secondaryColor),
