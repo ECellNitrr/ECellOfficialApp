@@ -193,7 +193,7 @@ class APIQuizRepository extends QuizRepository {
   Future<List<Questions>> getAllQuizes() async {
     final String tag = classTag + "getAllQuizs()";
     http.Response response;
-    Uri url = Uri.parse("http://43.205.53.122/bquiz/Quizboard/");
+    Uri url = Uri.parse(S.baseUrl);
     try {
       response = await sl.get<http.Client>().get(url);
     } catch (e) {
