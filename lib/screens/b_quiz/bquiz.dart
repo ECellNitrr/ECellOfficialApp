@@ -99,6 +99,7 @@ class BQuiz extends StatelessWidget {
                                       QuizCubit(FakeQuizRepository()),
                                   child: Quiz()))));
                         },
+
                         child: Container(
                           height: 30,
                           width: 120,
@@ -122,7 +123,12 @@ class BQuiz extends StatelessWidget {
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: () {
-                        // TODO
+                        print("press");
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: ((context) => BlocProvider(
+                                create: (_) =>
+                                    LeaderCubit(FakeLeaderRepository()),
+                                child: LeaderScreen()))));
                       },
                       child: Text(
                         "Leaderboard",

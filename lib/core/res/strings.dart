@@ -11,6 +11,7 @@ class S {
   static const String getSpeakerUrl = baseUrl + "speakers/full_list/";
   static const String postFeedbackUrl = baseUrl + "feedback/post/";
   static const String getTeamUrl = baseUrl + "team/list/$teamApiYear/";
+  static const String getLeaderBoardUrl = baseUrl + "bquiz/leaderboard/";
 
   ///Change password API is where the email, otp and password is posted and password is changed
   /// Accepts [Email] [Otp] and [Password] in API. Last Stage
