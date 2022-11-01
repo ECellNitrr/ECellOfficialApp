@@ -32,20 +32,26 @@ class RaiseBtn extends StatelessWidget {
 class LegacyRaisedButton extends StatelessWidget {
   final Function onPressed;
   final Widget child;
-  final ShapeBorder shape;
+  final OutlinedBorder shape;
   final Color color;
 
   const LegacyRaisedButton(
       {Key? key,
-      required this.onPressed,
-      required this.child,
-      required this.shape,
-      required this.color})
+        required this.onPressed,
+        required this.child,
+        required this.shape,
+        required this.color})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(shape),
+          backgroundColor: MaterialStateProperty.all(color),
+          foregroundColor: MaterialStateProperty.all(color),
+          shadowColor: MaterialStateProperty.all(color),
+        ),
         onPressed: () {
           onPressed();
         },
@@ -63,29 +69,38 @@ class LegacyFlatButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-    return ElevatedButton(onPressed: () => onPressed, child: child);
+    return ElevatedButton(
+
+        onPressed: () => onPressed, child: child);
   }
 }
 
 class LegacyFlatButtonShape extends StatelessWidget {
+
   final VoidCallback onPressed;
   final Widget child;
-  final ShapeBorder shape;
+  final OutlinedBorder shape;
   final Color color;
 
   const LegacyFlatButtonShape(
       {Key? key,
-      required this.onPressed,
-      required this.child,
-      required this.shape,
-      required this.color})
+        required this.onPressed,
+        required this.child,
+        required this.shape,
+        required this.color})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return ElevatedButton(
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(shape),
+          backgroundColor: MaterialStateProperty.all(color),
+          foregroundColor: MaterialStateProperty.all(color),
+          shadowColor: MaterialStateProperty.all(color),
+        ),
         onPressed: () {
-          onPressed;
+          onPressed();
         },
         child: child);
   }
