@@ -49,13 +49,17 @@ class ECellApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           S.routeSplash: (_) => BlocProvider(
-              create: (_) => SplashCubit(APISplashRepository()), child: SplashScreen()),
-          S.routeLogin: (_) =>
-              BlocProvider(create: (_) => LoginCubit(APILoginRepository()), child: LoginScreen()),
+              create: (_) => SplashCubit(APISplashRepository()),
+              child: SplashScreen()),
+          S.routeLogin: (_) => BlocProvider(
+              create: (_) => LoginCubit(APILoginRepository()),
+              child: LoginScreen()),
           S.routeSignup: (_) => BlocProvider(
-              create: (_) => SignupCubit(APISignupRepository()), child: SignupScreen()),
-          S.routeHome: (_) =>
-              BlocProvider(create: (_) => FeedbackCubit(APIHomeRepository()), child: HomeScreen()),
+              create: (_) => SignupCubit(APISignupRepository()),
+              child: SignupScreen()),
+          S.routeHome: (_) => BlocProvider(
+              create: (_) => FeedbackCubit(APIHomeRepository()),
+              child: HomeScreen()),
           S.routeSpeaker: (_) => BlocProvider(
               create: (_) => SpeakerCubit(APISpeakerRepository()), child: SpeakerScreen()),
           S.routeEvents: (_) => BlocProvider(
@@ -67,7 +71,7 @@ class ECellApp extends StatelessWidget {
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
         },
-        initialRoute: S.routeSplash,
+        initialRoute: S.routeHome,
         title: "ECellApp",
         theme: AppTheme.themeData(context),
       ),

@@ -1,8 +1,12 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
+import 'package:ecellapp/screens/b_quiz/cubit/quiz_cubit.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../widgets/raisedButton.dart';
 
@@ -83,13 +87,17 @@ class BQuiz extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
-                      child: LegacyFlatButtonShape(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                        ),
-                        color: Colors.transparent,
+                      child: ElevatedButton(
+                        // shape: RoundedRectangleBorder(
+                        //   borderRadius: BorderRadius.all(Radius.circular(30)),
+                        // ),
+                        // color: Colors.transparent,
                         onPressed: () {
-                          //TODO: remove brackets and add func
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: ((context) => BlocProvider(
+                                  create: (_) =>
+                                      QuizCubit(FakeQuizRepository()),
+                                  child: Quiz()))));
                         },
                         child: Container(
                           height: 30,
