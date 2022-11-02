@@ -49,25 +49,29 @@ class ECellApp extends StatelessWidget {
       child: MaterialApp(
         routes: {
           S.routeSplash: (_) => BlocProvider(
-              create: (_) => SplashCubit(APISplashRepository()), child: SplashScreen()),
-          S.routeLogin: (_) =>
-              BlocProvider(create: (_) => LoginCubit(APILoginRepository()), child: LoginScreen()),
+              create: (_) => SplashCubit(APISplashRepository()),
+              child: SplashScreen()),
+          S.routeLogin: (_) => BlocProvider(
+              create: (_) => LoginCubit(APILoginRepository()),
+              child: LoginScreen()),
           S.routeSignup: (_) => BlocProvider(
-              create: (_) => SignupCubit(APISignupRepository()), child: SignupScreen()),
-          S.routeHome: (_) =>
-              BlocProvider(create: (_) => FeedbackCubit(APIHomeRepository()), child: HomeScreen()),
+              create: (_) => SignupCubit(APISignupRepository()),
+              child: SignupScreen()),
+          S.routeHome: (_) => BlocProvider(
+              create: (_) => FeedbackCubit(APIHomeRepository()),
+              child: HomeScreen()),
           S.routeSpeaker: (_) => BlocProvider(
-              create: (_) => SpeakerCubit(FakeSpeakerRepository()), child: SpeakerScreen()),
+              create: (_) => SpeakerCubit(APISpeakerRepository()), child: SpeakerScreen()),
           S.routeEvents: (_) => BlocProvider(
-              create: (_) => EventsCubit(FakeEventsRepository()), child: EventsScreen()),
+              create: (_) => EventsCubit(APIEventsRepository()), child: EventsScreen()),
           S.routeSponsors: (_) => BlocProvider(
-              create: (_) => SponsorsCubit(FakeSponsorsRepository()), child: SponsorsScreen()),
+              create: (_) => SponsorsCubit(APISponsorsRepository()), child: SponsorsScreen()),
           S.routeEsummit: (_) => ESummitScreen(),
           S.routeBQuiz: (_) => BQuiz(),
           S.routeAboutUs: (_) =>
-              BlocProvider(create: (_) => TeamCubit(FakeTeamRepository()), child: AboutUsScreen()),
+              BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
         },
-        initialRoute: S.routeSplash,
+        initialRoute: S.routeHome,
         title: "ECellApp",
         theme: AppTheme.themeData(context),
       ),
