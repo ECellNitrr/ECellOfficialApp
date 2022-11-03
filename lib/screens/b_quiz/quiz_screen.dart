@@ -3,6 +3,7 @@ import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/models/questions.dart';
 import 'package:ecellapp/screens/b_quiz/widgets/question_card.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
+import 'package:ecellapp/widgets/raisedButton.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
@@ -179,7 +180,7 @@ Widget _buildSuccess(BuildContext context, List<Questions> QuizList) {
           ),
           borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
-        child: FlatButton(
+        child: LegacyFlatButtonShape(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
