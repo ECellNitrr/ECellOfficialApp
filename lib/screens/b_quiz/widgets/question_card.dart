@@ -32,31 +32,23 @@ class QuestionCard extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
-                  quiz?.images != null
-                      ? Container(
-                          child: Row(
-                          children: [
-                            Expanded(
-                                flex: 1,
-                                child: Image.network(
-                                  quiz!.images![0],
-                                  fit: BoxFit.fill,
-                                )),
-                            Expanded(
-                                flex: 1,
-                                child: Image.network(
-                                  quiz!.images![1],
-                                  fit: BoxFit.fill,
-                                )),
-                            Expanded(
-                                flex: 1,
-                                child: Image.network(
-                                  quiz!.images![2],
-                                  fit: BoxFit.fill,
-                                )),
-                          ],
-                        ))
-                      : SizedBox(
+                  quiz!.isImage==true? Container(
+                    height: 100,
+                    child:ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: quiz!.images?.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          padding: EdgeInsets.all(5),
+                          height: 50,
+                          child: Image.network(
+                        quiz!.images![index],
+                          fit: BoxFit.fill,
+                        ),
+                        );
+                      }
+                      ))
+              : SizedBox(
                           height: 30,
                         ),
                 ]),
