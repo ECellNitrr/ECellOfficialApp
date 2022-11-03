@@ -91,11 +91,11 @@ class BQuiz extends StatelessWidget {
                         ),
                         borderRadius: BorderRadius.all(Radius.circular(30)),
                       ),
-                      child: ElevatedButton(
-                        // shape: RoundedRectangleBorder(
-                        //   borderRadius: BorderRadius.all(Radius.circular(30)),
-                        // ),
-                        // color: Colors.transparent,
+                      child: LegacyRaisedButton(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                        ),
+                        color: Colors.transparent,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: ((context) => BlocProvider(
