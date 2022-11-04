@@ -13,6 +13,7 @@ dependencies:
   bloc: ^8.1.0
   circular_countdown_timer: ^0.2.2
   cloud_firestore: ^4.0.4
+  confetti: ^0.7.0
   cupertino_icons: ^1.0.5
   data_connection_checker_nulls: ^0.0.2
   equatable: ^2.0.5

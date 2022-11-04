@@ -4,12 +4,14 @@ import 'package:ecellapp/screens/b_quiz/cubit/quiz_cubit.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 
+import '../../core/res/strings.dart';
 import '../../widgets/raisedButton.dart';
 import 'leaderBoard/cubit/leaderboard_cubit.dart';
 import 'leaderBoard/leader_board.dart';
@@ -126,11 +128,7 @@ class BQuiz extends StatelessWidget {
                       ),
                       onPressed: () {
                         print("press");
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => BlocProvider(
-                                create: (_) =>
-                                    LeaderCubit(FakeLeaderRepository()),
-                                child: LeaderScreen()))));
+                        Navigator.of(context).pushNamed(S.routeBQuizLeaderboard);
                       },
                       child: Text(
                         "Leaderboard",
