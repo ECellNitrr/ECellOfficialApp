@@ -1,6 +1,7 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/models/questions.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
 import 'package:ecellapp/screens/b_quiz/widgets/question_card.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
 import 'package:ecellapp/widgets/raisedButton.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/ecell_animation.dart';
 import '../../../widgets/reload_on_error.dart';
 import '../../../widgets/stateful_wrapper.dart';
+import '../../core/res/strings.dart';
 import 'cubit/quiz_cubit.dart';
 import 'widgets/option_card.dart';
 
@@ -124,9 +126,7 @@ Widget _buildSuccess(BuildContext context, List<Questions> QuizList) {
                     debugPrint('Countdown Ended');
                     setState() {
                       _currentPage++;
-                    }
-
-                    ;
+                    };
 
                     if (_pageController.page != QuizContentList.length - 1) {
                       _pageController.nextPage(
@@ -135,7 +135,8 @@ Widget _buildSuccess(BuildContext context, List<Questions> QuizList) {
 
                       _countDownController.restart(duration: _duration);
                     } else {
-                      _countDownController.pause();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: ((context) => QuizSuccessScreen(score: 100))));                      _countDownController.pause();
                     }
                   },
                 ),
@@ -189,15 +190,18 @@ Widget _buildSuccess(BuildContext context, List<Questions> QuizList) {
             print(_pageController.page);
             setState() {
               _currentPage++;
+            };
+
+            if (_pageController.page != QuizContentList.length - 1) {
+              _pageController.nextPage(
+                  duration: const Duration(milliseconds: 100),
+                  curve: Curves.easeInOut);
+
+              _countDownController.restart(duration: _duration);
+            } else {
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: ((context) => QuizSuccessScreen(score: 100))));                      _countDownController.pause();
             }
-
-            ;
-
-            _pageController.nextPage(
-                duration: const Duration(milliseconds: 100),
-                curve: Curves.easeInOut);
-
-            _countDownController.restart(duration: _duration);
           },
           child: Container(
             height: 30,
