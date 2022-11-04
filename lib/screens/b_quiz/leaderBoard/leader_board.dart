@@ -34,6 +34,7 @@ class LeaderScreen extends StatelessWidget {
           ),
         ),
         body: Container(
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -63,13 +64,16 @@ class LeaderScreen extends StatelessWidget {
     double ratio = MediaQuery.of(context).size.aspectRatio;
 
     List<Widget> LeaderContentList = [];
-    LeaderList.forEach((element) => LeaderContentList.add(LeaderCard(Leader: element,rank: LeaderContentList.length+1,)));
+    LeaderList.forEach((element) => LeaderContentList.add(LeaderCard(
+          Leader: element,
+          rank: LeaderContentList.length + 1,
+        )));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (OverscrollIndicatorNotification overscroll) {
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: SingleChildScrollView(
@@ -85,11 +89,13 @@ class LeaderScreen extends StatelessWidget {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(
+                  height: 20,
+                ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: LeaderContentList),
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: LeaderContentList),
               ],
             ),
           ),
