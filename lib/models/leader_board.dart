@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:equatable/equatable.dart';
 
@@ -13,11 +15,20 @@ class Data extends Equatable {
     required this.bquizScore,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) {
+  // factory Data.fromJson(Map<String, dynamic> json) {
+  //   return Data(
+  //     username: json['username'] as String,
+  //     email: json['email'] as String,
+  //     bquizScore: json['bquiz_score'] as int,
+  //   );
+  // }
+
+  factory Data.fromFirestore(Map<String, dynamic> data) {
     return Data(
-      username: json['username'] as String,
-      email: json['email'] as String,
-      bquizScore: json['bquiz_score'] as int,
+        username :data["username"],
+        email: data["email"],
+        bquizScore: data["score"] ,
+        
     );
   }
   
