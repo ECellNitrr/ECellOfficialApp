@@ -6,6 +6,7 @@ class C {
   /// background color gradient
   static final Color backgroundTop = HexColor("#4F3FA0");
   static final Color backgroundBottom = HexColor("#180C58");
+  static final Color teamsbackground = HexColor("#372981");
 
   /// animated rings colors (1->4 increasingsize)
   static final Color ring1 = HexColor("#2DFFF9");

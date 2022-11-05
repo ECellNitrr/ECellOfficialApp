@@ -8,12 +8,18 @@ class TeamMember extends Equatable {
   //String
   final String? type;
   final String? name;
+  final String? image;
+  final String? linkedin;
+  final String? facebook;
   final String? profilePic;
 
   TeamMember({
     this.id,
     this.type,
     this.name,
+    this.image,
+    this.linkedin,
+    this.facebook,
     this.profilePic,
   });
 
@@ -22,6 +28,9 @@ class TeamMember extends Equatable {
       id: json[S.teamId] as int?,
       type: json[S.teamMemberType] as String?,
       name: json[S.teamName] as String?,
+      image:json["image"] as String?,
+      linkedin:json["linkedin"] as String?,
+      facebook:json["facebook"] as String?,
       profilePic: json[S.teamProfilePic] as String?,
     );
   }

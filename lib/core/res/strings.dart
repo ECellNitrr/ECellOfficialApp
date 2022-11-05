@@ -111,6 +111,7 @@ class S {
   static const String assetTwitterIcon = "assets/icons/twitter-icon.png";
   static const String assetPhoneIcon = "assets/icons/phone-icon.png";
   static const String assetTeamIcon = "assets/team-tab-icon.png";
+  static const String assetTeamFrame = "assets/team-frame.png";
   static const String assetAIMIcon = "assets/aim-tab-icon.png";
   static const String assetBquizMedal = "assets/bquiz-medal.png";
 
