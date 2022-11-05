@@ -206,7 +206,7 @@ class _SuccessState extends State<Success> {
                         debugPrint('Countdown Started');
                       },
                       onComplete: () {
-                        time = int.parse(_countDownController.getTime());
+                        time = int.parse(_countDownController.getTime().toString());
                         debugPrint('Countdown Ended');
                         if (_pageController.page !=
                             QuizContentList.length - 1) {
@@ -299,7 +299,7 @@ class _SuccessState extends State<Success> {
               ),
               color: Colors.transparent,
               onPressed: () {
-                time = int.parse(_countDownController.getTime());
+                time = int.parse(_countDownController.getTime().toString());
                 if (_pageController.page != QuizContentList.length - 1) {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 1500),

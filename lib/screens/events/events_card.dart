@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecellapp/core/res/colors.dart';
@@ -13,8 +14,6 @@ class EventCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
-    var eventDateTime = event!.date!.split("T");
-    String date = eventDateTime[0], time = eventDateTime[1].split("+")[0].substring(0, 5);
     return Stack(
       children: [
         Container(
@@ -34,40 +33,44 @@ class EventCard extends StatelessWidget {
                       //To decrease bottom of card
                       height: ratio > 0.5 ? 150 : 170,
                       margin: EdgeInsets.only(left: ratio > 0.5 ? 120 : 140),
-                      padding: EdgeInsets.only(bottom: 50, top: 10),
+                      padding: EdgeInsets.only(bottom: 40, top: 8),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
+                          AutoSizeText(
                             event!.name!,
+                            maxLines: 2,
                             style: TextStyle(
                               fontSize: 20,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w700,
                             ),
                           ),
-                          Text(
-                            "Date:" + "\t" * 4 + "$date",
+                          // AutoSizeText(
+                          //   "Date:" + "\t" * 4 + "${event!.date}",
+                          //   maxLines: 1,
+                          //   style: TextStyle(
+                          //     fontSize: 10,
+                          //     color: C.cardFontColor,
+                          //     fontWeight: FontWeight.w500,
+                          //   ),
+                          // ),
+                          AutoSizeText(
+                            "Time:" + "\t" * 3 + "${event!.time!}",
+                            maxLines: 1,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 13,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
-                          Text(
-                            "Time:" + "\t" * 3 + "$time",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: C.cardFontColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          Text(
+                          AutoSizeText(
                             "Venue:" + "\t" + "${event!.venue}",
+                            maxLines: 3,
                             style: TextStyle(
-                              fontSize: 18,
+                              fontSize: 15,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w500,
                             ),
