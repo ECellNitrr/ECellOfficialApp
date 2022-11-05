@@ -3,6 +3,7 @@ import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/screens/about_us/tabs/aim/aim.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team.dart';
 import 'package:flutter/material.dart';
+import 'package:ecellapp/screens/about_us/tabs/team/teams.dart';
 
 class AboutUsScreen extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class AboutUsScreen extends StatefulWidget {
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
   int _currentIndex = 0;
-  final tabs = [AimScreen(), TeamScreen()];
+  final tabs = [AimScreen(), TeamScreen1()];
 
   @override
   Widget build(BuildContext context) {

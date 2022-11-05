@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ecell_app">
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- Add this -->
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />

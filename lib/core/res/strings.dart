@@ -77,7 +77,7 @@ class S {
   static const String teamId = "id";
   static const String teamName = "name";
   static const String teamMemberType = "member_type";
-  static const String teamProfilePic = "profile_pic";
+  static const String teamProfilePic = "image";
 
   // error strings
   static const String networkException =
@@ -128,6 +128,7 @@ class S {
   static const String phoneURL = "tel:+919406220952";
   static const String emailURL = "mailto:ecell@nitrr.ac.in";
   static const String assetEventFrame = "assets/event-frame.png";
+  static const String assetTeamsFrame = "assets/team-frame.png";
   static const String asset404Image = "assets/404.png";
 
   // paragraphs
@@ -152,5 +153,3 @@ class S {
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
   static const routeBQuizLeaderboard = "/leaderboard";
-
-}
