@@ -77,7 +77,7 @@ class S {
   static const String teamId = "id";
   static const String teamName = "name";
   static const String teamMemberType = "member_type";
-  static const String teamProfilePic = "profile_pic";
+  static const String teamProfilePic = "image";
 
   // error strings
   static const String networkException =
@@ -112,6 +112,7 @@ class S {
   static const String assetPhoneIcon = "assets/icons/phone-icon.png";
   static const String assetTeamIcon = "assets/team-tab-icon.png";
   static const String assetAIMIcon = "assets/aim-tab-icon.png";
+  static const String assetBquizMedal = "assets/bquiz-medal.png";
 
   // contact us info
   static const String ecellAddress = "National Institute of Technology, GE Road, Raipur";
@@ -150,4 +151,5 @@ class S {
   static const routeTeam = "/team";
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
+  static const routeBQuizLeaderboard = "/leaderboard";
 }

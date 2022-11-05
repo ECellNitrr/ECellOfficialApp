@@ -78,7 +78,7 @@ class TeamsCard extends StatelessWidget {
                     backgroundColor: Colors.blue,
                     backgroundImage: (teamMember.profilePic == null)
                         ? AssetImage(S.assetEcellLogoWhite)
-                        : NetworkImage(provider(teamMember.profilePic)) as ImageProvider,
+                        : NetworkImage(teamMember.profilePic!,) as ImageProvider,
                     radius: 35,
                   ),
                 ),
