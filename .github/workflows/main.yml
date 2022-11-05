@@ -1,7 +1,12 @@
 name: Ecell CI
 
 
-on: [push, workflow_dispatch]
+# on: [push, workflow_dispatch]
+on:
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
