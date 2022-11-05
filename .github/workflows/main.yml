@@ -4,6 +4,8 @@ name: Ecell CI
 # on: [push, workflow_dispatch]
 on:
   pull_request:
+    types:
+      - opened
     branches:
       - main
   push:
