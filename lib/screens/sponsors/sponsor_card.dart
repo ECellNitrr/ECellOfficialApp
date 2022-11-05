@@ -1,10 +1,10 @@
 import 'package:ecellapp/models/sponsor.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class SponsorCard extends StatelessWidget {
   final Sponsor? sponsor;
@@ -25,8 +25,8 @@ class SponsorCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(22),
             ),
             child: Container(
-              height: ratio > 0.5 ? 140 : 160,
-              margin: EdgeInsets.only(left: 130),
+              height: ratio > 0.5 ? 150 : 170,
+              margin: EdgeInsets.only(left: 137),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(22),
@@ -49,8 +49,8 @@ class SponsorCard extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () async {
                         //Handle sponsor.spons[0].socialMedia
-                        if (await canLaunch(sponsor!.website!)) {
-                          await launch(sponsor!.website!);
+                        if (await canLaunchUrlString(sponsor!.website!)) {
+                          await launchUrlString(sponsor!.website!);
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(content: Text(S.redirectIntentError)));
@@ -76,28 +76,35 @@ class SponsorCard extends StatelessWidget {
             child: Stack(
               children: [
                 Image.asset(S.assetSponsorFrame,
-                    fit: BoxFit.cover, height: 200),
+                    fit: BoxFit.cover, height: 220),
                 Center(
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    alignment: Alignment.center,
-                    padding: EdgeInsets.only(bottom: 5),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          offset: Offset(0.0, 5),
-                          blurRadius: 10,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.25),
+                              offset: Offset(0.0, 5),
+                              blurRadius: 10,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blue,
-                      backgroundImage: NetworkImage(sponsor!.picUrl!),
-                      radius: 40,
-                    ),
+                        child: Image.network(sponsor!.picUrl!,
+                          fit: BoxFit.contain,
+                        width: 90,
+                        height: 90,)
+                      ),
+                      SizedBox(height: 10,)
+                    ],
                   ),
                 ),
               ],

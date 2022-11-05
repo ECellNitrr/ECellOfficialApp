@@ -208,6 +208,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         height: 25,
                       ),
                       onTap: () {
+                        S.sponsorApiYear=2022;
                         Navigator.pushNamed(context, S.routeSponsors);
                       },
                     ),
