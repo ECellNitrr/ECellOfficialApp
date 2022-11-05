@@ -15,11 +15,13 @@ class S {
 
   ///Change password API is where the email, otp and password is posted and password is changed
   /// Accepts [Email] [Otp] and [Password] in API. Last Stage
-  static const String postChangePasswordUrl = baseUrl + "users/change_password/";
+  static const String postChangePasswordUrl = baseUrl +
+      "users/change_password/";
 
   ///Forgot Password API where the email is posted and OTP is sent to the user.
   ///Accept [Email] only as a parameter to the API. First Stage
-  static const String postForgotPasswordUrl = baseUrl + "users/forgot_password/";
+  static const String postForgotPasswordUrl = baseUrl +
+      "users/forgot_password/";
 
   ///After change mail, send request to this API to verify new email id.
   ///Accepts [Email] and [Otp]. Second Stage
@@ -29,6 +31,7 @@ class S {
   static const String tokenKeySharedPreferences = "token";
   static const String nameKeySharedPreferences = "name";
   static const String emailKeySharedPreferences = "email";
+
   // api keys
   static const String tokenKey = "token";
   static const String passwordKey = "password";
@@ -41,6 +44,7 @@ class S {
   //postfeedback
   static const String feedbackNameKey = "name";
   static const String feedbackMessageKey = "message";
+
   //event
   static const String eventnameKey = "name";
   static const String eventdateKey = "date";
@@ -49,6 +53,7 @@ class S {
   static const String eventidKey = "id";
   static const String eventdetailsKey = "details";
   static const String eventiconurlKey = "icon";
+
   //sponsors
   static int sponsorApiYear = 2022;
   static const String sponsorName = "name";
@@ -63,6 +68,7 @@ class S {
   static const String sponsorYear = "year";
   static const String sponsorId = "id";
   static const String sponsCategoryObj = "spons_categories";
+
   //speaker
   static const String speakerCompany = "company";
   static const String speakerDescription = "description";
@@ -72,6 +78,7 @@ class S {
   static const String speakerProfilePic = "profile_pic";
   static const String speakerSocialMedia = "social_media";
   static const String speakerYear = "year";
+
   //teams
   static const int teamApiYear = 2022;
   static const String teamId = "id";
@@ -153,3 +160,4 @@ class S {
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
   static const routeBQuizLeaderboard = "/leaderboard";
+}
