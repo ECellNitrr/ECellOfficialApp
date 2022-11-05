@@ -31,7 +31,7 @@ class LeaderList extends StatelessWidget {
         ),
       ),
       body: Stack(children: [
-        ScreenBackground(elementId:3),
+        ScreenBackground(elementId: 3),
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -39,18 +39,20 @@ class LeaderList extends StatelessWidget {
             SizedBox(height: 60),
             Container(
               width: MediaQuery.of(context).size.width,
-              child: GradientText(
-                "LEADERBOARDS",
-                gradient: LinearGradient(
-                  colors: [
-                    C.bQuizGradient1,
-                    C.bQuizGradient2,
-                    C.bQuizGradient3,
-                    C.bQuizGradient4,
-                    C.bQuizGradient5,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
+              child: Center(
+                child: GradientText(
+                  "LEADERBOARDS",
+                  gradient: LinearGradient(
+                    colors: [
+                      C.bQuizGradient1,
+                      C.bQuizGradient2,
+                      C.bQuizGradient3,
+                      C.bQuizGradient4,
+                      C.bQuizGradient5,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
                 ),
               ),
             ),
