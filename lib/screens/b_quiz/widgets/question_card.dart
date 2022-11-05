@@ -1,12 +1,15 @@
+import 'dart:async';
+
 import 'package:ecellapp/models/questions.dart';
 import 'package:flutter/material.dart';
 
 import 'option_card.dart';
 
 class QuestionCard extends StatefulWidget {
+  Stream<bool> stream;
   Function callBack;
   final Questions? quiz;
-  QuestionCard({Key? key, this.quiz, required this.callBack}) : super(key: key);
+  QuestionCard({Key? key, this.quiz, required this.callBack,required this.stream}) : super(key: key);
 
   @override
   State<QuestionCard> createState() => _QuestionCardState();
@@ -14,6 +17,28 @@ class QuestionCard extends StatefulWidget {
 
 class _QuestionCardState extends State<QuestionCard> {
   List<bool> isSelected = [false, false, false, false];
+  Color c= Colors.lightBlueAccent;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    widget.stream.listen((flag) {
+      mySetState(flag);
+     });
+  }
+  void mySetState(bool flag){
+    if(flag==true){
+      if(mounted){setState(() {
+        c=Colors.green;
+      });}
+    }
+    else{
+      if(mounted){setState(() {
+        c=Colors.red;
+      });}
+    }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +48,17 @@ class _QuestionCardState extends State<QuestionCard> {
       child: Column(children: [
         Center(
           child: Container(
-              margin: EdgeInsets.fromLTRB(5, 15, 5, 15),
-              padding: EdgeInsets.all(10),
+            width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
+              padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                   border: Border.all(
                 width: 2,
                 color: Colors.yellowAccent,
               )),
-              child: Center(
+              child: Padding(
+                padding: EdgeInsets.all(5),
+                
                 child: Column(children: [
                   Text((widget.quiz?.question).toString(),
                       style: TextStyle(
@@ -63,8 +91,10 @@ class _QuestionCardState extends State<QuestionCard> {
               )),
         ),
         ToggleButtons(
+          borderWidth: 3,
           direction: Axis.vertical,
-          selectedBorderColor: Colors.lightBlueAccent,
+          // fillColor: c,
+          selectedBorderColor: c,
           splashColor:Colors.red[200],
           isSelected: isSelected,
           children: [

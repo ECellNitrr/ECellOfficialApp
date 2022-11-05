@@ -1,6 +1,8 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/models/sponsor_category.dart';
 import 'package:ecellapp/screens/sponsors/sponsor_card.dart';
+import 'package:ecellapp/screens/sponsors/sponsor_list.dart';
+import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsorship_head.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
+import '../../core/res/strings.dart';
+import '../../widgets/raisedButton.dart';
 import 'cubit/sponsors_cubit.dart';
 
 class SponsorsScreen extends StatelessWidget {
@@ -69,7 +73,7 @@ class SponsorsScreen extends StatelessWidget {
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (OverscrollIndicatorNotification overscroll) {
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: Container(
@@ -117,7 +121,7 @@ class SponsorsScreen extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
-                              SizedBox(height: top + 56),
+                              SizedBox(height: top + 40),
                               Text(
                                 "Sponsors",
                                 style: TextStyle(
@@ -125,6 +129,75 @@ class SponsorsScreen extends StatelessWidget {
                                   color: Colors.white,
                                   fontWeight: FontWeight.w800,
                                   letterSpacing: 0.5,
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(left: 8,right: 8),
+                                child: Column(
+                                  children: [
+                                    SizedBox(height: 8,),
+                                    Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: LegacyRaisedButton(
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                        color: C.speakerButtonColor,
+                                        onPressed: (){
+                                          Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context)=>SponsorList())));
+                                        },
+                                        child: Container(
+                                          height: 50,
+                                          width: 130,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Yearwise Sponsors",
+                                            style: TextStyle(
+                                              color: C.primaryUnHighlightedColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(0, 0.5),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Align(
+                                      alignment: Alignment.centerRight,
+                                      child: LegacyRaisedButton(
+                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                        color: C.speakerButtonColor,
+                                        onPressed: (){
+                                          Navigator.pushNamed(context, S.routeSponsorsHead);
+                                        },
+                                        child: Container(
+                                          height: 50,
+                                          width: 165,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Contact Spons Team",
+                                            style: TextStyle(
+                                              color: C.primaryUnHighlightedColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(0, 0.5),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                               ...data[i].spons.map((e) => SponsorCard(sponsor: e)),
