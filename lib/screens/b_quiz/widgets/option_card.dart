@@ -15,27 +15,24 @@ class Options extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => print("HIT"),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-        child: Container(
-          height: height / 15,
-          width: width,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(22),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-            child: Center(
-              child: Text(
-                option,
-                style: TextStyle(
-                  fontSize: 25,
-                  color: C.cardFontColor,
-                  fontWeight: FontWeight.w600,
-                ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+      child: Container(
+        height: height / 15,
+        width: width,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(22),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+          child: Center(
+            child: Text(
+              option,
+              style: TextStyle(
+                fontSize: 25,
+                color: C.cardFontColor,
+                fontWeight: FontWeight.w600,
               ),
             ),
           ),
