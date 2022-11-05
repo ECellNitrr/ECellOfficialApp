@@ -14,7 +14,7 @@ import 'cubit/login_cubit.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
+  static final TextEditingController emailController = TextEditingController();
   final ScrollController _scrollController = ScrollController();
   final _formKey = GlobalKey<FormState>();
 

@@ -8,7 +8,7 @@ import '../../../core/res/strings.dart';
 import '../../../models/global_state.dart';
 import '../../../models/user.dart';
 import '../../../widgets/screen_background.dart';
-
+import 'package:ecellapp/screens/login/firebase.dart';
 class ProfileScreen extends StatefulWidget {
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -18,6 +18,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     User user = context.read<GlobalState>().user!;
+    firebaseCred.name=user.firstName.toString();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double top = MediaQuery.of(context).viewPadding.top;
