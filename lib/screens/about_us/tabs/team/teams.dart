@@ -104,9 +104,9 @@ class _TeamScreenState extends State<TeamScreen1> {
               return Row(
                 children: [
                   Expanded(
-                    flex: 4,
+                    flex: 3,
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 80, top: 120),
+                      padding: const EdgeInsets.only(bottom: 100, top: 110),
                       child: SingleChildScrollView(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -121,14 +121,14 @@ class _TeamScreenState extends State<TeamScreen1> {
                                 children: <Widget>[
                                   Container(
                                     child: ElevatedButton(
-                                      child: Text("2022"),
+                                      child: RotatedBox(quarterTurns:3, child: Text("2022")),
                                       onPressed: (){
 
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        // padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5.0)
+                                              borderRadius: BorderRadius.circular(15.0)
                                           ),
                                           primary: Colors.purple
                                       ),
@@ -145,14 +145,14 @@ class _TeamScreenState extends State<TeamScreen1> {
                                 children: <Widget>[
                                   Container(
                                     child: ElevatedButton(
-                                      child: Text(year[i]),
+                                      child: RotatedBox(quarterTurns: 3, child: Text(year[i])),
                                       onPressed: (){
                                         _launchURL(Uri.parse('https://ecell.nitrr.ac.in/team/${yearl[i]}'));
                                       },
                                       style: ElevatedButton.styleFrom(
-                                        // padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 20.0),
+                                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(5.0)
+                                              borderRadius: BorderRadius.circular(15.0)
                                           ),
                                           primary: Colors.purple
                                       ),
