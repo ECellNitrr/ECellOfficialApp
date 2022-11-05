@@ -14,11 +14,13 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepository _loginRepository;
   LoginCubit(this._loginRepository) : super(LoginInitial());
+  static String? Token;
 
   Future<void> login(String email, String password) async {
     try {
       emit(LoginLoading());
       String? token = await (_loginRepository.login(email, password));
+      Token=token;
       await sl
           .get<SharedPreferences>()
           .setString(S.tokenKeySharedPreferences, token!);

@@ -1,4 +1,12 @@
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
+import 'package:ecellapp/screens/b_quiz/leaderBoard/cubit/leaderboard_cubit.dart';
+import 'package:ecellapp/screens/b_quiz/leaderBoard/leader_board.dart';
+import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
+import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
+import 'package:ecellapp/screens/sponsors/sponsorship_head/cubit/sponsors_head_cubit.dart';
+import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsors_head_repository.dart';
+import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsorship_head.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,8 +74,11 @@ class ECellApp extends StatelessWidget {
               create: (_) => EventsCubit(APIEventsRepository()), child: EventsScreen()),
           S.routeSponsors: (_) => BlocProvider(
               create: (_) => SponsorsCubit(APISponsorsRepository()), child: SponsorsScreen()),
+          S.routeSponsorsHead: (_) => BlocProvider(
+              create: (_) => SponsorsHeadCubit(APISponsorsHeadRepository()), child: SponsorsHeadScreen()),
           S.routeEsummit: (_) => ESummitScreen(),
           S.routeBQuiz: (_) => BQuiz(),
+          S.routeBQuizLeaderboard: (_) => LeaderList(),
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
         },

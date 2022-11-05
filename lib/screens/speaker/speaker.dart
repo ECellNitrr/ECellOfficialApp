@@ -67,7 +67,7 @@ class SpeakerScreen extends StatelessWidget {
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (OverscrollIndicatorNotification overscroll) {
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: SingleChildScrollView(

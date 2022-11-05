@@ -250,16 +250,16 @@ class APISponsorsRepository extends SponsorsRepository {
     final String tag = classTag + "getAllSponsors()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.parse(S.getSponsorsUrl));
+      response = await sl.get<http.Client>().get(Uri.parse(S.getSponsorsUrl+"${S.sponsorApiYear}/"));
     } catch (e) {
       throw NetworkException();
     }
     if (response.statusCode == 200) {
       //Process response here
       Map<String, dynamic> sponsorResponse = jsonDecode(response.body);
-      List<SponsorCategory> sponsorData = List.empty();
+      List<SponsorCategory> sponsorData = List.empty(growable: true);
       sponsorResponse["spons_categories"].forEach((e) {
-        List<Sponsor> sponsors = List.empty();
+        List<Sponsor> sponsors = List.empty(growable: true);
         sponsorResponse["data"][e]
             .forEach((e) => sponsors.add(Sponsor.fromJson(e)));
         sponsorData.add(SponsorCategory(e, sponsors));

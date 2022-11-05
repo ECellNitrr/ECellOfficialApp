@@ -188,6 +188,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.4"
+  firebase_auth:
+    dependency: "direct main"
+    description:
+      name: firebase_auth
+      sha256: d033f297b086ed883c9e23c00ce1529799aeecfa8164ee504d50cb4b3437257f
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.1"
+  firebase_auth_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_auth_platform_interface
+      sha256: "53b50087d7661284be3fb84ad63b2385b07864560f1901e2924309e7a18432a9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.11.1"
+  firebase_auth_web:
+    dependency: transitive
+    description:
+      name: firebase_auth_web
+      sha256: "635af8091a4be11bc5c1e511571080b61e9fd5e12a59ea27ecdae24fb34b1715"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.1"
   firebase_core:
     dependency: "direct main"
     description:
@@ -212,6 +236,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.1"
+  firebase_storage:
+    dependency: "direct main"
+    description:
+      name: firebase_storage
+      sha256: "8f0edf320c6c14cae4310b95c66d48fd8ed073da87bffc6bf90ff7f1d72fb680"
+      url: "https://pub.dev"
+    source: hosted
+    version: "11.0.4"
+  firebase_storage_platform_interface:
+    dependency: transitive
+    description:
+      name: firebase_storage_platform_interface
+      sha256: "909f0dc7b6a2fd465d5bd1658de5bec452bc66c70d36a0dbb299ae37c4bdf03c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.1.22"
+  firebase_storage_web:
+    dependency: transitive
+    description:
+      name: firebase_storage_web
+      sha256: "3548935c7eeaca2467800e3c141f23458e542ba440e527ac9751dffb9766c4cd"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.3.14"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -283,6 +331,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.2"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      sha256: "910f85bce16fb5c6f614e117efa303e85a1731bb0081edf3604a2ae6e9a3cc91"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.17.0"
   js:
     dependency: transitive
     description:

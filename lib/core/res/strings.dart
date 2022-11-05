@@ -7,7 +7,7 @@ class S {
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";
   static const String getEventsUrl = baseUrl + "events/list/2022/";
-  static const String getSponsorsUrl = baseUrl + "sponsors/sorted_list/$sponsorApiYear/";
+  static const String getSponsorsUrl = baseUrl + "sponsors/sorted_list/";
   static const String getSpeakerUrl = baseUrl + "speakers/full_list/";
   static const String postFeedbackUrl = baseUrl + "feedback/post/";
   static const String getTeamUrl = baseUrl + "team/list/$teamApiYear/";
@@ -50,7 +50,7 @@ class S {
   static const String eventdetailsKey = "details";
   static const String eventiconurlKey = "icon";
   //sponsors
-  static const int sponsorApiYear = 2022;
+  static int sponsorApiYear = 2022;
   static const String sponsorName = "name";
   static const String sponsorDetails = "details";
   static const String sponsorPic = "pic";
@@ -147,9 +147,9 @@ class S {
   static const routeSpeaker = "/speaker";
   static const routeEvents = "/events";
   static const routeSponsors = "/sponsors";
+  static const routeSponsorsHead = "/sponsors_head";
   static const routeEsummit = "/esummit";
   static const routeTeam = "/team";
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
   static const routeBQuizLeaderboard = "/leaderboard";
-}

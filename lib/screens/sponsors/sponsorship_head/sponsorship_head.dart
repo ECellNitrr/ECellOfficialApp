@@ -1,5 +1,6 @@
-import 'package:ecellapp/models/leader_board.dart';
-import 'package:ecellapp/screens/b_quiz/leaderBoard/cubit/leaderboard_cubit.dart';
+import 'package:ecellapp/models/sponsor_head.dart';
+import 'package:ecellapp/screens/sponsors/cubit/sponsors_cubit.dart';
+import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsor_head_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:flutter/material.dart';
@@ -7,18 +8,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
-
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
 
-import 'leader_card.dart';
+import 'cubit/sponsors_head_cubit.dart';
 
-class LeaderScreen extends StatelessWidget {
-  LeaderScreen({Key? key}) : super(key: key);
+class SponsorsHeadScreen extends StatelessWidget {
+  SponsorsHeadScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StatefulWrapper(
-      onInit: () => _getAllLeaders(context),
+      onInit: () => _getAllSponsorHead(context),
       child: Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
@@ -34,7 +34,6 @@ class LeaderScreen extends StatelessWidget {
           ),
         ),
         body: Container(
-          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
@@ -42,16 +41,16 @@ class LeaderScreen extends StatelessWidget {
               colors: [C.backgroundTop1, C.backgroundBottom1],
             ),
           ),
-          child: BlocBuilder<LeaderCubit, LeaderState>(
+          child: BlocBuilder<SponsorsHeadCubit,SponsorsHeadState>(
             builder: (context, state) {
-              if (state is LeaderInitial)
+              if (state is SponsorsHeadInitial)
                 return _buildLoading(context);
-              else if (state is LeaderSuccess)
-                return _buildSuccess(context, state.leaderList);
-              else if (state is LeaderLoading)
+              else if (state is SponsorsHeadSuccess)
+                return _buildSuccess(context, state.sponsorsHeadList);
+              else if (state is SponsorsHeadLoading)
                 return _buildLoading(context);
               else
-                return ReloadOnErrorWidget(() => _getAllLeaders(context));
+                return ReloadOnErrorWidget(() => _getAllSponsorHead(context));
             },
           ),
         ),
@@ -59,15 +58,12 @@ class LeaderScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSuccess(BuildContext context, List<Data> LeaderList) {
+  Widget _buildSuccess(BuildContext context, List<SponsorHead> sponsorsHeadList) {
     double top = MediaQuery.of(context).viewInsets.top;
     double ratio = MediaQuery.of(context).size.aspectRatio;
 
-    List<Widget> LeaderContentList = [];
-    LeaderList.forEach((element) => LeaderContentList.add(LeaderCard(
-          Leader: element,
-          rank: LeaderContentList.length + 1,
-        )));
+    List<Widget> sponsorHeadContentList = [];
+    sponsorsHeadList.forEach((element) => sponsorHeadContentList.add(SponsorHeadCard(sponsorHead: element)));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
@@ -81,21 +77,24 @@ class LeaderScreen extends StatelessWidget {
           child: Padding(
             padding: EdgeInsets.only(top: top + 56),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "LeaderBoard",
+                  "Sponsorship",
                   style: TextStyle(
-                    fontSize: ratio > 0.5 ? 45 : 50,
+                    fontSize: ratio > 0.5 ? 30 : 40,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                Text(
+                  "Head Co-ordinators",
+                  style: TextStyle(
+                    fontSize: ratio > 0.5 ? 28 : 38,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: LeaderContentList),
+                Column(children: sponsorHeadContentList),
               ],
             ),
           ),
@@ -109,8 +108,8 @@ class LeaderScreen extends StatelessWidget {
     return Center(child: ECellLogoAnimation(size: width / 2));
   }
 
-  void _getAllLeaders(BuildContext context) {
-    final cubit = context.read<LeaderCubit>();
-    cubit.getLeaderList();
+  void _getAllSponsorHead(BuildContext context) {
+    final cubit = context.read<SponsorsHeadCubit>();
+    cubit.getSponsorsHeadList();
   }
 }
