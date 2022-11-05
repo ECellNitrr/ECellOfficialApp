@@ -68,7 +68,7 @@ class TeamScreen extends StatelessWidget {
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: NotificationListener<OverscrollIndicatorNotification>(
         onNotification: (OverscrollIndicatorNotification overscroll) {
-          overscroll.disallowGlow();
+          overscroll.disallowIndicator();
           return true;
         },
         child: Container(
@@ -118,27 +118,24 @@ class TeamScreen extends StatelessWidget {
                         height: double.infinity,
                         child: SingleChildScrollView(
                           controller: _scrollController,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                SizedBox(height: top + 56),
-                                Text(
-                                  "Our Team",
-                                  style: TextStyle(
-                                    fontSize: 40,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w800,
-                                    letterSpacing: 0.5,
-                                  ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              SizedBox(height: top + 56),
+                              Text(
+                                "Our Team",
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: 0.5,
                                 ),
-                                SizedBox(height: 20),
-                                ...data[i].members.map((e) => TeamsCard(teamMember: e)),
-                                //! Fix to avoid non-scrollable state
-                                Container(height: 200)
-                              ],
-                            ),
+                              ),
+                              SizedBox(height: 20),
+                              ...data[i].members.map((e) => TeamsCard(teamMember: e)),
+                              //! Fix to avoid non-scrollable state
+                              Container(height: 200)
+                            ],
                           ),
                         ),
                       ),
