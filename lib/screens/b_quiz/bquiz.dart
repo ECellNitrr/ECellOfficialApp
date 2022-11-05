@@ -1,6 +1,8 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/screens/b_quiz/cubit/quiz_cubit.dart';
+import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
@@ -98,10 +100,7 @@ class BQuiz extends StatelessWidget {
                         color: Colors.transparent,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: ((context) => BlocProvider(
-                                  create: (_) =>
-                                      QuizCubit(FakeQuizRepository()),
-                                  child: Quiz()))));
+                              builder: ((context) => QuizList())));
                         },
 
                         child: Container(
@@ -129,10 +128,7 @@ class BQuiz extends StatelessWidget {
                       onPressed: () {
                         print("press");
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => BlocProvider(
-                                create: (_) =>
-                                    LeaderCubit(FakeLeaderRepository()),
-                                child: LeaderScreen()))));
+                            builder: ((context) => LeaderList())));
                       },
                       child: Text(
                         "Leaderboard",

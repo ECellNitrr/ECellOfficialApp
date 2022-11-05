@@ -5,8 +5,7 @@ packages:
     dependency: transitive
     description:
       name: _flutterfire_internals
-      sha256: "6b8dc2a6fb4ffd8b807f99f273c02ba8e24f1a8eb08f8f1c53c2c67d512a6a90"
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.7"
   archive:
@@ -101,24 +100,21 @@ packages:
     dependency: "direct main"
     description:
       name: cloud_firestore
-      sha256: "681cd2aa4f05a76eef4cfd959f0c337e95697bd92e6e3e80bc9130957db63a10"
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.4"
   cloud_firestore_platform_interface:
     dependency: transitive
     description:
       name: cloud_firestore_platform_interface
-      sha256: c17e2f9eaefbbce5950f9921779872f44a2ca94e3061a047a18bd09eb9561cd3
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "5.8.4"
   cloud_firestore_web:
     dependency: transitive
     description:
       name: cloud_firestore_web
-      sha256: "3a4fe7fd092c0bc907db77e261d18bc59e98bb07018e2f29f9804dbc53e543c8"
-      url: "https://pub.dev"
+      url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.4"
   collection:
@@ -128,7 +124,14 @@ packages:
       sha256: cfc915e6923fe5ce6e153b0723c753045de46de1b4d63771530504004a45fae0
       url: "https://pub.dev"
     source: hosted
-    version: "1.17.0"
+    version: "1.16.0"
+  confetti:
+    dependency: "direct main"
+    description:
+      name: confetti
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   crypto:
     dependency: transitive
     description:
@@ -375,7 +378,7 @@ packages:
       sha256: d92141dc6fe1dad30722f9aa826c7fbc896d021d792f80678280601aff8cf724
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.0"
+    version: "0.1.5"
   meta:
     dependency: transitive
     description:
@@ -580,7 +583,7 @@ packages:
       sha256: dd904f795d4b4f3b870833847c461801f6750a9fa8e61ea5ac53f9422b31f250
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.1"
+    version: "1.9.0"
   stack_trace:
     dependency: transitive
     description:
@@ -620,7 +623,7 @@ packages:
       sha256: ceeddf59d613e862e77f4b506cfc2945ac9637ce0b4c00f4f4c1ac639f3e9731
       url: "https://pub.dev"
     source: hosted
-    version: "0.4.14"
+    version: "0.4.12"
   typed_data:
     dependency: transitive
     description:
@@ -734,5 +737,6 @@ packages:
     source: hosted
     version: "3.1.1"
 sdks:
-  dart: ">=2.18.2 <4.0.0"
+  dart: ">=2.17.3 <3.0.0"
   flutter: ">=3.0.0"
+
