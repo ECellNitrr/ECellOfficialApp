@@ -31,7 +31,7 @@ const List<dynamic> appTeam=[
     "domain": "tech",
     "linkedin": "https://www.linkedin.com/in/neeraj-yadu-9b7a8a22a/",
     "phone" :"8770904101",
-    "email": "fdfgfdfdfg"
+    "email": "neerajyadu8281@gmail.com"
   },
   {
     "name": "K Venkat Nag Sai",
@@ -41,7 +41,7 @@ const List<dynamic> appTeam=[
     "domain": "tech",
     "linkedin": "https://www.linkedin.com/in/k-venkat-nag-sai-354128232/",
     "phone" :"7000469397",
-    "email": "kjjjhghg"
+    "email": "k.venkatnagsai@gmail.com"
   }
 ];
 
