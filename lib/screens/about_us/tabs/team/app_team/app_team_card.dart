@@ -17,7 +17,7 @@ const List<dynamic> appTeam=[
   },
   {
     "name": "Kumar Utsav",
-    "image": S.assetEcellLogoWhite,
+    "image": "https://media-exp1.licdn.com/dms/image/C4D03AQEolcSpLuu4bg/profile-displayphoto-shrink_400_400/0/1657438458806?e=1672876800&v=beta&t=hM0TLNZOo-kj-fXJoBF4_3Nfg7XVjgYZoermL0mG27U",
     "member_type": "EXC",
     "domain": "tech",
     "linkedin": "https://www.linkedin.com/in/kumar-utsav-flutdev/",
@@ -26,7 +26,7 @@ const List<dynamic> appTeam=[
   },
   {
     "name": "Neeraj Yadu",
-    "image": S.assetEcellLogoWhite,
+    "image": "https://media-exp1.licdn.com/dms/image/C4D03AQHuZ150ESZ1_w/profile-displayphoto-shrink_400_400/0/1658671069104?e=1672876800&v=beta&t=51yPLYYvtmPF_8fCGdTtrunD28GAxXgA8ky5kX2uKA0",
     "member_type": "EXC",
     "domain": "tech",
     "linkedin": "https://www.linkedin.com/in/neeraj-yadu-9b7a8a22a/",
@@ -35,7 +35,7 @@ const List<dynamic> appTeam=[
   },
   {
     "name": "K Venkat Nag Sai",
-    "image": S.assetEcellLogoWhite,
+    "image": "https://media-exp1.licdn.com/dms/image/C5603AQFVmSYLVnobOQ/profile-displayphoto-shrink_400_400/0/1644940070285?e=1672876800&v=beta&t=XCRVVXMtTUc7wKqT_29DCWgmHBSk_ehEIRGOLfKr5Ek",
     "member_type": "EXC",
     "year": 2022,
     "domain": "tech",
