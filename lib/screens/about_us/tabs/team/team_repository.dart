@@ -215,7 +215,7 @@ class APITeamRepository extends TeamRepository {
     final String tag = classTag + "getAllTeamMembers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl));
+      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl+"${S.teamApiYear}/"));
     } catch (e) {
       throw NetworkException();
     }

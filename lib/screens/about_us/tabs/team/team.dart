@@ -1,6 +1,8 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/models/team_category.dart';
+import 'package:ecellapp/screens/about_us/tabs/team/app_team/app_team.dart';
+import 'package:ecellapp/screens/about_us/tabs/team/team_list.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/widget/team_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
@@ -12,6 +14,7 @@ import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../widgets/raisedButton.dart';
 import '../../../../widgets/rotated_curveed_tile.dart';
 import 'cubit/team_cubit.dart';
 
@@ -131,7 +134,73 @@ class TeamScreen extends StatelessWidget {
                                   letterSpacing: 0.5,
                                 ),
                               ),
-                              SizedBox(height: 20),
+                              SizedBox(height: 5),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(children: [
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: LegacyRaisedButton(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                      color: C.speakerButtonColor,
+                                      onPressed: (){
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context)=>TeamList())));
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        width: 130,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Yearwise Teams",
+                                          style: TextStyle(
+                                            color: C.primaryUnHighlightedColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w300,
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(0, 0.5),
+                                                blurRadius: 3,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 8,),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: LegacyRaisedButton(
+                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                      color: C.speakerButtonColor,
+                                      onPressed: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: ((context)=>AppTeamScreen())));
+                                      },
+                                      child: Container(
+                                        height: 50,
+                                        width: 165,
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "Contact App Team",
+                                          style: TextStyle(
+                                            color: C.primaryUnHighlightedColor,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w300,
+                                            shadows: [
+                                              Shadow(
+                                                color: Colors.black,
+                                                offset: Offset(0, 0.5),
+                                                blurRadius: 3,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],),
+                              ),
                               ...data[i].members.map((e) => TeamsCard(teamMember: e)),
                               //! Fix to avoid non-scrollable state
                               Container(height: 200)
