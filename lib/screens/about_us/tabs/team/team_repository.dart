@@ -30,7 +30,7 @@ class FakeTeamRepository implements TeamRepository {
             "id": 1,
             "name": "Kick Buttowski",
             "profile_url":
-                "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
             "image": null,
             "member_type": "EXC",
             "year": 2021,
@@ -42,14 +42,134 @@ class FakeTeamRepository implements TeamRepository {
             "id": 2,
             "name": "Elon Musk",
             "profile_url":
-                "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+            "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
             "image": null,
             "member_type": "HCD",
             "year": 2021,
             "domain": "tech",
             "linkedin": null,
             "facebook": null
-          }
+          },
+          {
+            "id": 4,
+            "name": "Bowjack",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "EXC",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 5,
+            "name": "Agent P",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "DIR",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 6,
+            "name": "Jack Sparrow",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "FCT",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 7,
+            "name": "Taylor Swift",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "HCO",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 8,
+            "name": "Pidgeot",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "EXC",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 9,
+            "name": "Dragonite",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "DIR",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 10,
+            "name": "Kiterestu",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "MNG",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 15,
+            "name": "Kochikame",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "MNG",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 11,
+            "name": "Hattori",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "OCO",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
+          {
+            "id": 1,
+            "name": "Kazama",
+            "profile_url":
+            "https://i.pinimg.com/originals/83/f5/88/83f588b8414b1bacfd0ef3027b5aba7f.jpg",
+            "image": null,
+            "member_type": "EXC",
+            "year": 2021,
+            "domain": "tech",
+            "linkedin": "http://linkdin.com/IamBttowski",
+            "facebook": "http://facebook.com/IamBttowski"
+          },
         ]
       };
 
@@ -79,7 +199,7 @@ class FakeTeamRepository implements TeamRepository {
         TeamMember member = TeamMember.fromJson(e);
         // adding the team member to the specific category.
         // If that category doesnot exist in our directory, add it to the others list.
-        categories[typeToIndex[member.type!] ?? 7].members.add(member);
+        categories[typeToIndex[member.type] ?? 7].members.add(member);
       });
 
       return categories;
@@ -95,7 +215,7 @@ class APITeamRepository extends TeamRepository {
     final String tag = classTag + "getAllTeamMembers()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl));
+      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl+"${S.teamApiYear}/"));
     } catch (e) {
       throw NetworkException();
     }
@@ -127,7 +247,7 @@ class APITeamRepository extends TeamRepository {
 
       (teamResponse["data"] as List).forEach((e) {
         TeamMember member = TeamMember.fromJson(e);
-        categories[typeToIndex[member.type!] ?? 7].members.add(member);
+        categories[typeToIndex[member.type] ?? 7].members.add(member);
       });
 
       return categories;
@@ -136,9 +256,7 @@ class APITeamRepository extends TeamRepository {
     } else {
       Log.s(
           tag: tag,
-          message:
-              "Unknown response code -> ${response.statusCode}, message ->" +
-                  response.body);
+          message: "Unknown response code -> ${response.statusCode}, message ->" + response.body);
       throw UnknownException();
     }
   }

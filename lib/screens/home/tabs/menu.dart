@@ -252,6 +252,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       child: Icon(Icons.group,
                           size: 35, color: C.primaryUnHighlightedColor),
                       onTap: () {
+                        S.teamApiYear=2022;
                         Navigator.pushNamed(context, S.routeAboutUs);
                       },
                     ),

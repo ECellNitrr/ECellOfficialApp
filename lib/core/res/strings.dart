@@ -10,7 +10,7 @@ class S {
   static const String getSponsorsUrl = baseUrl + "sponsors/sorted_list/";
   static const String getSpeakerUrl = baseUrl + "speakers/full_list/";
   static const String postFeedbackUrl = baseUrl + "feedback/post/";
-  static const String getTeamUrl = baseUrl + "team/list/$teamApiYear/";
+  static String getTeamUrl = baseUrl + "team/list/";
   static const String getLeaderBoardUrl = baseUrl + "bquiz/leaderboard/";
 
   ///Change password API is where the email, otp and password is posted and password is changed
@@ -80,7 +80,7 @@ class S {
   static const String speakerYear = "year";
 
   //teams
-  static const int teamApiYear = 2022;
+  static int teamApiYear = 2022;
   static const String teamId = "id";
   static const String teamName = "name";
   static const String teamMemberType = "member_type";
@@ -118,6 +118,7 @@ class S {
   static const String assetTwitterIcon = "assets/icons/twitter-icon.png";
   static const String assetPhoneIcon = "assets/icons/phone-icon.png";
   static const String assetTeamIcon = "assets/team-tab-icon.png";
+  static const String assetTeamFrame = "assets/team-frame.png";
   static const String assetAIMIcon = "assets/aim-tab-icon.png";
   static const String assetBquizMedal = "assets/bquiz-medal.png";
 
