@@ -81,8 +81,6 @@ class ECellApp extends StatelessWidget {
           S.routeBQuizLeaderboard: (_) => LeaderList(),
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
-          S.routeTeamYear: (_) =>
-              BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
         },
         initialRoute: S.routeSplash,
         title: "ECellApp",

@@ -153,6 +153,4 @@ class S {
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
   static const routeBQuizLeaderboard = "/leaderboard";
-  static const routeTeamYear = "/team_year";
-
 }
