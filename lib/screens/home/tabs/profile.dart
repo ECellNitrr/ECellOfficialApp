@@ -62,19 +62,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             _label("Phone Number", heightFactor),
                             _labelValue(width, height, user.phoneNumber!),
                             Expanded(flex: 1, child: Container()),
-                            Container(
-                              alignment: Alignment.topRight,
-                              child: GestureDetector(
-                                onTap: () {}, //TODO
-                                child: Text(
-                                  "Change Password?",
-                                  style: TextStyle(
-                                    color: C.primaryHighlightedColor,
-                                    fontSize: 20 * heightFactor,
-                                  ),
-                                ),
-                              ),
-                            ),
+                            // Container(
+                            //   alignment: Alignment.topRight,
+                            //   child: GestureDetector(
+                            //     onTap: () {}, //TODO
+                            //     child: Text(
+                            //       "Change Password?",
+                            //       style: TextStyle(
+                            //         color: C.primaryHighlightedColor,
+                            //         fontSize: 20 * heightFactor,
+                            //       ),
+                            //     ),
+                            //   ),
+                            // ),
                           ],
                         ),
                       ),
