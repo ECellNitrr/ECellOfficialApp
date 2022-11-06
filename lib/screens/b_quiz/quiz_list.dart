@@ -16,8 +16,7 @@ class QuizList extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     var dt= DateTime.now();
-
-
+    
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
