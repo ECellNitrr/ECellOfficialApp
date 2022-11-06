@@ -78,7 +78,6 @@ class TeamList extends StatelessWidget {
               ListButtonT(text: 'Team of 2018-19', year: 2018),
               ListButtonT(text: 'Team of 2019-20', year: 2019),
               ListButtonT(text: 'Team of 2020-21', year: 2020),
-              ListButtonT(text: 'Team of 2021-22', year: 2021),
               ListButtonT(text: 'Team of 2022-23', year: 2022),
             ],
           ),
