@@ -16,7 +16,7 @@ class QuizList extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     var dt= DateTime.now();
-    
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -125,8 +125,7 @@ class ListButton extends StatelessWidget {
                 color: Colors.transparent,
                 onPressed: () {
                   dateTime=getDatetime();
-                  print(dateTime);
-                  (dateTime[0]==month && dateTime[1]==day &&dateTime[2]>=startHr && dateTime[2]<endHr)?
+                  (dateTime[0]==month && dateTime[1]==day &&dateTime[2]>startHr && dateTime[2]<endHr)?
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: ((context) => BlocProvider(
                           create: (_) =>
