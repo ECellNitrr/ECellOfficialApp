@@ -11,8 +11,11 @@ import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
 import 'package:ecellapp/core/utils/logger.dart';
 
-
-
+import '../../../models/global_state.dart';
+import '../../../models/user.dart';
+import '../../login/cubit/login_cubit.dart';
+import '../../login/login.dart';
+import '../../login/login_repository.dart';
 
 @immutable
 abstract class LeaderRepository {
@@ -31,12 +34,12 @@ abstract class LeaderRepository {
 //         "message": "Leader Board Fetched successfully.",
 //         "data": [
 //           {
-            
+
 //             "username": "Kick Buttowski",
 //             "email":
 //                 "kickbuttowski@gmail.com",
 //             "bquiz_score": 3000
-            
+
 //           },
 //           {
 //             "username": "Elon Musk",
@@ -45,12 +48,12 @@ abstract class LeaderRepository {
 //             "bquiz_score": 2990
 //           },
 //           {
-            
+
 //             "username": "Jeff Bezos",
 //             "email":
 //                 "jeffbezos@gmail.com",
 //             "bquiz_score": 2700
-            
+
 //           },
 //           {
 //             "username": "Neeraj",
@@ -62,35 +65,46 @@ abstract class LeaderRepository {
 //       };
 //       return (response["data"] as List).map((e) => Data.fromJson(e)).toList();
 
-      
 // }
 
 // }
 // }
-
 
 class APILeaderRepository extends LeaderRepository {
   final String classTag = "APIgetleaderRepository";
-  final List<Data> leaderList=List.empty(growable: true);
+  final List<Data> leaderList = List.empty(growable: true);
 
   APILeaderRepository({required this.label});
   final String label;
+  String? token;
+  // final User user;
   @override
   Future<List<Data>> getAllleaders() async {
     final db = FirebaseFirestore.instance;
 
     try {
-      await db.collection('LEADERBOARD').doc(label).get().then((DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        print(data);
-        data.forEach((e,v) => leaderList.add(Data.fromFirestore(v)));
-        print(leaderList[0].username);
-      },
+      // await db.collection('LEADERBOARD').doc(label).get().then((DocumentSnapshot doc)
+      await db
+          .collection("LEADERBOARD")
+          .doc(label)
+          .collection('leaders')
+          .orderBy("score", descending: true)
+          .get()
+          .then(
+        (value) {
+          value.docs.forEach((element) {
+            leaderList.add(Data.fromFirestore(element));
+          });
+          value.docs.forEach((element) {
+            print(element.get('username'));
+          });
+
+          print(leaderList[0].username);
+        },
         onError: (e) => print("Error getting document: $e"),
       );
       return leaderList;
-    }
-    on FirebaseException catch (e) {
+    } on FirebaseException catch (e) {
       print(e);
       throw UnknownException();
     } catch (error) {
@@ -98,6 +112,16 @@ class APILeaderRepository extends LeaderRepository {
       throw UnknownException();
     }
   }
+
+  Future<void> uploadScore(int score, User user) async {
+    String name = "${user.firstName!} ${user.lastName}";
+    final db = FirebaseFirestore.instance;
+    CollectionReference leaderBoard =
+        FirebaseFirestore.instance.collection("LEADERBOARD");
+    await leaderBoard
+        .doc(label)
+        .collection("leaders")
+        .doc(LoginCubit.Token)
+        .set({"username": name, "email": user.email, "score": score});
   }
-  
-  
+}

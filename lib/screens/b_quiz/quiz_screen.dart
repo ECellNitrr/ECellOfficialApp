@@ -5,6 +5,7 @@ import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/utils/network_checker.dart';
 import 'package:ecellapp/models/questions.dart';
+import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
 import 'package:ecellapp/screens/b_quiz/widgets/question_card.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
@@ -18,6 +19,8 @@ import '../../../widgets/ecell_animation.dart';
 import '../../../widgets/reload_on_error.dart';
 import '../../../widgets/stateful_wrapper.dart';
 import '../../core/res/strings.dart';
+import '../../models/global_state.dart';
+import '../../models/user.dart';
 import 'cubit/quiz_cubit.dart';
 import 'widgets/option_card.dart';
 
@@ -75,6 +78,8 @@ class _SuccessState extends State<Success> {
   final DataConnectionChecker connectionChecker = DataConnectionChecker();
   late StreamSubscription subscription;
   bool hasInternet = false;
+  
+  APILeaderRepository _apiLeaderRepository=APILeaderRepository(label: "DEMO");
 
   int score = 0;
   int currentQuestion = 1;
@@ -86,6 +91,7 @@ class _SuccessState extends State<Success> {
   @override
   void initState() {
     super.initState();
+    User user = context.read<GlobalState>().user!;
     subscription = connectionChecker.onStatusChange.listen((status) {
       final hasInternet = status == DataConnectionStatus.connected;
       if (!hasInternet) {
@@ -93,6 +99,7 @@ class _SuccessState extends State<Success> {
           content: Text('Connection Lost'),
           backgroundColor: Colors.red,
         ));
+        _apiLeaderRepository.uploadScore(score, user);
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: ((context) =>
                 QuizSuccessScreen(score: (score).toDouble()))));
@@ -106,7 +113,7 @@ class _SuccessState extends State<Success> {
     super.dispose();
     subscription.cancel();
   }
-
+  
   final PageController _pageController = PageController(initialPage: 0);
   final CountDownController _countDownController = CountDownController();
   Future<bool> _onBackPressed() async {
@@ -116,16 +123,23 @@ class _SuccessState extends State<Success> {
           return AlertDialog(
             title: Text("Do you really want to close the Quiz?"),
             actions: [
-              BackButton(text: "No",onpressed: () {
-                      Navigator.pop(context, false);
-                    },),
-              BackButton(text: "Yes",onpressed: () {
-                      Navigator.pop(context, true);
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: ((context) =>
-                              QuizSuccessScreen(score: (score).toDouble()))));
-                    },)
-
+              BackButton(
+                text: "No",
+                onpressed: () {
+                  Navigator.pop(context, false);
+                },
+              ),
+              BackButton(
+                text: "Yes",
+                onpressed: () {
+                   User user = context.read<GlobalState>().user!;
+                  Navigator.pop(context, true);
+                  _apiLeaderRepository.uploadScore(score, user);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: ((context) =>
+                          QuizSuccessScreen(score: (score).toDouble()))));
+                },
+              )
             ],
           );
         });
@@ -133,6 +147,7 @@ class _SuccessState extends State<Success> {
 
   @override
   Widget build(BuildContext context) {
+    User user = context.read<GlobalState>().user!;
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
@@ -206,7 +221,7 @@ class _SuccessState extends State<Success> {
                         debugPrint('Countdown Started');
                       },
                       onComplete: () {
-                        time = int.parse(_countDownController.getTime().toString());
+                        time = int.parse(_countDownController.getTime());
                         debugPrint('Countdown Ended');
                         if (_pageController.page !=
                             QuizContentList.length - 1) {
@@ -218,6 +233,7 @@ class _SuccessState extends State<Success> {
                             _countDownController.restart(duration: _duration);
                           });
                         } else {
+                          _apiLeaderRepository.uploadScore(score, user);
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                   builder: ((context) => QuizSuccessScreen(
@@ -299,7 +315,7 @@ class _SuccessState extends State<Success> {
               ),
               color: Colors.transparent,
               onPressed: () {
-                time = int.parse(_countDownController.getTime().toString());
+                time = int.parse(_countDownController.getTime());
                 if (_pageController.page != QuizContentList.length - 1) {
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 1500),
@@ -310,6 +326,7 @@ class _SuccessState extends State<Success> {
                     _countDownController.restart(duration: _duration);
                   });
                 } else {
+                  _apiLeaderRepository.uploadScore(score, user);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: ((context) =>
                           QuizSuccessScreen(score: (score).toDouble()))));
@@ -361,7 +378,6 @@ void _getAllQuizes(BuildContext context) {
   cubit.getQuizList();
 }
 
-
 int calcScore(int time) {
   int score = 10 + (time + 15) * 10;
   return score;
@@ -370,37 +386,40 @@ int calcScore(int time) {
 class BackButton extends StatelessWidget {
   final String text;
   final Function onpressed;
-  const BackButton({Key? key, required this.text,required this.onpressed}) : super(key: key);
+  const BackButton({Key? key, required this.text, required this.onpressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      C.bQuizGradient1,
-                      C.bQuizGradient2,
-                      C.bQuizGradient3,
-                      C.bQuizGradient4,
-                      C.bQuizGradient5,
-                    ],
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
-                  ),
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                ),
-                child: LegacyRaisedButton(
-                  onPressed: onpressed,
-                  shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(30)),
-                ),
-                color: Colors.transparent,
-                    
-                    child: Text(text,style: TextStyle(
-                      letterSpacing: 0.75,
-                      color: C.primaryUnHighlightedColor,
-                      fontSize: 26,
-                    ),)),
-              );
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            C.bQuizGradient1,
+            C.bQuizGradient2,
+            C.bQuizGradient3,
+            C.bQuizGradient4,
+            C.bQuizGradient5,
+          ],
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+        ),
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+      ),
+      child: LegacyRaisedButton(
+          onPressed: onpressed,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+          color: Colors.transparent,
+          child: Text(
+            text,
+            style: TextStyle(
+              letterSpacing: 0.75,
+              color: C.primaryUnHighlightedColor,
+              fontSize: 26,
+            ),
+          )),
+    );
   }
 }

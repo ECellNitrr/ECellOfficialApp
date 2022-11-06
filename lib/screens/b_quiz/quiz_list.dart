@@ -69,7 +69,7 @@ class QuizList extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            ListButton(text: 'demo', month: 11, day: 5, startHr: 0, endHr: 24,),
+            ListButton(text: 'demo', month: 11, day: 6, startHr: 0, endHr: 24,),
             ListButton(text: 'November 27', month: 11, day: 27, startHr: 0, endHr: 23,),
             ListButton(text: 'November 28', month: 11, day: 28, startHr: 0, endHr: 23,),
             ListButton(text: 'November 29', month: 11, day: 29, startHr: 0, endHr: 23,),
@@ -125,7 +125,8 @@ class ListButton extends StatelessWidget {
                 color: Colors.transparent,
                 onPressed: () {
                   dateTime=getDatetime();
-                  (dateTime[0]==month && dateTime[1]==day &&dateTime[2]>startHr && dateTime[2]<endHr)?
+                  print(dateTime);
+                  (dateTime[0]==month && dateTime[1]==day &&dateTime[2]>=startHr && dateTime[2]<endHr)?
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: ((context) => BlocProvider(
                           create: (_) =>

@@ -6,12 +6,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../core/res/strings.dart';
+import '../../models/user.dart';
 import '../../widgets/raisedButton.dart';
 
 import 'leaderBoard/cubit/leaderboard_cubit.dart';
 import 'leaderBoard/leaderboard_repository.dart';
 
 class LeaderList extends StatelessWidget {
+  final User? user;
+  LeaderList({this.user});
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -124,8 +127,9 @@ class ListButton extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: ((context) => BlocProvider(
-                          create: (_) =>
-                              LeaderCubit(APILeaderRepository(label: text)),
+                          create: (_) => LeaderCubit(APILeaderRepository(
+                                label: text,
+                              )),
                           child: LeaderScreen()))));
                 },
                 child: Container(

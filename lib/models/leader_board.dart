@@ -1,10 +1,10 @@
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:equatable/equatable.dart';
 
 class Data extends Equatable {
-  
   String username;
   String email;
   int bquizScore;
@@ -23,17 +23,14 @@ class Data extends Equatable {
   //   );
   // }
 
-  factory Data.fromFirestore(Map<String, dynamic> data) {
+  factory Data.fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> data) {
     return Data(
-        username :data["username"],
-        email: data["email"],
-        bquizScore: data["score"] ,
-        
+      username: data["username"],
+      email: data["email"],
+      bquizScore: data["score"],
     );
   }
-  
+
   @override
   List<Object> get props => throw UnimplementedError();
-
-  
 }
