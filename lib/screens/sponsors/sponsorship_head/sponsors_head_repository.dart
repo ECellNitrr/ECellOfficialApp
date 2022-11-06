@@ -26,7 +26,7 @@ class APISponsorsHeadRepository extends SponsorsHeadRepository {
     final String tag = classTag + "getAllSponsors()";
     http.Response response;
     try {
-      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl));
+      response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl+"2022/"));
     } catch (e) {
       throw NetworkException();
     }
