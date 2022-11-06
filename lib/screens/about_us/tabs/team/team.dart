@@ -34,7 +34,7 @@ class TeamScreen extends StatelessWidget {
           leading: Container(
             padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: C.teamsbackground, size: 30),
+              icon: Icon(Icons.arrow_back_ios, color: C.teamsBackground, size: 30),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
