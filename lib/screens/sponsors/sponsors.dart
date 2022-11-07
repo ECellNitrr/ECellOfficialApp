@@ -137,7 +137,7 @@ class SponsorsScreen extends StatelessWidget {
                                   children: [
                                     SizedBox(height: 8,),
                                     Align(
-                                      alignment: Alignment.centerLeft,
+                                      alignment: Alignment.center,
                                       child: LegacyRaisedButton(
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
                                         color: C.speakerButtonColor,
@@ -166,9 +166,9 @@ class SponsorsScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 5,),
+                                    SizedBox(height: 10,),
                                     Align(
-                                      alignment: Alignment.centerRight,
+                                      alignment: Alignment.center,
                                       child: LegacyRaisedButton(
                                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
                                         color: C.speakerButtonColor,

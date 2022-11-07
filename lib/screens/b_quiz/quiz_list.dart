@@ -143,7 +143,7 @@ class ListButton extends StatelessWidget {
                     style: TextStyle(
                       letterSpacing: 0.75,
                       color: C.primaryUnHighlightedColor,
-                      fontSize: 26,
+                      fontSize: 20,
                     ),
                   ),
                 ),

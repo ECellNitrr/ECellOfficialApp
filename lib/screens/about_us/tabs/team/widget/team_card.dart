@@ -41,8 +41,8 @@ class TeamsCard extends StatelessWidget {
                     child: Text(
                       teamMember!.name!,
                       style: TextStyle(
-                        fontSize: 20,
-                        color: C.cardFontColor,
+                        fontSize: 18,
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -102,7 +102,7 @@ class TeamsCard extends StatelessWidget {
                           child: CircleAvatar(
                             backgroundColor: Colors.blue,
                             backgroundImage: (teamMember!.image== null)
-                                ? AssetImage(S.assetEcellLogoWhite)
+                                ? AssetImage(S.assetUnknownIcon)
                                 : NetworkImage(teamMember!.image!) as ImageProvider,
                             radius: 40,
                           ),

@@ -121,6 +121,7 @@ class S {
   static const String assetTeamFrame = "assets/team-frame.png";
   static const String assetAIMIcon = "assets/aim-tab-icon.png";
   static const String assetBquizMedal = "assets/bquiz-medal.png";
+  static const String assetUnknownIcon = "assets/icons/Unknown.png";
 
   // contact us info
   static const String ecellAddress = "National Institute of Technology, GE Road, Raipur";
