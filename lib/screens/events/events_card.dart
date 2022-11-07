@@ -26,122 +26,126 @@ class EventCard extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: Stack(
-                children: [
-                  ExpansionTile(
-                    title: Container(
-                      //To decrease bottom of card
-                      height: ratio > 0.5 ? 150 : 170,
-                      margin: EdgeInsets.only(left: ratio > 0.5 ? 120 : 140),
-                      padding: EdgeInsets.only(bottom: 40, top: 8),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          AutoSizeText(
-                            event!.name!,
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: C.cardFontColor,
-                              fontWeight: FontWeight.w700,
+              child: Center(
+                child: Stack(
+                  children: [
+                    ExpansionTile(
+                      title: Container(
+                        //To decrease bottom of card
+                        height: ratio > 0.5 ? 150 : 170,
+                        margin: EdgeInsets.only(left: ratio > 0.5 ? 110 : 130),
+                        padding: EdgeInsets.only(bottom: 40, top: 19),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            AutoSizeText(
+                              event!.name!,
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color: C.cardFontColor,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
-                          ),
-                          // AutoSizeText(
-                          //   "Date:" + "\t" * 4 + "${event!.date}",
-                          //   maxLines: 1,
-                          //   style: TextStyle(
-                          //     fontSize: 10,
-                          //     color: C.cardFontColor,
-                          //     fontWeight: FontWeight.w500,
-                          //   ),
-                          // ),
-                          AutoSizeText(
-                            "Time:" + "\t" * 3 + "${event!.time!}",
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: C.cardFontColor,
-                              fontWeight: FontWeight.w500,
+                            // AutoSizeText(
+                            //   "Date:" + "\t" * 4 + "${event!.date}",
+                            //   maxLines: 1,
+                            //   style: TextStyle(
+                            //     fontSize: 10,
+                            //     color: C.cardFontColor,
+                            //     fontWeight: FontWeight.w500,
+                            //   ),
+                            // ),
+                            SizedBox(height:10,),
+                            AutoSizeText(
+                              "Time:" + "\t" * 3 + "${event!.time!}",
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: C.cardFontColor,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                          AutoSizeText(
-                            "Venue:" + "\t" + "${event!.venue}",
-                            maxLines: 3,
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: C.cardFontColor,
-                              fontWeight: FontWeight.w500,
+                            AutoSizeText(
+                              "Venue:" + "\t" + "${event!.venue}",
+                              maxLines: 3,
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: C.cardFontColor,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(25.0),
-                        child: Text(
-                          event!.details!,
-                          style: TextStyle(color: C.cardFontColor),
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                  // Positioned(
-                  //   right: 25,
-                  //   top: ratio > 0.5 ? 115 : 135,
-                  //   child: Container(
-                  //     width: 90,
-                  //     height: 30,
-                  //     decoration: BoxDecoration(
-                  //       gradient: LinearGradient(
-                  //         begin: Alignment.centerLeft,
-                  //         end: Alignment.centerRight,
-                  //         colors: <Color>[
-                  //           C.eventsButtonGradientLeft,
-                  //           C.eventsButtonGradientRight,
-                  //         ],
-                  //       ),
-                  //       boxShadow: [
-                  //         BoxShadow(
-                  //           color: Colors.black.withOpacity(0.16),
-                  //           offset: Offset(0.0, 5),
-                  //           blurRadius: 10,
-                  //         ),
-                  //       ],
-                  //       borderRadius: BorderRadius.circular(22),
-                  //     ),
-                  //     child: Material(
-                  //       color: Colors.transparent,
-                  //       child: InkWell(
-                  //         onTap: () {
-                  //           //TODO: Add Register to event Intent
-                  //         },
-                  //         child: Center(
-                  //           child: Text(
-                  //             "Register",
-                  //             style: TextStyle(
-                  //               color: C.primaryUnHighlightedColor,
-                  //               fontSize: ratio > 0.5 ? 12 : 14,
-                  //               fontWeight: FontWeight.w600,
-                  //               letterSpacing: 0.25,
-                  //             ),
-                  //           ),
-                  //         ),
-                  //       ),
-                  //     ),
-                  //   ),
-                  // ),
-                ],
+                      ),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(25.0),
+                          child:
+                          Text(
+                            event!.details!,
+                            style: TextStyle(color: C.cardFontColor,),
+                          ),
+                        )
+                      ],
+                    ),
+                    // Positioned(
+                    //   right: 25,
+                    //   top: ratio > 0.5 ? 115 : 135,
+                    //   child: Container(
+                    //     width: 90,
+                    //     height: 30,
+                    //     decoration: BoxDecoration(
+                    //       gradient: LinearGradient(
+                    //         begin: Alignment.centerLeft,
+                    //         end: Alignment.centerRight,
+                    //         colors: <Color>[
+                    //           C.eventsButtonGradientLeft,
+                    //           C.eventsButtonGradientRight,
+                    //         ],
+                    //       ),
+                    //       boxShadow: [
+                    //         BoxShadow(
+                    //           color: Colors.black.withOpacity(0.16),
+                    //           offset: Offset(0.0, 5),
+                    //           blurRadius: 10,
+                    //         ),
+                    //       ],
+                    //       borderRadius: BorderRadius.circular(22),
+                    //     ),
+                    //     child: Material(
+                    //       color: Colors.transparent,
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //           //TODO: Add Register to event Intent
+                    //         },
+                    //         child: Center(
+                    //           child: Text(
+                    //             "Register",
+                    //             style: TextStyle(
+                    //               color: C.primaryUnHighlightedColor,
+                    //               fontSize: ratio > 0.5 ? 12 : 14,
+                    //               fontWeight: FontWeight.w600,
+                    //               letterSpacing: 0.25,
+                    //             ),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
         Positioned(
-          left: -10,
-          height: ratio > 0.5 ? 220 : 240,
-          width: ratio > 0.5 ? 170 : 190,
+          left: -6,
+          height: ratio > 0.5 ? 190 : 210,
+          width: ratio > 0.5 ? 140 : 160,
           child: Stack(
             children: [
               Image.asset(

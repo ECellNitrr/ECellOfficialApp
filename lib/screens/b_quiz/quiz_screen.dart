@@ -272,24 +272,26 @@ class _SuccessState extends State<Success> {
                 SizedBox(
                   height: 5,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Question $currentQuestion",
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.white,
+                Padding(padding: EdgeInsets.fromLTRB(20,0,20,0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Question $currentQuestion",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                    Text(
-                      "Score: $score",
-                      style: TextStyle(
-                        fontSize: 25.0,
-                        color: Colors.white,
+                      Text(
+                        "Score: $score",
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Container(
                   child: Expanded(
