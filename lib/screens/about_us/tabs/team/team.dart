@@ -139,7 +139,7 @@ class TeamScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(children: [
                                   Align(
-                                    alignment: Alignment.centerLeft,
+                                    alignment: Alignment.center,
                                     child: LegacyRaisedButton(
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
                                       color: C.speakerButtonColor,
@@ -168,9 +168,9 @@ class TeamScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 8,),
+                                  SizedBox(height: 10,),
                                   Align(
-                                    alignment: Alignment.centerRight,
+                                    alignment: Alignment.center,
                                     child: LegacyRaisedButton(
                                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
                                       color: C.speakerButtonColor,

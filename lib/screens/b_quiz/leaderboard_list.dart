@@ -59,7 +59,7 @@ class LeaderList extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 30),
             ListButton(
               text: 'DEMO',
             ),
@@ -141,7 +141,7 @@ class ListButton extends StatelessWidget {
                     style: TextStyle(
                       letterSpacing: 0.75,
                       color: C.primaryUnHighlightedColor,
-                      fontSize: 26,
+                      fontSize: 20,
                     ),
                   ),
                 ),

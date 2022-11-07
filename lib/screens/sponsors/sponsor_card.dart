@@ -40,7 +40,7 @@ class SponsorCard extends StatelessWidget {
                       sponsor!.name!,
                       style: TextStyle(
                         fontSize: 20,
-                        color: C.cardFontColor,
+                        color: Colors.black,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

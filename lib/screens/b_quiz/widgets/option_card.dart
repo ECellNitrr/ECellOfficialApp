@@ -30,7 +30,7 @@ class Options extends StatelessWidget {
             child: Text(
               option,
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 20,
                 color: C.cardFontColor,
                 fontWeight: FontWeight.w600,
               ),

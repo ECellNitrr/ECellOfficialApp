@@ -88,51 +88,51 @@ class EventCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  Positioned(
-                    right: 25,
-                    top: ratio > 0.5 ? 115 : 135,
-                    child: Container(
-                      width: 90,
-                      height: 30,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: <Color>[
-                            C.eventsButtonGradientLeft,
-                            C.eventsButtonGradientRight,
-                          ],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.16),
-                            offset: Offset(0.0, 5),
-                            blurRadius: 10,
-                          ),
-                        ],
-                        borderRadius: BorderRadius.circular(22),
-                      ),
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          onTap: () {
-                            //TODO: Add Register to event Intent
-                          },
-                          child: Center(
-                            child: Text(
-                              "Register",
-                              style: TextStyle(
-                                color: C.primaryUnHighlightedColor,
-                                fontSize: ratio > 0.5 ? 12 : 14,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 0.25,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  // Positioned(
+                  //   right: 25,
+                  //   top: ratio > 0.5 ? 115 : 135,
+                  //   child: Container(
+                  //     width: 90,
+                  //     height: 30,
+                  //     decoration: BoxDecoration(
+                  //       gradient: LinearGradient(
+                  //         begin: Alignment.centerLeft,
+                  //         end: Alignment.centerRight,
+                  //         colors: <Color>[
+                  //           C.eventsButtonGradientLeft,
+                  //           C.eventsButtonGradientRight,
+                  //         ],
+                  //       ),
+                  //       boxShadow: [
+                  //         BoxShadow(
+                  //           color: Colors.black.withOpacity(0.16),
+                  //           offset: Offset(0.0, 5),
+                  //           blurRadius: 10,
+                  //         ),
+                  //       ],
+                  //       borderRadius: BorderRadius.circular(22),
+                  //     ),
+                  //     child: Material(
+                  //       color: Colors.transparent,
+                  //       child: InkWell(
+                  //         onTap: () {
+                  //           //TODO: Add Register to event Intent
+                  //         },
+                  //         child: Center(
+                  //           child: Text(
+                  //             "Register",
+                  //             style: TextStyle(
+                  //               color: C.primaryUnHighlightedColor,
+                  //               fontSize: ratio > 0.5 ? 12 : 14,
+                  //               fontWeight: FontWeight.w600,
+                  //               letterSpacing: 0.25,
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
