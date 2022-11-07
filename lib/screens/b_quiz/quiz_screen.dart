@@ -233,6 +233,17 @@ class _SuccessState extends State<Success> {
                             _countDownController.restart(duration: _duration);
                           });
                         } else {
+                            print("time:$time");
+                            print("$inputIndex---$correctIndex");
+                            if (inputIndex != 0 &&
+                                correctIndex != 0 &&
+                                inputIndex == correctIndex) {
+                              streamController.add(true);
+                              score += calcScore(time);
+                              print("Score:$score");
+                            } else {
+                              streamController.add(false);
+                            }
                           _apiLeaderRepository.uploadScore(score, user);
                           Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
@@ -240,7 +251,7 @@ class _SuccessState extends State<Success> {
                                       score: (score).toDouble()))));
                           _countDownController.pause();
                         }
-                        setState(() {
+                        if (_pageController.page !=QuizContentList.length - 1) { setState(() {
                           currentQuestion += 1;
                           print("time:$time");
                           print("$inputIndex---$correctIndex");
@@ -253,7 +264,7 @@ class _SuccessState extends State<Success> {
                           } else {
                             streamController.add(false);
                           }
-                        });
+                        });};
                       },
                     ),
                   ],
@@ -326,14 +337,7 @@ class _SuccessState extends State<Success> {
                     _countDownController.restart(duration: _duration);
                   });
                 } else {
-                  _apiLeaderRepository.uploadScore(score, user);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: ((context) =>
-                          QuizSuccessScreen(score: (score).toDouble()))));
-                  _countDownController.pause();
-                }
-                setState(() {
-                  currentQuestion += 1;
+                  print("Last Question update after pressing next");
                   print("time:$time");
                   print("$inputIndex---$correctIndex");
                   if (inputIndex != 0 &&
@@ -345,7 +349,27 @@ class _SuccessState extends State<Success> {
                   } else {
                     streamController.add(false);
                   }
-                });
+                  _apiLeaderRepository.uploadScore(score, user);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: ((context) =>
+                          QuizSuccessScreen(score: (score).toDouble()))));
+                  _countDownController.pause();
+                }
+                if (_pageController.page != QuizContentList.length - 1) { setState(() {
+                  currentQuestion += 1;
+                  print("SetState");
+                  print("time:$time");
+                  print("$inputIndex---$correctIndex");
+                  if (inputIndex != 0 &&
+                      correctIndex != 0 &&
+                      inputIndex == correctIndex) {
+                    streamController.add(true);
+                    score += calcScore(time);
+                    print("Score:$score");
+                  } else {
+                    streamController.add(false);
+                  }
+                });};
               },
               child: Container(
                 height: 30,
