@@ -16,6 +16,9 @@ import 'leaderBoard/cubit/leaderboard_cubit.dart';
 import 'leaderBoard/leader_board.dart';
 import 'leaderBoard/leaderboard_repository.dart';
 
+final GlobalKey<ScaffoldMessengerState> snackbarKey =
+    GlobalKey<ScaffoldMessengerState>();
+
 class BQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

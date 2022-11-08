@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,7 @@ import 'package:ecellapp/core/res/errors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
 import 'package:ecellapp/core/utils/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../models/global_state.dart';
 import '../../../models/user.dart';
@@ -83,6 +85,27 @@ class APILeaderRepository extends LeaderRepository {
     final db = FirebaseFirestore.instance;
 
     try {
+      final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
+    String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
+    print("stoken:$token");
+    CollectionReference leaderBoard =
+        FirebaseFirestore.instance.collection("LEADERBOARD");
+     
+    DocumentSnapshot v=await leaderBoard
+        .doc(label)
+        .collection("leaders").doc(token)
+        .get();
+      
+    if(v.exists){
+      print(true);
+    }
+    else{
+      print(false);
+    }
+    print("hello");
+    // print("ans:$ans");
+        // print("x:$x");
+        // print(token==x);
       // await db.collection('LEADERBOARD').doc(label).get().then((DocumentSnapshot doc)
       await db
           .collection("LEADERBOARD")
@@ -115,13 +138,45 @@ class APILeaderRepository extends LeaderRepository {
 
   Future<void> uploadScore(int score, User user) async {
     String name = "${user.firstName!} ${user.lastName}";
-    final db = FirebaseFirestore.instance;
+
+    // APILoginRepository _loginRepository = new APILoginRepository();
+    // String email = LoginScreen.emailController.text;
+    // String pass = LoginScreen.passwordController.text;
+    final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
+    String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
+    print("stoken:$token");
     CollectionReference leaderBoard =
         FirebaseFirestore.instance.collection("LEADERBOARD");
+    var x = await leaderBoard
+        .doc(label)
+        .collection("leaders")
+        .doc(token).id;
+        print("x:$x");
     await leaderBoard
         .doc(label)
         .collection("leaders")
-        .doc(LoginCubit.Token)
+        .doc(token)
         .set({"username": name, "email": user.email, "score": score});
+  }
+  Future<bool> validate() async {
+    final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
+    String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
+    
+    CollectionReference leaderBoard =
+        FirebaseFirestore.instance.collection("LEADERBOARD");
+     
+    DocumentSnapshot v=await leaderBoard
+        .doc(label)
+        .collection("leaders").doc(token)
+        .get();
+      
+    if(v.exists){
+      return false;
+    }
+    else{
+      return true;
+    }
+    
+    
   }
 }

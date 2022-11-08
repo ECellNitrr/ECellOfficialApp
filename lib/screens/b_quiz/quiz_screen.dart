@@ -25,6 +25,9 @@ import 'cubit/quiz_cubit.dart';
 import 'widgets/option_card.dart';
 
 class Quiz extends StatefulWidget {
+  final String label;
+
+  const Quiz({Key? key, required this.label}) : super(key: key);
   @override
   State<Quiz> createState() => _QuizState();
 }
@@ -50,7 +53,7 @@ class _QuizState extends State<Quiz> {
               if (state is QuizInitial)
                 return _buildLoading(context);
               else if (state is QuizSuccess)
-                return Success(QuizList: state.QuizList);
+                return Success(QuizList: state.QuizList, label:widget.label ,);
               else if (state is QuizLoading)
                 return _buildLoading(context);
               else
@@ -67,8 +70,13 @@ StreamController<bool> streamController = StreamController<bool>.broadcast();
 
 class Success extends StatefulWidget {
   final List<Questions> QuizList;
+  final String? label;
 
-  Success({Key? key, required this.QuizList}) : super(key: key);
+  Success({
+    Key? key,
+    required this.QuizList,
+    this.label,
+  }) : super(key: key);
 
   @override
   State<Success> createState() => _SuccessState();
@@ -78,8 +86,6 @@ class _SuccessState extends State<Success> {
   final DataConnectionChecker connectionChecker = DataConnectionChecker();
   late StreamSubscription subscription;
   bool hasInternet = false;
-  
-  APILeaderRepository _apiLeaderRepository=APILeaderRepository(label: "DEMO");
 
   int score = 0;
   int currentQuestion = 1;
@@ -88,9 +94,13 @@ class _SuccessState extends State<Success> {
   int time = 0;
   final int _duration = 15;
 
+
   @override
   void initState() {
     super.initState();
+    APILeaderRepository _apiLeaderRepository =
+        APILeaderRepository(label: widget.label!);
+
     User user = context.read<GlobalState>().user!;
     subscription = connectionChecker.onStatusChange.listen((status) {
       final hasInternet = status == DataConnectionStatus.connected;
@@ -113,7 +123,7 @@ class _SuccessState extends State<Success> {
     super.dispose();
     subscription.cancel();
   }
-  
+
   final PageController _pageController = PageController(initialPage: 0);
   final CountDownController _countDownController = CountDownController();
   Future<bool> _onBackPressed() async {
@@ -132,7 +142,10 @@ class _SuccessState extends State<Success> {
               BackButton(
                 text: "Yes",
                 onpressed: () {
-                   User user = context.read<GlobalState>().user!;
+                  APILeaderRepository _apiLeaderRepository =
+                      APILeaderRepository(label: widget.label!);
+
+                  User user = context.read<GlobalState>().user!;
                   Navigator.pop(context, true);
                   _apiLeaderRepository.uploadScore(score, user);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
@@ -147,6 +160,9 @@ class _SuccessState extends State<Success> {
 
   @override
   Widget build(BuildContext context) {
+    APILeaderRepository _apiLeaderRepository =
+        APILeaderRepository(label: widget.label!);
+
     User user = context.read<GlobalState>().user!;
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double height = MediaQuery.of(context).size.height;
@@ -161,6 +177,7 @@ class _SuccessState extends State<Success> {
         print("$inputIndex $correctIndex");
       });
     }
+
 
     List<Widget> QuizContentList = [];
     widget.QuizList.forEach((element) => QuizContentList.add(QuestionCard(
@@ -221,7 +238,8 @@ class _SuccessState extends State<Success> {
                         debugPrint('Countdown Started');
                       },
                       onComplete: () {
-                        time = int.parse(_countDownController.getTime().toString());
+                        time = int.parse(
+                            _countDownController.getTime().toString());
                         debugPrint('Countdown Ended');
                         if (_pageController.page !=
                             QuizContentList.length - 1) {
@@ -233,26 +251,6 @@ class _SuccessState extends State<Success> {
                             _countDownController.restart(duration: _duration);
                           });
                         } else {
-                            print("time:$time");
-                            print("$inputIndex---$correctIndex");
-                            if (inputIndex != 0 &&
-                                correctIndex != 0 &&
-                                inputIndex == correctIndex) {
-                              streamController.add(true);
-                              score += calcScore(time);
-                              print("Score:$score");
-                            } else {
-                              streamController.add(false);
-                            }
-                          _apiLeaderRepository.uploadScore(score, user);
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: ((context) => QuizSuccessScreen(
-                                      score: (score).toDouble()))));
-                          _countDownController.pause();
-                        }
-                        if (_pageController.page !=QuizContentList.length - 1) { setState(() {
-                          currentQuestion += 1;
                           print("time:$time");
                           print("$inputIndex---$correctIndex");
                           if (inputIndex != 0 &&
@@ -264,7 +262,31 @@ class _SuccessState extends State<Success> {
                           } else {
                             streamController.add(false);
                           }
-                        });};
+                          _apiLeaderRepository.uploadScore(score, user);
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: ((context) => QuizSuccessScreen(
+                                      score: (score).toDouble()))));
+                          _countDownController.pause();
+                        }
+                        if (_pageController.page !=
+                            QuizContentList.length - 1) {
+                          setState(() {
+                            currentQuestion += 1;
+                            print("time:$time");
+                            print("$inputIndex---$correctIndex");
+                            if (inputIndex != 0 &&
+                                correctIndex != 0 &&
+                                inputIndex == correctIndex) {
+                              streamController.add(true);
+                              score += calcScore(time);
+                              print("Score:$score");
+                            } else {
+                              streamController.add(false);
+                            }
+                          });
+                        }
+                        ;
                       },
                     ),
                   ],
@@ -357,21 +379,24 @@ class _SuccessState extends State<Success> {
                           QuizSuccessScreen(score: (score).toDouble()))));
                   _countDownController.pause();
                 }
-                if (_pageController.page != QuizContentList.length - 1) { setState(() {
-                  currentQuestion += 1;
-                  print("SetState");
-                  print("time:$time");
-                  print("$inputIndex---$correctIndex");
-                  if (inputIndex != 0 &&
-                      correctIndex != 0 &&
-                      inputIndex == correctIndex) {
-                    streamController.add(true);
-                    score += calcScore(time);
-                    print("Score:$score");
-                  } else {
-                    streamController.add(false);
-                  }
-                });};
+                if (_pageController.page != QuizContentList.length - 1) {
+                  setState(() {
+                    currentQuestion += 1;
+                    print("SetState");
+                    print("time:$time");
+                    print("$inputIndex---$correctIndex");
+                    if (inputIndex != 0 &&
+                        correctIndex != 0 &&
+                        inputIndex == correctIndex) {
+                      streamController.add(true);
+                      score += calcScore(time);
+                      print("Score:$score");
+                    } else {
+                      streamController.add(false);
+                    }
+                  });
+                }
+                ;
               },
               child: Container(
                 height: 30,
