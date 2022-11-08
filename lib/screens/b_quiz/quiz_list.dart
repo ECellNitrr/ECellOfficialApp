@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:ecellapp/core/res/colors.dart';
+import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
@@ -10,12 +13,21 @@ import '../../core/res/strings.dart';
 import '../../widgets/raisedButton.dart';
 import 'cubit/quiz_cubit.dart';
 
-class QuizList extends StatelessWidget {
+class QuizList extends StatefulWidget {
+  
+
+  const QuizList({Key? key}) : super(key: key);
+
+  @override
+  State<QuizList> createState() => _QuizListState();
+}
+
+class _QuizListState extends State<QuizList> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
-    var dt= DateTime.now();
+    var dt = DateTime.now();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -64,17 +76,52 @@ class QuizList extends StatelessWidget {
                       ],
                       begin: Alignment.topLeft,
                       end: Alignment.bottomRight,
-                    )
-                ),
+                    )),
               ],
             ),
             SizedBox(height: 20),
-            ListButton(text: 'demo', month: 11, day: dt.day, startHr: dt.hour-1, endHr:dt.hour+1,),
-            ListButton(text: 'November 27', month: 11, day: 27, startHr: 0, endHr: 23,),
-            ListButton(text: 'November 28', month: 11, day: 28, startHr: 0, endHr: 23,),
-            ListButton(text: 'November 29', month: 11, day: 29, startHr: 0, endHr: 23,),
-            ListButton(text: 'November 30', month: 11, day: 30, startHr: 0, endHr: 23,),
-            ListButton(text: 'December 1', month: 12, day: 1, startHr: 0, endHr: 23,)
+            ListButton(
+              text: 'demo',
+              month: 11,
+              day: dt.day,
+              startHr: dt.hour - 1,
+              endHr: dt.hour + 1,
+            ),
+            ListButton(
+              text: 'November 27',
+              month: 11,
+              day: 27,
+              startHr: 0,
+              endHr: 23,
+            ),
+            ListButton(
+              text: 'November 28',
+              month: 11,
+              day: 28,
+              startHr: 0,
+              endHr: 23,
+            ),
+            ListButton(
+              text: 'November 29',
+              month: 11,
+              day: 29,
+              startHr: 0,
+              endHr: 23,
+            ),
+            ListButton(
+              text: 'November 30',
+              month: 11,
+              day: 30,
+              startHr: 0,
+              endHr: 23,
+            ),
+            ListButton(
+              text: 'December 1',
+              month: 12,
+              day: 1,
+              startHr: 0,
+              endHr: 23,
+            )
           ],
         ),
       ]),
@@ -83,12 +130,15 @@ class QuizList extends StatelessWidget {
 }
 
 class ListButton extends StatelessWidget {
-
-  APIQuizRepository apiQuizRepository =new APIQuizRepository(label: 'demo');
-  ListButton({required this.text, required this.month, required this.day, required this.startHr, required this.endHr});
+  ListButton(
+      {required this.text,
+      required this.month,
+      required this.day,
+      required this.startHr,
+      required this.endHr});
   final String text;
 
-  List<int> dateTime=List.empty();
+  List<int> dateTime = List.empty();
   final int month;
   final int day;
   final int startHr;
@@ -96,6 +146,8 @@ class ListButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    APILeaderRepository apiLeaderRepository =
+        new APILeaderRepository(label: text);
     double width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
@@ -123,20 +175,38 @@ class ListButton extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                 ),
                 color: Colors.transparent,
-                onPressed: () {
-                  dateTime=getDatetime();
-                  (dateTime[0]==month && dateTime[1]==day &&dateTime[2]>startHr && dateTime[2]<endHr)?
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: ((context) => BlocProvider(
-                          create: (_) =>
-                              QuizCubit(APIQuizRepository(label: text)),
-                          child: Quiz())))):
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text('Wrong Time to Quiz')));;
+                onPressed: () async {
+                  bool ans = await apiLeaderRepository.validate();
+                  print(ans);
+                  
+                  try{
+
+                  if (ans) {
+                    dateTime = getDatetime();
+                    (dateTime[0] == month &&
+                            dateTime[1] == day &&
+                            dateTime[2] > startHr &&
+                            dateTime[2] < endHr)
+                        ? Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: ((context) => BlocProvider(
+                                    create: (_) => QuizCubit(
+                                        APIQuizRepository(label: text)),
+                                    child: Quiz(label: text,)))))
+                        : ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text('Wrong Time to Quiz')));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('You already played the quiz')));
+                  }
+                  }catch(e){
+                    print("Context Error");
+                  }
+                  
                 },
                 child: Container(
                   height: 70,
-                  width: width*0.7,
+                  width: width * 0.7,
                   alignment: Alignment.center,
                   child: Text(
                     text,
@@ -156,8 +226,7 @@ class ListButton extends StatelessWidget {
   }
 }
 
-List<int> getDatetime()
-{
-  var dt= DateTime.now();
-  return[dt.month,dt.day,dt.hour];
+List<int> getDatetime() {
+  var dt = DateTime.now();
+  return [dt.month, dt.day, dt.hour];
 }

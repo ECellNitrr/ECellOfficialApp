@@ -21,6 +21,7 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginLoading());
       String? token = await (_loginRepository.login(email, password));
       Token=token;
+      print(token);
       await sl
           .get<SharedPreferences>()
           .setString(S.tokenKeySharedPreferences, token!);

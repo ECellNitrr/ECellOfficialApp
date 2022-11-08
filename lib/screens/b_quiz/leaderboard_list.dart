@@ -61,7 +61,7 @@ class LeaderList extends StatelessWidget {
             ),
             SizedBox(height: 30),
             ListButton(
-              text: 'DEMO',
+              text: 'demo',
             ),
             ListButton(
               text: 'November 27',
@@ -84,8 +84,7 @@ class LeaderList extends StatelessWidget {
 }
 
 class ListButton extends StatelessWidget {
-  APILeaderRepository apiQuizRepository =
-      new APILeaderRepository(label: 'demo');
+  
   ListButton({required this.text});
   final String text;
 
@@ -97,6 +96,8 @@ class ListButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    APILeaderRepository apiQuizRepository =
+      new APILeaderRepository(label: text);
     double width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,

@@ -10,6 +10,9 @@ import 'package:ecellapp/core/res/errors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
 import 'package:ecellapp/core/utils/logger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../login/cubit/login_cubit.dart';
 
 @immutable
 abstract class QuizRepository {
@@ -197,26 +200,27 @@ abstract class QuizRepository {
 
 class APIQuizRepository extends QuizRepository {
   final String classTag = "APIgetQuizRepository";
-  final List<Questions> questionList=List.empty(growable: true);
+  final List<Questions> questionList = List.empty(growable: true);
 
-  APIQuizRepository({required this.label});
   final String label;
+  APIQuizRepository({required this.label});
 
   Future<List<Questions>> getAllQuizes() async {
     final db = FirebaseFirestore.instance;
 
     try {
-      await db.collection('QUIZES').doc(label).get().then((DocumentSnapshot doc) {
-        final data = doc.data() as Map<String, dynamic>;
-        print(data);
-        data.forEach((e,v) => questionList.add(Questions.fromFirestore(v)));
-        print(questionList[0].question);
-      },
+      print(label);
+      await db.collection('QUIZES').doc(label).get().then(
+        (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          print(data);
+          data.forEach((e, v) => questionList.add(Questions.fromFirestore(v)));
+          print(questionList[0].question);
+        },
         onError: (e) => print("Error getting document: $e"),
       );
       return questionList;
-    }
-    on FirebaseException catch (e) {
+    } on FirebaseException catch (e) {
       print(e);
       throw UnknownException();
     } catch (error) {
@@ -224,4 +228,7 @@ class APIQuizRepository extends QuizRepository {
       throw UnknownException();
     }
   }
+
+  
+    
 }
