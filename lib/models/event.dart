@@ -30,6 +30,7 @@ class Event extends Equatable {
       id: json[S.eventidKey] as int?,
       details: json[S.eventdetailsKey] as String?,
     );
+
   }
 
   @override

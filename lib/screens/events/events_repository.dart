@@ -114,7 +114,7 @@ class APIEventsRepository implements EventsRepository {
 
     if (response.statusCode == 200) {
       Log.i(tag: tag, message: "Request Successful");
-      var json = jsonDecode(response.body);
+      var json = jsonDecode(utf8.decode(response.bodyBytes));
       List<Event> events = List.empty(growable: true);
       (json["data"] as List).forEach((e) => events.add(Event.fromJson(e)));
       return events;
