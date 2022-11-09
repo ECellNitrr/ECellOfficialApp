@@ -26,53 +26,66 @@ class AppTeamScreen extends StatelessWidget {
         ),
       ),
       body: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [C.backgroundTop1, C.backgroundBottom1],
-            ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [C.backgroundTop1, C.backgroundBottom1],
           ),
-          child: DefaultTextStyle.merge(
-            style: GoogleFonts.roboto().copyWith(
-                color: C.primaryUnHighlightedColor),
-            child: NotificationListener<OverscrollIndicatorNotification>(
-              onNotification: (OverscrollIndicatorNotification overscroll) {
-                overscroll.disallowIndicator();
-                return true;
-              },
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: Padding(
-                  padding: EdgeInsets.only(top: 50),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "ECell App",
-                        style: TextStyle(
-                          fontSize: 35,
-                          fontWeight: FontWeight.w600,
-                        ),
+        ),
+        child: DefaultTextStyle.merge(
+          style: GoogleFonts.roboto().copyWith(
+              color: C.primaryUnHighlightedColor),
+          child: NotificationListener<OverscrollIndicatorNotification>(
+            onNotification: (OverscrollIndicatorNotification overscroll) {
+              overscroll.disallowIndicator();
+              return true;
+            },
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Padding(
+                padding: EdgeInsets.only(top: 50),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "ECell App",
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.w600,
                       ),
-                      SizedBox(height: 11,),
-                      Text(
-                        "Developer Team",
+                    ),
+                    SizedBox(height: 11,),
+                    Text(
+                      "Developer Team",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    SizedBox(height: 11,),
+                    Column(children: appTeamList.createTeamList(2022)),
+                    Container(
+                      height: 40,
+                      child: Text(
+                        "2021 App Dev Team",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(height: 11,),
-                      Column(children: appTeamList.createTeamList()),
-                    ],
-                  ),
+                    ),
+                    Column(children: appTeamList.createTeamList(2021)),
+                  ],
                 ),
               ),
             ),
           ),
+        ),
       ),
     );
   }
 }
+
+
