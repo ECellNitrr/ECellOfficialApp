@@ -17,7 +17,7 @@
         </intent>
     </queries>
    <application
-        android:label="ecell_app"
+        android:label="E-Cell NIT Raipur"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

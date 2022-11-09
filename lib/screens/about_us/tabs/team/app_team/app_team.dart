@@ -56,6 +56,7 @@ class AppTeamScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      SizedBox(height: 11,),
                       Text(
                         "Developer Team",
                         style: TextStyle(
@@ -63,6 +64,7 @@ class AppTeamScreen extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
+                      SizedBox(height: 11,),
                       Column(children: appTeamList.createTeamList()),
                     ],
                   ),
