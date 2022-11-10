@@ -6,7 +6,8 @@ import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../../../../models/sponsor_head.dart';
 
-const List<dynamic> appTeam=[
+const Map<int, dynamic> appTeam=
+{2022:[
   {
     "name": "Vasu soni",
     "image": "https://ecellbackend.tech/media/static/uploads/team/image_-_Vasu_Soni_vIDBlLh.jpg",
@@ -42,8 +43,42 @@ const List<dynamic> appTeam=[
     "linkedin": "https://www.linkedin.com/in/k-venkat-nag-sai-354128232/",
     "phone" :"7000469397",
     "email": "k.venkatnagsai@gmail.com"
-  }
-];
+  },
+],
+  2021:[
+    {
+      "name": "Viren Khatri",
+      "image": "https://media-exp1.licdn.com/dms/image/C4D03AQE_immkTxpvCQ/profile-displayphoto-shrink_400_400/0/1635506619362?e=1673481600&v=beta&t=X8k_X87Xqsl5awLuj1wm1SXuY108RHTWnhAPBON2eOY",
+      "linkedin": "https://www.linkedin.com/in/werainkhatri/",
+      "phone" :null,
+      "email": null,
+      "member_type": null,
+    },
+    {
+      "name": "Vasu soni",
+      "image": "https://ecellbackend.tech/media/static/uploads/team/image_-_Vasu_Soni_vIDBlLh.jpg",
+      "linkedin": "https://www.linkedin.com/in/iamvasusoni",
+      "phone" :null,
+      "email": null,
+      "member_type": null,
+    },
+    {
+      "name": "Siddharth Mishra",
+      "image": "https://ecellbackend.tech/media/static/uploads/team/DSC_2789_-_87_Siddharth_Mishra_78k7VM9.JPG",
+      "linkedin": "https://www.linkedin.com/in/smishra1605/",
+      "phone" :null,
+      "email": null,
+      "member_type": null,
+    },
+    {
+      "name": "Divy Arpit",
+      "image": "https://media-exp1.licdn.com/dms/image/C5103AQFO88bkMmgFEw/profile-displayphoto-shrink_400_400/0/1575970206509?e=1673481600&v=beta&t=OOH6IlPM5HAsPOGA4WV_xdn6naWXqHDEaxHS2-F3V1E",
+      "linkedin": "https://www.linkedin.com/in/divy-arpit/",
+      "phone" :null,
+      "email": null,
+      "member_type": null,
+    },
+  ]};
 
 class AppHead {
   String? type;
@@ -107,7 +142,8 @@ class AppTeamCard extends StatelessWidget {
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Expanded(
+                        appHead!.phone!=null
+                        ? Expanded(
                           flex: 3,
                           child: GestureDetector(
                             child: RichText(
@@ -132,7 +168,8 @@ class AppTeamCard extends StatelessWidget {
                               }
                             },
                           ),
-                        ),
+                        )
+                        :Container(),
                         Expanded(
                           child: GestureDetector(
                             onTap: () async {
@@ -157,7 +194,8 @@ class AppTeamCard extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 7,),
-                    RichText(
+                    appHead!.email!=null
+                    ?RichText(
                       text: TextSpan(
                         children: [
                           WidgetSpan(child: Icon(Icons.mail,size: 16,color: C.blendSocialIconColorTwo,)),
@@ -170,7 +208,8 @@ class AppTeamCard extends StatelessWidget {
                             ),)
                         ],
                       ),
-                    ),
+                    )
+                    :Container(),
                   ],
                 ),
               ),
@@ -223,9 +262,9 @@ class AppTeamCard extends StatelessWidget {
 }
 
 class AppTeamList{
-  List<AppTeamCard> createTeamList(){
+  List<AppTeamCard> createTeamList(int year){
     List<AppTeamCard> appTeamList = List.empty(growable: true);
-    appTeam.forEach((element){
+    appTeam[year].forEach((element){
       AppHead appHead=AppHead(element);
       appTeamList.add(AppTeamCard(appHead: appHead,));
     });
