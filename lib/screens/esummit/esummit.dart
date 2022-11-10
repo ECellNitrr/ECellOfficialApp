@@ -44,14 +44,14 @@ class ESummitScreen extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: D.horizontalPadding + 1),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left: D.horizontalPadding -20),
                   child: Image.asset(S.assetEsummitLogoWhite,
                       width: width * 0.3 * heightFactor),
                 ),
                 Container(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.only(left: D.horizontalPadding, top: 20),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left: D.horizontalPadding-20, top: 20),
                   child: RichText(
                     text: TextSpan(
                       text: "E-Summit '22",
@@ -109,25 +109,27 @@ class ESummitScreen extends StatelessWidget {
                 Container(
                   alignment: Alignment.centerLeft,
                   padding: EdgeInsets.symmetric(
-                      horizontal: D.horizontalPadding, vertical: 20),
-                  child: RichText(
-                    text: TextSpan(
-                      text: "At ",
-                      style: TextStyle(
-                          fontSize: 20 * heightFactor,
-                          fontWeight: FontWeight.w300,
-                          height: 1.2,
-                          wordSpacing: 4),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "E-Summit ",
-                          style: TextStyle(
-                            color: C.speakerButtonColor,
-                            fontWeight: FontWeight.bold,
+                      horizontal: D.horizontalPadding+18, vertical: 20),
+                  child: Center(
+                    child: RichText(
+                      text: TextSpan(
+                        text: "At ",
+                        style: TextStyle(
+                            fontSize: 20 * heightFactor,
+                            fontWeight: FontWeight.w300,
+                            height: 1.2,
+                            wordSpacing: 4),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "E-Summit ",
+                            style: TextStyle(
+                              color: C.speakerButtonColor,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                        TextSpan(text: S.esummitPara)
-                      ],
+                          TextSpan(text: S.esummitPara)
+                        ],
+                      ),
                     ),
                   ),
                 ),
