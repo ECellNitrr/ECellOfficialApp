@@ -244,10 +244,10 @@ class _SuccessState extends State<Success> {
                         if (_pageController.page !=
                             QuizContentList.length - 1) {
                           _pageController.nextPage(
-                              duration: const Duration(milliseconds: 1500),
+                              duration: const Duration(milliseconds: 300),
                               curve: Curves.easeInOut);
 
-                          Future.delayed(Duration(milliseconds: 1500), () {
+                          Future.delayed(Duration(milliseconds: 300), () {
                             _countDownController.restart(duration: _duration);
                           });
                         } else {
@@ -353,11 +353,11 @@ class _SuccessState extends State<Success> {
                 time = int.parse(_countDownController.getTime().toString());
                 if (_pageController.page != QuizContentList.length - 1) {
                   _pageController.nextPage(
-                    duration: const Duration(milliseconds: 1500),
+                    duration: const Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
 
-                  Future.delayed(Duration(milliseconds: 1500), () {
+                  Future.delayed(Duration(milliseconds: 300), () {
                     _countDownController.restart(duration: _duration);
                   });
                 } else {
