@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
@@ -133,7 +134,7 @@ class AppTeamCard extends StatelessWidget {
                     Text(
                       appHead!.name!,
                       style: TextStyle(
-                        fontSize: 23,
+                        fontSize: 22,
                         color: C.cardFontColor,
                         fontWeight: FontWeight.w600,
                       ),
@@ -169,7 +170,16 @@ class AppTeamCard extends StatelessWidget {
                             },
                           ),
                         )
-                        :Container(),
+                        :Container(
+                          child: AutoSizeText("Connect on Linkedin: ",
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: C.cardFontColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
                         Expanded(
                           child: GestureDetector(
                             onTap: () async {
@@ -202,7 +212,7 @@ class AppTeamCard extends StatelessWidget {
                           WidgetSpan(child: SizedBox(width: 3,)),
                           TextSpan(text: appHead!.email!,
                             style: TextStyle(
-                              fontSize: 13,
+                              fontSize: 11,
                               color: C.cardFontColor,
                               fontWeight: FontWeight.w600,
                             ),)
