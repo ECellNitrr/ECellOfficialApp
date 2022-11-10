@@ -53,7 +53,7 @@ class SponsorHeadCard extends StatelessWidget {
                           child: RichText(
                             text: TextSpan(
                               children: [
-                                WidgetSpan(child: Icon(Icons.phone,size: 16,color: C.blendSocialIconColorTwo,)),
+                                WidgetSpan(child: Icon(Icons.phone,size: 17,color: C.blendSocialIconColorTwo,)),
                                 TextSpan(text: sponsorHead!.phone!,
                                   style: TextStyle(
                                     fontSize: 18,
@@ -104,7 +104,7 @@ class SponsorHeadCard extends StatelessWidget {
                         WidgetSpan(child: SizedBox(width: 3,)),
                         TextSpan(text: sponsorHead!.email!,
                           style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 10,
                             color: C.cardFontColor,
                             fontWeight: FontWeight.w600,
                           ),)
