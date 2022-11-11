@@ -125,7 +125,7 @@ class S {
 
   // contact us info
   static const String ecellAddress = "National Institute of Technology, GE Road, Raipur";
-  static const String ecellPhone = "+91 9406220952";
+  static const String ecellPhone = "+91 96447 78794";
   static const String ecellEmail = "ecell@nitrr.ac.in";
   static const String feedbackLine = "We would love to know what you think  ";
   static const String linkedinURL =
@@ -134,7 +134,7 @@ class S {
   static const String facebookURL = "https://www.facebook.com/ecellnitrr/";
   static const String twitterURL = "https://twitter.com/ecell_nitrr";
   static const String addressURL = "https://goo.gl/maps/YcXz5AM7spYMW16F7";
-  static const String phoneURL = "tel:+919406220952";
+  static const String phoneURL = "tel:+919644778794";
   static const String emailURL = "mailto:ecell@nitrr.ac.in";
   static const String assetEventFrame = "assets/event-frame.png";
   static const String assetTeamsFrame = "assets/team-frame.png";
