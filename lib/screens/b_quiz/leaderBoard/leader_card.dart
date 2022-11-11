@@ -51,12 +51,12 @@ class LeaderCard extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          // SizedBox(height: 10),
-                          // Text(
-                          //   Leader!.email,
-                          //   style: TextStyle(fontSize: 17, color: C.cardFontColor),
-                          // ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
+                          Text(
+                            Leader!.email,
+                            style: TextStyle(fontSize: 17, color: C.cardFontColor),
+                          ),
+                          SizedBox(height: 5),
                           Text(
                             "Score:${Leader!.bquizScore}",
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
