@@ -122,7 +122,7 @@ class APILeaderRepository extends LeaderRepository {
             print(element.get('username'));
           });
 
-          print(leaderList[0].username);
+          print(leaderList[0].phone);
         },
         onError: (e) => print("Error getting document: $e"),
       );
@@ -156,7 +156,7 @@ class APILeaderRepository extends LeaderRepository {
         .doc(label)
         .collection("leaders")
         .doc(token)
-        .set({"username": name, "email": user.email, "score": score});
+        .set({"username": name, "phone": (user.phoneNumber), "score": score});
   }
   Future<bool> validate() async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();

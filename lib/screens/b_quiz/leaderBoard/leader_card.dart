@@ -53,7 +53,7 @@ class LeaderCard extends StatelessWidget {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            Leader!.email,
+                            (Leader!.phone).substring(0,5)+"XXXXX",
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
                           SizedBox(height: 10),

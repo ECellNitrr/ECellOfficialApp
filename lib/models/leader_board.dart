@@ -6,19 +6,19 @@ import 'package:equatable/equatable.dart';
 
 class Data extends Equatable {
   String username;
-  String email;
+  String phone;
   int bquizScore;
 
   Data({
     required this.username,
-    required this.email,
+    required this.phone,
     required this.bquizScore,
   });
 
   // factory Data.fromJson(Map<String, dynamic> json) {
   //   return Data(
   //     username: json['username'] as String,
-  //     email: json['email'] as String,
+  //     phone: json['phone'] as String,
   //     bquizScore: json['bquiz_score'] as int,
   //   );
   // }
@@ -26,7 +26,7 @@ class Data extends Equatable {
   factory Data.fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> data) {
     return Data(
       username: data["username"],
-      email: data["email"],
+      phone: data["phone"],
       bquizScore: data["score"],
     );
   }

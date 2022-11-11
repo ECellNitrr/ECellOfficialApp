@@ -66,10 +66,10 @@ class LeaderScreen extends StatelessWidget {
     List<Widget> LeaderContentList = [];
     int t=0;
     LeaderList.forEach((element) {
-      LeaderContentList.add(LeaderCard(
+      if(t<15){LeaderContentList.add(LeaderCard(
           Leader: element,
           rank: LeaderContentList.length + 1,
-        ));
+        ));t++;}
     });
 
     return DefaultTextStyle.merge(
