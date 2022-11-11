@@ -31,9 +31,9 @@ class LeaderCard extends StatelessWidget {
                   ),
                   child: Container(
                       padding: const EdgeInsets.all(20),
-                      height: ratio > 0.5 ? 140 : 175,
-                      width: ratio > 0.5 ? 250 : 275 ,
-                      margin: EdgeInsets.only(left: 130),
+                      height: ratio > 0.5 ? 120 : 130,
+                      width: ratio > 0.5 ? 210 : 230 ,
+                      margin: EdgeInsets.only(left: 100),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(22),
@@ -51,12 +51,12 @@ class LeaderCard extends StatelessWidget {
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text(
                             (Leader!.phone).substring(0,5)+"XXXXX",
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
                           ),
-                          SizedBox(height: 10),
+                          SizedBox(height: 5),
                           Text(
                             "Score:${Leader!.bquizScore}",
                             style: TextStyle(fontSize: 17, color: C.cardFontColor),
@@ -72,7 +72,7 @@ class LeaderCard extends StatelessWidget {
           ),
         ),
         Positioned(
-          height: ratio > 0.5 ? 200 : 220,
+          height: ratio > 0.5 ? 150 : 180,
           width: ratio > 0.5 ? 150 : 170,
           child: Stack(
             children: [
@@ -83,7 +83,7 @@ class LeaderCard extends StatelessWidget {
               ),
               Container(
                 alignment: Alignment.center,
-                padding: EdgeInsets.only(bottom: 10),
+                padding: EdgeInsets.only(bottom: 10,right: 15),
                 child: Text("# $rank",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),)
               ),
             ],

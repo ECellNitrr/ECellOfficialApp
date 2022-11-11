@@ -82,7 +82,7 @@ class LeaderScreen extends StatelessWidget {
         child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Padding(
-            padding: EdgeInsets.only(top: top + 56),
+            padding: EdgeInsets.only(top: top + 65),
             child: Column(
               children: <Widget>[
                 Text(
@@ -93,7 +93,7 @@ class LeaderScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Column(
                     mainAxisAlignment: MainAxisAlignment.start,
