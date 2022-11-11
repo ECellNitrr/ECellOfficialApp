@@ -85,42 +85,42 @@ class _QuizListState extends State<QuizList> {
               month: 11,
               day: dt.day,
               startHr: dt.hour - 1,
-              endHr: dt.hour + 1,
+              endHr: dt.minute + 2,
             ),
             ListButton(
               text: 'November 27',
               month: 11,
               day: 27,
-              startHr: 0,
-              endHr: 23,
+              startHr: 10,
+              endHr: 21,
             ),
             ListButton(
               text: 'November 28',
               month: 11,
               day: 28,
-              startHr: 0,
-              endHr: 23,
+              startHr: 10,
+              endHr: 21,
             ),
             ListButton(
               text: 'November 29',
               month: 11,
               day: 29,
-              startHr: 0,
-              endHr: 23,
+              startHr: 10,
+              endHr: 21,
             ),
             ListButton(
               text: 'November 30',
               month: 11,
               day: 30,
-              startHr: 0,
-              endHr: 23,
+              startHr: 10,
+              endHr: 21,
             ),
             ListButton(
               text: 'December 1',
               month: 12,
               day: 1,
-              startHr: 0,
-              endHr: 23,
+              startHr: 10,
+              endHr: 21,
             )
           ],
         ),
@@ -183,10 +183,11 @@ class ListButton extends StatelessWidget {
 
                   if (ans) {
                     dateTime = getDatetime();
+                    print(dateTime);
                     (dateTime[0] == month &&
                             dateTime[1] == day &&
                             dateTime[2] > startHr &&
-                            dateTime[2] < endHr)
+                            dateTime[3] < endHr)
                         ? Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                                 builder: ((context) => BlocProvider(
@@ -228,5 +229,5 @@ class ListButton extends StatelessWidget {
 
 List<int> getDatetime() {
   var dt = DateTime.now();
-  return [dt.month, dt.day, dt.hour];
+  return [dt.month, dt.day, dt.hour,dt.minute];
 }
