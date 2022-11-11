@@ -92,7 +92,8 @@ class _SuccessState extends State<Success> {
   int correctIndex = 0;
   int inputIndex = 0;
   int time = 0;
-  final int _duration = 15;
+  final int _duration = 60;
+  int pTime= DateTime.now().minute;
 
 
   @override
@@ -104,15 +105,17 @@ class _SuccessState extends State<Success> {
     User user = context.read<GlobalState>().user!;
     subscription = connectionChecker.onStatusChange.listen((status) {
       final hasInternet = status == DataConnectionStatus.connected;
+      print("hasInternet=$hasInternet");
       if (!hasInternet) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('Connection Lost'),
-          backgroundColor: Colors.red,
-        ));
+        score -=penalty(pTime,score);
         _apiLeaderRepository.uploadScore(score, user);
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: ((context) =>
                 QuizSuccessScreen(score: (score).toDouble()))));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Connection Lost'),
+          backgroundColor: Colors.red,
+        ));
       }
     });
   }
@@ -147,6 +150,7 @@ class _SuccessState extends State<Success> {
 
                   User user = context.read<GlobalState>().user!;
                   Navigator.pop(context, true);
+                  score -=penalty(pTime,score);
                   _apiLeaderRepository.uploadScore(score, user);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: ((context) =>
@@ -162,7 +166,6 @@ class _SuccessState extends State<Success> {
   Widget build(BuildContext context) {
     APILeaderRepository _apiLeaderRepository =
         APILeaderRepository(label: widget.label!);
-
     User user = context.read<GlobalState>().user!;
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double height = MediaQuery.of(context).size.height;
@@ -258,6 +261,7 @@ class _SuccessState extends State<Success> {
                               inputIndex == correctIndex) {
                             streamController.add(true);
                             score += calcScore(time);
+                            score -=penalty(pTime,score);
                             print("Score:$score");
                           } else {
                             streamController.add(false);
@@ -369,6 +373,7 @@ class _SuccessState extends State<Success> {
                       inputIndex == correctIndex) {
                     streamController.add(true);
                     score += calcScore(time);
+                    score -=penalty(pTime,score);
                     print("Score:$score");
                   } else {
                     streamController.add(false);
@@ -430,8 +435,34 @@ void _getAllQuizes(BuildContext context) {
 }
 
 int calcScore(int time) {
-  int score = 10 + (time + 15) * 10;
+  
+  int score = (10 + (time + 60) * 10);
+  print("SCORE===$score");
   return score;
+}
+
+int penalty(int penaltyTime,int prescore){
+  int minus=0;
+  if(penaltyTime<5){
+    minus=0;
+  }
+  else if(penaltyTime>=5 && penaltyTime<10){
+    minus=5;
+
+  }
+  else if(penaltyTime>=10 && penaltyTime<15){
+    minus=10;
+
+  }
+  else if(penaltyTime>=15 && penaltyTime<20){
+    minus=15;
+
+  }
+  else if(penaltyTime>=20){
+    minus=20;
+
+  }
+  return minus;
 }
 
 class BackButton extends StatelessWidget {
