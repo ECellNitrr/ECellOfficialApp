@@ -109,7 +109,6 @@ class _QuizSuccessScreenState extends State<QuizSuccessScreen> {
                   ),
                   color: Colors.transparent,
                   onPressed: () {
-                    dispose();
                     //TODO: Function to send score and user data to firebase
                     Navigator.pushReplacementNamed(
                         context, S.routeBQuizLeaderboard);
