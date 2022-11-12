@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:891791389244:android:2ba7454cd59201cf834939",
+        "android_client_info": {
+          "package_name": "com.nitrr.ecell.ecellapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "891791389244-vlkb03bgldj7snlplejopv95nbs2t25l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8LO8PNoNSF1F7kiJbW6NDWPdtPjZkE30"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "891791389244-vlkb03bgldj7snlplejopv95nbs2t25l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:891791389244:android:3e7432983c6a57bb834939",
         "android_client_info": {
           "package_name": "com.nitrr.ecell.esummit.ecellapp"
