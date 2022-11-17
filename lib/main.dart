@@ -1,12 +1,11 @@
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
-import 'package:ecellapp/screens/b_quiz/leaderBoard/cubit/leaderboard_cubit.dart';
-import 'package:ecellapp/screens/b_quiz/leaderBoard/leader_board.dart';
-import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
-import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/cubit/sponsors_head_cubit.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsors_head_repository.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsorship_head.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +15,7 @@ import 'core/res/strings.dart';
 import 'core/themes/app_theme.dart';
 import 'core/utils/injection.dart';
 import 'models/global_state.dart';
+import 'notification_service.dart';
 import 'screens/about_us/about_us.dart';
 import 'screens/about_us/tabs/team/cubit/team_cubit.dart';
 import 'screens/about_us/tabs/team/team_repository.dart';
@@ -41,14 +41,62 @@ import 'screens/splash/splash_repository.dart';
 import 'screens/sponsors/cubit/sponsors_cubit.dart';
 import 'screens/sponsors/sponsors.dart';
 import 'screens/sponsors/sponsors_repository.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
+///Receive message when app is in background solution for on message
+Future<void> backgroundHandler(RemoteMessage message) async{
+  print(message.data.toString());
+  print(message.notification!.title);
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await init();
+  FirebaseMessaging.onBackgroundMessage(backgroundHandler);
   runApp(ECellApp());
 }
 
-class ECellApp extends StatelessWidget {
+class ECellApp extends StatefulWidget {
+  @override
+  State<ECellApp> createState() => _ECellAppState();
+}
+
+class _ECellAppState extends State<ECellApp> {
+
+  @override
+  void initState() {
+    super.initState();
+    LocalNotificationService.initialize(context);
+
+    ///gives you the message on which user taps
+    ///and it opened the app from terminated state
+    FirebaseMessaging.instance.getInitialMessage().then((message) {
+      if(message != null){
+        final routeFromMessage = message.data["route"];
+        Navigator.of(context).pushNamed(S.routeBQuiz);
+      }
+    });
+
+    ///forground work
+    FirebaseMessaging.onMessage.listen((message) {
+      if(message.notification != null){
+        print(message.notification!.body);
+        print(message.notification!.title);
+      }
+      LocalNotificationService.display(message);
+    });
+
+    ///When the app is in background but opened and user taps
+    ///on the notification
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      final routeFromMessage = message.data["route"];
+      Navigator.of(context).pushNamed(S.routeBQuiz);
+    });
+
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
