@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
-
+import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
 
 import 'leader_card.dart';

@@ -75,10 +75,12 @@ abstract class LeaderRepository {
 class APILeaderRepository extends LeaderRepository {
   final String classTag = "APIgetleaderRepository";
   final List<Data> leaderList = List.empty(growable: true);
+  static String? email=null;
 
   APILeaderRepository({required this.label});
   final String label;
   String? token;
+  static var UNEmail = new Map();
   // final User user;
   @override
   Future<List<Data>> getAllleaders() async {
@@ -107,6 +109,7 @@ class APILeaderRepository extends LeaderRepository {
         // print("x:$x");
         // print(token==x);
       // await db.collection('LEADERBOARD').doc(label).get().then((DocumentSnapshot doc)
+
       await db
           .collection("LEADERBOARD")
           .doc(label)
@@ -114,13 +117,31 @@ class APILeaderRepository extends LeaderRepository {
           .orderBy("score", descending: true)
           .get()
           .then(
+
         (value) {
           value.docs.forEach((element) {
-            leaderList.add(Data.fromFirestore(element));
+            // leaderList.add(Data.fromFirestore(element));
+            // print(element['email']);
+            try {
+              print(element['phone']+" exits");
+              leaderList.add(Data.fromFirestore(element));
+            } on StateError catch(e) {
+              leaderList.add(Datae.fromFirestore(element));
+              print('No nested field exists!');
+            }
           });
           value.docs.forEach((element) {
             print(element.get('username'));
+            try {
+              print(element['email']);
+              UNEmail[element.get('username')]=element['email'];
+            } on StateError catch(e) {
+              print('No nested field exists!');
+              UNEmail[element.get('username')]=null;
+
+            }
           });
+          print(UNEmail);
 
           print(leaderList[0].phone);
         },
@@ -134,6 +155,7 @@ class APILeaderRepository extends LeaderRepository {
       print(error);
       throw UnknownException();
     }
+
   }
 
   Future<void> uploadScore(int score, User user) async {
