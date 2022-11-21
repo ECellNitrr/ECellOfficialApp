@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ecellapp/models/sponsor.dart';
 import 'package:flutter/material.dart';
 
@@ -36,8 +37,9 @@ class SponsorCard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: Text(
+                    child: AutoSizeText(
                       sponsor!.name!,
+                      maxLines: 2,
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.black,
