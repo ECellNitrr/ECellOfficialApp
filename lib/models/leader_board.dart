@@ -6,7 +6,7 @@ import 'package:equatable/equatable.dart';
 
 class Data extends Equatable {
   String username;
-  String phone;
+  String? phone;
   int bquizScore;
 
   Data({
@@ -33,4 +33,26 @@ class Data extends Equatable {
 
   @override
   List<Object> get props => throw UnimplementedError();
+}
+class Datae extends Data {
+  String username;
+  String email;
+  int bquizScore;
+
+  Datae({
+    required this.username,
+    required this.email,
+    required this.bquizScore,
+  }) : super(username: username, phone: null, bquizScore: bquizScore);
+  factory Datae.fromFirestore(QueryDocumentSnapshot<Map<String, dynamic>> data) {
+    return Datae(
+      username: data["username"],
+      email: data["email"],
+      bquizScore: data["score"],
+    );
+  }
+
+  @override
+  List<Object> get props => throw UnimplementedError();
+
 }
