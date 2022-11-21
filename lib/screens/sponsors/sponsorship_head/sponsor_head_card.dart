@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
@@ -35,8 +36,9 @@ class SponsorHeadCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
+                  AutoSizeText(
                     sponsorHead!.name!,
+                    maxLines: 1,
                     style: TextStyle(
                       fontSize: 25,
                       color: C.cardFontColor,
