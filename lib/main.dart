@@ -130,7 +130,7 @@ class _ECellAppState extends State<ECellApp> {
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
         },
-        initialRoute: S.routeSplash,
+        initialRoute: S.routeSignup,
         title: "ECellApp",
         theme: AppTheme.themeData(context),
       ),

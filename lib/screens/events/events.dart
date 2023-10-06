@@ -71,7 +71,7 @@ class EventsScreen extends StatelessWidget {
         children: [
           NotificationListener<OverscrollIndicatorNotification>(
             onNotification: (OverscrollIndicatorNotification overscroll) {
-              overscroll.disallowGlow();
+              overscroll.disallowIndicator();
               return true;
             },
             child: SingleChildScrollView(
