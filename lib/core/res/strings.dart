@@ -2,7 +2,7 @@ class S {
   S._();
 
   // urls
-  static const String baseUrl = "https://ecellbackend.tech/";
+  static const String baseUrl = "https://ecell.nitrr.ac.in/api/";
   static const String loginUrl = baseUrl + "users/login/";
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";
