@@ -208,7 +208,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         height: 25,
                       ),
                       onTap: () {
-                        S.sponsorApiYear=2022;
+                        S.sponsorApiYear=2019;
                         Navigator.pushNamed(context, S.routeSponsors);
                       },
                     ),
@@ -252,7 +252,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       child: Icon(Icons.group,
                           size: 35, color: C.primaryUnHighlightedColor),
                       onTap: () {
-                        S.teamApiYear=2022;
+                        S.teamApiYear=2023;
                         Navigator.pushNamed(context, S.routeAboutUs);
                       },
                     ),

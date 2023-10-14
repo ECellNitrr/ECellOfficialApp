@@ -23,7 +23,7 @@ class FakeSpeakerRepository extends SpeakerRepository {
     await Future.delayed(Duration(seconds: 1));
 
     //Fake Response and Network Delay
-    if (Random().nextBool()) {
+    if (false) {
       throw NetworkException();
     } else {
       var response = {

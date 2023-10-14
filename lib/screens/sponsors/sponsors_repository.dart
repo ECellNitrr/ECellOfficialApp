@@ -251,6 +251,7 @@ class APISponsorsRepository extends SponsorsRepository {
     http.Response response;
     try {
       response = await sl.get<http.Client>().get(Uri.parse(S.getSponsorsUrl+"${S.sponsorApiYear}/"));
+      print(S.getSponsorsUrl+"${S.sponsorApiYear}/");
     } catch (e) {
       throw NetworkException();
     }
