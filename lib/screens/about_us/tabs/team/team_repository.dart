@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:ecellapp/core/res/errors.dart';
-import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
 import 'package:ecellapp/core/utils/logger.dart';
 import 'package:ecellapp/models/team.dart';
 import 'package:ecellapp/models/team_category.dart';
 import 'package:http/http.dart' as http;
+
+import '../../../../core/res/strings.dart';
 
 abstract class TeamRepository {
   /// fetches all team members data and returns the list of [TeamCategory]
@@ -215,7 +216,9 @@ class APITeamRepository extends TeamRepository {
     final String tag = classTag + "getAllTeamMembers()";
     http.Response response;
     try {
+      print("Hello");
       response = await sl.get<http.Client>().get(Uri.parse(S.getTeamUrl+"${S.teamApiYear}/"));
+      print(S.getTeamUrl+"${S.teamApiYear}/");
     } catch (e) {
       throw NetworkException();
     }

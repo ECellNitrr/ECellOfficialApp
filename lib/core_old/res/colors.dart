@@ -4,8 +4,8 @@ class C {
   C._();
 
   /// background color gradient
-  static final Color backgroundTop = HexColor("#133c6b");
-  static final Color backgroundBottom = HexColor("#112d4e");
+  static final Color backgroundTop = HexColor("#4F3FA0");
+  static final Color backgroundBottom = HexColor("#180C58");
   static final Color teamsBackground = HexColor("#372981");
 
   /// animated rings colors (1->4 increasingsize)
@@ -31,7 +31,7 @@ class C {
   static final Color backgroundBottom1 = HexColor("#FB28E6");
 
   /// theme colors
-  static final Color primaryHighlightedColor = HexColor("#98E4FF");
+  static final Color primaryHighlightedColor = HexColor("#EF9BFF");
   static final Color primaryUnHighlightedColor = HexColor("#FFFFFF");
   static final Color secondaryColor = HexColor("#CECECE");
 
