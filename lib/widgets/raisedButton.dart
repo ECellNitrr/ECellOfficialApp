@@ -106,22 +106,27 @@ class LegacyFlatButtonShape extends StatelessWidget {
   }
 }
 
-// LegacyRaisedButton(
-// shape: RoundedRectangleBorder(
-// borderRadius: BorderRadius.all(Radius.circular(30)),
-// ),
-// color: C.authButtonColor,
-// onPressed: () => _signup(context),
-// child: Container(
-// height: 60,
-// width: 120,
-// alignment: Alignment.center,
-// child: Text(
-// "Sign Up!",
-// style: TextStyle(
-// color: C.primaryUnHighlightedColor,
-// fontSize: 20 * heightFactor,
-// ),
-// ),
-// ),
-// )
+class MenuButton extends StatelessWidget {
+  final VoidCallback onPressed;
+  final Widget child;
+  final OutlinedBorder shape;
+  final Color color;
+
+
+  const MenuButton(
+      {Key? key, required this.color, required this.onPressed, required this.child, required this.shape})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+
+
+    return ElevatedButton(
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(shape),
+        backgroundColor: MaterialStateProperty.all(color),
+        shadowColor: MaterialStateProperty.all(color),
+      ),
+        onPressed: onPressed,
+        child: child);
+  }
+}
