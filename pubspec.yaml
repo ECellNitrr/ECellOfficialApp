@@ -33,6 +33,8 @@ dependencies:
   url_launcher: ^6.1.6
   firebase_messaging: ^14.1.0
   flutter_local_notifications: ^16.0.0+1
+  carousel_slider: ^4.2.1
+  animated_notch_bottom_bar: ^1.0.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
@@ -48,6 +50,7 @@ flutter_icons:
 
 flutter:
   assets:
+    - assets/esummit_images/
     - assets/
     - assets/icons/
     - assets/basic/

@@ -1,4 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecellapp/widgets/raisedButton.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -7,6 +10,7 @@ import '../../../core/res/dimens.dart';
 import '../../../core/res/strings.dart';
 import '../../../core/utils/injection.dart';
 import '../../../models/global_state.dart';
+import '../../../widgets/UI2023widgets/HomeScreen.dart';
 import '../../../widgets/ecell_animation.dart';
 import '../../../widgets/screen_background.dart';
 
@@ -22,260 +26,136 @@ class _MenuScreenState extends State<MenuScreen> {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        leading: Container(
-          padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
-          child: PopupMenuButton<String>(
-            onSelected: _handleClick,
-            itemBuilder: (BuildContext context) {
-              return {'Logout'}.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          ),
+      body: Stack(children: [
+        Stack(
+          children: [
+            ScreenBackground(
+              elementId: 0,
+            ),
+            ShaderMask(
+              shaderCallback: (rect) {
+                return LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.black, Colors.transparent],
+                ).createShader(
+                    Rect.fromLTRB(0, 0, rect.width, rect.height));
+              },
+              blendMode: BlendMode.dstIn,
+              child: Image.asset(
+                S.assetEsummitImage,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(12.0, 32.0, 0.0, 0.0),
+              child: WelcomeText(
+                text: "Entrepreneurship \nCell",
+                size: 35.0,
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(width*0.1, height*0.4, 0.0, 0.0),
+              child: Container(
+                height: height*0.4,
+                width: width*0.8,
+                child: Image.asset(S.assetEcellLogoWhite, fit: BoxFit.fill,opacity: const AlwaysStoppedAnimation<double>(0.5),),
+
+              ),
+            )
+          ],
         ),
-      ),
-      body: Stack(
-        children: [
-          ScreenBackground(elementId: 0),
-          Center(
-            child: Container(
-              padding: EdgeInsets.only(bottom: heightFactor * 350),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [C.eSummitButton1, C.eSummitButton2],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          color: C.eSummitButton1.withOpacity(0.1),
-                          offset: Offset(0, 5),
-                        )
-                      ],
-                    ),
-                    constraints: BoxConstraints.tightFor(width: 70, height: 70),
-                    child: GestureDetector(
-                      child: Image.asset(
-                        S.assetEsummitLogoWhiteFilled,
-                        width: 30,
-                        height: 30,
-                      ),
-                      onTap: () => Navigator.pushNamed(context, S.routeEsummit),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "E-Summit",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: C.primaryUnHighlightedColor),
-                  )
-                ],
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: height * 0.21,
               ),
-            ),
-          ),
-          Center(
-            child: Container(
-              padding: EdgeInsets.only(
-                  bottom: heightFactor * 75, right: width / 1.4),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [C.bQuizButton1, C.bQuizButton2],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          color: C.bQuizButton1.withOpacity(0.1),
-                          offset: Offset(0, 5),
-                        )
-                      ],
-                    ),
-                    constraints: BoxConstraints.tightFor(width: 70, height: 70),
-                    child: GestureDetector(
-                      child: Icon(Icons.search_rounded,
-                          size: 35, color: C.primaryUnHighlightedColor),
-                      onTap: () => Navigator.pushNamed(context, S.routeBQuiz),
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "BQuiz",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: C.primaryUnHighlightedColor),
-                  )
-                ],
+              Padding(
+                padding: const EdgeInsets.fromLTRB(10.0, 15.0, 0.0, 5.0),
+                child: WelcomeText(
+                  text: "Explore ESUMMIT'23",
+                  size: 22.0,
+                ),
               ),
-            ),
-          ),
-          Center(
-            child: Container(
-              padding:
-                  EdgeInsets.only(bottom: heightFactor * 75, left: width / 1.4),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Row(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [C.eventsButton1, C.eventsButton2],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          color: C.eventsButton2.withOpacity(0.1),
-                          offset: Offset(0, 5),
-                        ),
-                      ],
-                    ),
-                    constraints: BoxConstraints.tightFor(width: 70, height: 70),
-                    child: GestureDetector(
-                      child: Image.asset(
-                        S.assetEventsLogoWhite,
-                        width: 20,
-                        height: 20,
-                      ),
-                      onTap: () {
-                        Navigator.pushNamed(context, S.routeEvents);
+                  HomeScreenButton(
+                      height: height,
+                      width: width,
+                      onPressed: (){
+                        Navigator.pushNamed(context, S.routeEsummit);
                       },
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Events",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: C.primaryUnHighlightedColor),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: Container(
-              padding:
-                  EdgeInsets.only(top: heightFactor * 300, left: width / 2.5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [C.sponsorsButton1, C.sponsorsButton2],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 15,
-                          color: C.sponsorsButton2.withOpacity(0.1),
-                          offset: Offset(0, 5),
-                        )
-                      ],
-                    ),
-                    constraints: BoxConstraints.tightFor(width: 70, height: 70),
-                    child: GestureDetector(
-                      child: Image.asset(
-                        S.assetSponsorsLogoWhite,
-                        width: 25,
-                        height: 25,
-                      ),
-                      onTap: () {
-                        S.sponsorApiYear=2019;
-                        Navigator.pushNamed(context, S.routeSponsors);
+                      color: C.menuButtonColor,
+                      image: S.assetEsummitLogoImage,
+                      text: 'ESummit'),
+                  HomeScreenButton(
+                      height: height,
+                      width: width,
+                      onPressed: (){
+                        Navigator.pushNamed(context, S.routeBQuiz);
                       },
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "Sponsors",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: C.primaryUnHighlightedColor),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Center(
-            child: Container(
-              padding:
-                  EdgeInsets.only(top: heightFactor * 300, right: width / 2.5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [C.aboutUsButton1, C.aboutUsButton2],
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            blurRadius: 15,
-                            color: C.aboutUsButton2.withOpacity(0.1),
-                            offset: Offset(0, 5),
-                          )
-                        ]),
-                    constraints: BoxConstraints.tightFor(width: 70, height: 70),
-                    child: GestureDetector(
-                      child: Icon(Icons.group,
-                          size: 35, color: C.primaryUnHighlightedColor),
-                      onTap: () {
+                      color: C.menuButtonColor,
+                      image: S.assetQuizImage,
+                      text: 'BQuiz'),
+                  HomeScreenButton(
+                      height: height,
+                      width: width,
+                      onPressed: (){
                         S.teamApiYear=2023;
                         Navigator.pushNamed(context, S.routeAboutUs);
                       },
-                    ),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    "About Us",
-                    style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        color: C.primaryUnHighlightedColor),
-                  )
+                      color: C.menuButtonColor,
+                      image: S.assetEcellLogoWhite,
+                      text: 'About Us'),
                 ],
               ),
-            ),
+              //Events
+              HomeImageSection(
+                height: height,
+                image: S.assetEventImage,
+                text: "Explore Events \nESUMMIT'23",
+                elementColor: C.menuButtonColor,
+                gradientColor: C.backgroundBottom,
+                onPressed: (){Navigator.pushNamed(context, S.routeEvents);}
+              ),
+              //Sponsors
+              HomeImageCarouselSection(
+                  height: height,
+                  images: [Text("1"),Text("1"),Text("1"),Text("1"),],
+                  text: "Meet Our \nSponsors",
+                  elementColor:C.menuButtonColor,
+                  gradientColor: C.backgroundBottom,
+                  onPressed: (){
+                    S.sponsorApiYear=2019;
+                    Navigator.pushNamed(context, S.routeSponsors);
+                  }
+              ),
+              //Speakers
+              HomeImageSection(
+                  height: height,
+                  image: S.assetEventImage,
+                  text: "Speakers of\nESUMMIT'23",
+                  elementColor: C.menuButtonColor,
+                  gradientColor: C.backgroundBottom,
+                  onPressed: (){print( "fuck");}
+              ),
+              //Gallery
+              HomeImageSection(
+                  height: height,
+                  image: S.assetEventImage,
+                  text: "Gallery",
+                  elementColor: C.menuButtonColor,
+                  gradientColor: C.backgroundBottom,
+                  onPressed: (){print( "fuck");}
+              ),
+              SizedBox(height: height*0.1,)
+            ],
           ),
-          Center(
-              child: Container(
-            child: ECellLogoAnimation(
-              size: width / 3,
-            ),
-          )),
-        ],
+        ),
+      ],
       ),
     );
   }

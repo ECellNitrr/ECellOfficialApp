@@ -4,8 +4,8 @@ class C {
   C._();
 
   /// background color gradient
-  static final Color backgroundTop = HexColor("#133c6b");
-  static final Color backgroundBottom = HexColor("#112d4e");
+  static final Color backgroundTop = HexColor("#133C6B");
+  static final Color backgroundBottom = HexColor("#112D4E");
   static final Color teamsBackground = HexColor("#372981");
 
   /// animated rings colors (1->4 increasingsize)
@@ -36,7 +36,8 @@ class C {
   static final Color secondaryColor = HexColor("#CECECE");
 
   /// button colors
-  static final Color authButtonColor = HexColor("#A955F7");
+  static final Color authButtonColor = HexColor("#D4EEFD");
+  static final Color menuButtonColor = HexColor('#A3DAF9');
   static final Color speakerButtonColor = HexColor('#8E31D5');
 
   /// selected icon theme

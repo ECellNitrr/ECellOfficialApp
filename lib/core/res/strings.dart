@@ -140,6 +140,12 @@ class S {
   static const String assetTeamsFrame = "assets/team-frame.png";
   static const String asset404Image = "assets/404.png";
 
+  static const String assetEsummitImage = "assets/esummit_images/img.png";
+  static const String assetQuizImage = "assets/quiz.jpg";
+  static const String assetEsummitLogoImage = "assets/blue-summit-logo.png";
+  static const String assetSpeakerImage = "assets/speaker.png";
+  static const String assetEventImage = "assets/events.png";
+
   // paragraphs
   static const String esummitPara =
       "we aspire to create a melange of eminent speakers who have proved themselves in diverse fields and are at the zenith of glory. E-Summit'22 will not just be a conclave of innovative minds and epistemic elocutionists, but it will be the place where ideas not only thrive but become the greatest revelations of the century.";

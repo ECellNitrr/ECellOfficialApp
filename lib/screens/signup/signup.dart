@@ -174,7 +174,7 @@ class SignupScreen extends StatelessWidget {
                     ),
                     child: LegacyRaisedButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30)),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
                       color: C.authButtonColor,
                       onPressed: () => _signup(context),
@@ -184,9 +184,10 @@ class SignupScreen extends StatelessWidget {
                         alignment: Alignment.center,
                         child: Text(
                           "Sign Up!",
-                          style: TextStyle(
-                            color: C.primaryUnHighlightedColor,
-                            fontSize: 20 * heightFactor,
+                          style: GoogleFonts.lato(
+                            fontWeight: FontWeight.bold,
+                            color: C.backgroundBottom,
+                            fontSize: 27 * heightFactor,
                           ),
                         ),
                       ),

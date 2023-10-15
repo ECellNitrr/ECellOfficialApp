@@ -182,7 +182,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         child: LegacyRaisedButton(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(30)),
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                           color: C.authButtonColor,
                           onPressed: () => _login(context),
@@ -191,10 +191,12 @@ class LoginScreen extends StatelessWidget {
                             width: 120,
                             alignment: Alignment.center,
                             child: Text(
-                              "Log In",
-                              style: TextStyle(
-                                  color: C.primaryUnHighlightedColor,
-                                  fontSize: 20 * heightFactor),
+                              "Log In!",
+                              style: GoogleFonts.lato(
+                                fontWeight: FontWeight.bold,
+                                color: C.backgroundBottom,
+                                fontSize: 27 * heightFactor,
+                              ),
                             ),
                           ),
                         ),
