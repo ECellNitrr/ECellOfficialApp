@@ -3,10 +3,10 @@ import 'package:equatable/equatable.dart';
 import '../core/res/strings.dart';
 
 class User extends Equatable {
-  final String? firstName;
-  final String? lastName;
-  final String? email;
-  final String? phoneNumber;
+  late final String? firstName;
+  late final String? lastName;
+  late final String? email;
+  late final String? phoneNumber;
 
   User({
     this.firstName,
@@ -14,7 +14,9 @@ class User extends Equatable {
     this.email,
     this.phoneNumber,
   });
-
+  static User rtr(String f,String l,String e,String p){
+    return User(firstName:f,lastName:l,email:e,phoneNumber: p);
+  }
   factory User.fromJson(Map<String, dynamic> json) {
     return User(
       firstName: json[S.firstnameKey] as String?,
