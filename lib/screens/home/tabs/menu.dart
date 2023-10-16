@@ -26,6 +26,25 @@ class _MenuScreenState extends State<MenuScreen> {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: Container(
+          padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
+          child: PopupMenuButton<String>(
+            onSelected: _handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ),
+      ),
       body: Stack(children: [
         Stack(
           children: [
