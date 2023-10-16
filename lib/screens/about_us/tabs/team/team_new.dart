@@ -65,6 +65,10 @@ class TeamScreenNew extends StatelessWidget {
                 width: width * 0.25,
                 height: 50,
                 child: DropdownMenu<int>(
+                  inputDecorationTheme: InputDecorationTheme(
+                    isCollapsed: true,
+                    enabledBorder: InputBorder.none,
+                  ),
                   textStyle: TextStyle(color: Colors.white),
                   leadingIcon: Icon(
                     Icons.keyboard_arrow_down_sharp,
@@ -88,19 +92,6 @@ class TeamScreenNew extends StatelessWidget {
             children: [
               Stack(children: [
                 ScreenBackground(elementId: 0),
-                Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
-                  child: Container(
-                    height: height * 0.4,
-                    width: width * 0.8,
-                    child: Image.asset(
-                      S.assetEcellLogoWhite,
-                      fit: BoxFit.contain,
-                      opacity: const AlwaysStoppedAnimation<double>(0.5),
-                    ),
-                  ),
-                )
               ]),
               BlocBuilder<TeamCubitNew, TeamStateNew>(
                 builder: (context, state) {
@@ -125,6 +116,7 @@ class TeamScreenNew extends StatelessWidget {
   Widget _buildSuccess(BuildContext context, List<TeamCategory> data) {
     double top = MediaQuery.of(context).viewPadding.top;
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     List<String> list = [
       "Director",
       "Head of CDC",
@@ -141,81 +133,98 @@ class TeamScreenNew extends StatelessWidget {
             overscroll.disallowIndicator();
             return true;
           },
-          child: Column(
+          child: Stack(
             children: [
-              SizedBox(
-                height: top + 65,
-              ),
-              Expanded(
-                child: ScrollableListTabScroller(
-                  itemCount: data.length,
-                  addSemanticIndexes: true,
-                  earlyChangePositionOffset: 150,
-                  tabBuilder: (BuildContext context, int index, bool active) =>
-                      Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      data[index].category,
-                      style: !active
-                          ? null
-                          : GoogleFonts.raleway(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black),
-                    ),
-                  ),
-                  itemBuilder: (BuildContext context, int index) => Container(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        if(data[index].members.length>0)Text(data[index].category,
-                        textAlign: TextAlign.center,
-                            style: GoogleFonts.raleway(
-                                
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white)),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
-                        GridView.count(
-                          childAspectRatio: list.contains(data[index].category)
-                              ? (0.8 / 1)
-                              : (1 / 0.5),
-                          physics: ScrollPhysics(),
-                          shrinkWrap: true,
-                          padding: data[index].members.length == 1
-                              ? EdgeInsets.symmetric(
-                                  horizontal: width * 0.25, vertical: 5)
-                              : EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 5),
-                          crossAxisSpacing: 5,
-                          mainAxisSpacing: 5,
-                          crossAxisCount:
-                              data[index].members.length == 1 ? 1 : 2,
-                          children: [
-                            ...list.contains(data[index].category)
-                                ? data[index]
-                                    .members
-                                    .map((e) => TeamsCardNew(teamMember: e))
-                                : List.generate(
-                                    data[index].members.length,
-                                    (i) => TeamsCard2(
-                                        teamMember: data[index].members[i]))
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
+              Padding(
+                  padding:
+                      EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
+                  child: Container(
+                    height: height * 0.4,
+                    width: width * 0.8,
+                    child: Image.asset(
+                      S.assetEcellLogoWhite,
+                      fit: BoxFit.contain,
+                      opacity: const AlwaysStoppedAnimation<double>(0.5),
                     ),
                   ),
                 ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: top + 65,
+                  ),
+                  Expanded(
+                    child: ScrollableListTabScroller(
+                      itemCount: data.length,
+                      addSemanticIndexes: true,
+                      earlyChangePositionOffset: 150,
+                      tabBuilder: (BuildContext context, int index, bool active) =>
+                          Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: Text(
+                          data[index].category,
+                          style: !active
+                              ? null
+                              : GoogleFonts.raleway(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black),
+                        ),
+                      ),
+                      itemBuilder: (BuildContext context, int index) => Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            if(data[index].members.length>0)Text(data[index].category,
+                            textAlign: TextAlign.center,
+                                style: GoogleFonts.raleway(
+                                    
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
+                            GridView.count(
+                              childAspectRatio: list.contains(data[index].category)
+                                  ? (0.8 / 1)
+                                  : (1 / 0.5),
+                              physics: ScrollPhysics(),
+                              shrinkWrap: true,
+                              padding: data[index].members.length == 1
+                                  ? EdgeInsets.symmetric(
+                                      horizontal: width * 0.25, vertical: 5)
+                                  : EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 5),
+                              crossAxisSpacing: 5,
+                              mainAxisSpacing: 5,
+                              crossAxisCount:
+                                  data[index].members.length == 1 ? 1 : 2,
+                              children: [
+                                ...list.contains(data[index].category)
+                                    ? data[index]
+                                        .members
+                                        .map((e) => TeamsCardNew(teamMember: e))
+                                    : List.generate(
+                                        data[index].members.length,
+                                        (i) => TeamsCard2(
+                                            teamMember: data[index].members[i]))
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
