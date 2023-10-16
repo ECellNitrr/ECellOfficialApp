@@ -1,3 +1,6 @@
+import 'package:ecellapp/screens/about_us/about_us_new.dart';
+import 'package:ecellapp/screens/about_us/tabs/team/cubit/team_cubit_new.dart';
+import 'package:ecellapp/screens/about_us/tabs/team/team_repository_new.dart';
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
 import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
@@ -128,7 +131,7 @@ class _ECellAppState extends State<ECellApp> {
           S.routeBQuiz: (_) => BQuiz(),
           S.routeBQuizLeaderboard: (_) => LeaderList(),
           S.routeAboutUs: (_) =>
-              BlocProvider(create: (_) => TeamCubit(APITeamRepository()), child: AboutUsScreen()),
+              BlocProvider(create: (_) => TeamCubitNew(APITeamRepositoryNew()), child: AboutUsScreenNew()),
         },
         initialRoute: S.routeSplash,
         title: "ECellApp",
