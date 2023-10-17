@@ -1,7 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecellapp/screens/sponser_new/cubit/sponsors_cubit.dart';
+import 'package:ecellapp/screens/sponser_new/sponsor_carousel.dart';
+import 'package:ecellapp/screens/sponser_new/sponsors_repository.dart';
 import 'package:ecellapp/widgets/raisedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/res/colors.dart';
@@ -121,14 +125,12 @@ class HomeImageSection extends StatelessWidget {
 class HomeImageCarouselSection extends StatelessWidget {
   HomeImageCarouselSection(
       {required this.height,
-        required this.images,
         required this.text,
         required this.elementColor,
         required this.gradientColor,
         required this.onPressed,
       });
   final double height;
-  final List<Widget> images;
   final Color gradientColor;
   final Color elementColor;
   final String text;
@@ -148,24 +150,9 @@ class HomeImageCarouselSection extends StatelessWidget {
               borderRadius: BorderRadius.all(
                   Radius.circular(20.0)), // Rounded corners
             ),
-            child: CarouselSlider(
-                items: [Text("1"),Text("1"),Text("1"),Text("1")],
-                options: CarouselOptions(
-                  height: 400,
-                  aspectRatio: 16/9,
-                  viewportFraction: 0.8,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: true,
-                  autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  enlargeFactor: 0.3,
-                  scrollDirection: Axis.horizontal,
-                )
-            ),
+            child: BlocProvider(
+                create: (_) => SponsorsCubit(APISponsorsRepository()),
+                child: SponserCarousel()),
           ),
           Container(
             height: height * 0.17,
