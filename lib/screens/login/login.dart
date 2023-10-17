@@ -10,7 +10,79 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/raisedButton.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ecellapp/models/global_state.dart';
+import 'package:ecellapp/models/user.dart' as uo;
+import '../home/home.dart';
 import 'cubit/login_cubit.dart';
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+class _LoginState extends State<Login> {
+  String? UserName;
+  String?Photourl;
+  googleLogin() async {
+    await Firebase.initializeApp();
+    print("googleLogin method Called");
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    try {
+      var reslut = await _googleSignIn.signIn();
+      if (reslut == null) {
+        return;
+      }
+      final userData = await reslut.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: userData.accessToken, idToken: userData.idToken);
+      var finalResult =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      // GlobalState().user?.firstName=reslut.displayName;
+      // GlobalState().user?.lastName=reslut.displayName;
+      // GlobalState().user?.email=reslut.email;
+      // HomeScreen();
+      // logout();
+    } catch (error) {
+      print(error);
+    }
+  }
+
+  Future<void> logout() async {
+    await GoogleSignIn().disconnect();
+    FirebaseAuth.instance.signOut();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login Screen'),
+        actions: [
+          ElevatedButton(
+            onPressed: logout,
+            child: const Text(
+              'LogOut',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Google Login'), onPressed:(){
+          googleLogin;
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+        },
+        ),
+      ),
+    );
+  }
+}
 
 class LoginScreen extends StatelessWidget {
   static final TextEditingController passwordController = TextEditingController();
@@ -18,6 +90,48 @@ class LoginScreen extends StatelessWidget {
   final ScrollController _scrollController = ScrollController();
   final _formKey = GlobalKey<FormState>();
 
+  static String f="a";
+  static String l="b";
+  static String e="c";
+  static String  p="xxxxxxxxxx";
+  Future<bool> googleLogin() async {
+    await Firebase.initializeApp();
+    print("googleLogin method Called");
+    GoogleSignIn _googleSignIn = GoogleSignIn();
+    try {
+      var reslut = await _googleSignIn.signIn();
+      if (reslut == null) {
+        return false;
+      }
+
+      final userData = await reslut.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: userData.accessToken, idToken: userData.idToken);
+      var finalResult =
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      print("Result $reslut");
+      print(reslut.displayName);
+      print(reslut.email);
+      print(reslut.photoUrl);
+      List<String> words = reslut.displayName!.split(' ');
+      f=words[0];
+      if(words.length>1)l=words[words.length-1];
+      e=reslut.email;
+      return true;
+    } catch (error) {
+      print(error);
+      return false;
+    }
+  }
+  Future<void> logout() async {
+    await GoogleSignIn().disconnect();
+    try{
+      FirebaseAuth.instance.signOut();
+    }
+    catch(error){
+      print(error);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -180,26 +294,45 @@ class LoginScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                        child: LegacyRaisedButton(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
-                          color: C.authButtonColor,
-                          onPressed: () => _login(context),
-                          child: Container(
-                            height: 60,
-                            width: 120,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Log In!",
-                              style: GoogleFonts.lato(
-                                fontWeight: FontWeight.bold,
-                                color: C.backgroundBottom,
-                                fontSize: 27 * heightFactor,
-                              ),
-                            ),
-                          ),
-                        ),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center, // Align children to the center horizontally
+                              crossAxisAlignment: CrossAxisAlignment.center, // Align children to the center vertically
+                              children: [
+                                    LegacyRaisedButton(
+                                    shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    ),
+                                    color: C.authButtonColor,
+                                  onPressed: () => _login(context),
+                                  child: Container(
+                                    height: 60,
+                                    width: 120,
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      "Log In!",
+                                      style: GoogleFonts.lato(
+                                        fontWeight: FontWeight.bold,
+                                        color: C.backgroundBottom,
+                                        fontSize: 27 * heightFactor,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  child: const Text('Google Login'), onPressed:(){
+                                  // logout();
+                                  googleLoginwait() async{
+                                    bool lg=await googleLogin();
+                                    if(lg){
+
+                                      context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+                                      print(context.read<GlobalState>().user?.firstName);
+                                      Navigator.pushReplacementNamed(context, S.routeHome);}
+                                  }
+                                  googleLoginwait();
+                                },
+                                ),
+                              ],),
                       ),
                     ),
                   ),

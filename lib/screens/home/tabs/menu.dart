@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../../core/res/colors.dart';
 import '../../../core/res/dimens.dart';
 import '../../../core/res/strings.dart';
@@ -26,6 +28,25 @@ class _MenuScreenState extends State<MenuScreen> {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: Container(
+          padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
+          child: PopupMenuButton<String>(
+            onSelected: _handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          ),
+        ),
+      ),
       body: Stack(children: [
         Stack(
           children: [
@@ -159,7 +180,10 @@ class _MenuScreenState extends State<MenuScreen> {
       ),
     );
   }
-
+  Future<void> logout() async {
+    await GoogleSignIn().disconnect();
+    FirebaseAuth.instance.signOut();
+  }
   Future<void> _handleClick(String value) async {
     switch (value) {
       case 'Logout':
@@ -167,6 +191,7 @@ class _MenuScreenState extends State<MenuScreen> {
         await sl.get<SharedPreferences>().remove(S.tokenKeySharedPreferences);
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Logged Out Successfuly")));
+        logout();
         Navigator.pushReplacementNamed(context, S.routeLogin);
     }
   }
