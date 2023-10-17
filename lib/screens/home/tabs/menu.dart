@@ -145,7 +145,6 @@ class _MenuScreenState extends State<MenuScreen> {
               //Sponsors
               HomeImageCarouselSection(
                   height: height,
-                  images: [Text("1"),Text("1"),Text("1"),Text("1"),],
                   text: "Meet Our \nSponsors",
                   elementColor:C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
