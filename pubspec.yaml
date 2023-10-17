@@ -36,6 +36,8 @@ dependencies:
   carousel_slider: ^4.2.1
   animated_notch_bottom_bar: ^1.0.0
   google_sign_in: ^6.1.5
+  scrollable_list_tab_scroller: ^1.1.2
+  flutter_staggered_grid_view: ^0.7.0
 
 dev_dependencies:
   flutter_launcher_icons: ^0.13.1
