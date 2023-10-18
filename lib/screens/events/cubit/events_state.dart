@@ -17,7 +17,8 @@ class EventsLoading extends EventsState {
 
 class EventsSuccess extends EventsState {
   final List<Event> json;
-  const EventsSuccess(this.json);
+  final Map<String, dynamic> eventForms;
+  const EventsSuccess(this.json, this.eventForms);
   @override
   List<Object> get props => [json];
 }

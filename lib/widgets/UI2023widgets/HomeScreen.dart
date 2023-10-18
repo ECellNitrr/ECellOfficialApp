@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecellapp/screens/sponser_new/cubit/sponsors_cubit.dart';
 import 'package:ecellapp/screens/sponser_new/sponsor_carousel.dart';
@@ -7,8 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/res/colors.dart';
+import '../../models/event.dart';
 
 class WelcomeText extends StatelessWidget {
   WelcomeText({Key? key, required this.text, required this.size})
@@ -35,6 +38,45 @@ class WelcomeText extends StatelessWidget {
         ],
       ),
     ));
+  }
+}
+
+class EventText extends StatelessWidget {
+  EventText({Key? key, required this.text, required this.size, required this.maxLines})
+      : super(key: key);
+
+  String text;
+  double size;
+  int maxLines;
+  // AutoSizeText(
+  // event, {required TextStyle style}!.name!,
+  // maxLines: 2,
+  // style: TextStyle(
+  // fontSize: 18,
+  // color: C.cardFontColor,
+  // fontWeight: FontWeight.w700,
+  // ),
+  // ),
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: AutoSizeText(
+          text,
+          maxLines : maxLines,
+          style: GoogleFonts.raleway(
+            fontSize: size,
+            fontWeight: FontWeight.bold, // Adjust the font size as needed
+            color: C.primaryHighlightedColor, // Set the text color
+            shadows: <Shadow>[
+              Shadow(
+                offset: Offset(2.0, 2.0), // Horizontal and vertical shadow offset
+                blurRadius: 8.0, // Shadow blur radius
+                color: C.backgroundBottom, // Shadow color
+              ),
+            ],
+          ),
+        ));
   }
 }
 
@@ -99,7 +141,7 @@ class HomeImageSection extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(15.0, 10, 0.0, 0.0),
               child: WelcomeText(
                 text: text,
-                size: 32.0,
+                size: 28.0,
               ),
             ),
           ),
@@ -243,6 +285,163 @@ class HomeScreenButton extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: C.menuButtonColor),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class EventImageSection extends StatefulWidget {
+  EventImageSection(
+      {required this.height,
+        required this.image,
+        required this.event,
+        required this.eventForm,
+        required this.elementColor,
+        required this.gradientColor,
+        required this.onPressed,
+      });
+  final double height;
+  final String eventForm;
+  final String image;
+  final Event event;
+  final Color gradientColor;
+  final Color elementColor;
+  final VoidCallback onPressed;
+
+  @override
+  State<EventImageSection> createState() => _EventImageSectionState();
+}
+
+class _EventImageSectionState extends State<EventImageSection> {
+
+  bool isExpanded = false;
+
+
+  void _toggleExpansion() {
+    setState(() {
+      isExpanded = !isExpanded;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: widget.height * 0.18,
+                decoration: BoxDecoration(
+                  borderRadius:
+                  BorderRadius.all(Radius.circular(20.0)), // Rounded corners
+                  image: DecorationImage(
+                    image: AssetImage(widget.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              Container(
+                height: widget.height * 0.18,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  gradient: LinearGradient(
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight,
+                    colors: [C.backgroundBottom, Colors.transparent],
+                  ),
+                ),
+              ),
+              Container(
+                height: widget.height*0.18,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(20)),
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                    colors: [widget.gradientColor, Colors.transparent, Colors.transparent],
+                  ),
+                ),
+              ),
+              Container(
+                height: widget.height*0.18,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12.0, 0.0, 0.0, 0.0),
+                    child: Row(
+                      children: [
+                        Container(child: Image.network(widget.event.iconUrl!), height: widget.height*0.14,),
+                        Container(
+                          width: widget.height*0.29,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(6.0, 15.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  EventText(
+                                    text: widget.event.name!,
+                                    maxLines: 2,
+                                    size: 24.0,
+                                  ),
+                                  EventText(
+                                    text: "Date: ${widget.event.date!}",
+                                    maxLines: 2,
+                                    size: 14.0,
+                                  ),
+                                  EventText(
+                                    text: "Venue: DDU Auditorium",
+                                    maxLines: 2,
+                                    size: 14.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Align(
+                  alignment: Alignment.bottomRight,
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(0.0, widget.height * 0.115, 10.0, 0.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(onPressed: _toggleExpansion,
+                            child: WelcomeText(text: "More Info", size: 14),),
+                        (widget.eventForm == "null") ?
+                          Container() :
+                          TextButton(onPressed: () async {
+                          if (!await launchUrl(Uri.parse(widget.eventForm))) {
+                            throw Exception('Could not launch URl');
+                          }
+                          }, child: WelcomeText(text: "Register", size: 15),
+                        )
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+          AnimatedCrossFade(
+            firstChild: Container(),
+            secondChild: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: WelcomeText(text: widget.event.details!, size: 10),
+            ),
+            crossFadeState: isExpanded
+                ? CrossFadeState.showSecond
+                : CrossFadeState.showFirst,
+            duration: const Duration(milliseconds: 300),
+          ),
         ],
       ),
     );

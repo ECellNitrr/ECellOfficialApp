@@ -10,12 +10,15 @@ part 'events_state.dart';
 
 class EventsCubit extends Cubit<EventsState> {
   final EventsRepository _eventsRepository;
-  EventsCubit(this._eventsRepository) : super(EventsInitial());
+  final APIEventFormRepository _eventFormRepository;
+
+  EventsCubit(this._eventsRepository, this._eventFormRepository) : super(EventsInitial());
   Future<void> getAllEvents() async {
     try {
       emit(EventsLoading());
       List<Event> json = await _eventsRepository.getAllEvents();
-      emit(EventsSuccess(json));
+      Map<String, dynamic> forms = await _eventFormRepository.getAllEventForm();
+      emit(EventsSuccess(json, forms));
     } on NetworkException {
       emit(EventsError(S.networkException));
     } on ValidationException catch (e) {
