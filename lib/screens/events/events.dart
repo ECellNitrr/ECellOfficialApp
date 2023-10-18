@@ -40,7 +40,7 @@ class EventsScreen extends StatelessWidget {
                 if (state is EventsInitial)
                   return _buildLoading(context);
                 else if (state is EventsSuccess)
-                  return _buildSuccess(context, state.json);
+                  return _buildSuccess(context, state.json, state.eventForms);
                 else if (state is EventsLoading)
                   return _buildLoading(context);
                 else
@@ -58,12 +58,12 @@ class EventsScreen extends StatelessWidget {
     return Center(child: ECellLogoAnimation(size: width / 2));
   }
 
-  Widget _buildSuccess(BuildContext context, List<Event> eventsList) {
+  Widget _buildSuccess(BuildContext context, List<Event> eventsList, Map<String, dynamic> eventForms) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double top = MediaQuery.of(context).viewPadding.top;
 
     List<Widget> eventObjList = [];
-    eventsList.forEach((element) => eventObjList.add(EventCard(event: element)));
+    eventsList.forEach((element) => eventObjList.add(EventCard(event: element, eventForm: eventForms[element.name].toString(),)));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),

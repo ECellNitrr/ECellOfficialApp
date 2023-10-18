@@ -122,7 +122,7 @@ class _ECellAppState extends State<ECellApp> {
           S.routeSpeaker: (_) => BlocProvider(
               create: (_) => SpeakerCubit(FakeSpeakerRepository()), child: SpeakerScreen()),
           S.routeEvents: (_) => BlocProvider(
-              create: (_) => EventsCubit(APIEventsRepository()), child: EventsScreen()),
+              create: (_) => EventsCubit(APIEventsRepository(), APIEventFormRepository()), child: EventsScreen()),
           S.routeSponsors: (_) => BlocProvider(
               create: (_) => SponsorsCubit(APISponsorsRepository()), child: SponsorsScreen()),
           S.routeSponsorsHead: (_) => BlocProvider(

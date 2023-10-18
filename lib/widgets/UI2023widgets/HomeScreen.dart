@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../core/res/colors.dart';
 import '../../models/event.dart';
@@ -295,11 +296,13 @@ class EventImageSection extends StatefulWidget {
       {required this.height,
         required this.image,
         required this.event,
+        required this.eventForm,
         required this.elementColor,
         required this.gradientColor,
         required this.onPressed,
       });
   final double height;
+  final String eventForm;
   final String image;
   final Event event;
   final Color gradientColor;
@@ -313,6 +316,7 @@ class EventImageSection extends StatefulWidget {
 class _EventImageSectionState extends State<EventImageSection> {
 
   bool isExpanded = false;
+
 
   void _toggleExpansion() {
     setState(() {
@@ -414,7 +418,14 @@ class _EventImageSectionState extends State<EventImageSection> {
                       children: [
                         TextButton(onPressed: _toggleExpansion,
                             child: WelcomeText(text: "More Info", size: 14),),
-                        TextButton(onPressed: (){}, child: WelcomeText(text: "Register", size: 15))
+                        (widget.eventForm == "null") ?
+                          Container() :
+                          TextButton(onPressed: () async {
+                          if (!await launchUrl(Uri.parse(widget.eventForm))) {
+                            throw Exception('Could not launch URl');
+                          }
+                          }, child: WelcomeText(text: "Register", size: 15),
+                        )
                       ],
                     ),
                   ))
