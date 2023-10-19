@@ -9,6 +9,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../core/utils/injection.dart';
 import '../../widgets/raisedButton.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -92,7 +94,7 @@ class LoginScreen extends StatelessWidget {
 
   static String f="a";
   static String l="b";
-  static String e="c";
+  static String e="Unknown";
   static String  p="xxxxxxxxxx";
   Future<bool> googleLogin() async {
     await Firebase.initializeApp();
@@ -107,6 +109,17 @@ class LoginScreen extends StatelessWidget {
       final userData = await reslut.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: userData.accessToken, idToken: userData.idToken);
+      print('ID TOKEN');
+      String? token = userData.idToken;
+      while (token!.length > 0) {
+        int initLength = (token!.length >= 500 ? 500 : token.length);
+        print(token.substring(0, initLength));
+        int endLength = token.length;
+        token = token.substring(initLength, endLength);
+      }
+      await sl
+          .get<SharedPreferences>()
+          .setString(S.tokenKeySharedPreferences, token!);
       var finalResult =
       await FirebaseAuth.instance.signInWithCredential(credential);
       print("Result $reslut");
@@ -195,7 +208,7 @@ class LoginScreen extends StatelessWidget {
                   Expanded(flex: 2, child: Container()),
                   //Contains all fields
                   Flexible(
-                    flex: 7,
+                    flex: 5,
                     child: Column(
                       children: [
                         // Logo
@@ -253,7 +266,7 @@ class LoginScreen extends StatelessWidget {
                                   EmailField(emailController),
                                   SizedBox(height: 20 * heightFactor),
                                   PasswordField(passwordController),
-                                  SizedBox(height: 10 * heightFactor),
+                                  SizedBox(height: 20 * heightFactor),
                                 ],
                               ),
                             )),
@@ -278,13 +291,15 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   //LoginButton
-                  Expanded(
+                  Flexible(
                     child: Container(
+                      height:50,
                       padding: EdgeInsets.only(right: D.horizontalPadding),
                       alignment: Alignment.topRight,
                       child: Container(
+
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
                           boxShadow: [
                             BoxShadow(
                               color: C.authButtonColor.withOpacity(0.2),
@@ -294,49 +309,125 @@ class LoginScreen extends StatelessWidget {
                             )
                           ],
                         ),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center, // Align children to the center horizontally
-                              crossAxisAlignment: CrossAxisAlignment.center, // Align children to the center vertically
-                              children: [
-                                    LegacyRaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    ),
-                                    color: C.authButtonColor,
-                                  onPressed: () => _login(context),
-                                  child: Container(
-                                    height: 60,
-                                    width: 120,
-                                    alignment: Alignment.center,
-                                    child: Text(
-                                      "Log In!",
-                                      style: GoogleFonts.lato(
-                                        fontWeight: FontWeight.bold,
-                                        color: C.backgroundBottom,
-                                        fontSize: 27 * heightFactor,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  child: const Text('Google Login'), onPressed:(){
-                                  // logout();
-                                  googleLoginwait() async{
-                                    bool lg=await googleLogin();
-                                    if(lg){
-
-                                      context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
-                                      print(context.read<GlobalState>().user?.firstName);
-                                      Navigator.pushReplacementNamed(context, S.routeHome);}
-                                  }
-                                  googleLoginwait();
-                                },
-                                ),
-                              ],),
+                       child: LegacyRaisedButton(
+                        shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                        ),
+                        color: C.authButtonColor,
+                      onPressed: () => _login(context),
+                      child: Container(
+                        height: 50,
+                        width: 100,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Log In!",
+                          style: GoogleFonts.lato(
+                            fontWeight: FontWeight.bold,
+                            color: C.backgroundBottom,
+                            fontSize: 20 * heightFactor,
+                          ),
+                        ),
+                      ),
+                    ),
                       ),
                     ),
                   ),
-                  //New here Text
+                  SizedBox(height:30*heightFactor),
+                  Expanded(
+                    flex:2,
+                    child: Container(
+                      height:50,
+                      padding: EdgeInsets.only(right: D.horizontalPadding),
+                      alignment: Alignment.topRight,
+                      child: Column(
+                    children: [
+                    LegacyRaisedButton(
+                    shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            color: C.authButtonColor,
+            onPressed:(){
+              // logout();
+              googleLoginwait() async{
+                bool lg=await googleLogin();
+                if(lg){
+
+                  context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+                  print(context.read<GlobalState>().user?.firstName);
+                  Navigator.pushReplacementNamed(context, S.routeHome);}
+              }
+              googleLoginwait();
+            },
+            child: Container(
+              height: 50,
+              width: 100,
+              alignment: Alignment.center,
+
+              child: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/google.png',
+                    height: 20,
+                    color: C.backgroundBottom,
+                  ),
+                  SizedBox(width: 8), // Add spacing between the icon and the container
+                  Text(
+                    "Sign in",
+                    style: GoogleFonts.lato(
+                      fontWeight: FontWeight.bold,
+                      color: C.backgroundBottom,
+                      fontSize: 20 * heightFactor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          SizedBox(height: 15*heightFactor,),
+          LegacyRaisedButton(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10)),
+            ),
+            color: C.authButtonColor,
+            onPressed:(){
+              // logout();
+              f="Guest";
+              l="Guest";
+              e="Unkown";
+              context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+              Navigator.pushReplacementNamed(context, S.routeHome);
+            },
+            child: Container(
+              height: 60,
+              width: 100,
+              alignment: Alignment.center,
+              child: Row(
+                children: <Widget>[
+                  Image.asset(
+                    'assets/guests.png',
+                    height: 20,
+                    color: C.backgroundBottom,
+                  ),
+                  SizedBox(width: 8), // Add spacing between the icon and the container
+                  Text(
+                    "Skip",
+                    style: GoogleFonts.lato(
+                      fontWeight: FontWeight.bold,
+                      color: C.backgroundBottom,
+                      fontSize: 20 * heightFactor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          //New here Text
+        ],
+      ),
+                    )
+
+                  ),
+
                   Expanded(
                     flex: 2,
                     child: Container(

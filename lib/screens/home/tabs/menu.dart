@@ -33,7 +33,7 @@ class _MenuScreenState extends State<MenuScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: Container(
-          padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
+          padding: EdgeInsets.only(left: D.horizontalPadding - 5, top: 10),
           child: PopupMenuButton<String>(
             onSelected: _handleClick,
             itemBuilder: (BuildContext context) {

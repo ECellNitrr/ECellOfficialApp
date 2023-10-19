@@ -5,23 +5,34 @@ import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
+import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-
+import 'package:ecellapp/screens/login/login.dart';
+import 'package:ecellapp/core/res/strings.dart';
 import '../../widgets/raisedButton.dart';
+import '../login/cubit/login_cubit.dart';
+import '../login/login_repository.dart';
 import 'leaderBoard/cubit/leaderboard_cubit.dart';
 import 'leaderBoard/leader_board.dart';
 import 'leaderBoard/leaderboard_repository.dart';
-
+import 'package:ecellapp/models/global_state.dart';
+import 'package:ecellapp/models/user.dart' as uo;
+import 'package:provider/provider.dart';
 final GlobalKey<ScaffoldMessengerState> snackbarKey =
     GlobalKey<ScaffoldMessengerState>();
 
 class BQuiz extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    if(context.read<GlobalState>().user?.firstName=="Guest"){
+      return Provider(
+          create: (_) => LoginCubit(APILoginRepository()),
+          child: LoginScreen(),
+      );
+    }
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     return Scaffold(
