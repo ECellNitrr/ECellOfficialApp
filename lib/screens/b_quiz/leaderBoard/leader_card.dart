@@ -1,6 +1,5 @@
 import 'package:ecellapp/models/leader_board.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
@@ -15,11 +14,8 @@ class LeaderCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double ratio = MediaQuery.of(context).size.aspectRatio;
-    String username=" ";
-    if(Leader!.username!=null){
-      username=Leader!.username;
-    }
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     String phoneORemail = " ";
     if(APILeaderRepository.UNEmail[Leader!.username]!=null){
       phoneORemail=APILeaderRepository.UNEmail[Leader!.username];
@@ -27,85 +23,56 @@ class LeaderCard extends StatelessWidget {
     if(APILeaderRepository.UNEmail[Leader!.username]==null){
       String? ph=" ";
       if(Leader!.phone !=null){
-        ph=(Leader!.phone)?.substring(0,5)!;
+        ph=(Leader!.phone)?.substring(0,5);
       }
       phoneORemail = ph!+"XXXXX";
     }
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame),
-          child: Stack(
+    return Container(
+      decoration: BoxDecoration(
+        
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+                          color: Colors.black54,
+                          offset: Offset(0, 20),
+                          blurRadius: 3,
+                          spreadRadius: -10)
+        ]
+
+      ),
+      margin: EdgeInsets.only(bottom: 20),
+      padding: EdgeInsets.symmetric(horizontal: height*0.01),
+      height: height*0.1,
+      width: width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 20, 0, 20),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(22),
-                  ),
-                  child: Container(
-                    padding: const EdgeInsets.all(20),
-                    height: ratio > 0.5 ? 120 : 130,
-                    width: ratio > 0.5 ? 210 : 230 ,
-                    margin: EdgeInsets.only(left: 100),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(22),
-                    ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          Leader!.username,
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: C.cardFontColor,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          phoneORemail,
-                          style: TextStyle(fontSize: 17, color: C.cardFontColor),
-                        ),
-                        SizedBox(height: 5),
-                        Text(
-                          "Score:${Leader!.bquizScore}",
-                          style: TextStyle(fontSize: 17, color: C.cardFontColor),
-                        ),
-                      ],
-                    ),
-                  ),
-
-                ),
-              ),
-
+              Text('#',style: TextStyle(fontSize: 18,color: Colors.black),),
+              Text("$rank",style: TextStyle(fontSize: 28, color: Colors.black),),
+              rank==1?Image.asset(S.assetFirstMedalIcon,height: height*0.05,):SizedBox(width: width*0.01,),
+              rank==2?Image.asset(S.assetSecondMedalIcon,
+                      height: height * 0.05,
+                    ):SizedBox(width: width*0.01,),
+              rank==3?Image.asset(S.assetThirdMedalIcon,
+                      height: height * 0.05,
+                    ):SizedBox(width: width*0.01,),
             ],
           ),
-        ),
-        Positioned(
-          height: ratio > 0.5 ? 150 : 180,
-          width: ratio > 0.5 ? 150 : 170,
-          child: Stack(
+          Text(Leader!.username, style: TextStyle(fontSize: 18,fontWeight: FontWeight.w800, color: Colors.black)),
+          Row(
             children: [
-              Image.asset(
-                S.assetSpeakerCardFrame,
-                fit: BoxFit.cover,
-                height: 220,
-              ),
-              Container(
-                  alignment: Alignment.center,
-                  padding: EdgeInsets.only(bottom: 10,right: 15),
-                  child: Text("# $rank",style: TextStyle(fontSize: 40,fontWeight: FontWeight.bold),)
-              ),
+              Image.asset(S.assetScoreIcon,
+                      height: height * 0.02,
+                    ),
+              SizedBox(width: width*0.01,),
+              Text("${Leader!.bquizScore}", style: TextStyle(fontSize: 18, color: Colors.black)),
             ],
           ),
-        ),
-
-      ],
+        ],
+      ),
     );
-  }
+}
 }

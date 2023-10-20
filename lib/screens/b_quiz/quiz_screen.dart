@@ -53,7 +53,10 @@ class _QuizState extends State<Quiz> {
               if (state is QuizInitial)
                 return _buildLoading(context);
               else if (state is QuizSuccess)
-                return Success(QuizList: state.QuizList, label:widget.label ,);
+                return Success(
+                  QuizList: state.QuizList,
+                  label: widget.label,
+                );
               else if (state is QuizLoading)
                 return _buildLoading(context);
               else
@@ -93,8 +96,7 @@ class _SuccessState extends State<Success> {
   int inputIndex = 0;
   int time = 0;
   final int _duration = 60;
-  int pTime= DateTime.now().minute;
-
+  int pTime = DateTime.now().minute;
 
   @override
   void initState() {
@@ -107,7 +109,7 @@ class _SuccessState extends State<Success> {
       final hasInternet = status == DataConnectionStatus.connected;
       print("hasInternet=$hasInternet");
       if (!hasInternet) {
-        score -=penalty(pTime,score);
+        score -= penalty(pTime, score);
         _apiLeaderRepository.uploadScore(score, user);
         Navigator.of(context).pushReplacement(MaterialPageRoute(
             builder: ((context) =>
@@ -150,7 +152,7 @@ class _SuccessState extends State<Success> {
 
                   User user = context.read<GlobalState>().user!;
                   Navigator.pop(context, true);
-                  score -=penalty(pTime,score);
+                  score -= penalty(pTime, score);
                   _apiLeaderRepository.uploadScore(score, user);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: ((context) =>
@@ -181,7 +183,6 @@ class _SuccessState extends State<Success> {
       });
     }
 
-
     List<Widget> QuizContentList = [];
     widget.QuizList.forEach((element) => QuizContentList.add(QuestionCard(
           quiz: element,
@@ -192,144 +193,170 @@ class _SuccessState extends State<Success> {
       onWillPop: _onBackPressed,
       child: Stack(children: [
         ScreenBackground(elementId: 0),
-        Container(
-          width: width,
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 30.0,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GradientText("BQUIZ",
-                        gradient: LinearGradient(
-                          colors: [
-                            C.bQuizGradient1,
-                            C.bQuizGradient2,
-                            C.bQuizGradient5,
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        )),
-                    SizedBox(
-                      width: 20.0,
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 30.0,
+              ),
+              GradientText("BQUIZ",
+                  gradient: LinearGradient(
+                    colors: [
+                      C.bQuizGradient1,
+                      C.bQuizGradient2,
+                      C.bQuizGradient5,
+                    ],
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  )),
+              SizedBox(
+                height: height * 0.05,
+              ),
+              Container(
+                height: height * 0.7,
+                margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(22),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          offset: Offset(20, 20),
+                          blurRadius: 3,
+                          spreadRadius: -10)
+                    ]
                     ),
-                    CircularCountDownTimer(
-                      duration: _duration,
-                      initialDuration: 0,
-                      controller: _countDownController,
-                      width: MediaQuery.of(context).size.width / 7,
-                      height: MediaQuery.of(context).size.height / 10,
-                      ringColor: Colors.grey[300]!,
-                      fillColor: Colors.purpleAccent[100]!,
-                      backgroundColor: Colors.purple[500],
-                      strokeWidth: 10.0,
-                      strokeCap: StrokeCap.round,
-                      textStyle: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                      textFormat: CountdownTextFormat.S,
-                      isReverse: true,
-                      isReverseAnimation: false,
-                      isTimerTextShown: true,
-                      autoStart: true,
-                      onStart: () {
-                        debugPrint('Countdown Started');
-                      },
-                      onComplete: () {
-                        time = int.parse(
-                            _countDownController.getTime().toString());
-                        debugPrint('Countdown Ended');
-                        if (_pageController.page !=
-                            QuizContentList.length - 1) {
-                          _pageController.nextPage(
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.easeInOut);
+                    
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(padding: EdgeInsets.all(2),decoration:BoxDecoration(borderRadius: BorderRadius.circular(50),
+                                      color: Colors.black54),child: Icon(Icons.question_mark_outlined,color: Colors.white,size: 15,)),
+                              SizedBox(width: 5,),
+                              Text(
+                                "$currentQuestion/${widget.QuizList.length}",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          CircularCountDownTimer(
+                            duration: _duration,
+                            initialDuration: 0,
+                            controller: _countDownController,
+                            width: MediaQuery.of(context).size.width / 10,
+                            height: MediaQuery.of(context).size.height / 10,
+                            ringColor: Colors.grey[300]!,
+                            fillColor: Colors.purpleAccent[100]!,
+                            strokeWidth: 3.0,
+                            strokeCap: StrokeCap.round,
+                            textStyle: TextStyle(
+                                fontSize: 18,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold),
+                            textFormat: CountdownTextFormat.S,
+                            isReverse: true,
+                            isReverseAnimation: false,
+                            isTimerTextShown: true,
+                            autoStart: true,
+                            onStart: () {
+                              debugPrint('Countdown Started');
+                            },
+                            onComplete: () {
+                              time = int.parse(
+                                  _countDownController.getTime().toString());
+                              debugPrint('Countdown Ended');
+                              if (_pageController.page !=
+                                  QuizContentList.length - 1) {
+                                _pageController.nextPage(
+                                    duration: const Duration(milliseconds: 300),
+                                    curve: Curves.easeInOut);
 
-                          Future.delayed(Duration(milliseconds: 300), () {
-                            _countDownController.restart(duration: _duration);
-                          });
-                        } else {
-                          print("time:$time");
-                          print("$inputIndex---$correctIndex");
-                          if (inputIndex != 0 &&
-                              correctIndex != 0 &&
-                              inputIndex == correctIndex) {
-                            streamController.add(true);
-                            score += calcScore(time);
-                            score -=penalty(pTime,score);
-                            print("Score:$score");
-                          } else {
-                            streamController.add(false);
-                          }
-                          _apiLeaderRepository.uploadScore(score, user);
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: ((context) => QuizSuccessScreen(
-                                      score: (score).toDouble()))));
-                          _countDownController.pause();
-                        }
-                        if (_pageController.page !=
-                            QuizContentList.length - 1) {
-                          setState(() {
-                            currentQuestion += 1;
-                            print("time:$time");
-                            print("$inputIndex---$correctIndex");
-                            if (inputIndex != 0 &&
-                                correctIndex != 0 &&
-                                inputIndex == correctIndex) {
-                              streamController.add(true);
-                              score += calcScore(time);
-                              print("Score:$score");
-                            } else {
-                              streamController.add(false);
-                            }
-                          });
-                        }
-                        ;
-                      },
+                                Future.delayed(Duration(milliseconds: 300), () {
+                                  _countDownController.restart(
+                                      duration: _duration);
+                                });
+                              } else {
+                                print("time:$time");
+                                print("$inputIndex---$correctIndex");
+                                if (inputIndex != 0 &&
+                                    correctIndex != 0 &&
+                                    inputIndex == correctIndex) {
+                                  streamController.add(true);
+                                  score += calcScore(time);
+                                  score -= penalty(pTime, score);
+                                  print("Score:$score");
+                                } else {
+                                  streamController.add(false);
+                                }
+                                _apiLeaderRepository.uploadScore(score, user);
+                                Navigator.of(context).pushReplacement(
+                                    MaterialPageRoute(
+                                        builder: ((context) =>
+                                            QuizSuccessScreen(
+                                                score: (score).toDouble()))));
+                                _countDownController.pause();
+                              }
+                              if (_pageController.page !=
+                                  QuizContentList.length - 1) {
+                                setState(() {
+                                  currentQuestion += 1;
+                                  print("time:$time");
+                                  print("$inputIndex---$correctIndex");
+                                  if (inputIndex != 0 &&
+                                      correctIndex != 0 &&
+                                      inputIndex == correctIndex) {
+                                    streamController.add(true);
+                                    score += calcScore(time);
+                                    print("Score:$score");
+                                  } else {
+                                    streamController.add(false);
+                                  }
+                                });
+                              }
+                              ;
+                            },
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              color: Colors.yellow,
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: Text(
+                              "Score: $score",
+                              style: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.black,
+                                fontWeight: FontWeight.w700
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: PageView(
+                          physics: NeverScrollableScrollPhysics(),
+                          controller: _pageController,
+                          scrollDirection: Axis.horizontal,
+                          children: QuizContentList),
                     ),
                   ],
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Padding(padding: EdgeInsets.fromLTRB(20,0,20,0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Question $currentQuestion",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Score: $score",
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  child: Expanded(
-                    child: PageView(
-                        physics: NeverScrollableScrollPhysics(),
-                        controller: _pageController,
-                        scrollDirection: Axis.horizontal,
-                        children: QuizContentList),
-                  ),
-                ),
-              ]),
-        ),
+              ),
+            ]),
         Positioned(
           right: 15.0,
           bottom: 15.0,
@@ -373,7 +400,7 @@ class _SuccessState extends State<Success> {
                       inputIndex == correctIndex) {
                     streamController.add(true);
                     score += calcScore(time);
-                    score -=penalty(pTime,score);
+                    score -= penalty(pTime, score);
                     print("Score:$score");
                   } else {
                     streamController.add(false);
@@ -435,32 +462,23 @@ void _getAllQuizes(BuildContext context) {
 }
 
 int calcScore(int time) {
-  
   int score = (10 + (time + 60) * 10);
   print("SCORE===$score");
   return score;
 }
 
-int penalty(int penaltyTime,int prescore){
-  int minus=0;
-  if(penaltyTime<5){
-    minus=0;
-  }
-  else if(penaltyTime>=5 && penaltyTime<10){
-    minus=5;
-
-  }
-  else if(penaltyTime>=10 && penaltyTime<15){
-    minus=10;
-
-  }
-  else if(penaltyTime>=15 && penaltyTime<20){
-    minus=15;
-
-  }
-  else if(penaltyTime>=20){
-    minus=20;
-
+int penalty(int penaltyTime, int prescore) {
+  int minus = 0;
+  if (penaltyTime < 5) {
+    minus = 0;
+  } else if (penaltyTime >= 5 && penaltyTime < 10) {
+    minus = 5;
+  } else if (penaltyTime >= 10 && penaltyTime < 15) {
+    minus = 10;
+  } else if (penaltyTime >= 15 && penaltyTime < 20) {
+    minus = 15;
+  } else if (penaltyTime >= 20) {
+    minus = 20;
   }
   return minus;
 }

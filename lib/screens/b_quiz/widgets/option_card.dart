@@ -15,25 +15,18 @@ class Options extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-      child: Container(
-        height: height / 15,
-        width: width,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(22),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-          child: Center(
-            child: Text(
-              option,
-              style: TextStyle(
-                fontSize: 20,
-                color: C.cardFontColor,
-                fontWeight: FontWeight.w600,
-              ),
+    return Container(
+      height: height / 15,
+      width: width,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+        child: Center(
+          child: Text(
+            option,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+              fontWeight: FontWeight.w400,
             ),
           ),
         ),

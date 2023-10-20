@@ -1,7 +1,9 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/screens/b_quiz/cubit/quiz_cubit.dart';
+import 'package:ecellapp/screens/b_quiz/cubit/quiz_details_cubit.dart';
 import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_detail_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
@@ -103,7 +105,10 @@ class BQuiz extends StatelessWidget {
                         color: Colors.transparent,
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: ((context) => QuizList())));
+                              builder: ((context) => BlocProvider(
+                                  create: (_) => QuizDetailCubit(
+                                      APIQuizDetailRepository()),
+                                  child: QuizList()))));
                         },
 
                         child: Container(
@@ -129,9 +134,12 @@ class BQuiz extends StatelessWidget {
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                       ),
                       onPressed: () {
-                        print("press");
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: ((context) => LeaderList())));
+                            builder: ((context) => BlocProvider(
+                                create: (_) =>
+                                    QuizDetailCubit(APIQuizDetailRepository()),
+                                child: LeaderList()))));
+                        
                       },
                       child: Text(
                         "Leaderboard",

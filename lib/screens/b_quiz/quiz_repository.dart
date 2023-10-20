@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecellapp/models/questions.dart';
+import 'package:ecellapp/models/quiz_details.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -18,6 +19,7 @@ import '../login/cubit/login_cubit.dart';
 abstract class QuizRepository {
   /// All subfunctions are final No arguments required returns json
   Future<List<Questions>> getAllQuizes();
+  Future<List<QuizDetail>> getAllQuizesDetails();
 }
 
 //
@@ -201,6 +203,7 @@ abstract class QuizRepository {
 class APIQuizRepository extends QuizRepository {
   final String classTag = "APIgetQuizRepository";
   final List<Questions> questionList = List.empty(growable: true);
+  final List<QuizDetail> quizList = List.empty(growable: true);
 
   final String label;
   APIQuizRepository({required this.label});
@@ -220,6 +223,27 @@ class APIQuizRepository extends QuizRepository {
         onError: (e) => print("Error getting document: $e"),
       );
       return questionList;
+    } on FirebaseException catch (e) {
+      print(e);
+      throw UnknownException();
+    } catch (error) {
+      print(error);
+      throw UnknownException();
+    }
+  }
+  Future<List<QuizDetail>> getAllQuizesDetails() async {
+    final db = FirebaseFirestore.instance;
+
+    try {
+      await db.collection('QUIZES_LIST').doc().get().then(
+        (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          print(data);
+          data.forEach((e, v) => quizList.add(QuizDetail.fromFirestore(v)));
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+      return quizList;
     } on FirebaseException catch (e) {
       print(e);
       throw UnknownException();
