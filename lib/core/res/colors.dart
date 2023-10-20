@@ -9,10 +9,10 @@ class C {
   static final Color teamsBackground = HexColor("#372981");
 
   /// animated rings colors (1->4 increasingsize)
-  static final Color ring1 = HexColor("#2DFFF9");
-  static final Color ring2 = HexColor("#FB28E6");
-  static final Color ring3 = HexColor("#F8F010");
-  static final Color ring4 = HexColor("#AE82FF");
+  static final Color ring1 = HexColor("#f2f4f5");
+  static final Color ring2 = HexColor("#58dcfc");
+  static final Color ring3 = HexColor("#f2f4f5");
+  static final Color ring4 = HexColor("#58dcfc");
 
   /// home screen buttons
   static final Color eSummitButton1 = HexColor("#B67FFE");
