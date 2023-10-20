@@ -12,8 +12,9 @@ class TeamMember extends Equatable {
   final String? linkedin;
   final String? facebook;
   final String? profilePic;
+  final String? domain;
 
-  TeamMember({
+  TeamMember( {
     this.id,
     this.type,
     this.name,
@@ -21,6 +22,7 @@ class TeamMember extends Equatable {
     this.linkedin,
     this.facebook,
     this.profilePic,
+    this.domain,
   });
 
   factory TeamMember.fromJson(Map<String, dynamic> json) {
@@ -32,6 +34,7 @@ class TeamMember extends Equatable {
       linkedin:json["linkedin"] as String?,
       facebook:json["facebook"] as String?,
       profilePic: json[S.teamProfilePic] as String?,
+      domain: json["domain"] as String?,
     );
   }
 

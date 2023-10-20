@@ -9,7 +9,7 @@ import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'events_card.dart';
+import 'events_card_old.dart';
 
 class EventsScreen extends StatelessWidget {
   const EventsScreen({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class EventsScreen extends StatelessWidget {
                 if (state is EventsInitial)
                   return _buildLoading(context);
                 else if (state is EventsSuccess)
-                  return _buildSuccess(context, state.json, state.eventForms);
+                  return _buildSuccess(context, state.json);
                 else if (state is EventsLoading)
                   return _buildLoading(context);
                 else
@@ -58,12 +58,12 @@ class EventsScreen extends StatelessWidget {
     return Center(child: ECellLogoAnimation(size: width / 2));
   }
 
-  Widget _buildSuccess(BuildContext context, List<Event> eventsList, Map<String, dynamic> eventForms) {
+  Widget _buildSuccess(BuildContext context, List<Event> eventsList) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double top = MediaQuery.of(context).viewPadding.top;
 
     List<Widget> eventObjList = [];
-    eventsList.forEach((element) => eventObjList.add(EventCard(event: element, eventForm: eventForms[element.name].toString(),)));
+    eventsList.forEach((element) => eventObjList.add(EventCard(event: element)));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),

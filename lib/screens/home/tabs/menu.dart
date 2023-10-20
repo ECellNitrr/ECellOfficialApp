@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:ecellapp/widgets/UI2023widgets/expansiontile.dart';
 import 'package:ecellapp/widgets/raisedButton.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -80,7 +81,7 @@ class _MenuScreenState extends State<MenuScreen> {
               child: Container(
                 height: height*0.4,
                 width: width*0.8,
-                child: Image.asset(S.assetEcellLogoWhite, fit: BoxFit.fill,opacity: const AlwaysStoppedAnimation<double>(0.5),),
+                child: Image.asset(S.assetEcellLogoWhite, fit: BoxFit.fill,opacity: const AlwaysStoppedAnimation<double>(0.2),),
 
               ),
             )
@@ -137,7 +138,7 @@ class _MenuScreenState extends State<MenuScreen> {
               HomeImageSection(
                 height: height,
                 image: S.assetEventImage,
-                text: "Explore Events \nESUMMIT'23",
+                text: "Explore Events At\nESUMMIT'23",
                 elementColor: C.menuButtonColor,
                 gradientColor: C.backgroundBottom,
                 onPressed: (){Navigator.pushNamed(context, S.routeEvents);}
@@ -145,7 +146,6 @@ class _MenuScreenState extends State<MenuScreen> {
               //Sponsors
               HomeImageCarouselSection(
                   height: height,
-                  images: [Text("1"),Text("1"),Text("1"),Text("1"),],
                   text: "Meet Our \nSponsors",
                   elementColor:C.menuButtonColor,
                   gradientColor: C.backgroundBottom,

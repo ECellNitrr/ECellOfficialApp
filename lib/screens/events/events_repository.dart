@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecellapp/core/res/errors.dart';
 import 'package:ecellapp/core/utils/logger.dart';
 import 'package:ecellapp/models/event.dart';
@@ -129,4 +130,31 @@ class APIEventsRepository implements EventsRepository {
       throw UnknownException();
     }
   }
+}
+
+class APIEventFormRepository {
+
+  Future<Map<String, dynamic>> getAllEventForm() async {
+    final db = FirebaseFirestore.instance;
+    Map<String, dynamic> eventForm = {};
+    try {
+      await db.collection('EVENTS').doc('FORMS').get().then(
+            (DocumentSnapshot doc) {
+          final data = doc.data() as Map<String, dynamic>;
+          eventForm = data;
+          print(data);
+        },
+        onError: (e) => print("Error getting document: $e"),
+      );
+      return eventForm;
+    } on FirebaseException catch (e) {
+      print(e);
+      throw UnknownException();
+    } catch (error) {
+      print(error);
+      throw UnknownException();
+    }
+  }
+
+
 }
