@@ -4,6 +4,9 @@ import 'package:ecellapp/screens/about_us/tabs/team/team_repository_new.dart';
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
 import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
+import 'package:ecellapp/screens/gallery/cubit/gallery_cubit.dart';
+import 'package:ecellapp/screens/gallery/gallery.dart';
+import 'package:ecellapp/screens/gallery/gallery_repository.dart';
 import 'package:ecellapp/screens/sponser_new/cubit/sponsors_cubit.dart';
 import 'package:ecellapp/screens/sponser_new/sponsors.dart';
 import 'package:ecellapp/screens/sponser_new/sponsors_repository.dart';
@@ -130,6 +133,8 @@ class _ECellAppState extends State<ECellApp> {
           S.routeEsummit: (_) => ESummitScreen(),
           S.routeBQuiz: (_) => BQuiz(),
           S.routeBQuizLeaderboard: (_) => LeaderList(),
+          S.routeGallery: (_) => BlocProvider(
+              create: (_) => GalleryCubit(APIGalleryRepository()), child: GalleryScreen()),
           S.routeAboutUs: (_) =>
               BlocProvider(create: (_) => TeamCubitNew(APITeamRepositoryNew()), child: AboutUsScreenNew()),
         },
