@@ -33,20 +33,22 @@ class _MenuScreenState extends State<MenuScreen> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: Container(
-          padding: EdgeInsets.only(left: D.horizontalPadding - 5, top: 10),
-          child: PopupMenuButton<String>(
-            onSelected: _handleClick,
-            itemBuilder: (BuildContext context) {
-              return {'Logout'}.map((String choice) {
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
+        actions: [
+          Container(
+            padding: EdgeInsets.only(left: D.horizontalPadding - 5, top: 10),
+            child: PopupMenuButton<String>(
+              onSelected: _handleClick,
+              itemBuilder: (BuildContext context) {
+                return {'Logout'}.map((String choice) {
+                  return PopupMenuItem<String>(
+                    value: choice,
+                    child: Text(choice),
+                  );
+                }).toList();
+              },
+            ),
           ),
-        ),
+        ]
       ),
       body: Stack(children: [
         Stack(
@@ -161,7 +163,8 @@ class _MenuScreenState extends State<MenuScreen> {
                   text: "Speakers of\nESUMMIT'23",
                   elementColor: C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
-                  onPressed: (){print( "fuck");}
+                  onPressed: () => Navigator.pushNamed(
+                      context, S.routeSpeaker)
               ),
               //Gallery
               HomeImageSection(

@@ -32,9 +32,9 @@ class ESummitScreen extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [C.backgroundTop1, C.backgroundBottom1],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [C.backgroundBottom1, C.backgroundBottom],
             ),
           ),
           child: Container(
@@ -54,7 +54,7 @@ class ESummitScreen extends StatelessWidget {
                   padding: EdgeInsets.only(left: D.horizontalPadding-20, top: 20),
                   child: RichText(
                     text: TextSpan(
-                      text: "E-Summit '22",
+                      text: "E-Summit'23",
                       style: TextStyle(
                           fontSize: 45 * heightFactor,
                           fontWeight: FontWeight.w900),
@@ -65,8 +65,9 @@ class ESummitScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   padding: EdgeInsets.only(top: 30, bottom: 15),
                   child: RichText(
+                    textAlign: TextAlign.center,
                     text: TextSpan(
-                      text: "Eminence in Ingenuity",
+                      text: "Dare to Dream, \nVenture to Achieve",
                       style: TextStyle(
                           fontSize: 32 * heightFactor,
                           fontWeight: FontWeight.bold),
@@ -123,7 +124,7 @@ class ESummitScreen extends StatelessWidget {
                           TextSpan(
                             text: "E-Summit ",
                             style: TextStyle(
-                              color: C.speakerButtonColor,
+                              color: C.authButtonColor,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -150,42 +151,22 @@ class ESummitScreen extends StatelessWidget {
                     ),
                     child: LegacyRaisedButton(
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(30),
-                        ),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
                       ),
-                      color: C.speakerButtonColor,
+                      color: C.authButtonColor,
                       onPressed: () => Navigator.pushReplacementNamed(
                           context, S.routeSpeaker),
                       child: Container(
-                        height: 50,
+                        height: 60,
                         width: 120,
                         alignment: Alignment.center,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Speakers",
-                              style: TextStyle(
-                                color: C.primaryUnHighlightedColor,
-                                fontSize: 20 * heightFactor,
-                                fontWeight: FontWeight.w300,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black,
-                                    offset: Offset(0, 0.5),
-                                    blurRadius: 3,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(width: heightFactor * 10),
-                            Icon(
-                              Icons.arrow_forward_ios_rounded,
-                              color: C.primaryUnHighlightedColor,
-                              size: heightFactor * 20,
-                            ),
-                          ],
+                        child: Text(
+                          "Speakers",
+                          style: GoogleFonts.lato(
+                            fontWeight: FontWeight.bold,
+                            color: C.backgroundBottom,
+                            fontSize: 27 * heightFactor,
+                          ),
                         ),
                       ),
                     ),

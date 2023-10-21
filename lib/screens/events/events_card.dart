@@ -24,9 +24,6 @@ class EventCard extends StatelessWidget {
       event: event!,
       elementColor: C.menuButtonColor,
       gradientColor: C.backgroundBottom,
-      onPressed: () {
-        print('fuck');
-      },
     );
   }
 }
