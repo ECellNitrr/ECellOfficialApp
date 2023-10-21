@@ -42,11 +42,6 @@ class _LoginState extends State<Login> {
           accessToken: userData.accessToken, idToken: userData.idToken);
       var finalResult =
       await FirebaseAuth.instance.signInWithCredential(credential);
-      // GlobalState().user?.firstName=reslut.displayName;
-      // GlobalState().user?.lastName=reslut.displayName;
-      // GlobalState().user?.email=reslut.email;
-      // HomeScreen();
-      // logout();
     } catch (error) {
       print(error);
     }
@@ -105,26 +100,29 @@ class LoginScreen extends StatelessWidget {
       if (reslut == null) {
         return false;
       }
-
       final userData = await reslut.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: userData.accessToken, idToken: userData.idToken);
-      print('ID TOKEN');
-      String? token = userData.idToken;
+
+      String token = reslut.id;
+
       while (token!.length > 0) {
         int initLength = (token!.length >= 500 ? 500 : token.length);
         print(token.substring(0, initLength));
         int endLength = token.length;
         token = token.substring(initLength, endLength);
       }
-      await sl
-          .get<SharedPreferences>()
-          .setString(S.tokenKeySharedPreferences, token!);
+
+
       var finalResult =
       await FirebaseAuth.instance.signInWithCredential(credential);
-      print("Result $reslut");
+      print("Result $reslut");print(token);
       print(reslut.displayName);
       print(reslut.email);
+      print(reslut.id);
+      await sl
+          .get<SharedPreferences>()
+          .setString(S.tokenKeySharedPreferences, reslut.id);
       print(reslut.photoUrl);
       List<String> words = reslut.displayName!.split(' ');
       f=words[0];
