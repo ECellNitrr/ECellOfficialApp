@@ -17,6 +17,8 @@ class LeaderScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    double height = MediaQuery.of(context).size.height;
     return StatefulWrapper(
       onInit: () => _getAllLeaders(context),
       child: Scaffold(
@@ -34,12 +36,13 @@ class LeaderScreen extends StatelessWidget {
           ),
         ),
         body: Container(
-          height: MediaQuery.of(context).size.height,
+          height: height,
+          padding: EdgeInsets.symmetric(horizontal: height*0.02 ),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [C.backgroundTop1, C.backgroundBottom1],
+              colors: [C.backgroundTop1, C.teamsBackground],
             ),
           ),
           child: BlocBuilder<LeaderCubit, LeaderState>(
@@ -79,28 +82,30 @@ class LeaderScreen extends StatelessWidget {
           overscroll.disallowIndicator();
           return true;
         },
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: EdgeInsets.only(top: top + 65),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "LeaderBoard",
-                  style: TextStyle(
-                    fontSize: ratio > 0.5 ? 45 : 50,
-                    fontWeight: FontWeight.w600,
-                  ),
+        child: Padding(
+          padding: EdgeInsets.only(top: top + 65),
+          child: Column(
+            children: <Widget>[
+              Text(
+                "LeaderBoard",
+                style: TextStyle(
+                  fontSize: ratio > 0.5 ? 45 : 50,
+                  fontWeight: FontWeight.w600,
                 ),
-                SizedBox(
-                  height: 10,
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: LeaderContentList),
                 ),
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: LeaderContentList),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),

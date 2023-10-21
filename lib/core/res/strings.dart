@@ -122,6 +122,10 @@ class S {
   static const String assetAIMIcon = "assets/aim-tab-icon.png";
   static const String assetBquizMedal = "assets/bquiz-medal.png";
   static const String assetUnknownIcon = "assets/icons/Unknown.png";
+  static const String assetFirstMedalIcon = "assets/first-medal.png";
+  static const String assetSecondMedalIcon = "assets/second-medal.png";
+  static const String assetThirdMedalIcon = "assets/third-medal.png";
+  static const String assetScoreIcon = "assets/score.png";
 
   // contact us info
   static const String ecellAddress = "National Institute of Technology, GE Road, Raipur";

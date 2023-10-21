@@ -16,11 +16,14 @@ class QuestionCard extends StatefulWidget {
 }
 
 class _QuestionCardState extends State<QuestionCard> {
-  List<bool> isSelected = [false, false, false, false];
-  Color c= Colors.lightBlueAccent;
+  List<bool> isSelected1 = [false];
+  List<bool> isSelected2 = [false];
+  List<bool> isSelected3 = [false];
+  List<bool> isSelected4 = [false];
+  Color c= Colors.blueAccent;
+  Color fillColor = Colors.blue.shade100;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     widget.stream.listen((flag) {
       mySetState(flag);
@@ -30,11 +33,13 @@ class _QuestionCardState extends State<QuestionCard> {
     if(flag==true){
       if(mounted){setState(() {
         c=Colors.green;
+        fillColor = Colors.green;
       });}
     }
     else{
       if(mounted){setState(() {
         c=Colors.red;
+        fillColor = Colors.red;
       });}
     }
 
@@ -45,25 +50,22 @@ class _QuestionCardState extends State<QuestionCard> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
-      child: Column(children: [
-        Center(
-          child: Container(
-            width: MediaQuery.of(context).size.width,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: height*0.02),
+        child: Column(children: [
+          Container(
+            width: width,
               margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
               padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                  border: Border.all(
-                width: 2,
-                color: Colors.yellowAccent,
-              )),
               child: Padding(
                 padding: EdgeInsets.all(5),
                 
                 child: Column(children: [
                   Text((widget.quiz?.question).toString(),
+                  textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 20.0,
-                        color: Colors.white,
+                        color: Colors.black,
                       )),
                   SizedBox(
                     height: 10,
@@ -71,57 +73,134 @@ class _QuestionCardState extends State<QuestionCard> {
                   widget.quiz!.isImage == true
                       ? Container(
                           height: 100,
-                          child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: widget.quiz!.images?.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Container(
-                                  padding: EdgeInsets.all(5),
-                                  height: 50,
-                                  child: Image.network(
-                                    widget.quiz!.images![index],
-                                    fit: BoxFit.fill,
-                                  ),
-                                );
-                              }))
+                          child: Center(
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: widget.quiz!.images?.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    padding: EdgeInsets.all(5),
+                                    height: 50,
+                                    child: Image.network(
+                                      widget.quiz!.images![index],
+                                      fit: BoxFit.fill,
+                                    ),
+                                  );
+                                }),
+                          ))
                       : SizedBox(
                           height: 30,
                         ),
                 ]),
               )),
-        ),
-        ToggleButtons(
-          borderWidth: 3,
-          direction: Axis.vertical,
-          // fillColor: c,
-          selectedBorderColor: c,
-          splashColor:Colors.red[200],
-          isSelected: isSelected,
-          children: [
-            Options(
-                height: height, width: width, option: widget.quiz!.answers![0]),
-            Options(
-                height: height, width: width, option: widget.quiz!.answers![1]),
-            Options(
-                height: height, width: width, option: widget.quiz!.answers![2]),
-            Options(
-                height: height, width: width, option: widget.quiz!.answers![3]),
-          ],
-          onPressed: (int newIndex) {
-            setState(() {
-              for (int index = 0; index < isSelected.length; index++) {
-                if (newIndex == index) {
-                  isSelected[index] = true;
-                  print(isSelected);
-                  widget.callBack(newIndex+1,widget.quiz!.correctIndex);
-                } else {
-                  isSelected[index] = false;
-                }
-              }
-            });
-          },
-        )
-      ]),
+          Container(
+            child: Column(
+              children: [
+                ToggleButtons(
+                  borderWidth: 1,
+                  borderRadius: BorderRadius.circular(22),
+                  direction: Axis.vertical,
+                  borderColor: Colors.black38,
+                  fillColor: fillColor,
+                  selectedBorderColor: c,
+                  isSelected: isSelected1,
+                  children: [
+                    Options(
+                        height: height, width: width, option: widget.quiz!.answers![0]),
+                  ],
+                  onPressed: (int newIndex) {
+                    setState(() {
+                          isSelected1[0] = !isSelected1[0];
+                          isSelected2[0] = false;
+                          isSelected3[0] = false;
+                          isSelected4[0] = false;
+                          print(isSelected1);
+                          widget.callBack(1,widget.quiz!.correctIndex);
+                        
+                    });
+                  },
+                ),
+                SizedBox(height: 10,),
+                ToggleButtons(
+                  borderWidth: 1,
+                  borderRadius: BorderRadius.circular(22),
+                  borderColor: Colors.black38,
+                  direction: Axis.vertical,
+                  selectedBorderColor: c,
+                  fillColor: fillColor,
+                  isSelected: isSelected2,
+                  children: [
+                    Options(
+                        height: height, width: width, option: widget.quiz!.answers![1]),
+                  ],
+                  onPressed: (int newIndex) {
+                    setState(() {
+                      isSelected2[0] = !isSelected2[0];
+                      isSelected1[0] = false;
+                      isSelected3[0] = false;
+                      isSelected4[0] = false;
+                      print(isSelected2);
+                      widget.callBack(2, widget.quiz!.correctIndex);
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ToggleButtons(
+                  borderWidth: 1,
+                  borderRadius: BorderRadius.circular(22),
+                  borderColor: Colors.black38,
+                  direction: Axis.vertical,
+                  selectedBorderColor: c,
+                  isSelected: isSelected3,
+                  fillColor: fillColor,
+                  children: [
+                    Options(
+                        height: height, width: width, option: widget.quiz!.answers![2]),
+                  ],
+                  onPressed: (int newIndex) {
+                    setState(() {
+                      isSelected3[0] = !isSelected3[0];
+                      isSelected1[0] = false;
+                      isSelected2[0] = false;
+                      isSelected4[0] = false;
+                      print(isSelected3);
+                      widget.callBack(3, widget.quiz!.correctIndex);
+                    });
+                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                ToggleButtons(
+                  borderWidth: 1,
+                  borderRadius: BorderRadius.circular(22),
+                  borderColor: Colors.black38,
+                  direction: Axis.vertical,
+                  selectedBorderColor: c,
+                  fillColor: fillColor,
+                  isSelected: isSelected4,
+                  children: [
+                    Options(
+                        height: height, width: width, option: widget.quiz!.answers![3]),
+                  ],
+                 onPressed: (int newIndex) {
+                    setState(() {
+                      isSelected4[0] = !isSelected4[0];
+                      isSelected1[0] = false;
+                      isSelected3[0] = false;
+                      isSelected2[0] = false;
+                      print(isSelected4);
+                      widget.callBack(4, widget.quiz!.correctIndex);
+                    });
+                  },
+                ),
+              ],
+            ),
+          )
+        ]),
+      ),
     );
   }
 }
