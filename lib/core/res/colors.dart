@@ -28,7 +28,7 @@ class C {
 
   /// esummit + speakers background color gradient
   static final Color backgroundTop1 = HexColor("#B67EFE");
-  static final Color backgroundBottom1 = HexColor("#FB28E6");
+  static final Color backgroundBottom1 = HexColor("#2146C7");
 
   /// theme colors
   static final Color primaryHighlightedColor = HexColor("#98E4FF");

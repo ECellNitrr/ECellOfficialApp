@@ -36,7 +36,7 @@ class SpeakerScreen extends StatelessWidget {
             gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [C.backgroundTop1, C.backgroundBottom1],
+              colors: [C.backgroundTop, C.backgroundBottom],
             ),
           ),
           child: BlocBuilder<SpeakerCubit, SpeakerState>(
