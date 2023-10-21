@@ -197,6 +197,17 @@ class HomeImageCarouselSection extends StatelessWidget {
             height: height * 0.17,
             decoration: BoxDecoration(
               borderRadius:
+              BorderRadius.all(Radius.circular(20.0)), // Rounded corners
+              image: DecorationImage(
+                image: AssetImage(S.assetSpeakerBackdrop),
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          Container(
+            height: height * 0.17,
+            decoration: BoxDecoration(
+              borderRadius:
                   BorderRadius.all(Radius.circular(20.0)), // Rounded corners
             ),
             child: BlocProvider(
@@ -528,7 +539,6 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                     end: Alignment.bottomCenter,
                     colors: [
                       widget.gradientColor,
-                      Colors.transparent,
                       Colors.transparent
                     ],
                   ),

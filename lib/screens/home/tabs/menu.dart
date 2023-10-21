@@ -34,21 +34,18 @@ class _MenuScreenState extends State<MenuScreen> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         actions: [
-          Container(
-            padding: EdgeInsets.only(left: D.horizontalPadding - 5, top: 10),
-            child: PopupMenuButton<String>(
-              onSelected: _handleClick,
-              itemBuilder: (BuildContext context) {
-                return {'Logout'}.map((String choice) {
-                  return PopupMenuItem<String>(
-                    value: choice,
-                    child: Text(choice),
-                  );
-                }).toList();
-              },
-            ),
+          PopupMenuButton<String>(
+            onSelected: _handleClick,
+            itemBuilder: (BuildContext context) {
+              return {'Logout'}.map((String choice) {
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
           ),
-        ]
+        ],
       ),
       body: Stack(children: [
         Stack(
@@ -72,13 +69,6 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.fromLTRB(12.0, 32.0, 0.0, 0.0),
-              child: WelcomeText(
-                text: "Entrepreneurship \nCell",
-                size: 35.0,
-              ),
-            ),
-            Padding(
               padding: EdgeInsets.fromLTRB(width*0.1, height*0.4, 0.0, 0.0),
               child: Container(
                 height: height*0.4,
@@ -94,8 +84,15 @@ class _MenuScreenState extends State<MenuScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(12.0, 32.0, 0.0, 0.0),
+                child: WelcomeText(
+                  text: "Entrepreneurship\nCell",
+                  size: 35.0,
+                ),
+              ),
               SizedBox(
-                height: height * 0.21,
+                height: height * 0.08,
               ),
               Padding(
                 padding: const EdgeInsets.fromLTRB(10.0, 15.0, 0.0, 5.0),
@@ -169,11 +166,12 @@ class _MenuScreenState extends State<MenuScreen> {
               //Gallery
               HomeImageSection(
                   height: height,
-                  image: S.assetEventImage,
+                  image: S.assetSpeakerBackdrop,
                   text: "Gallery",
                   elementColor: C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
-                  onPressed: (){print( "fuck");}
+                  onPressed: () => Navigator.pushNamed(
+                      context, S.routeGallery)
               ),
               SizedBox(height: height*0.1,)
             ],

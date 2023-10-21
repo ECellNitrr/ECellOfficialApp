@@ -9,6 +9,7 @@ class S {
   static const String getEventsUrl = baseUrl + "events/list/2019/";
   static const String getSponsorsUrl = baseUrl + "sponsors/sorted_list/";
   static const String getSpeakerUrl = baseUrl + "speakers/full_list/";
+  static const String galleryUrl = baseUrl + "gallery/list/";
   static const String postFeedbackUrl = baseUrl + "feedback/post/";
   static String getTeamUrl = baseUrl + "team/list/";
   static const String getLeaderBoardUrl = baseUrl + "bquiz/leaderboard/";
@@ -174,4 +175,5 @@ class S {
   static const routeAboutUs = "/about_us";
   static const routeBQuiz = "/bquiz";
   static const routeBQuizLeaderboard = "/leaderboard";
+  static const routeGallery = "/gallery";
 }
