@@ -4,6 +4,8 @@ import 'package:ecellapp/models/event.dart';
 import 'package:ecellapp/screens/events/cubit/events_cubit.dart';
 import 'package:ecellapp/screens/gallery/cubit/gallery_cubit.dart';
 import 'package:ecellapp/screens/gallery/cubit/gallery_state.dart';
+import 'package:ecellapp/screens/gallery/image_grid.dart';
+import 'package:ecellapp/widgets/UI2023widgets/HomeScreen.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
@@ -11,6 +13,8 @@ import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../core/res/strings.dart';
 
 class GalleryScreen extends StatelessWidget {
   const GalleryScreen({Key? key}) : super(key: key);
@@ -60,12 +64,16 @@ class GalleryScreen extends StatelessWidget {
   }
 
   Widget _buildSuccess(BuildContext context, Map<String, dynamic> galleryList) {
+    double height = MediaQuery.of(context).size.height;
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double top = MediaQuery.of(context).viewPadding.top;
 
-    // List<Widget> eventObjList = [];
-    // galleryList.forEach((element) => eventObjList.add(EventCard(event: element, eventForm: eventForms[element.name].toString(),)));
     print(galleryList);
+    List<String> years = [];
+    galleryList.forEach((key, value) {
+      years.add(key);
+    });
+
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: Stack(
@@ -79,17 +87,44 @@ class GalleryScreen extends StatelessWidget {
               scrollDirection: Axis.vertical,
               child: Container(
                 margin: EdgeInsets.only(top: top + 56),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Stack(
                   children: <Widget>[
-                    Text(
-                      "Events",
-                      style: TextStyle(
-                        fontSize: ratio > 0.5 ? 45 : 50,
-                        fontWeight: FontWeight.w600,
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Gallery",
+                        style: TextStyle(
+                          fontSize: ratio > 0.5 ? 45 : 50,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
-                    // Column(children: eventObjList),
+                    SizedBox(
+                      height: height ,
+                      child: ListView.builder(
+                        itemCount: years.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return HomeImageSection(
+                            height: height,
+                            image: S.assetSpeakerBackdrop,
+                            text: years[index],
+                            elementColor: C.menuButtonColor,
+                            gradientColor: C.backgroundBottom,
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return ImageGrid(
+                                      imageUrls: galleryList[years[index]]!.toList(),
+                                    galleryText: years[index],
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

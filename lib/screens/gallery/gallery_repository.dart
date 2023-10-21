@@ -155,8 +155,7 @@ class APIGalleryRepository implements GalleryRepository {
       var json = jsonDecode(utf8.decode(response.bodyBytes));
       // print(json);
       Map<String, dynamic> galleryImages = {};
-      galleryImages = json["gallery"] as Map<String, dynamic>;
-
+      galleryImages = json["gallery"];
       return galleryImages;
 
     } else if (response.statusCode == 404) {
