@@ -390,7 +390,7 @@ class _EventImageSectionState extends State<EventImageSection> {
                           height: widget.height * 0.14,
                         ),
                         Container(
-                          width: widget.height * 0.29,
+                          width: widget.height * 0.20,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
@@ -584,7 +584,7 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                         width: widget.height * 0.17,
                       ),
                       Container(
-                        width: widget.height * 0.27,
+                        width: widget.height * 0.20,
                         child: Align(
                           alignment: Alignment.topLeft,
                           child: Padding(

@@ -72,10 +72,10 @@ class LeaderList extends StatelessWidget {
           padding: EdgeInsets.only(top: top + 65),
           child: Column(
             children: <Widget>[
-              Row(
+              Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  GradientText("QUIZ",
+                  GradientText("LEADERBOARD",
                       gradient: LinearGradient(
                         colors: [
                           C.bQuizGradient1,

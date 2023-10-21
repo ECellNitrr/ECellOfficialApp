@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:confetti/confetti.dart';
 import 'package:ecellapp/core/res/colors.dart';
+import 'package:ecellapp/screens/b_quiz/cubit/quiz_details_cubit.dart';
+import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
+import 'package:ecellapp/screens/b_quiz/quiz_detail_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_screen.dart';
 import 'package:ecellapp/widgets/gradient_text.dart';
@@ -36,8 +39,8 @@ class _QuizSuccessScreenState extends State<QuizSuccessScreen> {
 
   @override
   void dispose(){
-    controller.dispose();
     super.dispose();
+    controller.dispose();
   }
   @override
   Widget build(BuildContext context) {
@@ -111,8 +114,11 @@ class _QuizSuccessScreenState extends State<QuizSuccessScreen> {
                   onPressed: () {
                     dispose();
                     //TODO: Function to send score and user data to firebase
-                    Navigator.pushReplacementNamed(
-                        context, S.routeBQuizLeaderboard);
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: ((context) => BlocProvider(
+                            create: (_) =>
+                                QuizDetailCubit(APIQuizDetailRepository()),
+                            child: LeaderList()))));
                   },
 
                   child: Container(
