@@ -152,58 +152,58 @@ class TeamScreenNew extends StatelessWidget {
                     height: top + 45,
                   ),
                   Expanded(
-                      child: ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (BuildContext context, int index) => Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              if (data[index].members.length > 0)
-                                Text(data[index].category,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.raleway(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
-                              GridView.count(
-                                childAspectRatio:
+                    child: ListView.builder(
+                      itemCount: data.length,
+                      itemBuilder: (BuildContext context, int index) => Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          if (data[index].members.length > 0)
+                            Text(data[index].category,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.raleway(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
+                          GridView.count(
+                            childAspectRatio:
                                 list.contains(data[index].category)
                                     ? (0.8 / 1)
                                     : (1 / 0.5),
-                                physics: ScrollPhysics(),
-                                shrinkWrap: true,
-                                padding: data[index].members.length == 1
-                                    ? EdgeInsets.symmetric(
+                            physics: ScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: data[index].members.length == 1
+                                ? EdgeInsets.symmetric(
                                     horizontal: width * 0.25, vertical: 5)
-                                    : EdgeInsets.symmetric(
+                                : EdgeInsets.symmetric(
                                     horizontal: 10, vertical: 5),
-                                crossAxisSpacing: 5,
-                                mainAxisSpacing: 5,
-                                crossAxisCount:
+                            crossAxisSpacing: 5,
+                            mainAxisSpacing: 5,
+                            crossAxisCount:
                                 data[index].members.length == 1 ? 1 : 2,
-                                children: [
-                                  ...list.contains(data[index].category)
-                                      ? data[index]
+                            children: [
+                              ...list.contains(data[index].category)
+                                  ? data[index]
                                       .members
                                       .map((e) => TeamsCardNew(teamMember: e))
-                                      : List.generate(
+                                  : List.generate(
                                       data[index].members.length,
-                                          (i) => TeamsCard2(
+                                      (i) => TeamsCard2(
                                           teamMember: data[index].members[i]))
-                                ],
-                              ),
-
-                              SizedBox(
-                                height: 10,
-                              ),
                             ],
                           ),
-                        ),
-                      )
+
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
                   ),
                 ],
               ),
