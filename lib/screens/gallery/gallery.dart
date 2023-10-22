@@ -93,10 +93,11 @@ class GalleryScreen extends StatelessWidget {
                       alignment: Alignment.center,
                       child: Text(
                         "Gallery",
-                        style: TextStyle(
-                          fontSize: ratio > 0.5 ? 45 : 50,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: GoogleFonts.raleway(
+                            fontSize: ratio>0.5?45:50,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 0.5),
                       ),
                     ),
                     SizedBox(

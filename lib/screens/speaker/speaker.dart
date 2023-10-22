@@ -70,23 +70,24 @@ class SpeakerScreen extends StatelessWidget {
           overscroll.disallowIndicator();
           return true;
         },
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Padding(
-            padding: EdgeInsets.only(top: top + 56),
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "Speakers",
-                  style: TextStyle(
-                    fontSize: ratio > 0.5 ? 45 : 50,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                Column(children: speakerContentList),
-              ],
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: top + 40,
             ),
-          ),
+            Text(
+              "Speakers",
+              style: GoogleFonts.raleway(
+                  fontSize: ratio > 0.5 ? 45 : 50,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 0.5),
+            ),
+            Expanded(child: ListView(
+              padding: EdgeInsets.only(top: 10),
+              children: speakerContentList,
+            ))
+          ],
         ),
       ),
     );
