@@ -166,7 +166,7 @@ class TeamScreenNew extends StatelessWidget {
                           style: !active
                               ? null
                               : GoogleFonts.raleway(
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.bold,
                                   color: C.menuButtonColor),
                         ),
