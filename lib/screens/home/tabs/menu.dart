@@ -190,6 +190,7 @@ class _MenuScreenState extends State<MenuScreen> {
       case 'Logout':
         Provider.of<GlobalState>(context, listen: false).user = null;
         await sl.get<SharedPreferences>().remove(S.tokenKeySharedPreferences);
+        await sl.get<SharedPreferences>().remove('GoogleSign');
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Logged Out Successfuly")));
         logout();

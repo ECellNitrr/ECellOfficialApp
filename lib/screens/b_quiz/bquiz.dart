@@ -28,11 +28,31 @@ final GlobalKey<ScaffoldMessengerState> snackbarKey =
 
 class BQuiz extends StatelessWidget {
   @override
+  void _showMessage(String message) {
+    snackbarKey.currentState?.showSnackBar(SnackBar(content: Text(message),));
+  }
   Widget build(BuildContext context) {
     if(context.read<GlobalState>().user?.firstName=="Guest"){
+      final snackBar = SnackBar(content: Text('Login required for B-Quiz'));
+      Future(() => ScaffoldMessenger.of(context).showSnackBar(snackBar));
+      // WidgetsBinding.instance.addPostFrameCallback((_) => _showMessage('Login required for B-Quiz'));
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(
+      //     content: Text('Login required for B-Quiz'),
+      //   ),
+      // );
+      // Scaffold(
+        // resizeToAvoidBottomInset: false,
+        //  body: ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login required for B-Quiz"))),;
+        // );
+      // snackbarKey.showSnackBar(
+      //     SnackBar(
+      //       content: Text('Assign a GlobalKey to the Scaffold'),
+      //       duration: Duration(seconds: 1),
+      //     ));
       return Provider(
-          create: (_) => LoginCubit(APILoginRepository()),
-          child: LoginScreen(),
+        create: (_) => LoginCubit(APILoginRepository()),
+        child: LoginScreen(),
       );
     }
     double height = MediaQuery.of(context).size.height;
