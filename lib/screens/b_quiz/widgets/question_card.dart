@@ -51,18 +51,16 @@ class _QuestionCardState extends State<QuestionCard> {
     double width = MediaQuery.of(context).size.width;
     return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: height*0.02),
+        padding: EdgeInsets.symmetric(horizontal: height*0.01),
         child: Column(children: [
           Container(
             width: width,
-              margin: EdgeInsets.fromLTRB(10, 15, 10, 15),
-              padding: EdgeInsets.all(5),
               child: Padding(
                 padding: EdgeInsets.all(5),
                 
                 child: Column(children: [
                   Text((widget.quiz?.question).toString(),
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                       style: TextStyle(
                         fontSize: 20.0,
                         color: Colors.black,

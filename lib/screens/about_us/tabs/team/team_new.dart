@@ -17,10 +17,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
 
 import '../../../../widgets/raisedButton.dart';
 import '../../../../widgets/rotated_curveed_tile.dart';

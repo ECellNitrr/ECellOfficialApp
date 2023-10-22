@@ -214,8 +214,9 @@ class _SuccessState extends State<Success> {
                 height: height * 0.05,
               ),
               Container(
-                height: height * 0.7,
+                height: height * 0.75,
                 margin: EdgeInsets.symmetric(horizontal: width * 0.05),
+                padding: EdgeInsets.only(bottom: 20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(22),
                     color: Colors.white,
