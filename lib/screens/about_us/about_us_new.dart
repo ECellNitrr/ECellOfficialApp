@@ -9,14 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AboutUsScreenNew extends StatefulWidget {
+  int index;
+  AboutUsScreenNew({required this.index});
   @override
-  _AboutUsScreenNewState createState() => _AboutUsScreenNewState();
+  _AboutUsScreenNewState createState() => _AboutUsScreenNewState(index);
 }
 
 class _AboutUsScreenNewState extends State<AboutUsScreenNew> {
   int _currentIndex = 0;
   final tabs = [AimScreen(), TeamScreenNew()];
-
+  _AboutUsScreenNewState(int index){
+    this._currentIndex = index;
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(

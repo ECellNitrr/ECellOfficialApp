@@ -173,6 +173,15 @@ class _MenuScreenState extends State<MenuScreen> {
                   onPressed: () => Navigator.pushNamed(
                       context, S.routeGallery)
               ),
+              HomeImageSection(
+                  height: height,
+                  image: S.assetEventImage,
+                  text: "Meet Our\nTeam",
+                  elementColor: C.menuButtonColor,
+                  gradientColor: C.backgroundBottom,
+                  onPressed: () => Navigator.pushNamed(
+                      context, S.routeTeam)
+              ),
               SizedBox(height: height*0.1,)
             ],
           ),

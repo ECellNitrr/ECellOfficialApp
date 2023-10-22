@@ -54,7 +54,7 @@ class TeamScreenNew extends StatelessWidget {
               child: Text(
                 "Our Team",
                 style: GoogleFonts.raleway(
-                    fontSize: 40,
+                    fontSize: 35,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: 0.5),
@@ -137,7 +137,7 @@ class TeamScreenNew extends StatelessWidget {
             children: [
               Padding(
                   padding:
-                      EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
+                      EdgeInsets.fromLTRB(width * 0.1, height * 0.3, 0.0, 0.0),
                   child: Container(
                     height: height * 0.4,
                     width: width * 0.8,
@@ -151,7 +151,7 @@ class TeamScreenNew extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height: top + 65,
+                    height: top + 75,
                   ),
                   Expanded(
                     child: ScrollableListTabScroller(
@@ -166,9 +166,9 @@ class TeamScreenNew extends StatelessWidget {
                           style: !active
                               ? null
                               : GoogleFonts.raleway(
-                                  fontSize: 22,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.bold,
-                                  color: Colors.black),
+                                  color: C.menuButtonColor),
                         ),
                       ),
                       itemBuilder: (BuildContext context, int index) => Container(
