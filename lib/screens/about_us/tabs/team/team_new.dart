@@ -21,7 +21,7 @@ class TeamScreenNew extends StatelessWidget {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    List<int> yearList = [2023, 2022];
+    // List<int> yearList = [2023, 2022];
     return StatefulWrapper(
       onInit: () => _getAllTeamMembers(context),
       child: Scaffold(
@@ -37,43 +37,33 @@ class TeamScreenNew extends StatelessWidget {
               onPressed: () => Navigator.of(context).pop(),
             )
           ),
-          title: Center(
-            child: Text(
-              "Our Team",
-              style: GoogleFonts.raleway(
-                  fontSize: 38,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 0.5),
-            ),
-          ),
-          actions: [
-            Container(
-              width: width * 0.14,
-              height: 50,
-              // child: DropdownMenu<int>(
-              //   inputDecorationTheme: InputDecorationTheme(
-              //     isCollapsed: true,
-              //     enabledBorder: InputBorder.none,
-              //   ),
-              //   textStyle: TextStyle(color: Colors.white),
-              //   leadingIcon: Icon(
-              //     Icons.keyboard_arrow_down_sharp,
-              //     color: Colors.white,
-              //   ),
-              //   onSelected: ((value) {
-              //     S.teamApiYear = value!;
-              //     _getAllTeamMembers(context);
-              //   }),
-              //   initialSelection: yearList.first,
-              //   dropdownMenuEntries:
-              //   yearList.map<DropdownMenuEntry<int>>((int value) {
-              //     return DropdownMenuEntry<int>(
-              //         value: value, label: value.toString());
-              //   }).toList(),
-              // ),
-            )
-          ],
+          // actions: [
+          //   Container(
+          //     width: width * 0.25,
+          //     height: 50,
+          //     child: DropdownMenu<int>(
+          //       inputDecorationTheme: InputDecorationTheme(
+          //         isCollapsed: true,
+          //         enabledBorder: InputBorder.none,
+          //       ),
+          //       textStyle: TextStyle(color: Colors.white),
+          //       leadingIcon: Icon(
+          //         Icons.keyboard_arrow_down_sharp,
+          //         color: Colors.white,
+          //       ),
+          //       onSelected: ((value) {
+          //         S.teamApiYear = value!;
+          //         _getAllTeamMembers(context);
+          //       }),
+          //       initialSelection: yearList.first,
+          //       dropdownMenuEntries:
+          //       yearList.map<DropdownMenuEntry<int>>((int value) {
+          //         return DropdownMenuEntry<int>(
+          //             value: value, label: value.toString());
+          //       }).toList(),
+          //     ),
+          //   )
+          // ],
         ),
         body: Stack(
           children: [
@@ -139,8 +129,17 @@ class TeamScreenNew extends StatelessWidget {
                   SizedBox(
                     height: top + 45,
                   ),
+                  Text(
+                    "Our Team",
+                    style: GoogleFonts.raleway(
+                        fontSize: 38,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 0.5),
+                  ),
                   Expanded(
                     child: ListView.builder(
+                      padding: EdgeInsets.only(top: 10),
                       itemCount: data.length,
                       itemBuilder: (BuildContext context, int index) => Container(
                       child: Column(
