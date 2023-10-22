@@ -129,7 +129,7 @@ class _MenuScreenState extends State<MenuScreen> {
                         Navigator.pushNamed(context, S.routeAboutUs);
                       },
                       color: C.menuButtonColor,
-                      image: S.assetEcellLogoWhite,
+                      image: S.assetEcellLogoBlack,
                       text: 'About Us'),
                 ],
               ),
@@ -182,7 +182,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   onPressed: () => Navigator.pushNamed(
                       context, S.routeTeam)
               ),
-              SizedBox(height: height*0.1,)
+              // SizedBox(height: height*0.1,)
             ],
           ),
         ),

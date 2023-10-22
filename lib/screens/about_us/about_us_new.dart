@@ -1,12 +1,14 @@
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
-import 'package:ecellapp/core/res/colors.dart';
-import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/screens/about_us/tabs/aim/aim.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team_new.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
+
+import '../../core/res/colors.dart';
+import '../../core/res/strings.dart';
 
 class AboutUsScreenNew extends StatefulWidget {
   int index;
@@ -23,54 +25,34 @@ class _AboutUsScreenNewState extends State<AboutUsScreenNew> {
   }
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        tabs[_currentIndex],
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: _buildBottomNavBar(context),
-        ),
-      ],
+    return Scaffold(
+      bottomNavigationBar:  _buildBottomNavBar(context),
+      body: tabs[_currentIndex],
+
     );
   }
 
   Widget _buildBottomNavBar(context) {
-    double width = MediaQuery.of(context).size.width;
-    final _controller = NotchBottomBarController(index: _currentIndex);
-    return AnimatedNotchBottomBar(
-      bottomBarWidth: 200,
-      bottomBarItems: [
-        BottomBarItem(
-          inActiveItem: Image.asset(
-            S.assetAIMIcon,
-            height: 20,
-            color: Colors.blueGrey,
-          ),
-          activeItem: Image.asset(
-            S.assetAIMIcon,
-            height: 20,
-            color: Colors.blueAccent,
-          ),
+    double height = MediaQuery.of(context).size.height;
+    return SalomonBottomBar(
+      backgroundColor: C.backgroundBottom,
+      unselectedItemColor: C.menuButtonColor,
+      currentIndex: _currentIndex,
+      onTap: (i) => setState(() => _currentIndex = i),
+      items: [
+        /// Profile
+        SalomonBottomBarItem(
+          icon: Image.asset(S.assetAIMIcon),
+          title: Text("Aim"),
+          selectedColor: C.menuButtonColor,
         ),
-        BottomBarItem(
-          inActiveItem: Image.asset(
-            S.assetTeamIcon,
-            height: 20,
-            color: Colors.blueGrey,
-          ),
-          activeItem: Image.asset(
-            S.assetTeamIcon,
-            height: 20,
-            color: Colors.blueAccent,
-          ),
+        /// Home
+        SalomonBottomBarItem(
+          icon: Image.asset(S.assetTeamIcon),
+          title: Text("Team"),
+          selectedColor: C.menuButtonColor,
         ),
       ],
-      notchBottomBarController: _controller,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      }, // Provide the appropriate controller
     );
   }
 }

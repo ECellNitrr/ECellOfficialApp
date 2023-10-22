@@ -101,6 +101,7 @@ class S {
   static const String assetBottomRightColorful = "assets/colorful/bottom-right.png";
   static const String assetBottomLeftColorful = "assets/colorful/bottom-left.png";
   static const String assetEcellLogoWhite = "assets/ecell-logo.png";
+  static const String assetEcellLogoBlack = "assets/ecell_balck_logo.png";
   static const String assetEsummitLogoWhite = "assets/esummit-logo.png";
   static const String assetSpeakerCardFrame = "assets/speaker-frame.png";
   static const String assetIconLinkdin = "assets/linkdin-icon.png";
