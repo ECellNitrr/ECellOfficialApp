@@ -136,7 +136,9 @@ class _ECellAppState extends State<ECellApp> {
           S.routeGallery: (_) => BlocProvider(
               create: (_) => GalleryCubit(APIGalleryRepository()), child: GalleryScreen()),
           S.routeAboutUs: (_) =>
-              BlocProvider(create: (_) => TeamCubitNew(APITeamRepositoryNew()), child: AboutUsScreenNew()),
+              BlocProvider(create: (_) => TeamCubitNew(APITeamRepositoryNew()), child: AboutUsScreenNew(index: 0,)),
+          S.routeTeam: (_) =>
+              BlocProvider(create: (_) => TeamCubitNew(APITeamRepositoryNew()), child: AboutUsScreenNew(index : 1)),
         },
         initialRoute: S.routeSplash,
         title: "ECellApp",

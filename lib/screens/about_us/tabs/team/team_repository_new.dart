@@ -211,31 +211,28 @@ abstract class TeamRepositoryNew {
 class APITeamRepositoryNew extends TeamRepositoryNew {
   final String classTag = "APITeamRepositoryNew";
   TeamMember director = TeamMember(
-    name: "Elon Musk",
-    profilePic:
-        "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    name: "Dr. N V Ramana Rao",
+    profilePic: "https://cdc.nitrr.ac.in/images/team/director/director.jpg",
     type: "DIR",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    image: "https://cdc.nitrr.ac.in/images/team/director/director.jpg",
     linkedin: null,
     facebook: null,
     domain: null,
   );
   TeamMember cdcHead = TeamMember(
-    name: "Head of CDC",
-    profilePic:
-        "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    name: "Dr. Samir Bajpai",
+    profilePic: "https://cdc.nitrr.ac.in/tpohead.jpghttps://cdc.nitrr.ac.in/tpohead.jpg",
     type: "HCD",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    image: "https://cdc.nitrr.ac.in/tpohead.jpg",
     linkedin: null,
     facebook: null,
     domain: null,
   );
   TeamMember facultyIncharge = TeamMember(
-    name: "Faculty Incharge",
-    profilePic:
-        "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    name: "Dr. Chandrakant Thakur",
+    profilePic: "https://cdc.nitrr.ac.in/images/ckthakur.jpeg",
     type: "FCT",
-    image: "https://upload.wikimedia.org/wikipedia/commons/8/85/Elon_Musk_Royal_Society_%28crop1%29.jpg",
+    image: "https://cdc.nitrr.ac.in/images/ckthakur.jpeg",
     linkedin: null,
     facebook: null,
     domain: null,

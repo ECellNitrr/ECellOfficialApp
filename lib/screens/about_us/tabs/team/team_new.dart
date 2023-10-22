@@ -78,7 +78,7 @@ class TeamScreenNew extends StatelessWidget {
                   }),
                   initialSelection: yearList.first,
                   dropdownMenuEntries:
-                      yearList.map<DropdownMenuEntry<int>>((int value) {
+                  yearList.map<DropdownMenuEntry<int>>((int value) {
                     return DropdownMenuEntry<int>(
                         value: value, label: value.toString());
                   }).toList(),
@@ -101,7 +101,7 @@ class TeamScreenNew extends StatelessWidget {
                     return _buildLoading(context);
                   else
                     return ReloadOnErrorWidget(
-                        () => _getAllTeamMembers(context));
+                            () => _getAllTeamMembers(context));
                 },
               ),
             ],
@@ -125,7 +125,7 @@ class TeamScreenNew extends StatelessWidget {
 
     return DefaultTextStyle.merge(
         style:
-            GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
+        GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification overscroll) {
             overscroll.disallowIndicator();
@@ -134,18 +134,18 @@ class TeamScreenNew extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
-                  child: Container(
-                    height: height * 0.4,
-                    width: width * 0.8,
-                    child: Image.asset(
-                      S.assetEcellLogoWhite,
-                      fit: BoxFit.contain,
-                      opacity: const AlwaysStoppedAnimation<double>(0.5),
-                    ),
+                padding:
+                EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
+                child: Container(
+                  height: height * 0.4,
+                  width: width * 0.8,
+                  child: Image.asset(
+                    S.assetEcellLogoWhite,
+                    fit: BoxFit.contain,
+                    opacity: const AlwaysStoppedAnimation<double>(0.5),
                   ),
                 ),
+              ),
               Column(
                 children: [
                   SizedBox(
