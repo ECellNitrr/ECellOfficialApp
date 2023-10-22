@@ -366,8 +366,20 @@ class LoginScreen extends StatelessWidget {
                                 height: 50,
                                 width: 100,
                                 alignment: Alignment.center,
-
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: C.authButtonColor.withOpacity(0.2),
+                                      blurRadius: 10,
+                                      spreadRadius: 3,
+                                      offset: Offset(0, 12),
+                                    )
+                                  ],
+                                ),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/google.png',
@@ -387,7 +399,7 @@ class LoginScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: 15*heightFactor,),
+                            SizedBox(height: 30 * heightFactor),
                             LegacyRaisedButton(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.all(Radius.circular(10)),
@@ -402,10 +414,23 @@ class LoginScreen extends StatelessWidget {
                                 Navigator.pushReplacementNamed(context, S.routeHome);
                               },
                               child: Container(
-                                height: 60,
+                                height: 50,
                                 width: 100,
                                 alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: C.authButtonColor.withOpacity(0.2),
+                                      blurRadius: 10,
+                                      spreadRadius: 3,
+                                      offset: Offset(0, 12),
+                                    )
+                                  ],
+                                ),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/guests.png',
