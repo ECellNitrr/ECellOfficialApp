@@ -156,7 +156,7 @@ class _MenuScreenState extends State<MenuScreen> {
               //Speakers
               HomeImageSection(
                   height: height,
-                  image: S.assetEventImage,
+                  image: S.assetHomeBackdrop,
                   text: "Speakers of\nESUMMIT'23",
                   elementColor: C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
@@ -166,7 +166,7 @@ class _MenuScreenState extends State<MenuScreen> {
               //Gallery
               HomeImageSection(
                   height: height,
-                  image: S.assetSpeakerBackdrop,
+                  image: S.assetHomeBackdrop,
                   text: "Gallery",
                   elementColor: C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
@@ -175,7 +175,7 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
               HomeImageSection(
                   height: height,
-                  image: S.assetEventImage,
+                  image: S.assetHomeBackdrop,
                   text: "Meet Our\nTeam",
                   elementColor: C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
