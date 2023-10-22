@@ -1,7 +1,6 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/models/team_category.dart';
-import 'package:ecellapp/screens/about_us/tabs/team/app_team/app_team.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team_list.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/widget/team_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
@@ -16,6 +15,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../../widgets/raisedButton.dart';
 import '../../../../widgets/rotated_curveed_tile.dart';
+import '../../../home/tabs/app_team/app_team.dart';
 import 'cubit/team_cubit.dart';
 
 class TeamScreen extends StatelessWidget {

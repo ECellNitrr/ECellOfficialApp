@@ -1,4 +1,5 @@
 import 'package:ecellapp/core/res/colors.dart';
+import 'package:ecellapp/screens/home/tabs/app_team/app_team.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
@@ -16,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
   final List<Widget> _children = [
     ProfileScreen(),
     MenuScreen(),
-    ContactUsScreen()
+    ContactUsScreen(),
+    AppTeamScreen()
   ];
   @override
   Widget build(BuildContext context) {
@@ -48,19 +50,19 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedColor: C.menuButtonColor,
         ),
 
-        /// Likes
+        /// Contact
         SalomonBottomBarItem(
           icon: Icon(Icons.call),
           title: Text("Contact"),
           selectedColor: C.menuButtonColor
         ),
 
-        /// Search
-        // SalomonBottomBarItem(
-        //   icon: Icon(Icons.search),
-        //   title: Text("Search"),
-        //   selectedColor: Colors.orange,
-        // ),
+        ///App team
+        SalomonBottomBarItem(
+            icon: Icon(Icons.flutter_dash_outlined),
+            title: Text("App Team"),
+            selectedColor: C.menuButtonColor
+        ),
 
       ],
     );

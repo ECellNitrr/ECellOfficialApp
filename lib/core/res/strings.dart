@@ -116,6 +116,7 @@ class S {
   static const String assetHeartIcon = "assets/icons/heart-icon.png";
   static const String assetInstagramIcon = "assets/icons/instagram-icon.png";
   static const String assetLinkedinIcon = "assets/icons/linkedin-icon.png";
+  static const String assetLinkedinIconBlack = "assets/linkedin-logo.png";
   static const String assetLocationIcon = "assets/icons/location-icon.png";
   static const String assetTwitterIcon = "assets/icons/twitter-icon.png";
   static const String assetPhoneIcon = "assets/icons/phone-icon.png";
@@ -128,7 +129,9 @@ class S {
   static const String assetSecondMedalIcon = "assets/second-medal.png";
   static const String assetThirdMedalIcon = "assets/third-medal.png";
   static const String assetScoreIcon = "assets/score.png";
+
   static const String assetSpeakerBackdrop = "assets/speaker.jpg";
+  static const String assetHomeBackdrop = "assets/home-backdrop.jpg";
   static const String assetProfileFrame = "assets/profile.png";
 
   // contact us info
@@ -153,6 +156,7 @@ class S {
   static const String assetEsummitLogoImage = "assets/blue-summit-logo.png";
   static const String assetSpeakerImage = "assets/speaker.png";
   static const String assetEventImage = "assets/events.png";
+  static const String assetTeamProfile = "assets/app-team-profile.png";
 
   // paragraphs
   static const String esummitPara =

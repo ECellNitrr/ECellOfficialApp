@@ -1,8 +1,9 @@
-import 'package:ecellapp/screens/about_us/tabs/team/app_team/app_team_card.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
+
+import 'app_team_card.dart';
 
 
 class AppTeamScreen extends StatelessWidget {
@@ -17,13 +18,6 @@ class AppTeamScreen extends StatelessWidget {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        leading: Container(
-          padding: EdgeInsets.only(left: D.horizontalPadding - 10),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
-            onPressed: () => Navigator.of(context).pop(),
-          ),
-        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -65,11 +59,11 @@ class AppTeamScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 11,),
-                    Column(children: appTeamList.createTeamList(2022)),
+                    Column(children: appTeamList.createTeamList(2023)),
                     Container(
                       height: 40,
                       child: Text(
-                        "2021 App Dev Team",
+                        "Alumni App Dev",
                         style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.w600,

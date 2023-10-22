@@ -224,7 +224,7 @@ class HomeImageCarouselSection extends StatelessWidget {
                 borderRadius:
                 BorderRadius.all(Radius.circular(20.0)), // Rounded corners
                 image: DecorationImage(
-                  image: AssetImage(S.assetSpeakerBackdrop),
+                  image: AssetImage(S.assetHomeBackdrop),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -450,7 +450,7 @@ class _EventImageSectionState extends State<EventImageSection> {
                             height: widget.height * 0.14,
                           ),
                           Container(
-                            width: widget.height * 0.20,
+                            width: widget.height * 0.29,
                             child: Align(
                               alignment: Alignment.topLeft,
                               child: Padding(
@@ -597,20 +597,6 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                     gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [
-                        widget.gradientColor,
-                        Colors.transparent
-                      ],
-                    ),
-                  ),
-                ),
-                Container(
-                  height: widget.height * 0.19,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    gradient: LinearGradient(
                       begin: Alignment.bottomRight,
                       end: Alignment.topLeft,
                       colors: [
@@ -624,12 +610,18 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                 Container(
                   height: widget.height * 0.19,
                   width: widget.height * 0.17,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(20.0)), // Rounded corners
-                    image: DecorationImage(
-                      image: NetworkImage(widget.speaker.profilePic!),
-                      fit: BoxFit.cover,
+                  child: Center(
+                    child: Container(
+                      height: widget.height * 0.15,
+                      width: widget.height * 0.15,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(20.0)), // Rounded corners
+                        image: DecorationImage(
+                          image: NetworkImage(widget.speaker.profilePic!),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
@@ -667,13 +659,13 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   EventText(
-                                    color: C.primaryHighlightedColor,
+                                    color: C.backgroundBottom,
                                     text: widget.speaker.name!,
                                     maxLines: 2,
-                                    size: 22.0,
+                                    size: 24.0,
                                   ),
                                   EventText(
-                                    color: C.primaryHighlightedColor,
+                                    color: C.backgroundBottom,
                                     text: "${widget.speaker.company!}",
                                     maxLines: 2,
                                     size: 16.0,
@@ -721,3 +713,6 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
     );
   }
 }
+
+
+
