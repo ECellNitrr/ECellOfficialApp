@@ -58,29 +58,29 @@ class SponsorsScreen extends StatelessWidget {
           ),
           actions: [
             Container(
-              width: width * 0.25,
+              width: width * 0.14,
               height: 50,
-              child: DropdownMenu<int>(
-                inputDecorationTheme: InputDecorationTheme(
-                  isCollapsed: true,
-                  enabledBorder: InputBorder.none,
-                ),
-                textStyle: TextStyle(color: Colors.white),
-                leadingIcon: Icon(
-                  Icons.keyboard_arrow_down_sharp,
-                  color: Colors.white,
-                ),
-                onSelected: ((value) {
-                  S.sponsorApiYear = value!;
-                  _getAllSponsors(context);
-                }),
-                initialSelection: yearList.first,
-                dropdownMenuEntries:
-                    yearList.map<DropdownMenuEntry<int>>((int value) {
-                  return DropdownMenuEntry<int>(
-                      value: value, label: value.toString());
-                }).toList(),
-              ),
+              // child: DropdownMenu<int>(
+              //   inputDecorationTheme: InputDecorationTheme(
+              //     isCollapsed: true,
+              //     enabledBorder: InputBorder.none,
+              //   ),
+              //   textStyle: TextStyle(color: Colors.white),
+              //   leadingIcon: Icon(
+              //     Icons.keyboard_arrow_down_sharp,
+              //     color: Colors.white,
+              //   ),
+              //   onSelected: ((value) {
+              //     S.sponsorApiYear = value!;
+              //     _getAllSponsors(context);
+              //   }),
+              //   initialSelection: yearList.first,
+              //   dropdownMenuEntries:
+              //       yearList.map<DropdownMenuEntry<int>>((int value) {
+              //     return DropdownMenuEntry<int>(
+              //         value: value, label: value.toString());
+              //   }).toList(),
+              // ),
             )
           ],
         ),

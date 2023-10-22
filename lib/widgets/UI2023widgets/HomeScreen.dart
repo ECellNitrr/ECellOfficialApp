@@ -610,12 +610,18 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                 Container(
                   height: widget.height * 0.19,
                   width: widget.height * 0.17,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                        Radius.circular(20.0)), // Rounded corners
-                    image: DecorationImage(
-                      image: NetworkImage(widget.speaker.profilePic!),
-                      fit: BoxFit.cover,
+                  child: Center(
+                    child: Container(
+                      height: widget.height * 0.15,
+                      width: widget.height * 0.15,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(20.0)), // Rounded corners
+                        image: DecorationImage(
+                          image: NetworkImage(widget.speaker.profilePic!),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),
