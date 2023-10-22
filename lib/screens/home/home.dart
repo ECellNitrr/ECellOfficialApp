@@ -1,9 +1,10 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'tabs/contact_us.dart';
 import 'tabs/menu.dart';
 import 'tabs/profile.dart';
-import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,66 +13,56 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 1;
-  final List<Widget> _children = [ProfileScreen(), MenuScreen(), ContactUsScreen()];
+  final List<Widget> _children = [
+    ProfileScreen(),
+    MenuScreen(),
+    ContactUsScreen()
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Stack(
-        children: <Widget>[
-          _children[_currentIndex],
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: _buildBottomNavBar(context),
-          ),
-        ],
-      ),
+      bottomNavigationBar: _buildBottomNavBar(context),
+      body: _children[_currentIndex],
     );
   }
 
   Widget _buildBottomNavBar(context) {
     double height = MediaQuery.of(context).size.height;
-    final _controller = NotchBottomBarController(index: _currentIndex);
-    return AnimatedNotchBottomBar(
-      bottomBarItems: [
-        BottomBarItem(
-          inActiveItem: Icon(
-            Icons.person,
-            color: Colors.blueGrey,
-          ),
-          activeItem: Icon(
-            Icons.person,
-            color: Colors.blueAccent,
-          ),
+    return SalomonBottomBar(
+      backgroundColor: C.backgroundBottom,
+      unselectedItemColor: C.menuButtonColor,
+      currentIndex: _currentIndex,
+      onTap: (i) => setState(() => _currentIndex = i),
+      items: [
+        /// Profile
+        SalomonBottomBarItem(
+          icon: Icon(Icons.person),
+          title: Text("Profile"),
+          selectedColor: C.menuButtonColor,
         ),
-        BottomBarItem(
-          inActiveItem: Icon(
-            Icons.home_filled,
-            color: Colors.blueGrey,
-          ),
-          activeItem: Icon(
-            Icons.home_filled,
-            color: Colors.blueAccent,
-          ),
+        /// Home
+        SalomonBottomBarItem(
+          icon: Icon(Icons.home),
+          title: Text("Home"),
+          selectedColor: C.menuButtonColor,
         ),
-        BottomBarItem(
-          inActiveItem: Icon(
-            Icons.call,
-            color: Colors.blueGrey,
-          ),
-          activeItem: Icon(
-            Icons.call,
-            color: Colors.blueAccent,
-          ),
+
+        /// Likes
+        SalomonBottomBarItem(
+          icon: Icon(Icons.call),
+          title: Text("Contact"),
+          selectedColor: C.menuButtonColor
         ),
+
+        /// Search
+        // SalomonBottomBarItem(
+        //   icon: Icon(Icons.search),
+        //   title: Text("Search"),
+        //   selectedColor: Colors.orange,
+        // ),
+
       ],
-      notchBottomBarController: _controller,
-      onTap: (index) {
-        setState(() {
-          _currentIndex = index;
-        });
-      }, // Provide the appropriate controller
     );
   }
-
 }

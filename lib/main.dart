@@ -20,6 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
+import 'core/res/colors.dart';
 import 'core/res/strings.dart';
 import 'core/themes/app_theme.dart';
 import 'core/utils/injection.dart';
@@ -56,6 +57,12 @@ Future<void> backgroundHandler(RemoteMessage message) async{
 }
 
 void main() async {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: C.backgroundBottom
+    ),
+  );
   WidgetsFlutterBinding.ensureInitialized();
   await init();
   FirebaseMessaging.onBackgroundMessage(backgroundHandler);
@@ -109,6 +116,7 @@ class _ECellAppState extends State<ECellApp> {
     return Provider(
       create: (_) => GlobalState(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         routes: {
           S.routeSplash: (_) => BlocProvider(
               create: (_) => SplashCubit(APISplashRepository()),
