@@ -1,15 +1,9 @@
-import 'dart:ffi';
-
 import 'package:ecellapp/core/res/colors.dart';
-import 'package:ecellapp/core/res/dimens.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/models/team_category.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/Widget/team_card_2.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/Widget/team_card_new.dart';
-import 'package:ecellapp/screens/about_us/tabs/team/app_team/app_team.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/cubit/team_cubit_new.dart';
-import 'package:ecellapp/screens/about_us/tabs/team/team_list.dart';
-import 'package:ecellapp/screens/about_us/tabs/team/widget/team_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
@@ -18,11 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:rxdart/rxdart.dart';
 
-import '../../../../widgets/raisedButton.dart';
-import '../../../../widgets/rotated_curveed_tile.dart';
-// import 'cubit/team_cubit.dart';
 
 class TeamScreenNew extends StatelessWidget {
   const TeamScreenNew({Key? key}) : super(key: key);
@@ -34,78 +24,76 @@ class TeamScreenNew extends StatelessWidget {
     List<int> yearList = [2023, 2022];
     return StatefulWrapper(
       onInit: () => _getAllTeamMembers(context),
-      child: SafeArea(
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            leading: Container(
-              padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
-              child: IconButton(
-                icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
-                onPressed: () => Navigator.of(context).pop(),
-              ),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        extendBodyBehindAppBar: true,
+        appBar:  AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          leading: Container(
+            padding: EdgeInsets.only(left: 10),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ),
+          title: Center(
+            child: Text(
+              "Our Team",
+              style: GoogleFonts.raleway(
+                  fontSize: 38,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  letterSpacing: 0.5),
             ),
-            title: Center(
-              child: Text(
-                "Our Team",
-                style: GoogleFonts.raleway(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 0.5),
-              ),
-            ),
-            actions: [
-              Container(
-                width: width * 0.25,
-                height: 50,
-                child: DropdownMenu<int>(
-                  inputDecorationTheme: InputDecorationTheme(
-                    isCollapsed: true,
-                    enabledBorder: InputBorder.none,
-                  ),
-                  textStyle: TextStyle(color: Colors.white),
-                  leadingIcon: Icon(
-                    Icons.keyboard_arrow_down_sharp,
-                    color: Colors.white,
-                  ),
-                  onSelected: ((value) {
-                    S.teamApiYear = value!;
-                    _getAllTeamMembers(context);
-                  }),
-                  initialSelection: yearList.first,
-                  dropdownMenuEntries:
-                  yearList.map<DropdownMenuEntry<int>>((int value) {
-                    return DropdownMenuEntry<int>(
-                        value: value, label: value.toString());
-                  }).toList(),
+          ),
+          actions: [
+            Container(
+              width: width * 0.25,
+              height: 50,
+              child: DropdownMenu<int>(
+                inputDecorationTheme: InputDecorationTheme(
+                  isCollapsed: true,
+                  enabledBorder: InputBorder.none,
                 ),
-              )
-            ],
-          ),
-          body: Stack(
-            children: [
-              Stack(children: [
-                ScreenBackground(elementId: 0),
-              ]),
-              BlocBuilder<TeamCubitNew, TeamStateNew>(
-                builder: (context, state) {
-                  if (state is TeamInitial)
-                    return _buildLoading(context);
-                  else if (state is TeamSuccess)
-                    return _buildSuccess(context, state.teamList);
-                  else if (state is TeamLoading)
-                    return _buildLoading(context);
-                  else
-                    return ReloadOnErrorWidget(
-                            () => _getAllTeamMembers(context));
-                },
+                textStyle: TextStyle(color: Colors.white),
+                leadingIcon: Icon(
+                  Icons.keyboard_arrow_down_sharp,
+                  color: Colors.white,
+                ),
+                onSelected: ((value) {
+                  S.teamApiYear = value!;
+                  _getAllTeamMembers(context);
+                }),
+                initialSelection: yearList.first,
+                dropdownMenuEntries:
+                yearList.map<DropdownMenuEntry<int>>((int value) {
+                  return DropdownMenuEntry<int>(
+                      value: value, label: value.toString());
+                }).toList(),
               ),
-            ],
-          ),
+            )
+          ],
+        ),
+        body: Stack(
+          children: [
+            Stack(children: [
+              ScreenBackground(elementId: 0),
+            ]),
+            BlocBuilder<TeamCubitNew, TeamStateNew>(
+              builder: (context, state) {
+                if (state is TeamInitial)
+                  return _buildLoading(context);
+                else if (state is TeamSuccess)
+                  return _buildSuccess(context, state.teamList);
+                else if (state is TeamLoading)
+                  return _buildLoading(context);
+                else
+                  return ReloadOnErrorWidget(
+                          () => _getAllTeamMembers(context));
+              },
+            ),
+          ],
         ),
       ),
     );
