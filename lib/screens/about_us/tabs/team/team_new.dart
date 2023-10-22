@@ -151,7 +151,7 @@ class TeamScreenNew extends StatelessWidget {
               Column(
                 children: [
                   SizedBox(
-                    height: top + 75,
+                    height: top + 45,
                   ),
                   Expanded(
                     child: ScrollableListTabScroller(
