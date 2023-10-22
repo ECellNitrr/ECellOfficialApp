@@ -17,10 +17,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:scrollable_list_tab_scroller/scrollable_list_tab_scroller.dart';
 
 import '../../../../widgets/raisedButton.dart';
 import '../../../../widgets/rotated_curveed_tile.dart';
@@ -54,7 +52,7 @@ class TeamScreenNew extends StatelessWidget {
               child: Text(
                 "Our Team",
                 style: GoogleFonts.raleway(
-                    fontSize: 35,
+                    fontSize: 40,
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
                     letterSpacing: 0.5),
@@ -80,7 +78,7 @@ class TeamScreenNew extends StatelessWidget {
                   }),
                   initialSelection: yearList.first,
                   dropdownMenuEntries:
-                      yearList.map<DropdownMenuEntry<int>>((int value) {
+                  yearList.map<DropdownMenuEntry<int>>((int value) {
                     return DropdownMenuEntry<int>(
                         value: value, label: value.toString());
                   }).toList(),
@@ -103,7 +101,7 @@ class TeamScreenNew extends StatelessWidget {
                     return _buildLoading(context);
                   else
                     return ReloadOnErrorWidget(
-                        () => _getAllTeamMembers(context));
+                            () => _getAllTeamMembers(context));
                 },
               ),
             ],
@@ -127,7 +125,7 @@ class TeamScreenNew extends StatelessWidget {
 
     return DefaultTextStyle.merge(
         style:
-            GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
+        GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
         child: NotificationListener<OverscrollIndicatorNotification>(
           onNotification: (OverscrollIndicatorNotification overscroll) {
             overscroll.disallowIndicator();
@@ -136,93 +134,76 @@ class TeamScreenNew extends StatelessWidget {
           child: Stack(
             children: [
               Padding(
-                  padding:
-                      EdgeInsets.fromLTRB(width * 0.1, height * 0.3, 0.0, 0.0),
-                  child: Container(
-                    height: height * 0.4,
-                    width: width * 0.8,
-                    child: Image.asset(
-                      S.assetEcellLogoWhite,
-                      fit: BoxFit.contain,
-                      opacity: const AlwaysStoppedAnimation<double>(0.5),
-                    ),
+                padding:
+                EdgeInsets.fromLTRB(width * 0.1, height * 0.4, 0.0, 0.0),
+                child: Container(
+                  height: height * 0.4,
+                  width: width * 0.8,
+                  child: Image.asset(
+                    S.assetEcellLogoWhite,
+                    fit: BoxFit.contain,
+                    opacity: const AlwaysStoppedAnimation<double>(0.5),
                   ),
                 ),
+              ),
               Column(
                 children: [
                   SizedBox(
                     height: top + 45,
                   ),
                   Expanded(
-                    child: ScrollableListTabScroller(
-                      itemCount: data.length,
-                      addSemanticIndexes: true,
-                      earlyChangePositionOffset: 150,
-                      tabBuilder: (BuildContext context, int index, bool active) =>
-                          Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          data[index].category,
-                          style: !active
-                              ? null
-                              : GoogleFonts.raleway(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold,
-                                  color: C.menuButtonColor),
-                        ),
-                      ),
-                      itemBuilder: (BuildContext context, int index) => Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            SizedBox(
-                              height: 10,
-                            ),
-                            if(data[index].members.length>0)Text(data[index].category,
-                            textAlign: TextAlign.center,
-                                style: GoogleFonts.raleway(
-                                    
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white)),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
-                            GridView.count(
-                              childAspectRatio: list.contains(data[index].category)
-                                  ? (0.8 / 1)
-                                  : (1 / 0.5),
-                              physics: ScrollPhysics(),
-                              shrinkWrap: true,
-                              padding: data[index].members.length == 1
-                                  ? EdgeInsets.symmetric(
-                                      horizontal: width * 0.25, vertical: 5)
-                                  : EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 5),
-                              crossAxisSpacing: 5,
-                              mainAxisSpacing: 5,
-                              crossAxisCount:
-                                  data[index].members.length == 1 ? 1 : 2,
-                              children: [
-                                ...list.contains(data[index].category)
-                                    ? data[index]
-                                        .members
-                                        .map((e) => TeamsCardNew(teamMember: e))
-                                    : List.generate(
-                                        data[index].members.length,
-                                        (i) => TeamsCard2(
-                                            teamMember: data[index].members[i]))
-                              ],
-                            ),
+                      child: ListView.builder(
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) => Container(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              if (data[index].members.length > 0)
+                                Text(data[index].category,
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.raleway(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white)),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
+                              GridView.count(
+                                childAspectRatio:
+                                list.contains(data[index].category)
+                                    ? (0.8 / 1)
+                                    : (1 / 0.5),
+                                physics: ScrollPhysics(),
+                                shrinkWrap: true,
+                                padding: data[index].members.length == 1
+                                    ? EdgeInsets.symmetric(
+                                    horizontal: width * 0.25, vertical: 5)
+                                    : EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 5),
+                                crossAxisSpacing: 5,
+                                mainAxisSpacing: 5,
+                                crossAxisCount:
+                                data[index].members.length == 1 ? 1 : 2,
+                                children: [
+                                  ...list.contains(data[index].category)
+                                      ? data[index]
+                                      .members
+                                      .map((e) => TeamsCardNew(teamMember: e))
+                                      : List.generate(
+                                      data[index].members.length,
+                                          (i) => TeamsCard2(
+                                          teamMember: data[index].members[i]))
+                                ],
+                              ),
 
-                            SizedBox(
-                              height: 10,
-                            ),
-                          ],
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    ),
+                      )
                   ),
                 ],
               ),
