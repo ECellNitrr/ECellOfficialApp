@@ -149,7 +149,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   elementColor:C.menuButtonColor,
                   gradientColor: C.backgroundBottom,
                   onPressed: (){
-                    S.sponsorApiYear=2019;
+                    S.sponsorApiYear=2023;
                     Navigator.pushNamed(context, S.routeSponsors);
                   }
               ),

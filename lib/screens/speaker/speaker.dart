@@ -10,6 +10,8 @@ import 'package:ecellapp/screens/speaker/cubit/speaker_cubit.dart';
 import 'package:ecellapp/screens/speaker/speaker_card.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
 
+import '../../core/res/strings.dart';
+
 class SpeakerScreen extends StatelessWidget {
   SpeakerScreen({Key? key}) : super(key: key);
 
@@ -59,6 +61,8 @@ class SpeakerScreen extends StatelessWidget {
   Widget _buildSuccess(BuildContext context, List<Speaker> speakerList) {
     double top = MediaQuery.of(context).viewInsets.top;
     double ratio = MediaQuery.of(context).size.aspectRatio;
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
 
     List<Widget> speakerContentList = [];
     speakerList.forEach((element) => speakerContentList.add(SpeakerCard(speaker: element)));
@@ -70,23 +74,50 @@ class SpeakerScreen extends StatelessWidget {
           overscroll.disallowIndicator();
           return true;
         },
-        child: Column(
-          children: <Widget>[
-            SizedBox(
-              height: top + 40,
+        child: Stack(
+          children: [
+            Padding(
+              padding:
+              EdgeInsets.fromLTRB(width * 0.1, height * 0.3, 0.0, 0.0),
+              child: Container(
+                height: height * 0.4,
+                width: width * 0.8,
+                child: Image.asset(
+                  S.assetEcellLogoWhite,
+                  fit: BoxFit.contain,
+                  opacity: const AlwaysStoppedAnimation<double>(0.5),
+                ),
+              ),
             ),
-            Text(
-              "Speakers",
-              style: GoogleFonts.raleway(
-                  fontSize: ratio > 0.5 ? 45 : 50,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  letterSpacing: 0.5),
+            Column(
+              children: <Widget>[
+                SizedBox(
+                  height: top + 40,
+                ),
+                Text(
+                  "Speakers",
+                  style: GoogleFonts.raleway(
+                      fontSize: ratio > 0.5 ? 37 : 42,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      letterSpacing: 0.5),
+                ),
+                Expanded(child: (speakerList.length!=0)?ListView(
+                  padding: EdgeInsets.only(top: 10),
+                  children: speakerContentList,
+                ):Center(
+                  child: Text(
+                    "Will be updated Soon...",
+                    style: GoogleFonts.raleway(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                        letterSpacing: 0.5),
+                  ),
+                ),
+                ),
+              ],
             ),
-            Expanded(child: ListView(
-              padding: EdgeInsets.only(top: 10),
-              children: speakerContentList,
-            ))
           ],
         ),
       ),
