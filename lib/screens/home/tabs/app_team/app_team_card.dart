@@ -23,7 +23,8 @@ const Map<int, dynamic> appTeam = {
     },
     {
       "name": "Neeraj Yadu",
-      "image": "https://media.licdn.com/dms/image/C4D03AQHuZ150ESZ1_w/profile-displayphoto-shrink_400_400/0/1658671069104?e=1703721600&v=beta&t=L2VfdaqsRJtgfft-35Y9RnIdjqLwa-fr1dqHKx5waEA",
+      "image":
+          "https://media.licdn.com/dms/image/C4D03AQHuZ150ESZ1_w/profile-displayphoto-shrink_400_400/0/1658671069104?e=1703721600&v=beta&t=L2VfdaqsRJtgfft-35Y9RnIdjqLwa-fr1dqHKx5waEA",
       "member_type": "MNG",
       "domain": "tech",
       "linkedin": "https://www.linkedin.com/in/neeraj-yadu-9b7a8a22a/",
@@ -32,7 +33,8 @@ const Map<int, dynamic> appTeam = {
     },
     {
       "name": "K Venkat Nag Sai",
-      "image": "https://media.licdn.com/dms/image/C5603AQFVmSYLVnobOQ/profile-displayphoto-shrink_100_100/0/1644940070285?e=1703721600&v=beta&t=SdsaUzlpvG1IOLegzp0HeLZLYWo_U697hHWa6jDleFg",
+      "image":
+          "https://media.licdn.com/dms/image/C5603AQFVmSYLVnobOQ/profile-displayphoto-shrink_100_100/0/1644940070285?e=1703721600&v=beta&t=SdsaUzlpvG1IOLegzp0HeLZLYWo_U697hHWa6jDleFg",
       "member_type": "MNG",
       "domain": "tech",
       "linkedin": "https://www.linkedin.com/in/k-venkat-nag-sai-354128232/",
@@ -43,7 +45,8 @@ const Map<int, dynamic> appTeam = {
   2021: [
     {
       "name": "Vasu soni",
-      "image": "https://media.licdn.com/dms/image/C5603AQGZgFREBgW0nQ/profile-displayphoto-shrink_400_400/0/1640242473751?e=1703721600&v=beta&t=FS8sWA463KvFImNoac9nEiTbH1n8JM9VCAZbF5iBbIw",
+      "image":
+          "https://media.licdn.com/dms/image/C5603AQGZgFREBgW0nQ/profile-displayphoto-shrink_400_400/0/1640242473751?e=1703721600&v=beta&t=FS8sWA463KvFImNoac9nEiTbH1n8JM9VCAZbF5iBbIw",
       "member_type": null,
       "linkedin": "https://www.linkedin.com/in/iamvasusoni",
       "phone": "9109691805",
@@ -51,7 +54,8 @@ const Map<int, dynamic> appTeam = {
     },
     {
       "name": "Viren Khatri",
-      "image": "https://media.licdn.com/dms/image/D4D03AQFeue6zKpkdwA/profile-displayphoto-shrink_400_400/0/1668967183090?e=1703721600&v=beta&t=iie4GAozQauZFJL9YeU7nem7Y6FzVQAmDLdnFOTQnXs",
+      "image":
+          "https://media.licdn.com/dms/image/D4D03AQFeue6zKpkdwA/profile-displayphoto-shrink_400_400/0/1668967183090?e=1703721600&v=beta&t=iie4GAozQauZFJL9YeU7nem7Y6FzVQAmDLdnFOTQnXs",
       "linkedin": "https://www.linkedin.com/in/werainkhatri/",
       "phone": null,
       "email": null,
@@ -59,7 +63,8 @@ const Map<int, dynamic> appTeam = {
     },
     {
       "name": "Siddharth Mishra",
-      "image": "https://media.licdn.com/dms/image/D4D03AQEgsacbW0qlLQ/profile-displayphoto-shrink_400_400/0/1671455889879?e=1703721600&v=beta&t=ztLErOpmUKjn3lMx3tWEbRTy5kI-VIxf-leMESilnyU",
+      "image":
+          "https://media.licdn.com/dms/image/D4D03AQEgsacbW0qlLQ/profile-displayphoto-shrink_400_400/0/1671455889879?e=1703721600&v=beta&t=ztLErOpmUKjn3lMx3tWEbRTy5kI-VIxf-leMESilnyU",
       "linkedin": "https://www.linkedin.com/in/smishra1605/",
       "phone": null,
       "email": null,
@@ -67,7 +72,8 @@ const Map<int, dynamic> appTeam = {
     },
     {
       "name": "Divy Arpit",
-      "image": "https://media.licdn.com/dms/image/C5103AQFO88bkMmgFEw/profile-displayphoto-shrink_400_400/0/1575970206509?e=1703721600&v=beta&t=KYeHcHTcq8t2ZzQaCfCSv6W_g8-Lm1lUmh-uYEPfANI",
+      "image":
+          "https://media.licdn.com/dms/image/C5103AQFO88bkMmgFEw/profile-displayphoto-shrink_400_400/0/1575970206509?e=1703721600&v=beta&t=KYeHcHTcq8t2ZzQaCfCSv6W_g8-Lm1lUmh-uYEPfANI",
       "linkedin": "https://www.linkedin.com/in/divy-arpit/",
       "phone": null,
       "email": null,
@@ -101,6 +107,8 @@ class AppTeamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(20.0)),
@@ -179,86 +187,110 @@ class AppTeamCard extends StatelessWidget {
                           height: height * 0.14,
                           width: height * 0.17,
                         ),
-                        Container(
-                          width: height * 0.25,
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                  6.0, 15.0, 0.0, 0.0),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  EventText(
-                                    color: Colors.black,
-                                    text: appHead!.name!,
-                                    maxLines: 1,
-                                    size: 24.0,
-                                  ),
-                                  (appHead!.type != null)
-                                      ? EventText(
-                                          color: Colors.black,
-                                          text: "Tech Manager",
-                                          maxLines: 1,
-                                          size: 18.0,
-                                        )
-                                      : Container(),
-                                  SizedBox(
-                                    height: height * 0.01,
-                                  ),
-                                  (appHead!.type != null)
-                                      ? EventText(
-                                          color: Colors.black,
-                                          text: "Contact Us:",
-                                          maxLines: 1,
-                                          size: 18.0,
-                                        )
-                                      : Container(),
-                                  (appHead!.type != null)
-                                      ? Row(
-                                          children: [
-                                            IconButton(
-                                                onPressed: () async {
-                                                  String email = Uri.encodeComponent(appHead!.email!);
-                                                  String subject = Uri.encodeComponent("Hello Flutter");
-                                                  String body = Uri.encodeComponent("Hi! I'm Flutter Developer");
-                                                  print(subject); //output: Hello%20Flutter
-                                                  Uri uri = Uri.parse("mailto:$email?subject=$subject&body=$body");
-                                                  if (await launchUrl(
-                                                      uri)) {
-                                                  } else {
-                                                    throw 'Could not launch $uri';
-                                                  }
-                                                },
-                                                icon: Icon(Icons.email)),
-                                            IconButton(
-                                                onPressed: () async {
-                                                  final url =
-                                                      "tel:${appHead!.phone!}";
-                                                  if (await canLaunchUrlString(
-                                                      url)) {
-                                                    await launchUrlString(url);
-                                                  } else {
-                                                    throw 'Could not launch $url';
-                                                  }
-                                                },
-                                                icon: Icon(Icons.call)),
-                                            IconButton(
-                                                onPressed: () async {
-                                                  if (await canLaunchUrlString(
-                                                      appHead!.linkedin!)) {
-                                                    await launchUrlString(appHead!.linkedin!);
-                                                  } else {
-                                                    throw 'Could not launch ${appHead!.linkedin!}';
-                                                  }
-                                                },
-                                                icon: Image.asset(
-                                                    S.assetLinkedinIconBlack)),
-                                          ],
-                                        )
-                                      : Container(),
-                                ],
+                        FittedBox(
+                          child: Container(
+                            height: height * 0.25,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    6.0, 15.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    (appHead!.type == null)
+                                        ? SizedBox(
+                                            height: height * 0.05,
+                                          )
+                                        : Container(),
+                                    EventText(
+                                      color: Colors.black,
+                                      text: appHead!.name!,
+                                      maxLines: 1,
+                                      size: 40.0,
+                                    ),
+                                    (appHead!.type != null)
+                                        ? EventText(
+                                            color: Colors.black,
+                                            text: "Tech Manager",
+                                            maxLines: 1,
+                                            size: 28.0,
+                                          )
+                                        : Container(),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    (appHead!.type != null)
+                                        ? EventText(
+                                            color: Colors.black,
+                                            text: "Contact Us:",
+                                            maxLines: 1,
+                                            size: 24.0,
+                                          )
+                                        : Container(),
+                                    (appHead!.type != null)
+                                        ? Row(
+                                            children: [
+                                              IconButton(
+                                                  onPressed: () async {
+                                                    String email =
+                                                        Uri.encodeComponent(
+                                                            appHead!.email!);
+                                                    String subject =
+                                                        Uri.encodeComponent(
+                                                            "Hello Flutter");
+                                                    String body =
+                                                        Uri.encodeComponent(
+                                                            "Hi! I'm Flutter Developer");
+                                                    print(
+                                                        subject); //output: Hello%20Flutter
+                                                    Uri uri = Uri.parse(
+                                                        "mailto:$email?subject=$subject&body=$body");
+                                                    if (await launchUrl(uri)) {
+                                                    } else {
+                                                      throw 'Could not launch $uri';
+                                                    }
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.email,
+                                                    size: 35 * heightFactor,
+                                                  )),
+                                              IconButton(
+                                                  onPressed: () async {
+                                                    final url =
+                                                        "tel:${appHead!.phone!}";
+                                                    if (await canLaunchUrlString(
+                                                        url)) {
+                                                      await launchUrlString(
+                                                          url);
+                                                    } else {
+                                                      throw 'Could not launch $url';
+                                                    }
+                                                  },
+                                                  icon: Icon(
+                                                    Icons.call,
+                                                    size: 35 * heightFactor,
+                                                  )),
+                                              IconButton(
+                                                  onPressed: () async {
+                                                    if (await canLaunchUrlString(
+                                                        appHead!.linkedin!)) {
+                                                      await launchUrlString(
+                                                          appHead!.linkedin!);
+                                                    } else {
+                                                      throw 'Could not launch ${appHead!.linkedin!}';
+                                                    }
+                                                  },
+                                                  icon: Image.asset(
+                                                    S.assetLinkedinIconBlack,
+                                                    height: 35 * heightFactor,
+                                                  )),
+                                            ],
+                                          )
+                                        : Container(),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

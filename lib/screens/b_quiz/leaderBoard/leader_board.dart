@@ -65,6 +65,8 @@ class LeaderScreen extends StatelessWidget {
   Widget _buildSuccess(BuildContext context, List<Data> LeaderList) {
     double top = MediaQuery.of(context).viewInsets.top;
     double ratio = MediaQuery.of(context).size.aspectRatio;
+    double height = MediaQuery.of(context).size.height;
+    double heightFactor = height/1000;
 
     List<Widget> LeaderContentList = [];
     int t=0;
@@ -89,7 +91,7 @@ class LeaderScreen extends StatelessWidget {
               Text(
                 "LeaderBoard",
                 style: TextStyle(
-                  fontSize: ratio > 0.5 ? 45 : 50,
+                  fontSize: 55* heightFactor,
                   fontWeight: FontWeight.w600,
                 ),
               ),

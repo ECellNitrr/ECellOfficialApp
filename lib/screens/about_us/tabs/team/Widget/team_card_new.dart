@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecellapp/core/res/colors.dart';
@@ -33,6 +34,7 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
@@ -68,7 +70,7 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
               child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 600),
                 child: _displayFront
-                    ? _buildFront(widget.teamMember!)
+                    ? _buildFront(widget.teamMember!,context)
                     : _buildRear(widget.teamMember!, context),
               ),
             ),
@@ -77,7 +79,9 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
   }
 }
 
-Widget _buildFront(TeamMember teamMember) {
+Widget _buildFront(TeamMember teamMember,BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double heightFactor = height / 1000;
   Map<String, String> domainList = {
     "tech": "Technical",
     "spons": "Sponsership",
@@ -94,16 +98,18 @@ Widget _buildFront(TeamMember teamMember) {
       Text(teamMember.name!.toUpperCase(),
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
-              fontSize: 14, fontWeight: FontWeight.bold, color: Colors.white)),
+              fontSize: 20*heightFactor, fontWeight: FontWeight.bold, color: Colors.white)),
       teamMember.domain != null && teamMember.domain != "none"
           ? Text(domainList[teamMember.domain!]!,
-              style: GoogleFonts.raleway(fontSize: 12, color: Colors.white))
+              style: GoogleFonts.raleway(fontSize: 18*heightFactor, color: Colors.white))
           : Container()
     ],
   );
 }
 
 Widget _buildRear(TeamMember teamMember, BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double heightFactor = height / 1000;
   return Container(
     child: GestureDetector(
       onTap: () async {
@@ -118,7 +124,7 @@ Widget _buildRear(TeamMember teamMember, BuildContext context) {
       },
       child: Image.asset(
         S.assetIconLinkdin,
-        height: 50,
+        height: 50*heightFactor,
         color: Colors.white,
       ),
     ),

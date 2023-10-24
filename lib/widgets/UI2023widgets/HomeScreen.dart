@@ -24,11 +24,14 @@ class WelcomeText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
     return Container(
-        child: Text(
+        child: AutoSizeText(
       text,
+      maxLines: 2,
       style: GoogleFonts.raleway(
-        fontSize: size,
+        fontSize: size * heightFactor,
         fontWeight: FontWeight.bold, // Adjust the font size as needed
         color: C.primaryHighlightedColor, // Set the text color
         shadows: <Shadow>[
@@ -69,12 +72,14 @@ class EventText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double heightFactor = height/1000;
     return Container(
-        child: AutoSizeText(
+        child: Text(
       text,
       maxLines: maxLines,
       style: GoogleFonts.raleway(
-        fontSize: size,
+        fontSize: size*heightFactor,
         fontWeight: FontWeight.bold, // Adjust the font size as needed
         color: color, // Set the text color
         shadows: <Shadow>[
@@ -107,6 +112,7 @@ class HomeImageSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightFactor = height / 1000;
     return Container(
       decoration: BoxDecoration(
           borderRadius:
@@ -114,9 +120,9 @@ class HomeImageSection extends StatelessWidget {
           boxShadow:[
             BoxShadow(
                 color: C.menuButtonColor.withOpacity(0.3),
-                offset: Offset(4, 4),
+                offset: Offset(10 * heightFactor, 2 * heightFactor),
                 blurRadius: 2,
-                spreadRadius: -10)
+                spreadRadius: -15)
           ]
       ),
       child: Padding(
@@ -162,7 +168,7 @@ class HomeImageSection extends StatelessWidget {
                 padding: const EdgeInsets.fromLTRB(15.0, 10, 0.0, 0.0),
                 child: WelcomeText(
                   text: text,
-                  size: 28.0,
+                  size: 30.0,
                 ),
               ),
             ),
@@ -175,7 +181,7 @@ class HomeImageSection extends StatelessWidget {
                     onPressed: onPressed,
                     icon: Icon(
                       Icons.arrow_circle_right_outlined,
-                      size: 35.0,
+                      size: 45.0*heightFactor,
                     ),
                   ),
                 ))
@@ -202,6 +208,7 @@ class HomeImageCarouselSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightFactor = height/1000;
     return Container(
       decoration: BoxDecoration(
           borderRadius:
@@ -209,9 +216,9 @@ class HomeImageCarouselSection extends StatelessWidget {
           boxShadow:[
             BoxShadow(
                 color: C.menuButtonColor.withOpacity(0.3),
-                offset: Offset(4, 4),
+                offset: Offset(10*heightFactor, 2*heightFactor),
                 blurRadius: 2,
-                spreadRadius: -10)
+                spreadRadius: -15)
           ]
       ),
       child: Padding(
@@ -230,7 +237,8 @@ class HomeImageCarouselSection extends StatelessWidget {
               ),
             ),
             Container(
-              height: height * 0.17,
+              margin: EdgeInsets.only(top: height*0.01),
+              height: height * 0.15,
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.all(Radius.circular(20.0)), // Rounded corners
@@ -280,7 +288,7 @@ class HomeImageCarouselSection extends StatelessWidget {
                     onPressed: onPressed,
                     icon: Icon(
                       Icons.arrow_circle_right_outlined,
-                      size: 35.0,
+                      size: 45.0*heightFactor,
                     ),
                   ),
                 ))
@@ -308,6 +316,7 @@ class HomeScreenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double heightFactor = height / 1000;
     return Container(
       decoration: BoxDecoration(
           boxShadow:[
@@ -342,6 +351,7 @@ class HomeScreenButton extends StatelessWidget {
             Text(
               text,
               style: GoogleFonts.raleway(
+                fontSize: 22*heightFactor ,
                   fontWeight: FontWeight.bold, color: C.menuButtonColor),
             )
           ],
@@ -387,11 +397,11 @@ class _EventImageSectionState extends State<EventImageSection> {
           borderRadius:
           BorderRadius.all(Radius.circular(20.0)),
           boxShadow:[
-            BoxShadow(
-                color: C.menuButtonColor.withOpacity(0.3),
-                offset: Offset(4, 4),
+           BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                offset: Offset(-8, -4),
                 blurRadius: 2,
-                spreadRadius: -10)
+                spreadRadius: -20)
           ]
       ),
       child: Padding(
@@ -464,19 +474,19 @@ class _EventImageSectionState extends State<EventImageSection> {
                                       color: C.primaryHighlightedColor,
                                       text: widget.event.name!,
                                       maxLines: 2,
-                                      size: 24.0,
+                                      size: 30.0,
                                     ),
                                     EventText(
                                       color: C.primaryHighlightedColor,
                                       text: "Date: ${widget.event.date!}",
                                       maxLines: 2,
-                                      size: 14.0,
+                                      size: 18.0,
                                     ),
                                     EventText(
                                       color: C.primaryHighlightedColor,
                                       text: "Venue: ${widget.event.venue!}",
                                       maxLines: 2,
-                                      size: 14.0,
+                                      size: 18.0,
                                     ),
                                   ],
                                 ),
@@ -563,6 +573,7 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
 
   @override
   Widget build(BuildContext context) {
+    double heightFactor = widget.height / 1000;
     return Container(
       decoration: BoxDecoration(
           borderRadius:
@@ -570,9 +581,9 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
           boxShadow:[
             BoxShadow(
                 color: C.menuButtonColor.withOpacity(0.3),
-                offset: Offset(4, 4),
+                offset: Offset(10 * heightFactor, 2 * heightFactor),
                 blurRadius: 2,
-                spreadRadius: -10)
+                spreadRadius: -15)
           ]
       ),
       child: Padding(
@@ -662,13 +673,13 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                                     color: C.backgroundBottom,
                                     text: widget.speaker.name!,
                                     maxLines: 2,
-                                    size: 24.0,
+                                    size: 30.0,
                                   ),
                                   EventText(
                                     color: C.backgroundBottom,
                                     text: "${widget.speaker.company!}",
                                     maxLines: 2,
-                                    size: 16.0,
+                                    size: 20.0,
                                   ),
                                 ],
                               ),

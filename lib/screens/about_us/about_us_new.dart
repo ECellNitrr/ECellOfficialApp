@@ -34,6 +34,7 @@ class _AboutUsScreenNewState extends State<AboutUsScreenNew> {
 
   Widget _buildBottomNavBar(context) {
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height/1000;
     return SalomonBottomBar(
       backgroundColor: C.backgroundBottom,
       unselectedItemColor: C.menuButtonColor,
@@ -42,14 +43,18 @@ class _AboutUsScreenNewState extends State<AboutUsScreenNew> {
       items: [
         /// Profile
         SalomonBottomBarItem(
-          icon: Image.asset(S.assetAIMIcon),
-          title: Text("Aim"),
+          icon: Image.asset(S.assetAIMIcon,height: 30 * heightFactor ,),
+          title: Text("Aim",
+            style: TextStyle(fontSize: 22 * heightFactor),
+          ),
           selectedColor: C.menuButtonColor,
         ),
         /// Home
         SalomonBottomBarItem(
-          icon: Image.asset(S.assetTeamIcon),
-          title: Text("Team"),
+          icon: Image.asset(S.assetTeamIcon,
+            height: 30 * heightFactor,
+          ),
+          title: Text("Team", style: TextStyle(fontSize: 22 * heightFactor),),
           selectedColor: C.menuButtonColor,
         ),
       ],

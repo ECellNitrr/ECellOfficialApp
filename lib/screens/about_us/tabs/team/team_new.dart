@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/models/team_category.dart';
@@ -19,8 +20,6 @@ class TeamScreenNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     // List<int> yearList = [2023, 2022];
     return StatefulWrapper(
       onInit: () => _getAllTeamMembers(context),
@@ -93,6 +92,7 @@ class TeamScreenNew extends StatelessWidget {
     double top = MediaQuery.of(context).viewPadding.top;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
     List<String> list = [
       "Director",
       "Head of CDC",
@@ -132,7 +132,7 @@ class TeamScreenNew extends StatelessWidget {
                   Text(
                     "Our Team",
                     style: GoogleFonts.raleway(
-                        fontSize: 38,
+                        fontSize: 55*heightFactor,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         letterSpacing: 0.5),
@@ -146,10 +146,10 @@ class TeamScreenNew extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           if (data[index].members.length > 0)
-                            Text(data[index].category,
+                            AutoSizeText(data[index].category,
                                 textAlign: TextAlign.center,
                                 style: GoogleFonts.raleway(
-                                    fontSize: 20,
+                                    fontSize: 38*heightFactor,
                                     fontWeight: FontWeight.bold,
                                     color: Colors.white)),
                           SizedBox(

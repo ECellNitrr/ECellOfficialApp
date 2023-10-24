@@ -212,7 +212,7 @@ class LoginScreen extends StatelessWidget {
                   Expanded(flex: 2, child: Container()),
                   //Contains all fields
                   Flexible(
-                    flex: 5,
+                    flex: 7,
                     child: Column(
                       children: [
                         // Logo
@@ -337,15 +337,25 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   SizedBox(height:30*heightFactor),
-                  Expanded(
-                    flex:2,
+                  Flexible(
                     child: Container(
                       height:50,
                       padding: EdgeInsets.only(right: D.horizontalPadding),
                       alignment: Alignment.topRight,
-                      child: Column(
-                      children: [
-                      LegacyRaisedButton(
+                      child: Container(
+
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: C.authButtonColor.withOpacity(0.2),
+                              blurRadius: 10,
+                              spreadRadius: 3,
+                              offset: Offset(0, 12),
+                            )
+                          ],
+                        ),
+                       child:  LegacyRaisedButton(
                       shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                               ),
@@ -383,7 +393,7 @@ class LoginScreen extends StatelessWidget {
                                   children: <Widget>[
                                     Image.asset(
                                       'assets/google.png',
-                                      height: 20,
+                                      height: 20 * heightFactor,
                                       color: C.backgroundBottom,
                                     ),
                                     SizedBox(width: 8), // Add spacing between the icon and the container
@@ -394,68 +404,206 @@ class LoginScreen extends StatelessWidget {
                                         color: C.backgroundBottom,
                                         fontSize: 20 * heightFactor,
                                       ),
+                      )]))))
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 30 * heightFactor),
-                            LegacyRaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.all(Radius.circular(10)),
-                              ),
-                              color: C.authButtonColor,
-                              onPressed:(){
-                                // logout();
-                                f="Guest";
-                                l="Guest";
-                                e="Unkown";
-                                context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
-                                Navigator.pushReplacementNamed(context, S.routeHome);
-                              },
-                              child: Container(
-                                height: 50,
-                                width: 100,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: C.authButtonColor.withOpacity(0.2),
-                                      blurRadius: 10,
-                                      spreadRadius: 3,
-                                      offset: Offset(0, 12),
-                                    )
-                                  ],
-                                ),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Image.asset(
-                                      'assets/guests.png',
-                                      height: 20,
-                                      color: C.backgroundBottom,
-                                    ),
-                                    SizedBox(width: 8), // Add spacing between the icon and the container
-                                    Text(
-                                      "Skip",
-                                      style: GoogleFonts.lato(
-                                        fontWeight: FontWeight.bold,
-                                        color: C.backgroundBottom,
-                                        fontSize: 20 * heightFactor,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            //New here Text
-                          ],
-                      ),
-                    )
-
+                      
+                                  
                   ),
+                  SizedBox(height:30*heightFactor),
+                  Flexible(
+                    child: Container(
+                      height:50,
+                      padding: EdgeInsets.only(right: D.horizontalPadding),
+                      alignment: Alignment.topRight,
+                      child: Container(
+
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: C.authButtonColor.withOpacity(0.2),
+                              blurRadius: 10,
+                              spreadRadius: 3,
+                              offset: Offset(0, 12),
+                            )
+                          ],
+                        ),
+                       child: LegacyRaisedButton(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(10)),
+                          ),
+                          color: C.authButtonColor,
+                          onPressed: () {
+                            // logout();
+                            f = "Guest";
+                            l = "Guest";
+                            e = "Unkown";
+                            context.read<GlobalState>().user =
+                                uo.User.rtr(f, l, e, p);
+                            Navigator.pushReplacementNamed(
+                                context, S.routeHome);
+                          },
+                          child: Container(
+                            height: 50,
+                            width: 100,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: C.authButtonColor.withOpacity(0.2),
+                                  blurRadius: 10,
+                                  spreadRadius: 3,
+                                  offset: Offset(0, 12),
+                                )
+                              ],
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Image.asset(
+                                  'assets/guests.png',
+                                  height: 20 * heightFactor,
+                                  color: C.backgroundBottom,
+                                ),
+                                SizedBox(
+                                    width:
+                                        8), // Add spacing between the icon and the container
+                                Text(
+                                  "Skip",
+                                  style: GoogleFonts.lato(
+                                    fontWeight: FontWeight.bold,
+                                    color: C.backgroundBottom,
+                                    fontSize: 20 * heightFactor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  // Expanded(
+                  //   flex:2,
+                  //   child: Container(
+                  //     height:50,
+                  //     padding: EdgeInsets.only(right: D.horizontalPadding),
+                  //     alignment: Alignment.topRight,
+                  //     child: Column(
+                  //     children: [
+                  //     LegacyRaisedButton(
+                  //     shape: RoundedRectangleBorder(
+                  //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                  //             ),
+                  //             color: C.authButtonColor,
+                  //             onPressed:(){
+                  //               // logout();
+                  //               googleLoginwait() async{
+                  //                 bool lg=await googleLogin();
+                  //                 if(lg){
+
+                  //                   context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+                  //                   print(context.read<GlobalState>().user?.firstName);
+                  //                   Navigator.pushReplacementNamed(context, S.routeHome);}
+                  //               }
+                  //               googleLoginwait();
+                  //             },
+                  //             child: Container(
+                  //               height: 50,
+                  //               width: 100,
+                  //               alignment: Alignment.center,
+                  //               decoration: BoxDecoration(
+                  //                 borderRadius:
+                  //                     BorderRadius.all(Radius.circular(20)),
+                  //                 boxShadow: [
+                  //                   BoxShadow(
+                  //                     color: C.authButtonColor.withOpacity(0.2),
+                  //                     blurRadius: 10,
+                  //                     spreadRadius: 3,
+                  //                     offset: Offset(0, 12),
+                  //                   )
+                  //                 ],
+                  //               ),
+                  //               child: Row(
+                  //                 mainAxisAlignment: MainAxisAlignment.center,
+                  //                 children: <Widget>[
+                  //                   Image.asset(
+                  //                     'assets/google.png',
+                  //                     height: 20,
+                  //                     color: C.backgroundBottom,
+                  //                   ),
+                  //                   SizedBox(width: 8), // Add spacing between the icon and the container
+                  //                   Text(
+                  //                     "Sign in",
+                  //                     style: GoogleFonts.lato(
+                  //                       fontWeight: FontWeight.bold,
+                  //                       color: C.backgroundBottom,
+                  //                       fontSize: 20 * heightFactor,
+                  //                     ),
+                  //                   ),
+                  //                 ],
+                  //               ),
+                  //             ),
+                  //           ),
+                  //           SizedBox(height: 30 * heightFactor),
+                            // LegacyRaisedButton(
+                            //   shape: RoundedRectangleBorder(
+                            //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                            //   ),
+                            //   color: C.authButtonColor,
+                            //   onPressed:(){
+                            //     // logout();
+                            //     f="Guest";
+                            //     l="Guest";
+                            //     e="Unkown";
+                            //     context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+                            //     Navigator.pushReplacementNamed(context, S.routeHome);
+                            //   },
+                            //   child: Container(
+                            //     height: 50,
+                            //     width: 100,
+                            //     alignment: Alignment.center,
+                            //     decoration: BoxDecoration(
+                            //       borderRadius:
+                            //           BorderRadius.all(Radius.circular(20)),
+                            //       boxShadow: [
+                            //         BoxShadow(
+                            //           color: C.authButtonColor.withOpacity(0.2),
+                            //           blurRadius: 10,
+                            //           spreadRadius: 3,
+                            //           offset: Offset(0, 12),
+                            //         )
+                            //       ],
+                            //     ),
+                            //     child: Row(
+                            //       mainAxisAlignment: MainAxisAlignment.center,
+                            //       children: <Widget>[
+                            //         Image.asset(
+                            //           'assets/guests.png',
+                            //           height: 20,
+                            //           color: C.backgroundBottom,
+                            //         ),
+                            //         SizedBox(width: 8), // Add spacing between the icon and the container
+                            //         Text(
+                            //           "Skip",
+                            //           style: GoogleFonts.lato(
+                            //             fontWeight: FontWeight.bold,
+                            //             color: C.backgroundBottom,
+                            //             fontSize: 20 * heightFactor,
+                            //           ),
+                            //         ),
+                            //       ],
+                            //     ),
+                            //   ),
+                            // ),
+                  //           //New here Text
+                  //         ],
+                  //     ),
+                  //   )
+
+                  // ),
 
                   Expanded(
                     flex: 2,
@@ -485,7 +633,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  //To flex background
+                  // To flex background
                   Expanded(flex: 3, child: Container()),
                 ],
               ),
