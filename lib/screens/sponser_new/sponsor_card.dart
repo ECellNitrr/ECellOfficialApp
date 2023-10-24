@@ -100,7 +100,7 @@ class _SponsorCardState extends State<SponsorCard> {
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.raleway(
                                           color: Colors.white,
-                                          fontSize: 18,
+                                          fontSize: 22*height/1000,
                                           fontWeight: FontWeight.w500,
                                         )),
                                     SizedBox(
@@ -112,7 +112,7 @@ class _SponsorCardState extends State<SponsorCard> {
                                       textAlign: TextAlign.center,
                                       style: GoogleFonts.raleway(
                                         color: Colors.white,
-                                        fontSize: 15,
+                                        fontSize: 18*height/1000,
                                       ),
                                     ),
                                     SizedBox(
@@ -139,7 +139,7 @@ class _SponsorCardState extends State<SponsorCard> {
                                         child: Text("Website",
                                             style: GoogleFonts.raleway(
                                               color: Colors.white,
-                                              fontSize: 15,
+                                              fontSize: 18* height / 1000,
                                             )),
                                       ),
                                     )

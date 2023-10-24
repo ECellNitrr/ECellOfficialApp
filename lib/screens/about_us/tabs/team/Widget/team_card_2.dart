@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ecellapp/core/res/colors.dart';
@@ -49,7 +50,7 @@ class _TeamsCard2State extends State<TeamsCard2> {
         child: AnimatedSwitcher(
           duration: Duration(milliseconds: 600),
           child: _displayFront
-              ? _buildFront(widget.teamMember!)
+              ? _buildFront(widget.teamMember!,context)
               : _buildRear(widget.teamMember!, context),
         ),
       ),
@@ -57,14 +58,18 @@ class _TeamsCard2State extends State<TeamsCard2> {
   }
 }
 
-Widget _buildFront(TeamMember teamMember) {
+Widget _buildFront(TeamMember teamMember,BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double heightFactor = height / 1000;
   return Text(teamMember.name!,
       textAlign: TextAlign.center,
       style: GoogleFonts.raleway(
-          fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white));
+          fontSize: 24*heightFactor, fontWeight: FontWeight.bold, color: Colors.white));
 }
 
 Widget _buildRear(TeamMember teamMember, BuildContext context) {
+  double height = MediaQuery.of(context).size.height;
+  double heightFactor = height / 1000;
   return Container(
     child: GestureDetector(
       onTap: () async {
@@ -79,7 +84,7 @@ Widget _buildRear(TeamMember teamMember, BuildContext context) {
       },
       child: Image.asset(
         S.assetIconLinkdin,
-        height: 50,
+        height: 50*heightFactor,
         color: Colors.white,
       ),
     ),

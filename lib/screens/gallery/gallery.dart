@@ -94,7 +94,7 @@ class GalleryScreen extends StatelessWidget {
                       child: Text(
                         "Gallery",
                         style: GoogleFonts.raleway(
-                            fontSize: ratio>0.5?45:50,
+                            fontSize: 55*height/1000,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             letterSpacing: 0.5),

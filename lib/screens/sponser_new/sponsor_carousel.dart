@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:ecellapp/models/sponsor.dart';
 import 'package:ecellapp/models/sponsor_category.dart';
@@ -44,24 +45,14 @@ class SponserCarousel extends StatelessWidget {
     return CarouselSlider.builder(
       itemCount: list.length,
       itemBuilder: ((context, index, realIndex) {
-        return Column(
-          children: [
-            Container(
-                color: Colors.white,
-                margin: EdgeInsets.only(top: height*0.02),
-                width: width * 0.4,
-                height: height * 0.12,
-                child: Image.network(
-                  list[index].picUrl!,
-                  fit: BoxFit.contain,
-                )),
-            (list[index].details == null)
-                ? Container()
-                : Text(list[index].details!,style: GoogleFonts.raleway(
-                  color: Colors.white
-                ),),
-          ],
-        );
+        return Container(
+            color: Colors.white,
+            width: width * 0.4,
+            height: height * 0.12,
+            child: Image.network(
+              list[index].picUrl!,
+              fit: BoxFit.contain,
+            ));
       }),
       options: CarouselOptions(
         height: 200,
@@ -80,7 +71,6 @@ class SponserCarousel extends StatelessWidget {
       ),
     );
   }
-
 
   void _getAllSponsors(BuildContext context) {
     final cubit = context.read<SponsorsCubit>();

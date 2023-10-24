@@ -158,6 +158,7 @@ class SignupScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
+                  margin: EdgeInsets.only(top: 10),
                   padding: EdgeInsets.only(right: D.horizontalPadding),
                   alignment: Alignment.topRight,
                   child: Container(
@@ -179,8 +180,8 @@ class SignupScreen extends StatelessWidget {
                       color: C.authButtonColor,
                       onPressed: () => _signup(context),
                       child: Container(
-                        height: 60,
-                        width: 120,
+                        height: 50,
+                        width: 100,
                         alignment: Alignment.center,
                         child: Text(
                           "Sign Up!",

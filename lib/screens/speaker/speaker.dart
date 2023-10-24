@@ -59,6 +59,8 @@ class SpeakerScreen extends StatelessWidget {
   Widget _buildSuccess(BuildContext context, List<Speaker> speakerList) {
     double top = MediaQuery.of(context).viewInsets.top;
     double ratio = MediaQuery.of(context).size.aspectRatio;
+    double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
 
     List<Widget> speakerContentList = [];
     speakerList.forEach((element) => speakerContentList.add(SpeakerCard(speaker: element)));
@@ -78,7 +80,7 @@ class SpeakerScreen extends StatelessWidget {
             Text(
               "Speakers",
               style: GoogleFonts.raleway(
-                  fontSize: ratio > 0.5 ? 45 : 50,
+                  fontSize: 55*heightFactor,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                   letterSpacing: 0.5),

@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBottomNavBar(context) {
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
     return SalomonBottomBar(
       backgroundColor: C.backgroundBottom,
       unselectedItemColor: C.menuButtonColor,
@@ -39,28 +40,40 @@ class _HomeScreenState extends State<HomeScreen> {
       items: [
         /// Profile
         SalomonBottomBarItem(
-          icon: Icon(Icons.person),
-          title: Text("Profile"),
+          icon: Icon(Icons.person,
+            size: 30 * heightFactor,
+          ),
+          title: Text("Profile",style: TextStyle(fontSize: 22*heightFactor),),
           selectedColor: C.menuButtonColor,
         ),
         /// Home
         SalomonBottomBarItem(
-          icon: Icon(Icons.home),
-          title: Text("Home"),
+          icon: Icon(Icons.home,size: 30 * heightFactor ,),
+          title: Text("Home",
+            style: TextStyle(fontSize: 22 * heightFactor),
+          ),
           selectedColor: C.menuButtonColor,
         ),
 
         /// Contact
         SalomonBottomBarItem(
-          icon: Icon(Icons.call),
-          title: Text("Contact"),
+          icon: Icon(Icons.call,
+              size: 30 * heightFactor,
+            ),
+          title: Text("Contact",
+              style: TextStyle(fontSize: 22 * heightFactor),
+            ),
           selectedColor: C.menuButtonColor
         ),
 
         ///App team
         SalomonBottomBarItem(
-            icon: Icon(Icons.flutter_dash_outlined),
-            title: Text("App Team"),
+            icon: Icon(Icons.flutter_dash_outlined,
+              size: 30 * heightFactor,
+            ),
+            title: Text("App Team",
+              style: TextStyle(fontSize: 22 * heightFactor),
+            ),
             selectedColor: C.menuButtonColor
         ),
 

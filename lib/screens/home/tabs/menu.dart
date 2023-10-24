@@ -88,7 +88,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 padding: const EdgeInsets.fromLTRB(12.0, 32.0, 0.0, 0.0),
                 child: WelcomeText(
                   text: "Entrepreneurship\nCell",
-                  size: 35.0,
+                  size: 45.0,
                 ),
               ),
               SizedBox(
@@ -98,7 +98,7 @@ class _MenuScreenState extends State<MenuScreen> {
                 padding: const EdgeInsets.fromLTRB(10.0, 15.0, 0.0, 5.0),
                 child: WelcomeText(
                   text: "Explore ESUMMIT'23",
-                  size: 22.0,
+                  size: 35.0,
                 ),
               ),
               Row(

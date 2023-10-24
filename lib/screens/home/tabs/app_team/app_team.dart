@@ -12,6 +12,8 @@ class AppTeamScreen extends StatelessWidget {
   AppTeamList appTeamList=AppTeamList();
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double heightFactor = height/1000;
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.transparent,
@@ -46,7 +48,7 @@ class AppTeamScreen extends StatelessWidget {
                     Text(
                       "ECell App",
                       style: TextStyle(
-                        fontSize: 35,
+                        fontSize: 55*heightFactor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -54,7 +56,7 @@ class AppTeamScreen extends StatelessWidget {
                     Text(
                       "Developer Team",
                       style: TextStyle(
-                        fontSize: 30,
+                        fontSize: 55*heightFactor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -65,7 +67,7 @@ class AppTeamScreen extends StatelessWidget {
                       child: Text(
                         "Alumni App Dev",
                         style: TextStyle(
-                          fontSize: 30,
+                          fontSize: 55*heightFactor,
                           fontWeight: FontWeight.w600,
                         ),
                       ),

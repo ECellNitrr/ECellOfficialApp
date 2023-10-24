@@ -23,8 +23,6 @@ class SponsorsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     // List<int> yearList = [2023, 2022];
     return StatefulWrapper(
       onInit: () => _getAllSponsors(context),
@@ -101,6 +99,7 @@ class SponsorsScreen extends StatelessWidget {
     double top = MediaQuery.of(context).viewPadding.top;
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    double heightFactor = height / 1000;
 
     // ignore: close_sinks
     BehaviorSubject<int> subject = BehaviorSubject.seeded(0);
@@ -135,7 +134,7 @@ class SponsorsScreen extends StatelessWidget {
                   Text(
                     "Sponsors",
                     style: GoogleFonts.raleway(
-                        fontSize: 40,
+                        fontSize: 55*heightFactor,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         letterSpacing: 0.5),

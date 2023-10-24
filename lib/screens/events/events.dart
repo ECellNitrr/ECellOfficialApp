@@ -60,6 +60,7 @@ class EventsScreen extends StatelessWidget {
 
   Widget _buildSuccess(BuildContext context, List<Event> eventsList, Map<String, dynamic> eventForms) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
+    double height = MediaQuery.of(context).size.height;
     double top = MediaQuery.of(context).viewPadding.top;
 
     List<Widget> eventObjList = [];
@@ -83,7 +84,7 @@ class EventsScreen extends StatelessWidget {
                 Text(
                   "Events",
                   style: GoogleFonts.raleway(
-                      fontSize: ratio > 0.5 ? 45 : 50,
+                      fontSize: 55*height/1000,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                       letterSpacing: 0.5),
