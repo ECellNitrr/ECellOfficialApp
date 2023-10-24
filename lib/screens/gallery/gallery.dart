@@ -64,6 +64,7 @@ class GalleryScreen extends StatelessWidget {
   }
 
   Widget _buildSuccess(BuildContext context, Map<String, dynamic> galleryList) {
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double top = MediaQuery.of(context).viewPadding.top;
@@ -78,56 +79,63 @@ class GalleryScreen extends StatelessWidget {
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: Stack(
         children: [
-          NotificationListener<OverscrollIndicatorNotification>(
-            onNotification: (OverscrollIndicatorNotification overscroll) {
-              overscroll.disallowIndicator();
-              return true;
-            },
-            child: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Container(
-                margin: EdgeInsets.only(top: top + 56),
-                child: Stack(
-                  children: <Widget>[
-                    Align(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Gallery",
-                        style: GoogleFonts.raleway(
-                            fontSize: 55*height/1000,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            letterSpacing: 0.5),
-                      ),
+          Padding(
+            padding:
+            EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
+            child: Container(
+              height: height * 0.4,
+              width: width * 0.8,
+              child: Image.asset(
+                S.assetEcellLogoWhite,
+                fit: BoxFit.contain,
+                opacity: const AlwaysStoppedAnimation<double>(0.5),
+              ),
+            ),
+          ),
+          SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Container(
+              margin: EdgeInsets.only(top: top + 40),
+              child: Stack(
+                children: <Widget>[
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      "Gallery",
+                      style: GoogleFonts.raleway(
+                          fontSize: 55*height/1000,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          letterSpacing: 0.5),
                     ),
-                    SizedBox(
-                      height: height ,
-                      child: ListView.builder(
-                        itemCount: years.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return HomeImageSection(
-                            height: height,
-                            image: S.assetSpeakerBackdrop,
-                            text: years[index],
-                            elementColor: C.menuButtonColor,
-                            gradientColor: C.backgroundBottom,
-                            onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ImageGrid(
-                                      imageUrls: galleryList[years[index]]!.toList(),
-                                    galleryText: years[index],
-                                  );
-                                },
-                              ),
+                  ),
+                  SizedBox(
+                    height: height ,
+                    child: ListView.builder(
+                      itemCount: years.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return HomeImageSection(
+                          height: height,
+                          image: S.assetSpeakerBackdrop,
+                          text: years[index],
+                          elementColor: C.menuButtonColor,
+                          gradientColor: C.backgroundBottom,
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return ImageGrid(
+                                    imageUrls: galleryList[years[index]]!.toList(),
+                                  galleryText: years[index],
+                                );
+                              },
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

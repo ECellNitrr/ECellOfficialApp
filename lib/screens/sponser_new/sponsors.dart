@@ -103,7 +103,6 @@ class SponsorsScreen extends StatelessWidget {
 
     // ignore: close_sinks
     BehaviorSubject<int> subject = BehaviorSubject.seeded(0);
-
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: NotificationListener<OverscrollIndicatorNotification>(
@@ -140,71 +139,86 @@ class SponsorsScreen extends StatelessWidget {
                         letterSpacing: 0.5),
                   ),
                   Expanded(
-                    child: ListView.builder(
-                        padding: EdgeInsets.only(top: 10),
-                        itemCount: data.length,
-                        itemBuilder: ((context, index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              if (data[index].spons.length > 0)
-                                Text(data[index].category,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.raleway(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white)),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
-                              data[index].category != "Title"
-                                  ? GridView.count(
-                                      childAspectRatio: (0.8 / 1),
-                                      physics: ScrollPhysics(),
-                                      shrinkWrap: true,
-                                      padding: data[index].spons.length == 1
-                                          ? EdgeInsets.symmetric(
-                                              horizontal: width * 0.25,
-                                              vertical: 5)
-                                          : EdgeInsets.symmetric(
-                                              horizontal: 10, vertical: 5),
-                                      crossAxisSpacing: 20,
-                                      mainAxisSpacing: 20,
-                                      crossAxisCount:
-                                          data[index].spons.length == 1 ? 1 : 2,
-                                      children: [
-                                        ...data[index]
-                                            .spons
-                                            .map((e) => SponsorCard(sponsor: e))
-                                      ],
-                                    )
-                                  : CarouselSlider.builder(
-                                      itemCount: data[index].spons.length,
-                                      itemBuilder: ((context, i, realIndex) {
-                                        return SponsorCard(
-                                          sponsor: data[index].spons[i],
-                                        );
-                                      }),
-                                      options: CarouselOptions(
-                                        height: height * 0.3,
-                                        aspectRatio: 16 / 9,
-                                        viewportFraction: 0.8,
-                                        initialPage: 0,
-                                        enableInfiniteScroll: true,
-                                        reverse: false,
-                                        autoPlay: true,
-                                        autoPlayInterval: Duration(seconds: 3),
-                                        autoPlayAnimationDuration:
-                                            Duration(milliseconds: 800),
-                                        autoPlayCurve: Curves.fastOutSlowIn,
-                                        enlargeCenterPage: true,
-                                        enlargeFactor: 0.3,
-                                        scrollDirection: Axis.horizontal,
-                                      ))
-                            ],
-                          );
-                        })),
+                    child: (data.length > 0)
+                        ? ListView.builder(
+                            padding: EdgeInsets.only(top: 10),
+                            itemCount: data.length,
+                            itemBuilder: ((context, index) {
+                              return Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  if (data[index].spons.length > 0)
+                                    Text(data[index].category,
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.raleway(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  // ...data[index].members.map((e) => TeamsCardNew(teamMember: e)),
+                                  data[index].category != "Title"
+                                      ? GridView.count(
+                                          childAspectRatio: (0.8 / 1),
+                                          physics: ScrollPhysics(),
+                                          shrinkWrap: true,
+                                          padding: data[index].spons.length == 1
+                                              ? EdgeInsets.symmetric(
+                                                  horizontal: width * 0.25,
+                                                  vertical: 5)
+                                              : EdgeInsets.symmetric(
+                                                  horizontal: 10, vertical: 5),
+                                          crossAxisSpacing: 20,
+                                          mainAxisSpacing: 20,
+                                          crossAxisCount:
+                                              data[index].spons.length == 1
+                                                  ? 1
+                                                  : 2,
+                                          children: [
+                                            ...data[index].spons.map(
+                                                (e) => SponsorCard(sponsor: e))
+                                          ],
+                                        )
+                                      : CarouselSlider.builder(
+                                          itemCount: data[index].spons.length,
+                                          itemBuilder:
+                                              ((context, i, realIndex) {
+                                            return SponsorCard(
+                                              sponsor: data[index].spons[i],
+                                            );
+                                          }),
+                                          options: CarouselOptions(
+                                            height: height * 0.3,
+                                            aspectRatio: 16 / 9,
+                                            viewportFraction: 0.8,
+                                            initialPage: 0,
+                                            enableInfiniteScroll: true,
+                                            reverse: false,
+                                            autoPlay: true,
+                                            autoPlayInterval:
+                                                Duration(seconds: 3),
+                                            autoPlayAnimationDuration:
+                                                Duration(milliseconds: 800),
+                                            autoPlayCurve: Curves.fastOutSlowIn,
+                                            enlargeCenterPage: true,
+                                            enlargeFactor: 0.3,
+                                            scrollDirection: Axis.horizontal,
+                                          ))
+                                ],
+                              );
+                            }))
+                        : Center(
+                            child: Text(
+                              "Will be updated Soon...",
+                              style: GoogleFonts.raleway(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  letterSpacing: 0.5),
+                            ),
+                          ),
                   ),
                 ],
               ),

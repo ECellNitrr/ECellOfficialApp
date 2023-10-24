@@ -484,7 +484,7 @@ class _EventImageSectionState extends State<EventImageSection> {
                                     ),
                                     EventText(
                                       color: C.primaryHighlightedColor,
-                                      text: "Venue: DDU Auditorium",
+                                      text: "Venue: ${widget.event.venue!}",
                                       maxLines: 2,
                                       size: 18.0,
                                     ),
