@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../core/res/colors.dart';
+import '../../core/res/dimens.dart';
+import '../../core/res/strings.dart';
 import '../../widgets/screen_background.dart';
 
 class ImageGrid extends StatelessWidget {
@@ -12,11 +14,38 @@ class ImageGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: Container(
+          padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           ScreenBackground(elementId: 0),
+          Padding(
+            padding:
+            EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
+            child: Container(
+              height: height * 0.4,
+              width: width * 0.8,
+              child: Image.asset(
+                S.assetEcellLogoWhite,
+                fit: BoxFit.contain,
+                opacity: const AlwaysStoppedAnimation<double>(0.5),
+              ),
+            ),
+          ),
           Container(
             height: height*0.15,
             child: Align(
@@ -26,7 +55,7 @@ class ImageGrid extends StatelessWidget {
           ),
           Column(
             children: [
-              SizedBox(height: height*0.12,),
+              SizedBox(height: height*0.05,),
               SizedBox(
                 height: height*0.88,
                 child: GridView.builder(
