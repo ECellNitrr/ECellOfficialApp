@@ -446,8 +446,9 @@ class _EventImageSectionState extends State<EventImageSection> {
                       child: Row(
                         children: [
                           Container(
-                            child: Image.network(widget.event.iconUrl!),
+                            child: Image.network(widget.event.iconUrl!, fit: BoxFit.cover,),
                             height: widget.height * 0.14,
+                            width: widget.height * 0.14,
                           ),
                           Container(
                             width: widget.height * 0.29,
