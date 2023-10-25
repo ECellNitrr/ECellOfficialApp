@@ -63,7 +63,7 @@ class AppTeamScreen extends StatelessWidget {
                     SizedBox(height: 11,),
                     Column(children: appTeamList.createTeamList(2023)),
                     Container(
-                      height: 40,
+                      height: height*0.1,
                       child: Text(
                         "Alumni App Dev",
                         style: TextStyle(
