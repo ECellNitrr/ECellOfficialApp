@@ -84,7 +84,7 @@ class SignupScreen extends StatelessWidget {
             children: [
               Expanded(flex: 2, child: Container()),
               Flexible(
-                flex: 7,
+                flex: 9,
                 child: Column(
                   children: [
                     Container(

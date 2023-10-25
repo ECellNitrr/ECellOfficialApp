@@ -55,10 +55,10 @@ class ImageGrid extends StatelessWidget {
           ),
           Column(
             children: [
-              SizedBox(height: height*0.05,),
-              SizedBox(
-                height: height*0.88,
+              SizedBox(height: height*0.15,),
+              Expanded(
                 child: GridView.builder(
+                  padding: EdgeInsets.all(0),
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
                   ),
