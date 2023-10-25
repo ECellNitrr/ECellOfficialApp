@@ -56,7 +56,7 @@ class S {
   static const String eventiconurlKey = "icon";
 
   //sponsors
-  static int sponsorApiYear = 2019;
+  static int sponsorApiYear = 2023;
   static const String sponsorName = "name";
   static const String sponsorDetails = "details";
   static const String sponsorPic = "pic";
