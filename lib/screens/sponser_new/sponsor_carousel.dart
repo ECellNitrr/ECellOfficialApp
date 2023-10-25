@@ -41,7 +41,7 @@ class SponserCarousel extends StatelessWidget {
       });
     });
 
-    return CarouselSlider.builder(
+    return (list.length==0)?Container():CarouselSlider.builder(
       itemCount: list.length,
       itemBuilder: ((context, index, realIndex) {
         return Column(
