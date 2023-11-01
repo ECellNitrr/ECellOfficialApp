@@ -392,6 +392,7 @@ class _EventImageSectionState extends State<EventImageSection> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.event.iconUrl!);
     return Container(
       decoration: BoxDecoration(
           borderRadius:
@@ -456,7 +457,7 @@ class _EventImageSectionState extends State<EventImageSection> {
                       child: Row(
                         children: [
                           Container(
-                            child: Image.network(widget.event.iconUrl!, fit: BoxFit.cover,),
+                            child: Image.asset("assets/event-logos/${widget.event.id!}.jpg", fit: BoxFit.cover,),
                             height: widget.height * 0.14,
                             width: widget.height * 0.14,
                           ),
@@ -630,7 +631,7 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                         borderRadius: BorderRadius.all(
                             Radius.circular(20.0)), // Rounded corners
                         image: DecorationImage(
-                          image: NetworkImage(widget.speaker.profilePic!),
+                          image: NetworkImage(S.imgBaseUrl+widget.speaker.profilePic!),
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -660,7 +661,7 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                           width: widget.height * 0.17,
                         ),
                         Container(
-                          width: widget.height * 0.20,
+                          width: widget.height * 0.24,
                           child: Align(
                             alignment: Alignment.topLeft,
                             child: Padding(
@@ -680,6 +681,12 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                                     color: C.backgroundBottom,
                                     text: "${widget.speaker.company!}",
                                     maxLines: 2,
+                                    size: 20.0,
+                                  ),
+                                  EventText(
+                                    color: C.backgroundBottom,
+                                    text: "Year: ${widget.speaker.year!}",
+                                    maxLines: 1,
                                     size: 20.0,
                                   ),
                                 ],

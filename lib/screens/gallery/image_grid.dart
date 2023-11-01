@@ -71,7 +71,7 @@ class ImageGrid extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return FullScreenImage(imageUrl: imageUrls[index]['small']);
+                              return FullScreenImage(imageUrl: "${imageUrls[index]['big']}");
                             },
                           ),
                         );
@@ -81,7 +81,7 @@ class ImageGrid extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.network(
-                            imageUrls[index]['small'],
+                            "${imageUrls[index]['small']}",
                             fit: BoxFit.cover,
                           ),
                         ),
