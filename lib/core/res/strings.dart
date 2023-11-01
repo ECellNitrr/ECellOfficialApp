@@ -3,6 +3,7 @@ class S {
 
   // urls
   static const String baseUrl = "https://ecell.nitrr.ac.in/api/";
+  static const String imgBaseUrl = "https://ecell.nitrr.ac.in/";
   static const String loginUrl = baseUrl + "users/login/";
   static const String registerUrl = baseUrl + "users/register/";
   static const String getUserDetailsUrl = baseUrl + "users/get_user_details/";

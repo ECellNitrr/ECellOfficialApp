@@ -17,6 +17,7 @@ class SpeakerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     double ratio = MediaQuery.of(context).size.aspectRatio;
     double height = MediaQuery.of(context).size.height;
+    print(speaker);
     return SpeakerImageSection(
       height: height,
       image: S.assetSpeakerBackdrop,
