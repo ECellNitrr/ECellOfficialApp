@@ -208,8 +208,8 @@ class ListButton extends StatelessWidget {
                     print(dateTime);
                     (dateTime[0] == month &&
                             dateTime[1] == day &&
-                            dateTime[2] > startHr &&
-                            dateTime[3] < endHr)
+                            dateTime[2] == startHr &&
+                            dateTime[3] <= endHr)
                         ? Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
                                 builder: ((context) => BlocProvider(
