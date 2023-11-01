@@ -80,8 +80,7 @@ class GalleryScreen extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding:
-            EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
             child: Container(
               height: height * 0.4,
               width: width * 0.8,
@@ -92,52 +91,52 @@ class GalleryScreen extends StatelessWidget {
               ),
             ),
           ),
-          SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Container(
-              margin: EdgeInsets.only(top: top + 40),
-              child: Stack(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      "Gallery",
-                      style: GoogleFonts.raleway(
-                          fontSize: 55*height/1000,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 0.5),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height ,
-                    child: ListView.builder(
-                      itemCount: years.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return HomeImageSection(
-                          height: height,
-                          image: S.assetSpeakerBackdrop,
-                          text: years[index],
-                          elementColor: C.menuButtonColor,
-                          gradientColor: C.backgroundBottom,
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return ImageGrid(
-                                    imageUrls: galleryList[years[index]]!.toList(),
-                                  galleryText: years[index],
-                                );
-                              },
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                ],
+          Container(
+            height: height * 0.15,
+            child: Align(
+              alignment: Alignment.center,
+              child: Text(
+                "Gallery",
+                style: GoogleFonts.raleway(
+                    fontSize: 55 * height / 1000,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    letterSpacing: 0.5),
               ),
             ),
+          ),
+          Column(
+            children: [
+              SizedBox(
+                height: height * 0.15,
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: EdgeInsets.all(0),
+                  itemCount: years.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return HomeImageSection(
+                      height: height,
+                      image: S.assetSpeakerBackdrop,
+                      text: years[index],
+                      elementColor: C.menuButtonColor,
+                      gradientColor: C.backgroundBottom,
+                      onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return ImageGrid(
+                              imageUrls: galleryList[years[index]]!.toList(),
+                              galleryText: years[index],
+                            );
+                          },
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ],
       ),
