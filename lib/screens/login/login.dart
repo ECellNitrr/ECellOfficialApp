@@ -27,17 +27,17 @@ class Login extends StatefulWidget {
 }
 class _LoginState extends State<Login> {
   String? UserName;
-  String?Photourl;
+  String? Photourl;
   googleLogin() async {
     await Firebase.initializeApp();
     print("googleLogin method Called");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
-      var reslut = await _googleSignIn.signIn();
-      if (reslut == null) {
+      var result = await _googleSignIn.signIn();
+      if (result == null) {
         return;
       }
-      final userData = await reslut.authentication;
+      final userData = await result.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: userData.accessToken, idToken: userData.idToken);
       var finalResult =
