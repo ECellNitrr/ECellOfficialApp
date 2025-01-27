@@ -7,7 +7,7 @@ abstract class LoginState extends Equatable {
   List<Object?> get props => [];
 }
 
-// LoginScreen  implements multuiple states
+// LoginScreen  implements multiple states
 // 1.Initial
 class LoginInitial extends LoginState {
   const LoginInitial();

@@ -20,27 +20,27 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    String? token = sl.get<SharedPreferences>().getString(S.tokenKey);
+    // String? token = sl.get<SharedPreferences>().getString(S.mailTokenKey);
     String? email = sl.get<SharedPreferences>().getString('email');
-    if (token == null) {
+    if (email == null) {
       Future.delayed(Duration(milliseconds: D.splashDelay)).then(
           (value) => Navigator.pushReplacementNamed(context, S.routeLogin));
     } else {
       print('I have come here');
-      if(email!=null){
-        String f="a";
-        String l="b";
-        String e="Unknown";
+      // if(email!=null){
+        String f=email;
+        String l="";
+        String e=email;
         String  p="xxxxxxxxxx";
-        List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
-        f=words[0];
-        if(words.length>1)l=words[words.length-1];
-        e=sl.get<SharedPreferences>().getString('email')??"Unknown";
+        // List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
+        // f=words[0];
+        // if(words.length>1)l=words[words.length-1];
+        // e=sl.get<SharedPreferences>().getString('email')??"Unknown";
         context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
         Future.delayed(Duration(milliseconds: D.splashDelay)).then(
                 (value) => Navigator.pushReplacementNamed(context, S.routeHome));
-      }
-      else context.read<SplashCubit>().getProfile();
+      // }
+      // else context.read<SplashCubit>().getProfile();
     }
   }
 

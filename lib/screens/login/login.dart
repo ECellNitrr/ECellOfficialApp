@@ -88,7 +88,7 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   static String f="a";
-  static String l="b";
+  static String l="";
   static String e="Unknown";
   static String  p="xxxxxxxxxx";
   Future<bool> googleLogin() async {
@@ -416,7 +416,6 @@ class LoginScreen extends StatelessWidget {
                       padding: EdgeInsets.only(right: D.horizontalPadding),
                       alignment: Alignment.topRight,
                       child: Container(
-
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           boxShadow: [
@@ -604,7 +603,6 @@ class LoginScreen extends StatelessWidget {
                   //   )
 
                   // ),
-
                   Expanded(
                     flex: 2,
                     child: Container(
@@ -651,7 +649,10 @@ class LoginScreen extends StatelessWidget {
 
   void _login(BuildContext context) {
     final cubit = context.read<LoginCubit>();
-    if (_formKey.currentState!.validate())
+    if (_formKey.currentState!.validate()) {
       cubit.login(emailController.text, passwordController.text);
+      emailController.clear();
+      passwordController.clear();
+    }
   }
 }

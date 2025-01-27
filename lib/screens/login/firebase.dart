@@ -9,7 +9,7 @@ Future<void> userSetup(int Score) async {
   String email=LoginScreen.emailController.text;
   String? Name=firebaseCred.name;
   CollectionReference users = FirebaseFirestore.instance.collection('SCORE');
-  await users.doc(LoginCubit.Token).set({'Name': Name,'email':email, 'token': LoginCubit.Token,'Score':Score});
+  await users.doc(LoginCubit.mailToken).set({'Name': Name,'email':email, 'token': LoginCubit.mailToken,'Score':Score});
   // FirebaseFirestore auth = FirebaseFirestore.instance;
   // users.add({'Name': Name,'email':email, 'token': LoginCubit.Token,'Score':Score});
   return;

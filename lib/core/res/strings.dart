@@ -2,6 +2,7 @@ class S {
   S._();
 
   // urls
+  static const String mailTokenKey="mailToken";
   static const String baseUrl = "https://ecell.nitrr.ac.in/api/";
   static const String imgBaseUrl = "https://ecell.nitrr.ac.in/";
   static const String loginUrl = baseUrl + "users/login/";

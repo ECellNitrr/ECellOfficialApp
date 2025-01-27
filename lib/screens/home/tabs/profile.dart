@@ -18,6 +18,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     User user = context.read<GlobalState>().user!;
+    print(user.email);
+    print(user.firstName);
+    print(user.lastName);
+    print(user.phoneNumber);
     firebaseCred.name=user.firstName.toString();
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
