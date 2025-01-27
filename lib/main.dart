@@ -125,7 +125,7 @@ class _ECellAppState extends State<ECellApp> {
               create: (_) => LoginCubit(FirebaseLoginRepository()),
               child: LoginScreen()),
           S.routeSignup: (_) => BlocProvider(
-              create: (_) => SignupCubit(APISignupRepository()),
+              create: (_) => SignupCubit(FirebaseSignUpRepository()),
               child: SignupScreen()),
           S.routeHome: (_) => BlocProvider(
               create: (_) => FeedbackCubit(APIHomeRepository()),

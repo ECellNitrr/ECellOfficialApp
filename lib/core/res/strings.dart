@@ -1,5 +1,10 @@
 class S {
   S._();
+//Firebase Shared Preferences keys
+  static const String firstName="first_name";
+  static const String lastName="last_name";
+  static const String email="email";
+  static const String phone="phone_number";
 
   // urls
   static const String mailTokenKey="mailToken";

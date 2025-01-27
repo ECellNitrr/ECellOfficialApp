@@ -14,10 +14,10 @@ class SplashCubit extends Cubit<SplashState> {
   final SplashRepository _splashRepository;
   SplashCubit(this._splashRepository) : super(SplashLoading());
 
-  Future<void> getProfile() async {
+  void getProfile() {
     try {
       emit(SplashLoading());
-      String? email=await _splashRepository.getProfile();
+      String? email=_splashRepository.getProfile();
       emit(SplashSuccess(User(firstName: email,lastName: "",email: email,phoneNumber: "XXXXXXXXXX")));
     // } on NetworkException {
     //   emit(SplashError(S.networkException));

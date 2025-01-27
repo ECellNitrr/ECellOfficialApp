@@ -18,7 +18,7 @@ abstract class SplashRepository {
   // Future<User> getProfile();
 
   //Just tells if user is logged in or not
-  Future<String?> getProfile();
+  String? getProfile();
 }
 
 // class FakeSplashRepository extends SplashRepository {
@@ -80,9 +80,9 @@ abstract class SplashRepository {
 
 class FirebaseSplashRepository extends SplashRepository{
   @override
-  Future<String?> getProfile() async {
+  String? getProfile(){
     String? ans=null;
-    ans=await sl
+    ans=sl
     .get<SharedPreferences>()
     .getString('email');
     return ans;

@@ -198,9 +198,11 @@ class _MenuScreenState extends State<MenuScreen> {
     switch (value) {
       case 'Logout':
         Provider.of<GlobalState>(context, listen: false).user = null;
-        await sl.get<SharedPreferences>().remove(S.tokenKeySharedPreferences);
-        await sl.get<SharedPreferences>().remove('email');
-        await sl.get<SharedPreferences>().remove('name');
+        await sl.get<SharedPreferences>().remove(S.mailTokenKey);
+        await sl.get<SharedPreferences>().remove(S.email);
+        await sl.get<SharedPreferences>().remove(S.firstName);
+        await sl.get<SharedPreferences>().remove(S.lastName);
+        await sl.get<SharedPreferences>().remove(S.phone);
         // await sl.get<SharedPreferences>().remove('GoogleSign');
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Logged Out Successfuly")));

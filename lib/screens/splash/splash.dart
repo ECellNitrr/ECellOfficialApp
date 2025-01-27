@@ -21,17 +21,20 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     // String? token = sl.get<SharedPreferences>().getString(S.mailTokenKey);
-    String? email = sl.get<SharedPreferences>().getString('email');
+    String? email = sl.get<SharedPreferences>().getString(S.email);
+    String? firstName=sl.get<SharedPreferences>().getString(S.firstName);
+    String? lastName=sl.get<SharedPreferences>().getString(S.lastName);
+    String? phone=sl.get<SharedPreferences>().getString(S.phone);
     if (email == null) {
       Future.delayed(Duration(milliseconds: D.splashDelay)).then(
           (value) => Navigator.pushReplacementNamed(context, S.routeLogin));
     } else {
       print('I have come here');
       // if(email!=null){
-        String f=email;
-        String l="";
+        String f=(firstName==null?email:firstName);
+        String l=(lastName==null?"":lastName);
         String e=email;
-        String  p="xxxxxxxxxx";
+        String  p=(phone==null?"xxxxxxxxxx":phone);
         // List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
         // f=words[0];
         // if(words.length>1)l=words[words.length-1];
@@ -56,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen> {
               if (state is SplashError) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content:
-                        Text("Something went wrong. Try loging in again.")));
+                        Text("Something went wrong. Try logging in again.")));
                 Navigator.pushReplacementNamed(context, S.routeLogin);
               } else if (state is SplashSuccess) {
                 context.read<GlobalState>().user = state.user;

@@ -37,7 +37,7 @@ class SignupScreen extends StatelessWidget {
           } else if (state is SignupSuccess) {
             ScaffoldMessenger.of(context)
                 .showSnackBar(SnackBar(content: Text("SignUp Successful")));
-            Navigator.pushReplacementNamed(context, S.routeLogin);
+            Navigator.pushReplacementNamed(context, S.routeSplash);
           }
         },
         builder: (context, state) {

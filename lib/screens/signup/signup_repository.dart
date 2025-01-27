@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/res/errors.dart';
 import '../../core/res/strings.dart';
@@ -67,4 +69,24 @@ class APISignupRepository implements SignupRepository {
       throw UnknownException();
     }
   }
+}
+//Migrating to firebase Email and password SignUp
+class FirebaseSignUpRepository extends SignupRepository{
+  @override
+  Future<void> signup(String firstName, String lastName, String email, String mobileNumber, String password) async{
+    try {
+      await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
+
+      await sl.get<SharedPreferences>().setString(S.firstName, firstName);
+      await sl.get<SharedPreferences>().setString(S.lastName, lastName);
+      await sl.get<SharedPreferences>().setString(S.email, email);
+      await sl.get<SharedPreferences>().setString(S.phone, mobileNumber);
+      await sl.get<SharedPreferences>().setString(S.mailTokenKey, email);
+    }catch (e){
+      print(e);
+      throw ResponseException(e.toString());
+    }
+  }
+
 }

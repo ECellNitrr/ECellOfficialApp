@@ -79,7 +79,7 @@ class FirebaseLoginRepository extends LoginRepository {
       return email;
     }catch(e){
       print(e);
-      return null;
+      throw ResponseException(e.toString());
     }
   }
 
