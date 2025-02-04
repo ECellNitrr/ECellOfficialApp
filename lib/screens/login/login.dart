@@ -30,7 +30,7 @@ class _LoginState extends State<Login> {
   String? Photourl;
   googleLogin() async {
     await Firebase.initializeApp();
-    print("googleLogin method Called");
+    // print("googleLogin method Called");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
       var result = await _googleSignIn.signIn();
@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
   static String  p="xxxxxxxxxx";
   Future<bool> googleLogin() async {
     await Firebase.initializeApp();
-    print("googleLogin method Called");
+    // print("googleLogin method Called");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
       var reslut = await _googleSignIn.signIn();
@@ -116,10 +116,10 @@ class LoginScreen extends StatelessWidget {
 
       var finalResult =
       await FirebaseAuth.instance.signInWithCredential(credential);
-      print("Result $reslut");print(token);
-      print(reslut.displayName);
-      print(reslut.email);
-      print(reslut.id);
+      // print("Result $reslut");print(token);
+      // print(reslut.displayName);
+      // print(reslut.email);
+      // print(reslut.id);
       await sl
           .get<SharedPreferences>()
           .setString(S.tokenKeySharedPreferences, reslut.id);
@@ -129,14 +129,14 @@ class LoginScreen extends StatelessWidget {
       await sl
           .get<SharedPreferences>()
           .setString('name',reslut.displayName??"Unknown");
-      print(reslut.photoUrl);
+      // print(reslut.photoUrl);
       List<String> words = reslut.displayName!.split(' ');
       f=words[0];
       if(words.length>1)l=words[words.length-1];
       e=reslut.email;
       return true;
     } catch (error) {
-      print(error);
+      // print(error);
       return false;
     }
   }
@@ -146,7 +146,7 @@ class LoginScreen extends StatelessWidget {
       FirebaseAuth.instance.signOut();
     }
     catch(error){
-      print(error);
+      // print(error);
     }
   }
   @override

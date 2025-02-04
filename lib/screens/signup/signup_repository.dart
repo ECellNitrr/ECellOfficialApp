@@ -84,7 +84,7 @@ class FirebaseSignUpRepository extends SignupRepository{
       await sl.get<SharedPreferences>().setString(S.phone, mobileNumber);
       await sl.get<SharedPreferences>().setString(S.mailTokenKey, email);
     }catch (e){
-      print(e);
+      // print(e);
       throw ResponseException(e.toString());
     }
   }

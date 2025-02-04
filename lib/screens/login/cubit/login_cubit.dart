@@ -22,8 +22,8 @@ class LoginCubit extends Cubit<LoginState> {
       emit(LoginLoading());
       String? token = await (_loginRepository.login(email, password));
       mailToken=token;
-      print("printing mail token");
-      print(token);
+      // print("printing mail token");
+      // print(token);
       await sl
           .get<SharedPreferences>()
           .setString(S.mailTokenKey, token!);//Take care of exception prefixes for shared preferences

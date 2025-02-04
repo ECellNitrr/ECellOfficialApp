@@ -47,7 +47,7 @@ class APILoginRepository implements LoginRepository {
     if (response.statusCode == 202) {
       try {
         String? token = json.decode(response.body)[S.tokenKey];
-        print(token);
+        // print(token);
         return token;
       } catch (e) {
         Log.e(
@@ -78,7 +78,7 @@ class FirebaseLoginRepository extends LoginRepository {
           email: email, password: password);
       return email;
     }catch(e){
-      print(e);
+      // print(e);
       throw ResponseException(e.toString());
     }
   }
