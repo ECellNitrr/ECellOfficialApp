@@ -1,23 +1,13 @@
-import 'dart:convert';
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecellapp/models/leader_board.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 import 'package:ecellapp/core/res/errors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
-import 'package:ecellapp/core/utils/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../models/global_state.dart';
 import '../../../models/user.dart';
-import '../../login/cubit/login_cubit.dart';
-import '../../login/login.dart';
-import '../../login/login_repository.dart';
 
 @immutable
 abstract class LeaderRepository {
@@ -75,7 +65,7 @@ abstract class LeaderRepository {
 class APILeaderRepository extends LeaderRepository {
   final String classTag = "APIgetleaderRepository";
   final List<Data> leaderList = List.empty(growable: true);
-  static String? email=null;
+  static String? email = null;
 
   APILeaderRepository({required this.label});
   final String label;
@@ -91,17 +81,14 @@ class APILeaderRepository extends LeaderRepository {
       String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
       print("stoken:$token");
       CollectionReference leaderBoard =
-      FirebaseFirestore.instance.collection("LEADERBOARD");
+          FirebaseFirestore.instance.collection("LEADERBOARD");
 
-      DocumentSnapshot v=await leaderBoard
-          .doc(label)
-          .collection("leaders").doc(token)
-          .get();
+      DocumentSnapshot v =
+          await leaderBoard.doc(label).collection("leaders").doc(token).get();
 
-      if(v.exists){
+      if (v.exists) {
         print(true);
-      }
-      else{
+      } else {
         print(false);
       }
       print("hello");
@@ -117,15 +104,14 @@ class APILeaderRepository extends LeaderRepository {
           .orderBy("score", descending: true)
           .get()
           .then(
-
-            (value) {
+        (value) {
           value.docs.forEach((element) {
             // leaderList.add(Data.fromFirestore(element));
             // print(element['email']);
             try {
-              print(element['phone']+" exits");
+              print(element['phone'] + " exits");
               leaderList.add(Data.fromFirestore(element));
-            } on StateError catch(e) {
+            } on StateError {
               leaderList.add(Datae.fromFirestore(element));
               print('No nested field exists!');
             }
@@ -134,11 +120,10 @@ class APILeaderRepository extends LeaderRepository {
             print(element.get('username'));
             try {
               print(element['email']);
-              UNEmail[element.get('username')]=element['email'];
-            } on StateError catch(e) {
+              UNEmail[element.get('username')] = element['email'];
+            } on StateError {
               print('No nested field exists!');
-              UNEmail[element.get('username')]=null;
-
+              UNEmail[element.get('username')] = null;
             }
           });
           print(UNEmail);
@@ -155,7 +140,6 @@ class APILeaderRepository extends LeaderRepository {
       print(error);
       throw UnknownException();
     }
-
   }
 
   Future<void> uploadScore(int score, User user) async {
@@ -168,11 +152,8 @@ class APILeaderRepository extends LeaderRepository {
     String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
     print("stoken:$token");
     CollectionReference leaderBoard =
-    FirebaseFirestore.instance.collection("LEADERBOARD");
-    var x = await leaderBoard
-        .doc(label)
-        .collection("leaders")
-        .doc(token).id;
+        FirebaseFirestore.instance.collection("LEADERBOARD");
+    var x = await leaderBoard.doc(label).collection("leaders").doc(token).id;
     print("x:$x");
     await leaderBoard
         .doc(label)
@@ -180,25 +161,21 @@ class APILeaderRepository extends LeaderRepository {
         .doc(token)
         .set({"username": name, "phone": (user.phoneNumber), "score": score});
   }
+
   Future<bool> validate() async {
     final SharedPreferences sharedPreferences = sl.get<SharedPreferences>();
     String? token = sharedPreferences.getString(S.tokenKeySharedPreferences);
 
     CollectionReference leaderBoard =
-    FirebaseFirestore.instance.collection("LEADERBOARD");
+        FirebaseFirestore.instance.collection("LEADERBOARD");
 
-    DocumentSnapshot v=await leaderBoard
-        .doc(label)
-        .collection("leaders").doc(token)
-        .get();
+    DocumentSnapshot v =
+        await leaderBoard.doc(label).collection("leaders").doc(token).get();
 
-    if(v.exists){
+    if (v.exists) {
       return false;
-    }
-    else{
+    } else {
       return true;
     }
-
-
   }
 }

@@ -106,8 +106,8 @@ class LoginScreen extends StatelessWidget {
 
       String token = reslut.id;
 
-      while (token!.length > 0) {
-        int initLength = (token!.length >= 500 ? 500 : token.length);
+      while (token.length > 0) {
+        int initLength = (token.length >= 500 ? 500 : token.length);
         print(token.substring(0, initLength));
         int endLength = token.length;
         token = token.substring(initLength, endLength);

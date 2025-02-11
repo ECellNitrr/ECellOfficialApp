@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/models/quiz_details.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../core/res/strings.dart';
 import '../../widgets/raisedButton.dart';
 
 class QuizList extends StatelessWidget {
