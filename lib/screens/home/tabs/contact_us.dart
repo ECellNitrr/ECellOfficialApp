@@ -196,8 +196,8 @@ class ContactUsScreen extends StatelessWidget {
                             onTap: () => _launchURL(S.twitterURL),
                             child: Image.asset(
                               S.assetTwitterIcon,
-                              width: 80,
-                              height: 80,
+                              width: 53,
+                              height: 55,
                             ),
                           ),
                         ),
