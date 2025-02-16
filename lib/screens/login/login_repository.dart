@@ -4,6 +4,7 @@ import 'package:ecellapp/core/res/errors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/core/utils/injection.dart';
 import 'package:ecellapp/core/utils/logger.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 
 abstract class LoginRepository {
@@ -26,7 +27,7 @@ class FakeLoginRepository implements LoginRepository {
     }
   }
 }
-
+// We're moving login and signup portion to firebase completely due to repeated users in quiz (From firebase and API the same user)
 class APILoginRepository implements LoginRepository {
   final String classTag = "APILoginRepository";
   @override
@@ -46,7 +47,7 @@ class APILoginRepository implements LoginRepository {
     if (response.statusCode == 202) {
       try {
         String? token = json.decode(response.body)[S.tokenKey];
-        print(token);
+        // print(token);
         return token;
       } catch (e) {
         Log.e(
@@ -67,4 +68,19 @@ class APILoginRepository implements LoginRepository {
       throw UnknownException();
     }
   }
+}
+// Instead of token we will use email to check if user is already signed in
+class FirebaseLoginRepository extends LoginRepository {
+  @override
+  Future<String?> login(String email, String password) async{
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: email, password: password);
+      return email;
+    }catch(e){
+      // print(e);
+      throw ResponseException(e.toString());
+    }
+  }
+
 }

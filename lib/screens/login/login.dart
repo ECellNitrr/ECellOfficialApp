@@ -27,17 +27,17 @@ class Login extends StatefulWidget {
 }
 class _LoginState extends State<Login> {
   String? UserName;
-  String?Photourl;
+  String? Photourl;
   googleLogin() async {
     await Firebase.initializeApp();
-    print("googleLogin method Called");
+    // print("googleLogin method Called");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
-      var reslut = await _googleSignIn.signIn();
-      if (reslut == null) {
+      var result = await _googleSignIn.signIn();
+      if (result == null) {
         return;
       }
-      final userData = await reslut.authentication;
+      final userData = await result.authentication;
       final credential = GoogleAuthProvider.credential(
           accessToken: userData.accessToken, idToken: userData.idToken);
       var finalResult =
@@ -88,12 +88,12 @@ class LoginScreen extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   static String f="a";
-  static String l="b";
+  static String l="";
   static String e="Unknown";
   static String  p="xxxxxxxxxx";
   Future<bool> googleLogin() async {
     await Firebase.initializeApp();
-    print("googleLogin method Called");
+    // print("googleLogin method Called");
     GoogleSignIn _googleSignIn = GoogleSignIn();
     try {
       var reslut = await _googleSignIn.signIn();
@@ -116,10 +116,10 @@ class LoginScreen extends StatelessWidget {
 
       var finalResult =
       await FirebaseAuth.instance.signInWithCredential(credential);
-      print("Result $reslut");print(token);
-      print(reslut.displayName);
-      print(reslut.email);
-      print(reslut.id);
+      // print("Result $reslut");print(token);
+      // print(reslut.displayName);
+      // print(reslut.email);
+      // print(reslut.id);
       await sl
           .get<SharedPreferences>()
           .setString(S.tokenKeySharedPreferences, reslut.id);
@@ -129,14 +129,14 @@ class LoginScreen extends StatelessWidget {
       await sl
           .get<SharedPreferences>()
           .setString('name',reslut.displayName??"Unknown");
-      print(reslut.photoUrl);
+      // print(reslut.photoUrl);
       List<String> words = reslut.displayName!.split(' ');
       f=words[0];
       if(words.length>1)l=words[words.length-1];
       e=reslut.email;
       return true;
     } catch (error) {
-      print(error);
+      // print(error);
       return false;
     }
   }
@@ -146,7 +146,7 @@ class LoginScreen extends StatelessWidget {
       FirebaseAuth.instance.signOut();
     }
     catch(error){
-      print(error);
+      // print(error);
     }
   }
   @override
@@ -416,7 +416,6 @@ class LoginScreen extends StatelessWidget {
                       padding: EdgeInsets.only(right: D.horizontalPadding),
                       alignment: Alignment.topRight,
                       child: Container(
-
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           boxShadow: [
@@ -604,7 +603,6 @@ class LoginScreen extends StatelessWidget {
                   //   )
 
                   // ),
-
                   Expanded(
                     flex: 2,
                     child: Container(
@@ -651,7 +649,10 @@ class LoginScreen extends StatelessWidget {
 
   void _login(BuildContext context) {
     final cubit = context.read<LoginCubit>();
-    if (_formKey.currentState!.validate())
+    if (_formKey.currentState!.validate()) {
       cubit.login(emailController.text, passwordController.text);
+      emailController.clear();
+      passwordController.clear();
+    }
   }
 }

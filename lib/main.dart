@@ -119,13 +119,13 @@ class _ECellAppState extends State<ECellApp> {
         debugShowCheckedModeBanner: false,
         routes: {
           S.routeSplash: (_) => BlocProvider(
-              create: (_) => SplashCubit(APISplashRepository()),
+              create: (_) => SplashCubit(FirebaseSplashRepository()),
               child: SplashScreen()),
           S.routeLogin: (_) => BlocProvider(
-              create: (_) => LoginCubit(APILoginRepository()),
+              create: (_) => LoginCubit(FirebaseLoginRepository()),
               child: LoginScreen()),
           S.routeSignup: (_) => BlocProvider(
-              create: (_) => SignupCubit(APISignupRepository()),
+              create: (_) => SignupCubit(FirebaseSignUpRepository()),
               child: SignupScreen()),
           S.routeHome: (_) => BlocProvider(
               create: (_) => FeedbackCubit(APIHomeRepository()),

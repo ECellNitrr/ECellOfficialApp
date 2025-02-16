@@ -25,7 +25,9 @@ class SignupCubit extends Cubit<SignupState> {
       emit(SignupError(e.description));
     } on UnknownException {
       emit(SignupError(S.unknownException));
-    } catch (e) {
+    } on ResponseException catch(e){
+      emit(SignupError(e.message!));
+    }catch (e) {
       Log.s(tag: "Weird exception", message: "Weird response message ->" + e.toString());
     }
   }
