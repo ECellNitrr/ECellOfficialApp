@@ -7,7 +7,6 @@ import 'package:ecellapp/screens/home/cubit/feedback_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../widgets/raisedButton.dart';
 
 class ContactUsScreen extends StatelessWidget {
@@ -161,7 +160,8 @@ class ContactUsScreen extends StatelessWidget {
                           width: width / 20,
                         ),
                         GestureDetector(
-                          onTap: () => _launchURL(S.emailURL),
+                          onTap: () => _launchURL(
+                              "mailto:ecell@nitrr.ac.in?subject=Hello&body=This is a test email"),
                           child: Text(
                             S.ecellEmail,
                             style: TextStyle(
@@ -248,11 +248,11 @@ class ContactUsScreen extends StatelessWidget {
                               height: 1.2,
                               wordSpacing: 4),
                         ),
-                        Image.asset(
-                          S.assetHeartIcon,
-                          width: 30,
-                          height: 30,
-                        ),
+                        // Image.asset(
+                        //   S.assetHeartIcon,
+                        //   width: 30,
+                        //   height: 30,
+                        // ),
                       ],
                     ),
                   ),
@@ -357,8 +357,10 @@ class ContactUsScreen extends StatelessWidget {
   }
 
   _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
+    final Uri emailUri = Uri.parse(url);
+
+    if (await canLaunchUrl(emailUri)) {
+      await launchUrl(emailUri);
     } else {
       throw 'Could not launch $url';
     }

@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:data_connection_checker_nulls/data_connection_checker_nulls.dart';
 import 'package:ecellapp/core/res/colors.dart';
-import 'package:ecellapp/core/res/dimens.dart';
-import 'package:ecellapp/core/utils/network_checker.dart';
 import 'package:ecellapp/models/questions.dart';
 import 'package:ecellapp/screens/b_quiz/leaderBoard/leaderboard_repository.dart';
 import 'package:ecellapp/screens/b_quiz/quiz_success.dart';
@@ -18,11 +16,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../widgets/ecell_animation.dart';
 import '../../../widgets/reload_on_error.dart';
 import '../../../widgets/stateful_wrapper.dart';
-import '../../core/res/strings.dart';
 import '../../models/global_state.dart';
 import '../../models/user.dart';
 import 'cubit/quiz_cubit.dart';
-import 'widgets/option_card.dart';
 
 class Quiz extends StatefulWidget {
   final String label;
@@ -226,9 +222,7 @@ class _SuccessState extends State<Success> {
                           offset: Offset(20, 20),
                           blurRadius: 3,
                           spreadRadius: -10)
-                    ]
-                    ),
-                    
+                    ]),
                 child: Column(
                   children: [
                     Container(
@@ -239,9 +233,19 @@ class _SuccessState extends State<Success> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Container(padding: EdgeInsets.all(2),decoration:BoxDecoration(borderRadius: BorderRadius.circular(50),
-                                      color: Colors.black54),child: Icon(Icons.question_mark_outlined,color: Colors.white,size: 15,)),
-                              SizedBox(width: 5,),
+                              Container(
+                                  padding: EdgeInsets.all(2),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(50),
+                                      color: Colors.black54),
+                                  child: Icon(
+                                    Icons.question_mark_outlined,
+                                    color: Colors.white,
+                                    size: 15,
+                                  )),
+                              SizedBox(
+                                width: 5,
+                              ),
                               Text(
                                 "$currentQuestion/${widget.QuizList.length}",
                                 style: TextStyle(
@@ -332,16 +336,14 @@ class _SuccessState extends State<Success> {
                           Container(
                             padding: EdgeInsets.all(5),
                             decoration: BoxDecoration(
-                              color: Colors.yellow,
-                              borderRadius: BorderRadius.circular(20)
-                            ),
+                                color: Colors.yellow,
+                                borderRadius: BorderRadius.circular(20)),
                             child: Text(
                               "Score: $score",
                               style: TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.black,
-                                fontWeight: FontWeight.w700
-                              ),
+                                  fontSize: 18.0,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ),
                         ],

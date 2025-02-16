@@ -1,5 +1,4 @@
 import 'package:ecellapp/models/sponsor_head.dart';
-import 'package:ecellapp/screens/sponsors/cubit/sponsors_cubit.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsor_head_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
@@ -41,7 +40,7 @@ class SponsorsHeadScreen extends StatelessWidget {
               colors: [C.backgroundTop1, C.backgroundBottom1],
             ),
           ),
-          child: BlocBuilder<SponsorsHeadCubit,SponsorsHeadState>(
+          child: BlocBuilder<SponsorsHeadCubit, SponsorsHeadState>(
             builder: (context, state) {
               if (state is SponsorsHeadInitial)
                 return _buildLoading(context);
@@ -58,12 +57,14 @@ class SponsorsHeadScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildSuccess(BuildContext context, List<SponsorHead> sponsorsHeadList) {
+  Widget _buildSuccess(
+      BuildContext context, List<SponsorHead> sponsorsHeadList) {
     double top = MediaQuery.of(context).viewInsets.top;
     double ratio = MediaQuery.of(context).size.aspectRatio;
 
     List<Widget> sponsorHeadContentList = [];
-    sponsorsHeadList.forEach((element) => sponsorHeadContentList.add(SponsorHeadCard(sponsorHead: element)));
+    sponsorsHeadList.forEach((element) =>
+        sponsorHeadContentList.add(SponsorHeadCard(sponsorHead: element)));
 
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),

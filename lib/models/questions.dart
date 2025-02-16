@@ -1,8 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecellapp/core/res/strings.dart';
-import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
-
 class Questions {
   String? question;
   List<String>? answers;
@@ -10,7 +5,12 @@ class Questions {
   bool? isImage;
   List<String>? images;
 
-  Questions({this.question, this.answers, this.correctIndex, this.images, required this.isImage});
+  Questions(
+      {this.question,
+      this.answers,
+      this.correctIndex,
+      this.images,
+      required this.isImage});
 
   // factory Questions.fromJson(Map<String, dynamic> json) => Questions(
   //       question: json["question"],
@@ -25,12 +25,11 @@ class Questions {
         answers: List<String>.from(data["answers"].map((x) => x)),
         correctIndex: data["correctIndex"],
         isImage: data["isImage"],
-        images: data["images"] == null ? null : List<String>.from(data["images"].map((x) => x))
-    );
+        images: data["images"] == null
+            ? null
+            : List<String>.from(data["images"].map((x) => x)));
   }
-
 
   @override
   List<Object> get props => throw UnimplementedError();
-  
 }

@@ -36,9 +36,8 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
     double height = MediaQuery.of(context).size.height;
     double heightFactor = height / 1000;
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(24),
-        boxShadow: [
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(24), boxShadow: [
         BoxShadow(
           color: Colors.black38,
           blurRadius: 10,
@@ -55,7 +54,7 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
                       S.assetUnknownIcon,
                     )
                   : NetworkImage(widget.teamMember!.image!) as ImageProvider,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               child: InkWell(
                 onTap: () => setState(() => _displayFront = !_displayFront),
               ),
@@ -70,7 +69,7 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
               child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 600),
                 child: _displayFront
-                    ? _buildFront(widget.teamMember!,context)
+                    ? _buildFront(widget.teamMember!, context)
                     : _buildRear(widget.teamMember!, context),
               ),
             ),
@@ -79,7 +78,7 @@ class _TeamsCardNewState extends State<TeamsCardNew> {
   }
 }
 
-Widget _buildFront(TeamMember teamMember,BuildContext context) {
+Widget _buildFront(TeamMember teamMember, BuildContext context) {
   double height = MediaQuery.of(context).size.height;
   double heightFactor = height / 1000;
   Map<String, String> domainList = {
@@ -98,10 +97,13 @@ Widget _buildFront(TeamMember teamMember,BuildContext context) {
       Text(teamMember.name!.toUpperCase(),
           textAlign: TextAlign.center,
           style: GoogleFonts.raleway(
-              fontSize: 20*heightFactor, fontWeight: FontWeight.bold, color: Colors.white)),
+              fontSize: 20 * heightFactor,
+              fontWeight: FontWeight.bold,
+              color: Colors.white)),
       teamMember.domain != null && teamMember.domain != "none"
           ? Text(domainList[teamMember.domain!]!,
-              style: GoogleFonts.raleway(fontSize: 18*heightFactor, color: Colors.white))
+              style: GoogleFonts.raleway(
+                  fontSize: 18 * heightFactor, color: Colors.white))
           : Container()
     ],
   );
@@ -124,7 +126,7 @@ Widget _buildRear(TeamMember teamMember, BuildContext context) {
       },
       child: Image.asset(
         S.assetIconLinkdin,
-        height: 50*heightFactor,
+        height: 50 * heightFactor,
         color: Colors.white,
       ),
     ),

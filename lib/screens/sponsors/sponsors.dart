@@ -2,7 +2,6 @@ import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/models/sponsor_category.dart';
 import 'package:ecellapp/screens/sponsors/sponsor_card.dart';
 import 'package:ecellapp/screens/sponsors/sponsor_list.dart';
-import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsorship_head.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
@@ -33,7 +32,8 @@ class SponsorsScreen extends StatelessWidget {
             padding: EdgeInsets.only(left: 10),
             child: BlocBuilder<SponsorsCubit, SponsorsState>(
               builder: (context, state) {
-                Color color = (state is SponsorsSuccess) ? Colors.black : Colors.white;
+                Color color =
+                    (state is SponsorsSuccess) ? Colors.black : Colors.white;
                 return IconButton(
                   icon: Icon(Icons.arrow_back_ios, color: color, size: 30),
                   onPressed: () => Navigator.of(context).pop(),
@@ -99,7 +99,8 @@ class SponsorsScreen extends StatelessWidget {
                             return RotatedCurvedTile(
                               checked: tab == data[i].category,
                               name: tab,
-                              onTap: () => subject.add(data.indexWhere((e) => e.category == tab)),
+                              onTap: () => subject.add(
+                                  data.indexWhere((e) => e.category == tab)),
                             );
                           }).toList(),
                         ),
@@ -132,17 +133,27 @@ class SponsorsScreen extends StatelessWidget {
                                 ),
                               ),
                               Container(
-                                margin: EdgeInsets.only(left: 8,right: 8),
+                                margin: EdgeInsets.only(left: 8, right: 8),
                                 child: Column(
                                   children: [
-                                    SizedBox(height: 8,),
+                                    SizedBox(
+                                      height: 8,
+                                    ),
                                     Align(
                                       alignment: Alignment.center,
                                       child: LegacyRaisedButton(
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
                                         color: C.speakerButtonColor,
-                                        onPressed: (){
-                                          Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context)=>SponsorList())));
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      SponsorList())));
                                         },
                                         child: Container(
                                           height: 50,
@@ -151,7 +162,8 @@ class SponsorsScreen extends StatelessWidget {
                                           child: Text(
                                             "Yearwise Sponsors",
                                             style: TextStyle(
-                                              color: C.primaryUnHighlightedColor,
+                                              color:
+                                                  C.primaryUnHighlightedColor,
                                               fontSize: 15,
                                               fontWeight: FontWeight.w300,
                                               shadows: [
@@ -166,14 +178,21 @@ class SponsorsScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 10,),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
                                     Align(
                                       alignment: Alignment.center,
                                       child: LegacyRaisedButton(
-                                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
                                         color: C.speakerButtonColor,
-                                        onPressed: (){
-                                          Navigator.pushNamed(context, S.routeSponsorsHead);
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, S.routeSponsorsHead);
                                         },
                                         child: Container(
                                           height: 50,
@@ -182,7 +201,8 @@ class SponsorsScreen extends StatelessWidget {
                                           child: Text(
                                             "Contact Spons Team",
                                             style: TextStyle(
-                                              color: C.primaryUnHighlightedColor,
+                                              color:
+                                                  C.primaryUnHighlightedColor,
                                               fontSize: 15,
                                               fontWeight: FontWeight.w300,
                                               shadows: [
@@ -200,7 +220,9 @@ class SponsorsScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              ...data[i].spons.map((e) => SponsorCard(sponsor: e)),
+                              ...data[i]
+                                  .spons
+                                  .map((e) => SponsorCard(sponsor: e)),
                             ],
                           ),
                         ),

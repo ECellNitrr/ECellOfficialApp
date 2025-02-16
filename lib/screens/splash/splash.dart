@@ -22,27 +22,22 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     String? token = sl.get<SharedPreferences>().getString(S.tokenKey);
     String? email = sl.get<SharedPreferences>().getString('email');
-    if (token == null) {
+    print('I have come here');
+    if(email!=null){
+      String f="a";
+      String l="b";
+      String e="Unknown";
+      String  p="xxxxxxxxxx";
+      List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
+      f=words[0];
+      if(words.length>1)l=words[words.length-1];
+      e=sl.get<SharedPreferences>().getString('email')??"Unknown";
+      context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
       Future.delayed(Duration(milliseconds: D.splashDelay)).then(
-          (value) => Navigator.pushReplacementNamed(context, S.routeLogin));
-    } else {
-      print('I have come here');
-      if(email!=null){
-        String f="a";
-        String l="b";
-        String e="Unknown";
-        String  p="xxxxxxxxxx";
-        List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
-        f=words[0];
-        if(words.length>1)l=words[words.length-1];
-        e=sl.get<SharedPreferences>().getString('email')??"Unknown";
-        context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
-        Future.delayed(Duration(milliseconds: D.splashDelay)).then(
-                (value) => Navigator.pushReplacementNamed(context, S.routeHome));
-      }
-      else context.read<SplashCubit>().getProfile();
+              (value) => Navigator.pushReplacementNamed(context, S.routeHome));
     }
-  }
+    else context.read<SplashCubit>().getProfile();
+    }
 
   @override
   Widget build(BuildContext context) {

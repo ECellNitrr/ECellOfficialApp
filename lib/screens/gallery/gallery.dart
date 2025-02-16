@@ -75,6 +75,8 @@ class GalleryScreen extends StatelessWidget {
       years.add(key);
     });
 
+    years.sort((a, b) => b.compareTo(a));
+
     return DefaultTextStyle.merge(
       style: GoogleFonts.roboto().copyWith(color: C.primaryUnHighlightedColor),
       child: Stack(

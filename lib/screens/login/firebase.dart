@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecellapp/screens/login/login.dart';
-import '../home/tabs/profile.dart';
 import 'cubit/login_cubit.dart';
 class firebaseCred {
   static String? name;

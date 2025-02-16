@@ -6,7 +6,6 @@ import 'package:ecellapp/screens/about_us/tabs/team/widget/team_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
@@ -34,7 +33,8 @@ class TeamScreen extends StatelessWidget {
           leading: Container(
             padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios, color: C.teamsBackground, size: 30),
+              icon: Icon(Icons.arrow_back_ios,
+                  color: C.teamsBackground, size: 30),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
@@ -94,14 +94,14 @@ class TeamScreen extends StatelessWidget {
                           mainAxisSize: MainAxisSize.max,
                           children: data
                               .map((spon) {
-                            String tab = spon.category;
-                            return RotatedCurvedTile(
-                              checked: tab == data[i].category,
-                              name: tab,
-                              onTap: () =>
-                                  subject.add(data.indexWhere((e) => e.category == tab)),
-                            );
-                          })
+                                String tab = spon.category;
+                                return RotatedCurvedTile(
+                                  checked: tab == data[i].category,
+                                  name: tab,
+                                  onTap: () => subject.add(data
+                                      .indexWhere((e) => e.category == tab)),
+                                );
+                              })
                               .toList()
                               .sublist(0, 7),
                         ),
@@ -137,71 +137,95 @@ class TeamScreen extends StatelessWidget {
                               SizedBox(height: 5),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Column(children: [
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: LegacyRaisedButton(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
-                                      color: C.speakerButtonColor,
-                                      onPressed: (){
-                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: ((context)=>TeamList())));
-                                      },
-                                      child: Container(
-                                        height: 50,
-                                        width: 130,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Yearwise Teams",
-                                          style: TextStyle(
-                                            color: C.primaryUnHighlightedColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300,
-                                            shadows: [
-                                              Shadow(
-                                                color: Colors.black,
-                                                offset: Offset(0, 0.5),
-                                                blurRadius: 3,
-                                              ),
-                                            ],
+                                child: Column(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: LegacyRaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        color: C.speakerButtonColor,
+                                        onPressed: () {
+                                          Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      TeamList())));
+                                        },
+                                        child: Container(
+                                          height: 50,
+                                          width: 130,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Yearwise Teams",
+                                            style: TextStyle(
+                                              color:
+                                                  C.primaryUnHighlightedColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(0, 0.5),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 10,),
-                                  Align(
-                                    alignment: Alignment.center,
-                                    child: LegacyRaisedButton(
-                                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(30),),),
-                                      color: C.speakerButtonColor,
-                                      onPressed: (){
-                                        Navigator.push(context, MaterialPageRoute(builder: ((context)=>AppTeamScreen())));
-                                      },
-                                      child: Container(
-                                        height: 50,
-                                        width: 165,
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Contact App Team",
-                                          style: TextStyle(
-                                            color: C.primaryUnHighlightedColor,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w300,
-                                            shadows: [
-                                              Shadow(
-                                                color: Colors.black,
-                                                offset: Offset(0, 0.5),
-                                                blurRadius: 3,
-                                              ),
-                                            ],
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: LegacyRaisedButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(30),
+                                          ),
+                                        ),
+                                        color: C.speakerButtonColor,
+                                        onPressed: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: ((context) =>
+                                                      AppTeamScreen())));
+                                        },
+                                        child: Container(
+                                          height: 50,
+                                          width: 165,
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Contact App Team",
+                                            style: TextStyle(
+                                              color:
+                                                  C.primaryUnHighlightedColor,
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w300,
+                                              shadows: [
+                                                Shadow(
+                                                  color: Colors.black,
+                                                  offset: Offset(0, 0.5),
+                                                  blurRadius: 3,
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],),
+                                  ],
+                                ),
                               ),
-                              ...data[i].members.map((e) => TeamsCard(teamMember: e)),
+                              ...data[i]
+                                  .members
+                                  .map((e) => TeamsCard(teamMember: e)),
                               //! Fix to avoid non-scrollable state
                               Container(height: 200)
                             ],

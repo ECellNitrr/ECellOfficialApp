@@ -17,7 +17,8 @@ class EventCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame),
+          padding:
+              const EdgeInsets.symmetric(horizontal: D.horizontalPaddingFrame),
           alignment: Alignment.center,
           child: Padding(
             padding: const EdgeInsets.symmetric(vertical: 22.5),
@@ -58,7 +59,9 @@ class EventCard extends StatelessWidget {
                             //     fontWeight: FontWeight.w500,
                             //   ),
                             // ),
-                            SizedBox(height:10,),
+                            SizedBox(
+                              height: 10,
+                            ),
                             AutoSizeText(
                               "Time:" + "\t" * 3 + "${event!.time!}",
                               maxLines: 1,
@@ -83,10 +86,11 @@ class EventCard extends StatelessWidget {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(25.0),
-                          child:
-                          Text(
+                          child: Text(
                             event!.details!,
-                            style: TextStyle(color: C.cardFontColor,),
+                            style: TextStyle(
+                              color: C.cardFontColor,
+                            ),
                           ),
                         )
                       ],
