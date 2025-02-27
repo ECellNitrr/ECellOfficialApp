@@ -3,7 +3,6 @@ import 'package:ecellapp/screens/about_us/tabs/team/cubit/team_cubit_new.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team_repository_new.dart';
 import 'package:ecellapp/screens/b_quiz/bquiz.dart';
 import 'package:ecellapp/screens/b_quiz/leaderboard_list.dart';
-import 'package:ecellapp/screens/b_quiz/quiz_list.dart';
 import 'package:ecellapp/screens/gallery/cubit/gallery_cubit.dart';
 import 'package:ecellapp/screens/gallery/gallery.dart';
 import 'package:ecellapp/screens/gallery/gallery_repository.dart';
@@ -13,7 +12,6 @@ import 'package:ecellapp/screens/sponser_new/sponsors_repository.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/cubit/sponsors_head_cubit.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsors_head_repository.dart';
 import 'package:ecellapp/screens/sponsors/sponsorship_head/sponsorship_head.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -45,7 +43,6 @@ import 'screens/speaker/speaker_repository.dart';
 import 'screens/splash/cubit/splash_cubit.dart';
 import 'screens/splash/splash.dart';
 import 'screens/splash/splash_repository.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 ///Receive message when app is in background solution for on message
 Future<void> backgroundHandler(RemoteMessage message) async {
