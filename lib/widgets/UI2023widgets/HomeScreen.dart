@@ -12,13 +12,11 @@ import 'package:visibility_detector/visibility_detector.dart';
 import '../../core/res/colors.dart';
 import '../../core/res/strings.dart';
 import '../../models/event.dart';
+import 'package:lottie/lottie.dart';
 
 class WelcomeText extends StatelessWidget {
-  WelcomeText({
-    Key? key,
-    required this.text,
-    required this.size,
-  }) : super(key: key);
+  WelcomeText({Key? key, required this.text, required this.size})
+      : super(key: key);
 
   String text;
   double size;
@@ -48,29 +46,18 @@ class WelcomeText extends StatelessWidget {
 }
 
 class EventText extends StatelessWidget {
-  EventText({
-    Key? key,
-    required this.color,
-    required this.text,
-    required this.size,
-    required this.maxLines,
-    this.overflow = TextOverflow.visible,
-  }) : super(key: key);
+  EventText(
+      {Key? key,
+      required this.color,
+      required this.text,
+      required this.size,
+      required this.maxLines})
+      : super(key: key);
 
-  final String text;
+  String text;
   final Color color;
-  final double size;
-  final int maxLines;
-  final TextOverflow overflow;
-  // AutoSizeText(
-  // event, {required TextStyle style}!.name!,
-  // maxLines: 2,
-  // style: TextStyle(
-  // fontSize: 18,
-  // color: C.cardFontColor,
-  // fontWeight: FontWeight.w700,
-  // ),
-  // ),
+  double size;
+  int maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +67,6 @@ class EventText extends StatelessWidget {
         child: Text(
       text,
       maxLines: maxLines,
-      overflow: overflow,
       style: GoogleFonts.raleway(
         fontSize: size * heightFactor,
         fontWeight: FontWeight.bold, // Adjust the font size as needed
@@ -106,7 +92,6 @@ class HomeImageSection extends StatefulWidget {
     required this.gradientColor,
     required this.onPressed,
   });
-
   final double height;
   final String image;
   final Color gradientColor;
@@ -246,7 +231,7 @@ class _HomeImageSectionState extends State<HomeImageSection>
                   ),
                 ),
 
-                // Icon Button with bounce effect on tap
+                // Lottie Animation with bounce effect
                 Align(
                   alignment: Alignment.bottomRight,
                   child: GestureDetector(
@@ -256,10 +241,10 @@ class _HomeImageSectionState extends State<HomeImageSection>
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
                             0.0, widget.height * 0.1, 15.0, 10.0),
-                        child: Icon(
-                          Icons.arrow_circle_right_outlined,
-                          size: 50.0 * heightFactor,
-                          color: Colors.white,
+                        child: Lottie.asset(
+                          'assets/animationnew.json', // Lottie animation path
+                          width: 50.0 * heightFactor,
+                          height: 50.0 * heightFactor,
                         ),
                       ),
                     ),
@@ -463,11 +448,14 @@ class _HomeImageCarouselSectionState extends State<HomeImageCarouselSection>
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(
                             0.0, widget.height * 0.1, 14.0, 10.0),
-                        child: Icon(
-                          Icons.arrow_circle_right_outlined,
-                          size: 50.0 * heightFactor,
-                          color: Color.fromARGB(
-                              255, 254, 254, 255), // Use elementColor
+                        // child: Icon(
+                        //   Icons.arrow_circle_right_outlined,
+                        //   size: 50.0 * heightFactor,
+                        //   color: Color.fromARGB(255, 254, 254, 255), // Use elementColor
+                        child: Lottie.asset(
+                          'assets/animationnew.json', // Lottie animation path
+                          width: 50.0 * heightFactor,
+                          height: 50.0 * heightFactor,
                         ),
                       ),
                     ),
@@ -552,7 +540,6 @@ class EventImageSection extends StatefulWidget {
     required this.elementColor,
     required this.gradientColor,
   });
-
   final double height;
   final String eventForm;
   final String image;
@@ -575,138 +562,149 @@ class _EventImageSectionState extends State<EventImageSection> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.event.iconUrl!);
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            offset: Offset(0, 4),
-            blurRadius: 8,
-          ),
-        ],
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                offset: Offset(-8, -4),
+                blurRadius: 2,
+                spreadRadius: -20)
+          ]),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               children: [
-                // Background Image
                 Container(
                   height: widget.height * 0.19,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(20.0)), // Rounded corners
                     image: DecorationImage(
                       image: AssetImage(widget.image),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
-                // Gradient Overlay
                 Container(
                   height: widget.height * 0.19,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
                     gradient: LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: [widget.gradientColor, Colors.transparent],
+                      colors: [C.backgroundBottom, Colors.transparent],
                     ),
                   ),
                 ),
-                // Event Image
-                Positioned(
-                  left: 10,
-                  bottom: 10,
-                  child: Container(
-                    height: widget.height * 0.14,
-                    width: widget.height * 0.14,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.25),
-                          offset: Offset(0, 4),
-                          blurRadius: 8,
-                        ),
+                Container(
+                  height: widget.height * 0.19,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                    gradient: LinearGradient(
+                      begin: Alignment.bottomRight,
+                      end: Alignment.topLeft,
+                      colors: [
+                        widget.gradientColor,
+                        Colors.transparent,
+                        Colors.transparent
                       ],
                     ),
-                    child: ClipOval(
-                      child: Image.asset(
-                        "assets/event-logos/${widget.event.id!}.jpg",
-                        fit: BoxFit.cover,
+                  ),
+                ),
+                Container(
+                  height: widget.height * 0.19,
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(12.0, 0.0, 0.0, 0.0),
+                      child: Row(
+                        children: [
+                          Container(
+                            child: Image.asset(
+                              "assets/event-logos/${widget.event.id!}.jpg",
+                              fit: BoxFit.cover,
+                            ),
+                            height: widget.height * 0.14,
+                            width: widget.height * 0.14,
+                          ),
+                          Container(
+                            width: widget.height * 0.29,
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    6.0, 15.0, 0.0, 0.0),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    EventText(
+                                      color: C.primaryHighlightedColor,
+                                      text: widget.event.name!,
+                                      maxLines: 2,
+                                      size: 30.0,
+                                    ),
+                                    EventText(
+                                      color: C.primaryHighlightedColor,
+                                      text: "Date: ${widget.event.date!}",
+                                      maxLines: 2,
+                                      size: 18.0,
+                                    ),
+                                    EventText(
+                                      color: C.primaryHighlightedColor,
+                                      text: "Venue: ${widget.event.venue!}",
+                                      maxLines: 2,
+                                      size: 18.0,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(height: 10),
-            // Event Details
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.event.name!,
-                        style: TextStyle(
-                          color: widget.elementColor,
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          0.0, widget.height * 0.115, 10.0, 0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: _toggleExpansion,
+                            child: WelcomeText(text: "More Info", size: 14),
+                          ),
+                          (widget.eventForm == "null")
+                              ? Container()
+                              : TextButton(
+                                  onPressed: () async {
+                                    if (!await launchUrl(
+                                        Uri.parse(widget.eventForm))) {
+                                      throw Exception('Could not launch URl');
+                                    }
+                                  },
+                                  child:
+                                      WelcomeText(text: "Register", size: 15),
+                                )
+                        ],
                       ),
-                      SizedBox(height: 5),
-                      Text(
-                        "Date: ${widget.event.date!}",
-                        style: TextStyle(
-                          color: widget.elementColor,
-                          fontSize: 14,
-                        ),
-                      ),
-                      Text(
-                        "Venue: ${widget.event.venue!}",
-                        style: TextStyle(
-                          color: widget.elementColor,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: 10),
-                Column(
-                  children: [
-                    TextButton(
-                      onPressed: _toggleExpansion,
-                      child: Text("More Info", style: TextStyle(fontSize: 14)),
-                    ),
-                    if (widget.eventForm != "null")
-                      TextButton(
-                        onPressed: () async {
-                          if (!await launchUrl(Uri.parse(widget.eventForm))) {
-                            throw Exception('Could not launch URL');
-                          }
-                        },
-                        child: Text("Register", style: TextStyle(fontSize: 15)),
-                      ),
-                  ],
-                ),
+                    ))
               ],
             ),
             AnimatedCrossFade(
               firstChild: Container(),
               secondChild: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.event.details!,
-                  style: TextStyle(fontSize: 10),
-                ),
+                child: WelcomeText(text: widget.event.details!, size: 10),
               ),
               crossFadeState: isExpanded
                   ? CrossFadeState.showSecond
@@ -752,16 +750,14 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
     double heightFactor = widget.height / 1000;
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        boxShadow: [
-          BoxShadow(
-            color: C.menuButtonColor.withOpacity(0.3),
-            offset: Offset(10 * heightFactor, 2 * heightFactor),
-            blurRadius: 2,
-            spreadRadius: -15,
-          ),
-        ],
-      ),
+          borderRadius: BorderRadius.all(Radius.circular(20.0)),
+          boxShadow: [
+            BoxShadow(
+                color: C.menuButtonColor.withOpacity(0.3),
+                offset: Offset(10 * heightFactor, 2 * heightFactor),
+                blurRadius: 2,
+                spreadRadius: -15)
+          ]),
       child: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
@@ -771,7 +767,8 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                 Container(
                   height: widget.height * 0.19,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(20.0)), // Rounded corners
                     image: DecorationImage(
                       image: AssetImage(widget.image),
                       fit: BoxFit.cover,
@@ -788,7 +785,7 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                       colors: [
                         widget.gradientColor,
                         Colors.transparent,
-                        Colors.transparent,
+                        Colors.transparent
                       ],
                     ),
                   ),
@@ -801,7 +798,8 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                       height: widget.height * 0.15,
                       width: widget.height * 0.15,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(20.0)), // Rounded corners
                         image: DecorationImage(
                           image: NetworkImage(
                               S.imgBaseUrl + widget.speaker.profilePic!),
@@ -815,7 +813,8 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                   height: widget.height * 0.19,
                   width: widget.height * 0.17,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderRadius: BorderRadius.all(
+                        Radius.circular(20.0)), // Rounded corners
                     image: DecorationImage(
                       image: AssetImage(S.assetProfileFrame),
                       fit: BoxFit.cover,
@@ -827,41 +826,42 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                   child: Align(
                     alignment: Alignment.centerLeft,
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: widget.height * 0.17, // Width for the image
+                          height: widget.height * 0.14,
+                          width: widget.height * 0.17,
                         ),
-                        Expanded(
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(6.0, 15.0, 0.0, 0.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Flexible(
-                                  child: EventText(
+                        Container(
+                          width: widget.height * 0.24,
+                          child: Align(
+                            alignment: Alignment.topLeft,
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  6.0, 15.0, 0.0, 0.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  EventText(
                                     color: C.backgroundBottom,
                                     text: widget.speaker.name!,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    size: 29.0,
+                                    maxLines: 2,
+                                    size: 30.0,
                                   ),
-                                ),
-                                EventText(
-                                  color: C.backgroundBottom,
-                                  text: "${widget.speaker.company!}",
-                                  maxLines: 2,
-                                  size: 20.0,
-                                  overflow: TextOverflow.visible,
-                                ),
-                                EventText(
-                                  color: C.backgroundBottom,
-                                  text: "Year: ${widget.speaker.year!}",
-                                  maxLines: 1,
-                                  size: 20.0,
-                                ),
-                              ],
+                                  EventText(
+                                    color: C.backgroundBottom,
+                                    text: "${widget.speaker.company!}",
+                                    maxLines: 2,
+                                    size: 20.0,
+                                  ),
+                                  EventText(
+                                    color: C.backgroundBottom,
+                                    text: "Year: ${widget.speaker.year!}",
+                                    maxLines: 1,
+                                    size: 20.0,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -870,51 +870,27 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
                   ),
                 ),
                 Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(
-                        0.0, widget.height * 0.115, 10.0, 0.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        TextButton(
-                          onPressed: _toggleExpansion,
-                          child: WelcomeText(text: "More Info", size: 14),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          0.0, widget.height * 0.115, 10.0, 0.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: _toggleExpansion,
+                            child: WelcomeText(text: "More Info", size: 14),
+                          ),
+                        ],
+                      ),
+                    ))
               ],
             ),
             AnimatedCrossFade(
               firstChild: Container(),
-              secondChild: ClipRRect(
-                borderRadius: BorderRadius.circular(12.0),
-                child: Container(
-                  padding:
-                      const EdgeInsets.all(12.0), // Padding around the text
-                  decoration: BoxDecoration(
-                    color: Colors.transparent,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.4),
-                        offset: Offset(0, 2),
-                        blurRadius: 8,
-                        spreadRadius: 2,
-                      ),
-                    ],
-                  ),
-                  child: Align(
-                    alignment:
-                        Alignment.topLeft, // Align text to the top-left corner
-                    child: WelcomeText(
-                      text: widget.speaker.description!,
-                      size:
-                          14, // Slightly larger font size for better readability
-                    ),
-                  ),
-                ),
+              secondChild: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: WelcomeText(text: widget.speaker.description!, size: 10),
               ),
               crossFadeState: isExpanded
                   ? CrossFadeState.showSecond

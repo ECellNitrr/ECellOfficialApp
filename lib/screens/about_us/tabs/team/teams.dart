@@ -1,14 +1,10 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/dimens.dart';
-import 'package:ecellapp/core/res/strings.dart';
-import 'package:ecellapp/models/team.dart';
 import 'package:ecellapp/models/team_category.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/Widget/teams_card.dart';
 import 'package:ecellapp/widgets/ecell_animation.dart';
 import 'package:ecellapp/widgets/reload_on_error.dart';
-import 'package:ecellapp/widgets/rotated_curveed_tile.dart';
 import 'package:ecellapp/widgets/screen_background.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ecellapp/widgets/stateful_wrapper.dart';
@@ -58,12 +54,6 @@ class _TeamScreenState extends State<TeamScreen1> {
   }
 
   void _launchURL(Uri url) async => await launchUrl(url);
-  // const Url = url;
-  // if (await canLaunchUrl(url)) {
-  //   await launchUrl(url);
-  // } else {
-  //   throw 'Could not launch $url';
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -150,12 +140,12 @@ class _TeamScreenState extends State<TeamScreen1> {
                                           quarterTurns: 3, child: Text("2022")),
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.0, vertical: 20.0),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0)),
-                                          backgroundColor: Colors.purple),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5.0, vertical: 20.0),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0)),
+                                      ),
                                     ),
                                   ),
                                 ]),
@@ -176,49 +166,16 @@ class _TeamScreenState extends State<TeamScreen1> {
                                               'https://ecell.nitrr.ac.in/team/${yearl[i]}'));
                                         },
                                         style: ElevatedButton.styleFrom(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5.0,
-                                                vertical: 20.0),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                        15.0)),
-                                            backgroundColor: Colors.purple),
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 5.0, vertical: 20.0),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15.0)),
+                                        ),
                                       ),
-                                    ),
+                                    )
                                   ]),
                           ],
-                          // child: Column(
-                          //   crossAxisAlignment: CrossAxisAlignment.stretch,
-                          //   mainAxisAlignment: MainAxisAlignment.center,
-                          //   mainAxisSize: MainAxisSize.max,
-                          //   children:
-                          //     year.map((x){
-                          //         return(RotatedCurvedTile(
-                          //           checked: x == year[i(snapshot.data)],
-                          //           name: x,
-                          //           onTap: () {
-                          //             subject.add(year.indexWhere((e) => year[i(snapshot.data)] == x));
-                          //             setState(() {
-                          //               S.getTeamUrl = S.baseUrl + "team/list/$x/";
-                          //             });},
-                          //
-                          //             ));}).toList(),
-                          //
-                          //   // children: year
-                          //   //     .map((spon) {
-                          //   //   String tab = spon;
-                          //   //   return RotatedCurvedTile(
-                          //   //     checked: tab == year[i(snapshot.data)],
-                          //   //     name: tab,
-                          //   //     onTap: () {
-                          //   //         subject.add(year.indexWhere((e) => year[i(snapshot.data)] == tab));
-                          //   //         S.getTeamUrl = S.baseUrl + "team/list/$tab/";}
-                          //   //   );
-                          //   // })
-                          //   //     .toList()
-                          //   //     .sublist(0,3),
-                          // ),
                         ),
                       ),
                     ),
