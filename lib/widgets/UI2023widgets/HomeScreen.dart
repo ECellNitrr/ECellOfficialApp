@@ -14,6 +14,7 @@ import '../../core/res/strings.dart';
 import '../../models/event.dart';
 import 'package:lottie/lottie.dart';
 
+
 class WelcomeText extends StatelessWidget {
   WelcomeText({Key? key, required this.text, required this.size})
       : super(key: key);

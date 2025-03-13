@@ -181,7 +181,6 @@ class _TeamScreenState extends State<TeamScreen1> {
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(15.0)
                                           ),
-
                                         ),
                                       ),
                                     ),

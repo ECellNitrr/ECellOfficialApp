@@ -23,26 +23,26 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     // String? token = sl.get<SharedPreferences>().getString(S.mailTokenKey);
     String? email = sl.get<SharedPreferences>().getString(S.email);
-    String? firstName = sl.get<SharedPreferences>().getString(S.firstName);
-    String? lastName = sl.get<SharedPreferences>().getString(S.lastName);
-    String? phone = sl.get<SharedPreferences>().getString(S.phone);
+    String? firstName=sl.get<SharedPreferences>().getString(S.firstName);
+    String? lastName=sl.get<SharedPreferences>().getString(S.lastName);
+    String? phone=sl.get<SharedPreferences>().getString(S.phone);
     if (email == null) {
       Future.delayed(Duration(milliseconds: D.splashDelay)).then(
           (value) => Navigator.pushReplacementNamed(context, S.routeLogin));
     } else {
       print('I have come here');
       // if(email!=null){
-      String f = (firstName == null ? email : firstName);
-      String l = (lastName == null ? "" : lastName);
-      String e = email;
-      String p = (phone == null ? "xxxxxxxxxx" : phone);
-      // List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
-      // f=words[0];
-      // if(words.length>1)l=words[words.length-1];
-      // e=sl.get<SharedPreferences>().getString('email')??"Unknown";
-      context.read<GlobalState>().user = uo.User.rtr(f, l, e, p);
-      Future.delayed(Duration(milliseconds: D.splashDelay)).then(
-          (value) => Navigator.pushReplacementNamed(context, S.routeHome));
+        String f=(firstName==null?email:firstName);
+        String l=(lastName==null?"":lastName);
+        String e=email;
+        String  p=(phone==null?"xxxxxxxxxx":phone);
+        // List<String> words = sl.get<SharedPreferences>().getString('name')!.split(' ');
+        // f=words[0];
+        // if(words.length>1)l=words[words.length-1];
+        // e=sl.get<SharedPreferences>().getString('email')??"Unknown";
+        context.read<GlobalState>().user=uo.User.rtr(f,l,e,p);
+        Future.delayed(Duration(milliseconds: D.splashDelay)).then(
+                (value) => Navigator.pushReplacementNamed(context, S.routeHome));
       // }
       // else context.read<SplashCubit>().getProfile();
     }
