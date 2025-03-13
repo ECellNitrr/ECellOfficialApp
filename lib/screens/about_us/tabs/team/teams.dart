@@ -24,39 +24,14 @@ class TeamScreen1 extends StatefulWidget {
 
 class _TeamScreenState extends State<TeamScreen1> {
   // const TeamScreen({required Key key}) : super(key: key);
-  final year = [
-    "2021",
-    "2020",
-    "2019",
-    "2018",
-    "2017",
-    "2016",
-    "2015",
-    "2014",
-    "2013",
-    "2012",
-    "2011"
-  ];
-  final yearl = [
-    "2020",
-    "2019",
-    "2018",
-    "2017",
-    "2016",
-    "2015",
-    "2014",
-    "2013",
-    "2012",
-    "2011",
-    "2010"
-  ];
+  final year=["2021","2020","2019","2018","2017","2016","2015","2014","2013","2012","2011"];
+  final yearl=["2020","2019","2018","2017","2016","2015","2014","2013","2012","2011","2010"];
   String tab = "2023";
 
   int i(int? name) {
     if (name == null) throw Exception();
-    return name;
+    return  name;
   }
-
   void _launchURL(Uri url) async => await launchUrl(url);
   // const Url = url;
   // if (await canLaunchUrl(url)) {
@@ -64,6 +39,7 @@ class _TeamScreenState extends State<TeamScreen1> {
   // } else {
   //   throw 'Could not launch $url';
   // }
+
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +54,7 @@ class _TeamScreenState extends State<TeamScreen1> {
           leading: Container(
             padding: EdgeInsets.only(left: D.horizontalPadding - 10, top: 10),
             child: IconButton(
-              icon: Icon(Icons.arrow_back_ios,
-                  color: C.teamsBackground, size: 30),
+              icon: Icon(Icons.arrow_back_ios, color: C.teamsBackground, size: 30),
               onPressed: () => Navigator.of(context).pop(),
             ),
           ),
@@ -146,46 +121,45 @@ class _TeamScreenState extends State<TeamScreen1> {
                                 children: <Widget>[
                                   Container(
                                     child: ElevatedButton(
-                                      child: RotatedBox(
-                                          quarterTurns: 3, child: Text("2022")),
-                                      onPressed: () {},
-                                      style: ElevatedButton.styleFrom(
+                                      child: RotatedBox(quarterTurns:3, child: Text("2022")),
+                                      onPressed: (){
 
+                                      },
+                                      style: ElevatedButton.styleFrom(
                                         padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(15.0)
                                           ),
                                       ),
                                     ),
+
                                   ),
-                                ]),
-                            for (int i = 0; i < 11; i++)
-                              ListView(
-                                  scrollDirection: Axis.vertical,
-                                  shrinkWrap: true,
-                                  physics: ScrollPhysics(),
-                                  padding: const EdgeInsets.all(8),
-                                  children: <Widget>[
-                                    Container(
-                                      child: ElevatedButton(
-                                        child: RotatedBox(
-                                            quarterTurns: 3,
-                                            child: Text(year[i])),
-                                        onPressed: () {
-                                          _launchURL(Uri.parse(
-                                              'https://ecell.nitrr.ac.in/team/${yearl[i]}'));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.0, vertical: 20.0),
+                                ]
+                            ),
+                            for(int i=0;i<11;i++) ListView(
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                physics: ScrollPhysics(),
+                                padding: const EdgeInsets.all(8),
+                                children: <Widget>[
+                                  Container(
+                                    child: ElevatedButton(
+                                      child: RotatedBox(quarterTurns: 3, child: Text(year[i])),
+                                      onPressed: (){
+                                        _launchURL(Uri.parse('https://ecell.nitrr.ac.in/team/${yearl[i]}'));
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
                                           shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(15.0)
                                           ),
-                                        ),
+
                                       ),
                                     ),
-                                  ]),
-                          ],
+
+                                  ),
+                                ]
+                            ),],
                           // child: Column(
                           //   crossAxisAlignment: CrossAxisAlignment.stretch,
                           //   mainAxisAlignment: MainAxisAlignment.center,
@@ -219,8 +193,7 @@ class _TeamScreenState extends State<TeamScreen1> {
                           // ),
                         ),
                       ),
-                    ),
-                  ),
+                    ),),
                   Expanded(
                     flex: 15,
                     child: ClipRRect(
@@ -248,35 +221,26 @@ class _TeamScreenState extends State<TeamScreen1> {
                                     fontWeight: FontWeight.w800,
                                     letterSpacing: 0.5,
                                   ),
-                                ),
-                                SizedBox(height: 20),
+                                ),SizedBox(height: 20),
                                 Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    for (int i = 0; i < 7; i++)
-                                      ListView(
-                                        scrollDirection: Axis.vertical,
-                                        shrinkWrap: true,
-                                        physics: ScrollPhysics(),
-                                        padding: const EdgeInsets.all(8),
-                                        children: <Widget>[
-                                          Container(
-                                            height: 50,
-                                            // width: 20,
-                                            color: Colors.amber[600],
-                                            child: Center(
-                                                child: Text(data[i].category,
-                                                    style: TextStyle(
-                                                        fontSize: 20))),
-                                          ),
-                                          ...data[i]
-                                              .members
-                                              .map((e) => TeamsCard(
-                                                    teamMember: e,
-                                                    key: null,
-                                                  )),
-                                        ],
-                                      ),
+                                    for(int i=0;i<7;i++ ) ListView(
+                                      scrollDirection: Axis.vertical,
+                                      shrinkWrap: true,
+                                      physics: ScrollPhysics(),
+                                      padding: const EdgeInsets.all(8),
+                                      children: <Widget>[
+                                        Container(
+                                          height: 50,
+                                          // width: 20,
+                                          color: Colors.amber[600],
+                                          child: Center(child: Text(data[i].category, style: TextStyle(fontSize:20))),
+                                        ),
+                                        ...data[i].members.map((e) => TeamsCard(teamMember: e, key: null,)),
+
+                                      ],
+                                    ),
                                   ],
                                 ),
                                 // ...data[i].members.map((e) => TeamsCard(teamMember: e))
