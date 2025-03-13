@@ -157,23 +157,22 @@ class _TeamScreenState extends State<TeamScreen1> {
                                   padding: const EdgeInsets.all(8),
                                   children: <Widget>[
                                     Container(
-                                      child: ElevatedButton(
-                                        child: RotatedBox(
-                                            quarterTurns: 3,
-                                            child: Text(year[i])),
-                                        onPressed: () {
-                                          _launchURL(Uri.parse(
-                                              'https://ecell.nitrr.ac.in/team/${yearl[i]}'));
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: 5.0, vertical: 20.0),
-                                          shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0)),
-                                        ),
+                                        child: ElevatedButton(
+                                      child: RotatedBox(
+                                          quarterTurns: 3,
+                                          child: Text(year[i])),
+                                      onPressed: () {
+                                        _launchURL(Uri.parse(
+                                            'https://ecell.nitrr.ac.in/team/${yearl[i]}'));
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 5.0, vertical: 20.0),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0)),
                                       ),
-                                    )
+                                    ))
                                   ]),
                           ],
                         ),
