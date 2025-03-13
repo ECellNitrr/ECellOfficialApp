@@ -150,11 +150,11 @@ class _TeamScreenState extends State<TeamScreen1> {
                                           quarterTurns: 3, child: Text("2022")),
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 5.0, vertical: 20.0),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(15.0)),
+
+                                        padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 20.0),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(15.0)
+                                          ),
                                       ),
                                     ),
                                   ),
@@ -179,8 +179,9 @@ class _TeamScreenState extends State<TeamScreen1> {
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 5.0, vertical: 20.0),
                                           shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0)),
+                                              borderRadius: BorderRadius.circular(15.0)
+                                          ),
+
                                         ),
                                       ),
                                     ),
