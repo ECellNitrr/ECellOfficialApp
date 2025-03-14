@@ -1,7 +1,5 @@
-import 'dart:ffi';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecellapp/core/res/strings.dart';
 import 'package:equatable/equatable.dart';
 
 class Data extends Equatable {

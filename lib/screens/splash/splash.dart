@@ -11,6 +11,7 @@ import '../../widgets/ecell_animation.dart';
 import '../../widgets/screen_background.dart';
 import 'cubit/splash_cubit.dart';
 import 'package:ecellapp/models/user.dart' as uo;
+
 class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();

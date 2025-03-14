@@ -1,11 +1,8 @@
 import 'package:ecellapp/core/res/colors.dart';
 import 'package:ecellapp/core/res/strings.dart';
 import 'package:ecellapp/screens/about_us/tabs/aim/aim.dart';
-import 'package:ecellapp/screens/about_us/tabs/team/team.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team_new.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class AboutUsScreen extends StatefulWidget {
   @override

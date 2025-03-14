@@ -42,34 +42,36 @@ class SponserCarousel extends StatelessWidget {
       });
     });
 
-    return (list.length==0)?Container():CarouselSlider.builder(
-      itemCount: list.length,
-      itemBuilder: ((context, index, realIndex) {
-        return Container(
-            color: Colors.white,
-            width: width * 0.4,
-            height: height * 0.12,
-            child: Image.network(
-              list[index].picUrl!,
-              fit: BoxFit.contain,
-            ));
-      }),
-      options: CarouselOptions(
-        height: 200,
-        aspectRatio: 16 / 9,
-        viewportFraction: 1,
-        initialPage: 0,
-        enableInfiniteScroll: true,
-        reverse: false,
-        autoPlay: true,
-        autoPlayInterval: Duration(seconds: 3),
-        autoPlayAnimationDuration: Duration(milliseconds: 800),
-        autoPlayCurve: Curves.fastOutSlowIn,
-        enlargeCenterPage: true,
-        enlargeFactor: 0.3,
-        scrollDirection: Axis.horizontal,
-      ),
-    );
+    return (list.length == 0)
+        ? Container()
+        : CarouselSlider.builder(
+            itemCount: list.length,
+            itemBuilder: ((context, index, realIndex) {
+              return Container(
+                  color: Colors.white,
+                  width: width * 0.28,
+                  height: height * 0.10,
+                  child: Image.network(
+                    list[index].picUrl!,
+                    fit: BoxFit.contain,
+                  ));
+            }),
+            options: CarouselOptions(
+              height: 200,
+              aspectRatio: 16 / 9,
+              viewportFraction: 1,
+              initialPage: 0,
+              enableInfiniteScroll: true,
+              reverse: false,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              enlargeFactor: 0.3,
+              scrollDirection: Axis.horizontal,
+            ),
+          );
   }
 
   void _getAllSponsors(BuildContext context) {

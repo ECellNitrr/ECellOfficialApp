@@ -34,8 +34,7 @@ class ImageGrid extends StatelessWidget {
         children: [
           ScreenBackground(elementId: 0),
           Padding(
-            padding:
-            EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
+            padding: EdgeInsets.fromLTRB(width * 0.1, height * 0.35, 0.0, 0.0),
             child: Container(
               height: height * 0.4,
               width: width * 0.8,
@@ -47,15 +46,23 @@ class ImageGrid extends StatelessWidget {
             ),
           ),
           Container(
-            height: height*0.15,
+            height: height * 0.15,
             child: Align(
               alignment: Alignment.center,
-              child: Text(galleryText, style: GoogleFonts.lato(fontWeight: FontWeight.bold, fontSize: 32.0, color: Colors.white),),
+              child: Text(
+                galleryText,
+                style: GoogleFonts.lato(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32.0,
+                    color: Colors.white),
+              ),
             ),
           ),
           Column(
             children: [
-              SizedBox(height: height*0.15,),
+              SizedBox(
+                height: height * 0.15,
+              ),
               Expanded(
                 child: GridView.builder(
                   padding: EdgeInsets.all(0),
@@ -71,7 +78,8 @@ class ImageGrid extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return FullScreenImage(imageUrl: "${imageUrls[index]['big']}");
+                              return FullScreenImage(
+                                  imageUrl: "${imageUrls[index]['big']}");
                             },
                           ),
                         );
@@ -80,9 +88,12 @@ class ImageGrid extends StatelessWidget {
                         tag: 'image$index',
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Image.network(
-                            "${imageUrls[index]['small']}",
-                            fit: BoxFit.cover,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15.0),
+                            child: Image.network(
+                              "${imageUrls[index]['small']}",
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
@@ -113,7 +124,11 @@ class FullScreenImage extends StatelessWidget {
       body: Center(
         child: Hero(
           tag: imageUrl,
-          child: Image.network(imageUrl),
+          child: InteractiveViewer(
+              boundaryMargin: EdgeInsets.all(20.0),
+              minScale: 0.5,
+              maxScale: 4.0,
+              child: Image.network(imageUrl)),
         ),
       ),
     );

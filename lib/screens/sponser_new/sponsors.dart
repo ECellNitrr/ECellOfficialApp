@@ -15,7 +15,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rxdart/rxdart.dart';
 import '../../core/res/strings.dart';
-import '../../widgets/raisedButton.dart';
 import 'cubit/sponsors_cubit.dart';
 
 class SponsorsScreen extends StatelessWidget {
@@ -133,7 +132,7 @@ class SponsorsScreen extends StatelessWidget {
                   Text(
                     "Sponsors",
                     style: GoogleFonts.raleway(
-                        fontSize: 55*heightFactor,
+                        fontSize: 55 * heightFactor,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                         letterSpacing: 0.5),

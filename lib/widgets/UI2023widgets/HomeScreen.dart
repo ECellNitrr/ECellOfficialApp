@@ -46,7 +46,6 @@ class WelcomeText extends StatelessWidget {
   }
 }
 
-
 class EventText extends StatelessWidget {
   EventText(
       {Key? key,
@@ -64,13 +63,13 @@ class EventText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    double heightFactor = height/1000;
+    double heightFactor = height / 1000;
     return Container(
         child: Text(
       text,
       maxLines: maxLines,
       style: GoogleFonts.raleway(
-        fontSize: size*heightFactor,
+        fontSize: size * heightFactor,
         fontWeight: FontWeight.bold, // Adjust the font size as needed
         color: color, // Set the text color
         shadows: <Shadow>[
@@ -905,6 +904,3 @@ class _SpeakerImageSectionState extends State<SpeakerImageSection> {
     );
   }
 }
-
-
-

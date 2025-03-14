@@ -7,7 +7,6 @@ import 'package:ecellapp/screens/about_us/tabs/team/cubit/team_cubit.dart';
 import 'package:ecellapp/screens/about_us/tabs/team/team_repository_new.dart';
 import 'package:equatable/equatable.dart';
 
-import '../team_repository.dart';
 
 part 'team_state_new.dart';
 
