@@ -49,5 +49,6 @@ samples, guidance on mobile development, and a full API reference.
 - [x] [home_repository](lib/screens/home/home_repository.dart)
 - [x] [speaker_repository](lib/screens/speaker/speaker_repository.dart)
 - [x] [events_repository](lib/screens/events/events_repository.dart)
+
 - [x] [sponsers_repository](lib/screens/sponsors/sponsors_repository.dart)
 - [x] [forgot_password_repository](lib/screens/forgot_password/forgot_password_repository.dart)
